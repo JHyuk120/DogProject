@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.goods.GoodsDAOInter">
+
+<!-- 상품 등록 -->
+ <insert id="create" parameterType="dev.mvc.goods.GoodsVO">
+    INSERT INTO goods (goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point)
+    VALUES(goods_seq.nextval, #{adminno}, #{itemno}, #{seqno}, #{gname}, #{content}, #{word}, sysdate, 
+                                            #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{price}, #{dc}, #{saleprice}, #{salecnt}, #{point})
+  </insert>
+  
+  <!-- 전체 상품 목록 -->
+  <select id="list_all" resultType="dev.mvc.goods.GoodsVO" >
+    SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    FROM goods
+    ORDER BY goods ASC
+  </select> 
+  
+  <!-- 특정 카테고리의 등록된 글목록 -->
+  <select id="list_by_itemno" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
+    SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    FROM goods 
+    WHERE itemno = #{itemno}
+    ORDER BY goodsno DESC
+  </select>
+  
+  <!-- 일반적인 조회 -->
+  <select id="read" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
+    SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    FROM goods
+    WHERE goodsno = #{goodsno}
+  </select>
+  
+  <!-- 카테고리별 검색 목록 -->
+  <select id="list_by_itemno_search" resultType="dev.mvc.goods.GoodsVO" parameterType="dev.mvc.goods.GoodsVO">
+     SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    FROM goods
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+        WHERE itemno=#{itemno}
+      </when>
+      <otherwise> <!-- 검색하는 경우 -->
+        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+      </otherwise>
+    </choose>
+    ORDER BY goodsno DESC   
+  </select>
+  
+  <!-- 카테고리별 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="dev.mvc.goods.GoodsVO">
+    SELECT COUNT(*) as cnt
+    FROM goods
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+        WHERE itemno=#{itemno}
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+      </otherwise>
+    </choose>
+  </select>   
+  
+  <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
+  <select id="list_by_itemno_search_paging" resultType="dev.mvc.goods.GoodsVO" parameterType="dev.mvc.goods.GoodsVO">
+   SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point, r
+   FROM (
+              SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point, rownum as r
+              FROM (
+                        SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
+                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+                        FROM goods
+                        <choose>
+                          <when test="word == null or word == ''">
+                             WHERE itemno=#{itemno}
+                          </when>
+                          <otherwise>
+                            WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+                          </otherwise>
+                        </choose>
+                        ORDER BY goodsno DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+     
+    <!--  1 page: WHERE r >= 1 AND r <= 10; 
+            2 page: WHERE r >= 11 AND r <= 20;
+            3 page: WHERE r >= 21 AND r <= 30; -->
+     
+  </select>   
+  
+  <!-- 글 수정 -->
+  <update id="update_text" parameterType="dev.mvc.goods.GoodsVO">
+    UPDATE goods
+    SET gname=#{gname}, content=#{content},  word=#{word}
+    WHERE goodsno = #{goodsno}
+  </update>
+  
+  <!-- 콘텐츠 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM goods
+    WHERE goodsno=#{goodsno}
+  </delete>
+  
+  <!-- 특정 카테고리에 속한 레코드 갯수를 리턴 -->
+  <select id="count_by_itemno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt 
+    FROM goods 
+    WHERE itemno=#{itemno}
+  </select>
+  
+   <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
+   <delete id="delete_by_itemno" parameterType="int">
+DELETE FROM goods
+WHERE itemno=#{itemno}
+  </delete>
+
+</mapper>

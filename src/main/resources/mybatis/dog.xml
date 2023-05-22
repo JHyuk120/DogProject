@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.dog.DogDAOInter">
+<!-- 등록 : 추가한 레코드 갯수를 리턴 -->
+  <insert id="create" parameterType="dev.mvc.dog.DogVO">
+    INSERT INTO dog(itemno, item, cnt, seqno) 
+    VALUES (dog_seq.nextval, #{item}, 0, #{seqno})
+    
+  </insert>
+  <select id="list_all" resultType="dev.mvc.dog.DogVO">
+  select itemno, item, cnt, seqno, visible 
+  from dog 
+  order by seqno ASC
+  
+  </select>
+  
+  <select id="read" resultType="dev.mvc.dog.DogVO">
+  select itemno, item, cnt, seqno, visible 
+  from dog 
+  where itemno = #{itemno} 
+  
+  </select>
+  
+  <update id="update" parameterType="dev.mvc.dog.DogVO">
+  UPDATE dog 
+  SET item=#{item}, seqno = #{seqno} 
+  WHERE itemno=#{itemno}
+  
+  </update>
+  
+  <delete id="delete" parameterType="dev.mvc.dog.DogVO">
+    delete from dog
+    where itemno=#{itemno}
+  </delete>
+  
+  <update id="update_seqno_decrease" parameterType="int">
+  update dog 
+  set seqno = seqno - 1 
+  where itemno = #{itemno}
+  
+  </update>
+  
+  <update id="update_seqno_increase" parameterType="int">
+  update dog 
+  set seqno = seqno + 1 
+  where itemno = #{itemno}
+  
+  </update>
+  
+  
+  <update id='update_visible_y' parameterType="int">
+  update dog 
+  set visible='Y' 
+  where itemno=#{itemno}
+  </update>
+  
+  
+  <update id='update_visible_n' parameterType="int">
+  update dog 
+  set visible='N' 
+  where itemno=#{itemno}
+  </update>
+  
+  
+  <select id="list_all_y" resultType="dev.mvc.dog.DogVO">
+  SELECT itemno, item, cnt,
+      seqno, visible
+      FROM dog
+      where visible='Y'
+      ORDER BY seqno ASC
+  
+  </select>
+  
+  <update id="update_cnt_add" parameterType="int">
+  update dog
+  set cnt = cnt + 1
+  where itemno = #{itemno}
+  
+  </update>
+  
+  
+  <update id="update_cnt_sub" parameterType="int">
+  update dog
+  set cnt = cnt - 1
+  where itemno = #{itemno}
+  
+  </update>
+  
+  
+</mapper>
