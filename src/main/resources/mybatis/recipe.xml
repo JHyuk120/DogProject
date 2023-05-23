@@ -90,7 +90,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
-<<<<<<< HEAD
                 file1, file1saved, thumb1, size1,   youtube, r
      FROM (
                 SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
@@ -98,15 +97,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 FROM (
                           SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
                                      file1, file1saved, thumb1, size1,   youtube
-=======
-                file1, file1saved, thumb1, size1, youtube, r
-     FROM (
-                SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
-                           file1, file1saved, thumb1, size1, youtube, rownum as r
-                FROM (
-                          SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
-                                     file1, file1saved, thumb1, size1, youtube
->>>>>>> 34f15739aad7d60770514667309ca044a71cce63
                           FROM recipe
                           <choose>
                             <when test="word == null or word == ''"> 

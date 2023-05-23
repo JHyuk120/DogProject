@@ -20,7 +20,7 @@
  
 <DIV class='title_line'>
 『 ${itemVO.item } 』 ( ${search_count } )
-
+      
 </DIV>
 
 <DIV class='content_body'>
