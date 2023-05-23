@@ -18,7 +18,7 @@
 <body>
 <c:import url="/menu/top.do" />
 
-<DIV class='title_line'><A href="/recipe/list_by_itemno.do?itemno=${itemVO.itemno }" class="title_link">${itemVO.name }</A> > ${recipeVO.title } > Youtube 등록/수정/삭제</DIV>
+<DIV class='title_line'><A href="/recipe/list_by_itemno.do?itemno=${itemVO.itemno }" class="title_link">${itemVO.item }</A> > ${recipeVO.title } > Youtube 등록/수정/삭제</DIV>
  
 <DIV class='content_body'>
   <ASIDE class="aside_right">

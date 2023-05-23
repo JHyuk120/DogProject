@@ -45,7 +45,7 @@ public class RecipeVO {
     private String youtube;
     
     /** 재료 */
-    private String ingredients = "";
+    private String ingredient = "";
     
     /** 리뷰 */
     private String review = "";
@@ -200,12 +200,12 @@ public class RecipeVO {
       this.youtube = youtube;
     }
 
-    public String getIngredients() {
-      return ingredients;
+    public String getIngredient() {
+      return ingredient;
     }
 
-    public void setIngredients(String ingredients) {
-      this.ingredients = ingredients;
+    public void setIngredient(String ingredient) {
+      this.ingredient = ingredient;
     }
 
     public String getReview() {

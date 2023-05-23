@@ -10,7 +10,6 @@
 <c:set var="thumb1" value="${recipeVO.thumb1 }" />
 <c:set var="article" value="${recipeVO.article }" />
 <c:set var="youtube" value="${recipeVO.youtube }" />
-<c:set var="map" value="${recipeVO.map }" />
 <c:set var="word" value="${recipeVO.word }" />
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
@@ -32,7 +31,7 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.name }</A></DIV>
+<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A></DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -49,11 +48,9 @@
 	    <span class='menu_divide' >│</span>
 	    <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page}">파일 수정</A>  
 	    <span class='menu_divide' >│</span>
-	    <A href="./map.do?recipeno=${recipeno}">지도</A>  
-      <span class='menu_divide' >│</span>
       <A href="./youtube.do?recipeno=${recipeno}">유튜브</A> 
       <span class='menu_divide' >│</span>
-	    <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page}&itemno=${param.itemno}">삭제</A>  
+	    <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
     <span class='menu_divide' >│</span>
     </c:if>
 
@@ -115,15 +112,7 @@
                   </DIV>
           </li>
       </c:if>
-      
-      <c:if test="${map.trim().length() > 0 }">
-        <li class="li_none" style="clear: both; padding-top: 5px; padding-bottom: 5px;">
-          <DIV style='text-align: center; width:640px; height: 360px; margin: 0px auto;'>
-                    ${map }
-                  </DIV>
-          </li>
-      </c:if>
-  
+        
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
         <br>

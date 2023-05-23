@@ -16,16 +16,12 @@
                 <ul class="navbar-nav mr-auto">
                   <c:forEach var="dogVO" items="${list_y}">
                     <c:set var="itemno" value="${dogVO.itemno }" />
-                    <c:set var="name" value="${dogVO.item }" />
+                    <c:set var="item" value="${dogVO.item }" />
                     <li class="nav-item">
-                      <a class="nav-link" href="/contents/list_by_itemno.do?itemno=${itemno }&now_page=1" >${name }</a>
+                      <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >${item }</a>
                     </li>
                   </c:forEach>
                   
-                  <li class="nav-item">
-                    <a class="nav-link" href="/contents/list_all.do">전체 글 목록</a>
-                  </li>
-
                   <li class="nav-item">
                       <c:choose>
                           <c:when test="${sessionScope.id == null}">

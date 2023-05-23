@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Daeng Kit</title>
+<title>DOG#</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -17,22 +17,22 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>${itemVO.item } > 글 등록</DIV>
+<DIV class='title_line'>${goodsVo.gname } > 글 등록</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
-    <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
+    <A href="./create.do?goodsno=${goodsVO.goodsno }">등록</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno.do?itemno=${itemVO.itemno }">기본 목록형</A>    
+    <A href="./list_by_goodsno.do?goodsno=${goodsVO.goodsno }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno_grid.do?itemno=${itemVO.itemno }">갤러리형</A>
+    <A href="./list_by_goodsno_grid.do?goodsno=${goodsVO.goodsno }">갤러리형</A>
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
-      <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
+    <form name='frm' id='frm' method='get' action='./list_by_goodsno.do'>
+      <input type='hidden' name='goodsno' value='${goodsVO.goodsno }'>  <%-- 게시판의 구분 --%>
       
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
@@ -42,10 +42,10 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'class='btn btn-info'>검색</button>
+      <button type='submit' class='btn btn-info btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
+        <button type='button' class='btn btn-info btn-sm'
+                     onclick="location.href='./list_by_goodsno.do?goodsno=${goodsVO.goodsno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
@@ -53,36 +53,20 @@
   <DIV class='menu_line'></DIV>
   
   <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
-    <input type="hidden" name="itemno" value="${param.itemno }">
-    <input type="hidden" name="adminno" value="1"> <%-- 관리자 개발후 변경 필요 --%>
+    <input type="hidden" name="goodsno" value="${param.goodsno }">
     
     <div>
        <label>제목</label>
-       <input type='text' name='title' value='♥레시피 이름을 입력해주세요♥' required="required" 
+       <input type='text' name='title' value='서울 우수 야경' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     <div>
-    <div>
-       <label>재료</label>
-       <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>
-🍚재료🍚
-
-    
-       </textarea>
+       <label>내용</label>
+       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>가을 단풍보며 멍때리기</textarea>
     </div>
-    
-    <div>
-       <label>글</label>
-       <textarea name='article' required="required" class="form-control" rows="12" style='width: 100%;'>
-🍚조리순서🍚
-
-
-</textarea>
-    </div>  
-      
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='해시태그' required="required" 
+       <input type='text' name='word' value='서울, 야경, 힐링, 산책, 데이트, 친구, 연인, 운동, 생각, 스릴러' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
     <div>
@@ -97,7 +81,7 @@
     </div>   
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-primary">목록</button>
+      <button type="button" onclick="location.href='./list_by_goodsno.do?goodsno=${param.goodsno}'" class="btn btn-primary">목록</button>
     </div>
   
   </FORM>

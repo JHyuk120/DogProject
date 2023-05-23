@@ -19,7 +19,7 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-     ${itemVO.name } ▶ ${search_count} 건
+『 ${itemVO.item } 』 ( ${search_count } )
       
 </DIV>
 
