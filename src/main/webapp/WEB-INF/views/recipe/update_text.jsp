@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="recipeno" value="${recipeVO.recipeno }" />
-<c:set var="cateno" value="${recipeVO.cateno }" />
+<c:set var="itemno" value="${recipeVO.itemno }" />
 <c:set var="title" value="${recipeVO.title }" />
 <c:set var="article" value="${recipeVO.article }" />
 <c:set var="word" value="${recipeVO.word }" />
@@ -24,23 +24,23 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>${cateVO.name } > ${title } > 수정</DIV>
+<DIV class='title_line'>${itemVO.item } > ${title } > 수정</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
-    <A href="./create.do?cateno=${cateno }">등록</A>
+    <A href="./create.do?itemno=${itemno }">등록</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_cateno_search_paging.do?cateno=${cateno }">기본 목록형</A>    
+    <A href="./list_by_itemno_search_paging.do?itemno=${itemno }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
-    <A href="./list_by_cateno_grid.do?cateno=${cateno }">갤러리형</A>
+    <A href="./list_by_itemno_grid.do?itemno=${itemno }">갤러리형</A>
   </ASIDE> 
   
   <%-- 검색 폼 --%>
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_cateno_search_paging.do'>
-      <input type='hidden' name='cateno' value='${cateVO.cateno }'>  <%-- 게시판의 구분 --%>
+    <form name='frm' id='frm' method='get' action='./list_by_itemno_search_paging.do'>
+      <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
@@ -53,7 +53,7 @@
       <button type='submit'>검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list_by_cateno_search_paging.do?cateno=${cateVO.cateno}&word='">검색 취소</button>  
+                     onclick="location.href='./list_by_itemno_search_paging.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
@@ -61,7 +61,7 @@
   <DIV class='menu_line'></DIV>
   <%--수정 폼 --%>
   <FORM name='frm' method='POST' action='./update_text.do'>
-    <input type="hidden" name="cateno" value="${cateno }">
+    <input type="hidden" name="itemno" value="${itemno }">
     <input type="hidden" name="recipeno" value="${recipeno }">
     <input type="hidden" name="now_page" value="${param.now_page }">
 
@@ -102,7 +102,7 @@
     
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-primary">저장</button>
-      <button type="button" onclick="location.href='./read.do?cateno=${param.cateno}&recipeno=${recipeno }'" class="btn btn-primary">취소</button>
+      <button type="button" onclick="location.href='./read.do?itemno=${param.itemno}&recipeno=${recipeno }'" class="btn btn-primary">취소</button>
     </div>
   
   </FORM>

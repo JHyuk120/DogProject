@@ -17,7 +17,7 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>${itemVO.name } > 글 등록</DIV>
+<DIV class='title_line'>${itemVO.item } > 글 등록</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
