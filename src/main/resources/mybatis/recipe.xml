@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.recipe.RecipeDAOInter"> 
+    <!--  등록한 레코드 갯수 1 리턴 -->
+  <insert id="create" parameterType="dev.mvc.recipe.RecipeVO">
+    INSERT INTO recipe(recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star)
+    VALUES(recipe_seq.nextval, #{adminno}, #{itemno}, #{title}, #{article}, #{recom}, #{cnt}, #{replycnt}, 
+          #{passwd}, #{word}, #{file1}, #{file1saved}, #{recipephoto}, #{recipephotoosaved},  
+          #{thumb1}, #{size1}, #{youtube}, #{ingredient}, #{review}, #{star}, sysdate)
+  </insert>
+  
+  
+ <!-- 모든 카테고리의 등록된 글목록 -->
+  <select id="list_all" resultType="dev.mvc.recipe.RecipeVO">
+    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star
+    FROM recipe 
+    ORDER BY recipeno DESC
+  </select> 
+  
+   <!-- 특정 카테고리의 등록된 글목록 -->
+  <select id="list_by_itemno" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
+    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star
+    FROM recipe
+    WHERE itemno=#{itemno}
+    ORDER BY recipeno DESC
+  </select>
+  
+    <!-- 일반적인 조회 -->
+  <select id="read" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
+    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star
+    FROM recipe
+    WHERE recipeno = #{recipeno}
+  </select>
+         
+  
+    <!-- YOUTUBE 등록, 수정, 삭제 -->
+  <update id="youtube" parameterType="dev.mvc.recipe.RecipeVO">
+    UPDATE recipe 
+    SET youtube=#{youtube} 
+    WHERE recipeno=#{recipeno}
+  </update>
+  
+  <!-- 카테고리별 검색 목록 -->
+  <select id="list_by_itemno_search" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
+    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star
+    FROM recipe
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+        WHERE itemno=#{itemno}
+      </when>
+      <otherwise> <!-- 검색하는 경우 -->
+        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+      </otherwise>
+    </choose>
+    ORDER BY recipeno DESC   
+  </select>
+   
+  <!-- 카테고리별 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="dev.mvc.recipe.RecipeVO">
+    SELECT COUNT(*) as cnt
+    FROM recipe
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+        WHERE itemno=#{itemno}
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || #{word} || '%' 
+                                                  OR UPPER(content) LIKE '%' || #{word} || '%' 
+                                                  OR UPPER(word) LIKE '%' || #{word} || '%')
+      </otherwise>
+    </choose>
+  </select> 
+  
+  <!-- 카테고리별 검색 + 페이징 목록 -->
+  <select id="list_by_itemno_search_paging" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
+   SELECT recipesno, adminno, itemno, title, content, recom, cnt, replycnt, rdate,
+                file1, file1saved, thumb1, size1, map, youtube, r
+     FROM (
+                SELECT recipeno, adminno, itemno, title, content, recom, cnt, replycnt, rdate,
+                           file1, file1saved, thumb1, size1, map, youtube, rownum as r
+                FROM (
+                          SELECT recipeno, adminno, itemno, title, content, recom, cnt, replycnt, rdate,
+                                     file1, file1saved, thumb1, size1, map, youtube
+                          FROM recipe
+                          <choose>
+                            <when test="word == null or word == ''"> 
+                               WHERE itemno=#{itemno}
+                            </when>
+                            <otherwise>
+                              WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                                OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                                OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+                            </otherwise>
+                          </choose>
+                          ORDER BY recipeno DESC
+                 )
+      )
+      WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+       
+      <!--  1 page: WHERE r >= 1 AND r <= 10; 
+              2 page: WHERE r >= 11 AND r <= 20;
+              3 page: WHERE r >= 21 AND r <= 30; -->
+       
+  </select>
+  
+   <!-- 패스워드 확인 -->
+  <select id="password_check" resultType="int" parameterType="dev.mvc.recipe.RecipeVO">
+    SELECT COUNT(*) as cnt
+    FROM recipe
+    WHERE recipeno = #{recipeno} AND passwd = #{passwd}
+  </select>
+  
+    <!-- 글 수정 -->
+  <update id="update_text" parameterType="dev.mvc.recipe.RecipeVO">
+    UPDATE recipe
+    SET title=#{title}, content=#{content}, word=#{word}
+    WHERE recipeno = #{recipeno}
+  </update>
+  
+  <!-- 레시피 이미지 수정 -->
+  <update id="update_file" parameterType="dev.mvc.recipe.RecipeVO">
+    UPDATE recipe
+    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+    WHERE recipeno = #{recipeno}
+  </update>
+  
+   <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM recipe
+    WHERE recipeno=#{recipeno}
+  </delete>
+  
+  <!-- 특정 카테고리에 속한 레코드 갯수를 리턴 -->
+  <select id="count_by_itemno" resultType="int" parameterType="int">
+    select COUNT(*) as cnt
+    from recipe
+    where itemno = #{itemno}
+  
+  </select>
+  
+  <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
+  <delete id="delete_by_itemno" parameterType="int">
+    DELETE FROM recipe
+    WHERE itemno=#{itemno}
+  </delete>
+  
+</mapper> 

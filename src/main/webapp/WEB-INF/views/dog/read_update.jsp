@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dev.mvc.dog.DogVO" %>
+<%@ page import="dev.mvc.item.ItemVO" %>
 
 <%
-DogVO read_dogVO = (DogVO)request.getAttribute("dogVO");
+  ItemVO read_dogVO = (ItemVO)request.getAttribute("dogVO");
 %>
 
 <!DOCTYPE html> 
@@ -32,10 +32,10 @@ DogVO read_dogVO = (DogVO)request.getAttribute("dogVO");
     <FORM name='frm_create' id='frm_create' method='POST' action='./update.do'>
       <input type ="hidden" name="itemno" value="<%=read_dogVO.getItemno()%>" >
       <label>품목명</label>
-      <input type='text' name='item' value='<%=read_dogVO.getItem() %>' required="required" style='width: 35%;' autofocus="autofocus">
+      <input type='text' name='item' value='<%=read_dogVO.getItem()%>' required="required" style='width: 35%;' autofocus="autofocus">
   
       <label>순서 지정</label>
-      <input type='number' name='seqno' min='1' value='<%=read_dogVO.getSeqno() %>' required="required" style='width: 5%;' >
+      <input type='number' name='seqno' min='1' value='<%=read_dogVO.getSeqno()%>' required="required" style='width: 5%;' >
       
       <button type="submit" id='submit' class='btn btn-info btn-sm'>수정</button>
       <button type="button" onclick="location.href='/dog/list_all.do'" class='btn btn-danger btn-sm'>취소</button>
@@ -61,10 +61,10 @@ DogVO read_dogVO = (DogVO)request.getAttribute("dogVO");
     
     <tbody>
     <%
-    ArrayList<DogVO> list = (ArrayList<DogVO>)request.getAttribute("list");
-    
-    for (int i=0; i < list.size(); i++) {
-      DogVO dogVO = list.get(i);
+      ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
+        
+        for (int i=0; i < list.size(); i++) {
+      ItemVO dogVO = list.get(i);
     %>
       <TR>
         <TD class='td_bs'><%= dogVO.getSeqno() %></TD>

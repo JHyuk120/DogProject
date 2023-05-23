@@ -116,42 +116,6 @@ import dev.mvc.tool.Tool;
       return list;
     }
 
-//  <!-- 페이지 목록 출력 부분 시작 -->
-//  <DIV class='bottom_menu'>
-//  <style type='text/css'>  
-//  #paging {text-align: center; margin-top: 5px; font-size: 1em;}  
-//  #paging A:link {text-decoration:none; color:black; font-size: 1em;}  
-//  #paging A:hover{text-decoration:none; background-color: #FFFFFF; color:black; font-size: 1em;}  
-//  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}  
-//  .span_box_1{
-//    text-align: center;
-//  font-size: 1em;    
-//  border: 1px;    
-//  border-style: solid;    
-//  border-color: #cccccc;    
-//  padding:1px 6px 1px 6px; /*위, 오른쪽, 아래, 왼쪽*/    
-//  margin:1px 2px 1px 2px; /*위, 오른쪽, 아래, 왼쪽*/  
-//  }  
-//  .span_box_2{    
-//    text-align: center;    
-//  background-color: #668db4;    
-//  color: #FFFFFF;    
-//  font-size: 1em;    
-//  border: 1px;    
-//  border-style: solid;    
-//  border-color: #cccccc;    
-//  padding:1px 6px 1px 6px; /*위, 오른쪽, 아래, 왼쪽*/    
-//  margin:1px 2px 1px 2px; /*위, 오른쪽, 아래, 왼쪽*/  
-//  }
-//  </style>
-//  
-//  <DIV id='paging'>
-//    <span class='span_box_1'><A href='list_by_itemno.do?word=&now_page=1&itemno=4'>1</A></span>
-//  <span class='span_box_2'>2</span>
-//  <span class='span_box_1'><A href='list_by_itemno.do?word=&now_page=3&itemno=4'>3</A></span>
-//    </DIV>
-//  </DIV> 
-//  <!-- 페이지 목록 출력 부분 종료 -->
     
       /** 
        * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 
@@ -250,7 +214,16 @@ import dev.mvc.tool.Tool;
         return str.toString(); 
       }
       
+      /** 
+       * 패스워드 검사
+       */
+      @Override
+      public int password_check(GoodsVO goodsVO) {
+        int cnt = this.goodsDAO.password_check(goodsVO);
+        return cnt;
+      }
 
+      
       @Override
       public int update_text(GoodsVO goodsVO) {
         int cnt = this.goodsDAO.update_text(goodsVO);

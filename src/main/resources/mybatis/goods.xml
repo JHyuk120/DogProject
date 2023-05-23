@@ -103,6 +103,13 @@
      
   </select>   
   
+  <!-- 패스워드 검사 -->
+    <select id ="password_check"  resultType="int"  parameterType="dev.mvc.goods.GoodsVO">
+    SELECT COUNT(*)  as cnt 
+    FROM contents
+    WHERE goodsno = #{goodsno} AND passwd = #{passwd}
+  </select>
+  
   <!-- 글 수정 -->
   <update id="update_text" parameterType="dev.mvc.goods.GoodsVO">
     UPDATE goods

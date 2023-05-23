@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import="dev.mvc.dog.DogVO" %>
+<%@ page import="dev.mvc.item.ItemVO" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,7 +22,7 @@
 
   <DIV style="font-size: 24px;">
     <%
-    DogVO dogVO = (DogVO) request.getAttribute("dogVO");
+      ItemVO dogVO = (ItemVO) request.getAttribute("dogVO");
     %>
     itemno : <%=dogVO.getItemno()%><br> 
     name : <%=dogVO.getItem()%><br>

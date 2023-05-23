@@ -1,16 +1,16 @@
-package dev.mvc.dog;
+package dev.mvc.item;
 
 import java.util.ArrayList;
 
-public interface DogDAOInter {
+public interface ItemProcInter {
+
+  public int create(ItemVO dogVO);
   
-  public int create(DogVO dogVO);
+  public ArrayList<ItemVO> list_all();
   
-  public ArrayList<DogVO> list_all();
+  public ItemVO read(int itemno);
   
-  public DogVO read(int itemno);
-  
-  public int update(DogVO dogVO);
+  public int update(ItemVO dogVO);
   
   public int delete(int itemno);
   
@@ -22,7 +22,7 @@ public interface DogDAOInter {
   
   public int update_visible_n(int itemno);
   
-  public ArrayList<DogVO> list_all_y();
+  public ArrayList<ItemVO> list_all_y();
   
   public int update_cnt_add(int itemno);
   

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dev.mvc.dog.DogVO" %>
+<%@ page import="dev.mvc.item.ItemVO" %>
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -56,13 +56,11 @@
     
     <tbody>
     <%
-    ArrayList<DogVO> list = (ArrayList<DogVO>)request.getAttribute("list");
-    
-    for (int i=0; i < list.size(); i++) {
-      DogVO dogVO = list.get(i);
-      
-      
-        %>
+      ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
+        
+        for (int i=0; i < list.size(); i++) {
+      ItemVO dogVO = list.get(i);
+    %>
         <TR>
         <TD class='td_bs'><%= dogVO.getSeqno() %></TD>
         <TD><A href="/contents/list_by_itemno.do?itemno=<%=dogVO.getItemno() %>" ><%=dogVO.getItem() %></A></TD>

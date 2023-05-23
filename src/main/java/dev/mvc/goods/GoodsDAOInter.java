@@ -3,6 +3,7 @@ package dev.mvc.goods;
 import java.util.ArrayList;
 
 
+
 public interface GoodsDAOInter {
   
   /**
@@ -55,6 +56,13 @@ public interface GoodsDAOInter {
    * @return
    */
   public int update_text(GoodsVO goodsVO);
+  
+  /**
+   * 패스워드 검사
+   * @param passwd
+   * @return
+   */
+  public int password_check(GoodsVO goodsVO);
   
   /**
    * 파일 정보 수정

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.dog.DogProcInter;
-import dev.mvc.dog.DogVO;
+import dev.mvc.item.ItemProcInter;
+import dev.mvc.item.ItemVO;
 
 
 // Setvlet으로 작동함, GET/POST등의 요청을 처리함.
@@ -18,8 +18,8 @@ import dev.mvc.dog.DogVO;
 public class HomeCont {
   
   @Autowired
-  @Qualifier("dev.mvc.dog.DogProc")
-  private DogProcInter dogProc;
+  @Qualifier("dev.mvc.item.ItemProc")
+  private ItemProcInter itemProc;
   
   public HomeCont() {
     System.out.println("-> HomeCont created.");
@@ -43,10 +43,10 @@ public class HomeCont {
  public ModelAndView top() {
    ModelAndView mav = new ModelAndView();
       
-   ArrayList<DogVO> list = this.dogProc.list_all();
+   ArrayList<ItemVO> list = this.itemProc.list_all();
    mav.addObject("list", list);
    
-   ArrayList<DogVO> list_y = this.dogProc.list_all_y();
+   ArrayList<ItemVO> list_y = this.itemProc.list_all_y();
    mav.addObject("list_y", list_y);
    
    mav.setViewName("/menu/top"); // /WEB-INF/views/menu/top.jsp

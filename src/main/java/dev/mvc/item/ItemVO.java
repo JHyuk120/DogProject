@@ -1,6 +1,6 @@
-package dev.mvc.dog;
+package dev.mvc.item;
 
-public class DogVO {
+public class ItemVO {
   private int itemno;
   private String item;
   private int cnt;

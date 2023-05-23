@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dev.mvc.dog.DogVO" %>
+<%@ page import="dev.mvc.item.ItemVO" %>
 
 <%
-DogVO read_dogVO = (DogVO) request.getAttribute("dogVO");
+  ItemVO read_dogVO = (ItemVO) request.getAttribute("dogVO");
 %>
 
 <!DOCTYPE html> 
@@ -32,10 +32,10 @@ DogVO read_dogVO = (DogVO) request.getAttribute("dogVO");
 <DIV class='content_body'>
   <DIV id='panel_delete' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_delete' id='frm_delete' method='POST' action='./delete.do'>
-      <input type="hidden" name="itemno" value="<%=read_dogVO.getItemno() %>">
+      <input type="hidden" name="itemno" value="<%=read_dogVO.getItemno()%>">
     
       <div class="msg_warning">카테고리를 삭제하면 복구 할 수 없습니다.</div>
-      <label>품목</label> : <%=read_dogVO.getItem() %>
+      <label>품목</label> : <%=read_dogVO.getItem()%>
   
       <button type="submit" id='submit' class="btn btn-danger btn-sm">삭제</button>
       <button type="button" onclick="location.href='/dog/list_all.do'" class="btn btn-secondary btn-sm">취소</button>
@@ -61,11 +61,11 @@ DogVO read_dogVO = (DogVO) request.getAttribute("dogVO");
     
     <tbody>
     <%
-    ArrayList<DogVO> list = (ArrayList<DogVO>)request.getAttribute("list");
+      ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
 
-    for(int i = 0; i < list.size(); i ++){
-      DogVO dogVO = list.get(i);
-      %>
+        for(int i = 0; i < list.size(); i ++){
+      ItemVO dogVO = list.get(i);
+    %>
       <TR>
       <TD class = 'td_bs'><%=dogVO.getSeqno() %></TD>
       <TD><%=dogVO.getItem() %></TD>

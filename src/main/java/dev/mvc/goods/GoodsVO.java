@@ -48,6 +48,12 @@ public class GoodsVO {
   /** 포인트*/
   private int point;
   
+  /** 여러 파일 */
+ private MultipartFile file1MF;
+ 
+ /** 메인 이미지 크기 단위, 파일 크기 */
+ private String size1_label = "";
+ 
   /** 시작 rownum */
   private int start_num;
   

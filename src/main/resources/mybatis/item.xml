@@ -4,48 +4,48 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="dev.mvc.dog.DogDAOInter">
+<mapper namespace="dev.mvc.item.ItemDAOInter">
 <!-- 등록 : 추가한 레코드 갯수를 리턴 -->
-  <insert id="create" parameterType="dev.mvc.dog.DogVO">
-    INSERT INTO dog(itemno, item, cnt, seqno) 
-    VALUES (dog_seq.nextval, #{item}, 0, #{seqno})
+  <insert id="create" parameterType="dev.mvc.item.ItemVO">
+    INSERT INTO item(itemno, item, cnt, seqno) 
+    VALUES (item_seq.nextval, #{item}, 0, #{seqno})
     
   </insert>
-  <select id="list_all" resultType="dev.mvc.dog.DogVO">
+  <select id="list_all" resultType="dev.mvc.item.ItemVO">
   select itemno, item, cnt, seqno, visible 
-  from dog 
+  from item 
   order by seqno ASC
   
   </select>
   
-  <select id="read" resultType="dev.mvc.dog.DogVO">
+  <select id="read" resultType="dev.mvc.item.ItemVO">
   select itemno, item, cnt, seqno, visible 
-  from dog 
+  from item 
   where itemno = #{itemno} 
   
   </select>
   
-  <update id="update" parameterType="dev.mvc.dog.DogVO">
-  UPDATE dog 
+  <update id="update" parameterType="dev.mvc.item.ItemVO">
+  UPDATE item 
   SET item=#{item}, seqno = #{seqno} 
   WHERE itemno=#{itemno}
   
   </update>
   
-  <delete id="delete" parameterType="dev.mvc.dog.DogVO">
-    delete from dog
+  <delete id="delete" parameterType="dev.mvc.item.ItemVO">
+    delete from item
     where itemno=#{itemno}
   </delete>
   
   <update id="update_seqno_decrease" parameterType="int">
-  update dog 
+  update item 
   set seqno = seqno - 1 
   where itemno = #{itemno}
   
   </update>
   
   <update id="update_seqno_increase" parameterType="int">
-  update dog 
+  update item 
   set seqno = seqno + 1 
   where itemno = #{itemno}
   
@@ -53,30 +53,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   
   <update id='update_visible_y' parameterType="int">
-  update dog 
+  update item 
   set visible='Y' 
   where itemno=#{itemno}
   </update>
   
   
   <update id='update_visible_n' parameterType="int">
-  update dog 
+  update item 
   set visible='N' 
   where itemno=#{itemno}
   </update>
   
   
-  <select id="list_all_y" resultType="dev.mvc.dog.DogVO">
+  <select id="list_all_y" resultType="dev.mvc.item.ItemVO">
   SELECT itemno, item, cnt,
       seqno, visible
-      FROM dog
+      FROM item
       where visible='Y'
       ORDER BY seqno ASC
   
   </select>
   
   <update id="update_cnt_add" parameterType="int">
-  update dog
+  update item
   set cnt = cnt + 1
   where itemno = #{itemno}
   
@@ -84,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   
   <update id="update_cnt_sub" parameterType="int">
-  update dog
+  update item
   set cnt = cnt - 1
   where itemno = #{itemno}
   

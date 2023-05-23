@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dev.mvc.dog.DogVO" %>
+<%@ page import="dev.mvc.item.ItemVO" %>
 
 <DIV class='container_main'> 
     <!-- 헤더 start -->
