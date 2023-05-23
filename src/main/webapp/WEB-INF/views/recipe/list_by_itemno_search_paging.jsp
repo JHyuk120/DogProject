@@ -20,6 +20,7 @@
  
 <DIV class='title_line'>
 『 ${itemVO.item } 』 ( ${search_count } )
+
 </DIV>
 
 <DIV class='content_body'>
@@ -115,17 +116,17 @@
           </td>  
           <td style='vertical-align: middle;'>
         
-         <a href="./read.do?recipeno=${recipeno }" style="display: block; width: 100%; height: 100%;">
-          <div style='font-weight:bold;'>${title }</div>
-            <c:choose>
-              <c:when test="${article.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
-                  ${article.substring(0, 160)}.....
-              </c:when>
-              <c:when test="${article.length() <= 160 }">
-                  ${article}
-              </c:when>
-            </c:choose>
-            
+            <a href="./read.do?recipeno=${recipeno }" style="display: block; width: 100%; height: 100%;">
+              <div style='font-weight:bold;'>${title } </div>
+                <c:choose>
+                  <c:when test="${article.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
+                    ${article.substring(0, 160)}.....
+                  </c:when>
+                  <c:when test="${article.length() <= 160 }">
+                    ${article}
+                 </c:when>
+               </c:choose>
+
             </a> 
           </td> 
           
