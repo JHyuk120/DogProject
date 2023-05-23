@@ -64,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </when>
       <otherwise> <!-- 검색하는 경우 -->
         WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(article) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
     </choose>
@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </when>
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
         WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || #{word} || '%' 
-                                                  OR UPPER(content) LIKE '%' || #{word} || '%' 
+                                                  OR UPPER(article) LIKE '%' || #{word} || '%' 
                                                   OR UPPER(word) LIKE '%' || #{word} || '%')
       </otherwise>
     </choose>
@@ -89,14 +89,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
-   SELECT recipesno, adminno, itemno, title, content, recom, cnt, replycnt, rdate,
-                file1, file1saved, thumb1, size1, map, youtube, r
+   SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
+                file1, file1saved, thumb1, size1, youtube, r
      FROM (
-                SELECT recipeno, adminno, itemno, title, content, recom, cnt, replycnt, rdate,
-                           file1, file1saved, thumb1, size1, map, youtube, rownum as r
+                SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
+                           file1, file1saved, thumb1, size1, youtube, rownum as r
                 FROM (
-                          SELECT recipeno, adminno, itemno, title, content, recom, cnt, replycnt, rdate,
-                                     file1, file1saved, thumb1, size1, map, youtube
+                          SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
+                                     file1, file1saved, thumb1, size1, youtube
                           FROM recipe
                           <choose>
                             <when test="word == null or word == ''"> 
@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                             </when>
                             <otherwise>
                               WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
-                                                                OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                                OR UPPER(article) LIKE '%' || UPPER(#{word}) || '%' 
                                                                 OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
                             </otherwise>
                           </choose>
@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 글 수정 -->
   <update id="update_text" parameterType="dev.mvc.recipe.RecipeVO">
     UPDATE recipe
-    SET title=#{title}, content=#{content}, word=#{word}
+    SET title=#{title}, article=#{article}, word=#{word}
     WHERE recipeno = #{recipeno}
   </update>
   
