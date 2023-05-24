@@ -26,7 +26,7 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno_search_paging.do?itemno=${itemno }" class='title_link'>${itemVO.name }</A> > ${title } 삭제</DIV>
+<DIV class='title_line'><A href="./list_by_itemno_search_paging.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A> > ${title } 삭제</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">

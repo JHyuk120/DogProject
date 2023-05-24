@@ -16,12 +16,12 @@ public class Recipe {
      String path = "";
      if (File.separator.equals("\\")) { // windows, 개발 환경의 파일 업로드 폴더
          // path = "C:/kd/deploy/dog_v1sbm3c/recipe/storage/";
-         path="C:\\kd\\deploy\\dog_v1sbm3c\\recipe\\storage\\";
+         path="C:\\kd\\deploy\\dogProject\\recipe\\storage\\";
          // System.out.println("Windows 10: " + path);
          
      } else { // Linux, AWS, 서비스용 배치 폴더 
          // System.out.println("Linux");
-         path = "/home/ubuntu/deploy/dog_v1sbm3c/recipe/storage/";
+         path = "/home/ubuntu/deploy/dogProject/recipe/storage/";
      }
      
      return path;
