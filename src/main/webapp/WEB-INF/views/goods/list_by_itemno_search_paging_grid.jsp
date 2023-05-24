@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Dog#</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
   <c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
-    ${cateVO.name }  
+    ${itemVO.name }  
     <c:if test="${param.word.length() > 0 }">
       > 「${param.word }」 검색 ${list.size() } 건
     </c:if> 
@@ -30,24 +30,24 @@
       <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
       <c:if test="${sessionScope.admin_id != null }">
           <%--
-          http://localhost:9091/contents/create.do?cateno=1
-          http://localhost:9091/contents/create.do?cateno=2
-          http://localhost:9091/contents/create.do?cateno=3
+          http://localhost:9091/contents/create.do?itemno=1
+          http://localhost:9091/contents/create.do?itemno=2
+          http://localhost:9091/contents/create.do?itemno=3
           --%>
-        <A href="./create.do?cateno=${cateVO.cateno }">등록</A>
+        <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
         <span class='menu_divide' >│</span>
       </c:if>
     
       <A href="javascript:location.reload();">새로고침</A>
       <span class='menu_divide' >│</span>    
-      <A href="./list_by_cateno.do?cateno=${param.cateno }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
+      <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
       <span class='menu_divide' >│</span>
-      <A href="./list_by_cateno_grid.do?cateno=${param.cateno }&now_page=${param.now_page == null ? 1: param.now_page}&word=${param.word }">갤러리형</A>
+      <A href="./list_by_itemno_grid.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1: param.now_page}&word=${param.word }">갤러리형</A>
     </ASIDE>
   
     <DIV style="text-align: right; clear: both;">  
-      <form name='frm' id='frm' method='get' action='./list_by_cateno.do'>
-        <input type='hidden' name='cateno' value='${cateVO.cateno }'>  <%-- 게시판의 구분 --%>
+      <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
+        <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
         <c:choose>
           <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
@@ -60,7 +60,7 @@
         <button type='submit' class='btn btn-info btn-sm'>검색</button>
           <c:if test="${param.word.length() > 0 }">
             <button type='button' class='btn btn-info btn-sm' 
-                    onclick="location.href='./list_by_cateno.do?cateno=${cateVO.cateno}&word='">검색 취소</button>  
+                    onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
           </c:if>    
         </form>
       </DIV>
@@ -68,13 +68,13 @@
       <DIV class='menu_line'></DIV>
   
       <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
-        <c:forEach var="contentsVO" items="${list }" varStatus="status">
-          <c:set var="title" value="${contentsVO.title }" />
-          <c:set var="content" value="${contentsVO.content }" />
-          <c:set var="cateno" value="${contentsVO.cateno }" />
-          <c:set var="contentsno" value="${contentsVO.contentsno }" />
-          <c:set var="thumb1" value="${contentsVO.thumb1 }" />
-          <c:set var="size1" value="${contentsVO.size1 }" />
+        <c:forEach var="goodsVO" items="${list }" varStatus="status">
+          <c:set var="title" value="${goodsVO.title }" />
+          <c:set var="content" value="${goodsVO.content }" />
+          <c:set var="itemno" value="${goodsVO.itemno }" />
+          <c:set var="goodsno" value="${goodsVO.goodsno }" />
+          <c:set var="thumb1" value="${goodsVO.thumb1 }" />
+          <c:set var="size1" value="${goodsVO.size1 }" />
         
           <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
           <c:if test="${status.index % 5 == 0 && status.index != 0 }"> 
@@ -83,7 +83,7 @@
         
           <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
           <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
-          <div onclick="location.href='./read.do?contentsno=${contentsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'
+          <div onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'
                     style='width: 19%; height: 240px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
         
           <c:choose> 

@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>DOG#</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -57,14 +57,14 @@
     </thead> -->
     
     <tbody>
-      <c:forEach var="contentsVO" items="${list}">
-        <c:set var="title" value="${contentsVO.title }" />
-        <c:set var="content" value="${contentsVO.content }" />
-        <c:set var="cateno" value="${contentsVO.cateno }" />
-        <c:set var="contentsno" value="${contentsVO.contentsno }" />
-        <c:set var="thumb1" value="${contentsVO.thumb1 }" />
+      <c:forEach var="goodsVO" items="${list}">
+        <c:set var="title" value="${goodsVO.title }" />
+        <c:set var="content" value="${goodsVO.content }" />
+        <c:set var="itemno" value="${goodsVO.itemno }" />
+        <c:set var="goodsno" value="${goodsVO.goodsno }" />
+        <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         
-        <tr style="height: 112px;" onclick="location.href='./read.do?contentsno=${contentsno }&now_page=${param.now_page == null?1:now_page }' " class='hover'>
+        <tr style="height: 112px;" onclick="location.href='./read.do?goodsno=${goodsno }&now_page=${param.now_page == null?1:now_page }' " class='hover'>
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
@@ -90,9 +90,7 @@
           <c:choose>
             <c:when test="${sessionScope.admin_id != null }">
               <td style='vertical-align: middle; text-align: center;'>
-                <A href="/contents/map.do?cateno=${cateno }&contentsno=${contentsno}&now_page=${param.now_page == null? 1: param.now_page}" title="지도"><IMG src="/contents/images/map.png" class="icon"></A>
-                <A href="/contents/youtube.do?cateno=${cateno }&contentsno=${contentsno}&now_page=${param.now_page == null? 1: param.now_page}" title="Youtube"><IMG src="/contents/images/youtube.png" class="icon"></A>
-                <A href="/contents/delete.do?cateno=${cateno }&contentsno=${contentsno}&now_page=${param.now_page == null? 1: param.now_page}" title="삭제"><IMG src="/contents/images/delete.png" class="icon"></A>
+                <A href="/contents/delete.do?itemno=${itemno }&goodsno=${goodsno}&now_page=${param.now_page == null? 1: param.now_page}" title="삭제"><IMG src="/contents/images/delete.png" class="icon"></A>
               </td>
             </c:when>
           </c:choose>

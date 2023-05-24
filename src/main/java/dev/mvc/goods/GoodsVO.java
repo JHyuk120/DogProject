@@ -15,8 +15,6 @@ public class GoodsVO {
   private int adminno;
   /** 품목 번호 */
   private int itemno;
-  /** 품목 순서*/
-  private int seqno;
   /** 품목명*/
   private String gname;
   /** 품목 내용*/

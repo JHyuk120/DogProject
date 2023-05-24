@@ -6,24 +6,24 @@
 
 <!-- 상품 등록 -->
  <insert id="create" parameterType="dev.mvc.goods.GoodsVO">
-    INSERT INTO goods (goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point)
-    VALUES(goods_seq.nextval, #{adminno}, #{itemno}, #{seqno}, #{gname}, #{content}, #{word}, sysdate, 
+    INSERT INTO goods ( goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point)
+    VALUES(goods_seq.nextval, #{adminno}, #{itemno}, #{gname}, #{content}, #{word}, sysdate, 
                                             #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{price}, #{dc}, #{saleprice}, #{salecnt}, #{point})
   </insert>
   
   <!-- 전체 상품 목록 -->
   <select id="list_all" resultType="dev.mvc.goods.GoodsVO" >
-    SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
     FROM goods
     ORDER BY goods ASC
   </select> 
   
   <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_itemno" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
-    SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
     FROM goods 
     WHERE itemno = #{itemno}
     ORDER BY goodsno DESC
@@ -31,16 +31,16 @@
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
-    SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+    SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
     FROM goods
     WHERE goodsno = #{goodsno}
   </select>
   
   <!-- 카테고리별 검색 목록 -->
   <select id="list_by_itemno_search" resultType="dev.mvc.goods.GoodsVO" parameterType="dev.mvc.goods.GoodsVO">
-     SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+     SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
     FROM goods
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
@@ -73,14 +73,14 @@
   
   <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.goods.GoodsVO" parameterType="dev.mvc.goods.GoodsVO">
-   SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point, r
+   SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point, r
    FROM (
-              SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point, rownum as r
+              SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point, rownum as r
               FROM (
-                        SELECT goodsno, adminno, itemno, seqno, gname, content, word, rdate, 
-                                            file1, file1savedm thumb1, size1, price, dc, saleprice, salecnt, point
+                        SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
                         FROM goods
                         <choose>
                           <when test="word == null or word == ''">
@@ -130,10 +130,10 @@
     WHERE itemno=#{itemno}
   </select>
   
-   <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
-   <delete id="delete_by_itemno" parameterType="int">
-DELETE FROM goods
-WHERE itemno=#{itemno}
+  <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
+  <delete id="delete_by_itemno" parameterType="int">
+    DELETE FROM goods
+    WHERE itemno=#{itemno}
   </delete>
 
 </mapper>
