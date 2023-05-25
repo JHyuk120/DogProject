@@ -18,6 +18,9 @@ import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.reply.ReplyProcInter;
+import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -34,6 +37,14 @@ public class RecipeCont {
   @Autowired
   @Qualifier("dev.mvc.recipe.RecipeProc") 
   private RecipeProcInter recipeProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.reply.ReplyProc")
+  private ReplyProcInter replyProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.member.MemberProc")
+  private MemberProcInter memberProc;
   
   public RecipeCont () {
     System.out.println("-> RecipeCont created.");
@@ -64,9 +75,9 @@ public class RecipeCont {
    * @return
    */
   @RequestMapping(value = "/recipe/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, HttpSession session, RecipeVO recipeVO) {
+  public ModelAndView create(HttpServletRequest request, HttpSession session, RecipeVO recipeVO,ReplyVO replyVO) {
     ModelAndView mav = new ModelAndView();
-    
+
     if (adminProc.isAdmin(session)) { // 관리자로 로그인한경우
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 시작
@@ -223,11 +234,16 @@ public class RecipeCont {
     mav.addObject("mname", mname);
 
     mav.setViewName("/recipe/read"); // /WEB-INF/views/recipe/read.jsp
-        
+    // 댓글 조회
+   
+    ArrayList<ReplyVO> list = this.replyProc.reply_list(recipeno);
+    mav.addObject("list", list);
+
+    
     return mav;
   }
   
-  
+
   /**
    * Youtube 등록/수정/삭제 폼
    *   // http://localhost:9091/recipe/youtube.do

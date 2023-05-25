@@ -7,13 +7,14 @@
 <c:set var="title" value="${recipeVO.title }" />        
 <c:set var="file1" value="${recipeVO.file1 }" />
 <c:set var="file1saved" value="${recipeVO.file1saved }" />
-<c:set var="ingredient" value="${recipeVO.ingredient }" />
 <c:set var="thumb1" value="${recipeVO.thumb1 }" />
 <c:set var="article" value="${recipeVO.article }" />
 <c:set var="youtube" value="${recipeVO.youtube }" />
 <c:set var="word" value="${recipeVO.word }" />
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
+ <c:set var="replycont" value="${replyVO.replycont}" />
+<c:set var="replyno" value="${replyVO.replyno}" />
 
  
 <!DOCTYPE html> 
@@ -26,7 +27,34 @@
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+ <%-- 별점 스크립트 --%>
+<script type="text/javascript">
+    function setStarRating(ratingValue) {
+        const starIds = ["star-1", "star-2", "star-3", "star-4", "star-5"];
+        for (let i = 0; i < starIds.length; i++) {
+            let starElement = document.getElementById(starIds[i]);
+
+            // 정수 부분과 소수 부분을 처리
+            let intPart = Math.floor(ratingValue);
+            let decPart = ratingValue - intPart;
+
+            // 별의 색을 설정: 전체 별, 반쪽 별, 빈 별
+            if (i < intPart) {
+                starElement.style.color = "orange";
+            } else if (i == intPart && decPart >= 0.5) {
+                starElement.style.color = "orange"; // 이 부분은 반쪽 별을 어떻게 처리할지에 따라 변경해야 합니다.
+            } else {
+                starElement.style.color = "lightgray";
+            }
+        }
+
+        document.getElementById('star-rating').value = ratingValue;
     
+        // rating-display의 내용을 ratingValue로 업데이트
+        document.getElementById('rating-display').textContent = "("+ratingValue+")";
+    }
+</script>
+
 </head> 
  
 <body>
@@ -102,8 +130,6 @@
           
          <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
          <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
-        ${ingredient } <br>    
-        <br>     
         ${article }
         </DIV>
       </li>
@@ -132,8 +158,89 @@
       </li>   
     </ul>
   </fieldset>
-
 </DIV>
+<%-- 댓글 조회 --%>
+ <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data">
+    <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
+    <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
+    <input type="hidden" name="id" value="${sessionScope.id}"/>
+    <input type="hidden" id="star-rating" name="ratingValue" value=""/>
+
+    <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
+ <!-- 댓글 평점 별  -->
+    <tr>
+        <div class="stars">
+         <td width="100" rowspan="2">${sessionScope.id } </td>
+      <span class="star" id="star-1" onclick="setStarRating(1)">&#9733;</span>
+       <span class="star" id="star-2" onclick="setStarRating(2)">&#9733;</span>
+      <span class="star" id="star-3" onclick="setStarRating(3)">&#9733;</span>
+      <span class="star" id="star-4" onclick="setStarRating(4)">&#9733;</span>
+      <span class="star" id="star-5" onclick="setStarRating(5)">&#9733;</span>
+      <input type="hidden" id="star-rating" value="0"/>
+       <td width="100" rowspan="2" id="star-output"> </td>
+    </div>
+    <td>
+           <div id="rating-display" >(0)</div>
+    <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
+    </td>
+  </tr>
+   <button type='submit' class='btn btn-info btn-sm' >리뷰 등록</button>
+ </FORM>    
+ 
+ <!-- 댓글 목록 -->
+   <table class="table table-striped" style='width: 100%;'>
+    <colgroup>
+      <c:choose>
+          <c:when test="${sessionScope.admin_id != null}">
+              <col style="width: 10%;"></col>
+              <col style="width: 10%;"></col>
+              <col style="width: 70%;"></col>
+              <col style="width: 10%;"></col>
+          </c:when>
+
+      </c:choose>
+
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th style='text-align: center;'>id</th>
+        <th style='text-align: center;'>평점</th>
+        <th style='text-align: center;'>리뷰</th>
+        <th style='text-align: center;'>작성일</th>
+      </tr>
+     <tbody>
+      <c:forEach var="replyVO" items="${list}">
+        <c:set var="id" value=" ${replyVO.id}" />
+        <c:set var="ratingValue" value=" ${replyVO.ratingValue}" />
+        <c:set var="replycont" value="${replyVO.replycont}" />
+        <c:set var="rdate" value="${replyVO.rdate}" />
+
+        
+        <tr style="height: 112px;" class='hover'>
+          
+          <td style='vertical-align: middle; text-align: center;'>
+           <div> ${id }</div>
+          </td>  
+          
+          <td style='vertical-align: middle;'>
+            <div>${ratingValue }</div>
+          </td>
+          
+          <td style='vertical-align: middle;'>
+            <div>${replycont}</div>
+          </td> 
+          
+          <td style='vertical-align: middle;'>
+            <div>${rdate}</div>
+          </td>
+        </tr>
+     
+      </c:forEach>
+
+    </tbody>
+  </table>
+    </thead> 
  
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>

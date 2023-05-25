@@ -20,11 +20,7 @@
  
 <DIV class='title_line'>
 『 ${itemVO.item } 』 ( ${search_count } )
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/recipe/list_by_itemno_search_paging.jsp
-      
-=======
 
->>>>>>> d621ca9d77d5c40571778a70305c3503faa801c8:src/main/webapp/WEB-INF/views/recipe/list_by_cateno_search_paging.jsp
 </DIV>
 
 <DIV class='content_body'>
