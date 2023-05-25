@@ -14,9 +14,9 @@
             </button>    
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                  <c:forEach var="dogVO" items="${list_y}">
-                    <c:set var="itemno" value="${dogVO.itemno }" />
-                    <c:set var="item" value="${dogVO.item }" />
+                  <c:forEach var="itemVO" items="${list_y}">
+                    <c:set var="itemno" value="${itemVO.itemno }" />
+                    <c:set var="item" value="${itemVO.item }" />
                     <li class="nav-item">
                       <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >${item }</a>
                     </li>
@@ -55,7 +55,7 @@
                       <li class="nav-item dropdown"> <%-- 관리자 서브 메뉴 --%>
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href='/dog/list_all.do'>카테고리 전체 목록</a>       
+                          <a class="dropdown-item" href='/item/list_all.do'>카테고리 전체 목록</a>       
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                         </div>

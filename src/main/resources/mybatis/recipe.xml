@@ -97,11 +97,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 FROM (
                           SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
                                      file1, file1saved, thumb1, size1,   youtube
-     FROM (
-                SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
-                           file1, file1saved, thumb1, size1,   youtube, rownum as r
-                FROM (
-                          SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
                           FROM recipe
                           <choose>
                             <when test="word == null or word == ''"> 
