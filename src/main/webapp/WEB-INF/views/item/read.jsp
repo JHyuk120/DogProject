@@ -10,7 +10,7 @@
 <meta name="viewport"
   content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0,
                                  maximum-scale=5.0, width=device-width" />
-<title>http://localhost:9093/dog/read.jsp?itemno=1</title>
+<title>http://localhost:9093/item/read.jsp?itemno=1</title>
 <style type="text/css">
 * {
   font-family: Malgun Gothic;
@@ -22,11 +22,11 @@
 
   <DIV style="font-size: 24px;">
     <%
-      ItemVO dogVO = (ItemVO) request.getAttribute("dogVO");
+    ItemVO itemVO = (ItemVO) request.getAttribute("itemVO");
     %>
-    itemno : <%=dogVO.getItemno()%><br> 
-    name : <%=dogVO.getItem()%><br>
-    cnt :<%=dogVO.getCnt()%><br> 
+    itemno : <%=itemVO.getItemno()%><br> 
+    name : <%=itemVO.getItem()%><br>
+    cnt :<%=itemVO.getCnt()%><br> 
   </DIV>
 
 </body>

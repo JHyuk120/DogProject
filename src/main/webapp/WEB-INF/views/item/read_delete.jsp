@@ -5,7 +5,7 @@
 <%@ page import="dev.mvc.item.ItemVO" %>
 
 <%
-  ItemVO read_dogVO = (ItemVO) request.getAttribute("dogVO");
+ItemVO read_itemVO = (ItemVO) request.getAttribute("itemVO");
 %>
 
 <!DOCTYPE html> 
@@ -15,7 +15,7 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>멍키트</title>
 
-<link rel="shortcut icon" href="/dog/images/delete.png" />
+<link rel="shortcut icon" href="/item/images/delete.png" />
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -32,13 +32,13 @@
 <DIV class='content_body'>
   <DIV id='panel_delete' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_delete' id='frm_delete' method='POST' action='./delete.do'>
-      <input type="hidden" name="itemno" value="<%=read_dogVO.getItemno()%>">
+      <input type="hidden" name="itemno" value="<%=read_itemVO.getItemno() %>">
     
       <div class="msg_warning">카테고리를 삭제하면 복구 할 수 없습니다.</div>
-      <label>품목</label> : <%=read_dogVO.getItem()%>
+      <label>품목</label> : <%=read_itemVO.getItem() %>
   
       <button type="submit" id='submit' class="btn btn-danger btn-sm">삭제</button>
-      <button type="button" onclick="location.href='/dog/list_all.do'" class="btn btn-secondary btn-sm">취소</button>
+      <button type="button" onclick="location.href='/item/list_all.do'" class="btn btn-secondary btn-sm">취소</button>
     </FORM>
   </DIV>
 
@@ -61,18 +61,18 @@
     
     <tbody>
     <%
-      ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
+    ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
 
-        for(int i = 0; i < list.size(); i ++){
-      ItemVO dogVO = list.get(i);
-    %>
+    for(int i = 0; i < list.size(); i ++){
+      ItemVO itemVO = list.get(i);
+      %>
       <TR>
-      <TD class = 'td_bs'><%=dogVO.getSeqno() %></TD>
-      <TD><%=dogVO.getItem() %></TD>
-      <TD class = 'td_bs'><%=dogVO.getCnt() %></TD>
+      <TD class = 'td_bs'><%=itemVO.getSeqno() %></TD>
+      <TD><%=itemVO.getItem() %></TD>
+      <TD class = 'td_bs'><%=itemVO.getCnt() %></TD>
       <TD class = 'td_bs'>
-      <a href="./read_update.do?itemno=<%=dogVO.getItemno()%>" title="수정"><IMG src="/dog/images/update.png" class=icon></a> /
-      <a href="./read_delete.do?itemno=<%=dogVO.getItemno()%>" title="삭제"><IMG src="/dog/images/delete.png" class=icon></a>
+      <a href="./read_update.do?itemno=<%=itemVO.getItemno()%>" title="수정"><IMG src="/item/images/update.png" class=icon></a> /
+      <a href="./read_delete.do?itemno=<%=itemVO.getItemno()%>" title="삭제"><IMG src="/item/images/delete.png" class=icon></a>
       </TD>
       </TR>
     

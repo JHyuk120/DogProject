@@ -5,7 +5,7 @@
 <%@ page import="dev.mvc.item.ItemVO" %>
 
 <%
-  ItemVO read_dogVO = (ItemVO)request.getAttribute("dogVO");
+  ItemVO read_itemVO = (ItemVO)request.getAttribute("itemVO");
 %>
 
 <!DOCTYPE html> 
@@ -30,15 +30,15 @@
 <DIV class='content_body'>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_create' id='frm_create' method='POST' action='./update.do'>
-      <input type ="hidden" name="itemno" value="<%=read_dogVO.getItemno()%>" >
+      <input type ="hidden" name="itemno" value="<%=read_itemVO.getItemno()%>" >
       <label>품목명</label>
-      <input type='text' name='item' value='<%=read_dogVO.getItem()%>' required="required" style='width: 35%;' autofocus="autofocus">
+      <input type='text' name='item' value='<%=read_itemVO.getItem()%>' required="required" style='width: 35%;' autofocus="autofocus">
   
       <label>순서 지정</label>
-      <input type='number' name='seqno' min='1' value='<%=read_dogVO.getSeqno()%>' required="required" style='width: 5%;' >
+      <input type='number' name='seqno' min='1' value='<%=read_itemVO.getSeqno()%>' required="required" style='width: 5%;' >
       
       <button type="submit" id='submit' class='btn btn-info btn-sm'>수정</button>
-      <button type="button" onclick="location.href='/dog/list_all.do'" class='btn btn-danger btn-sm'>취소</button>
+      <button type="button" onclick="location.href='/item/list_all.do'" class='btn btn-danger btn-sm'>취소</button>
     </FORM>
   </DIV>
 
@@ -64,14 +64,14 @@
       ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
         
         for (int i=0; i < list.size(); i++) {
-      ItemVO dogVO = list.get(i);
+      ItemVO itemVO = list.get(i);
     %>
       <TR>
-        <TD class='td_bs'><%= dogVO.getSeqno() %></TD>
-        <TD><%=dogVO.getItem() %></TD>
-        <TD class='td_bs'><%=dogVO.getCnt() %></TD>
-        <TD><a href="./read_update.do?itemno=<%=dogVO.getItemno() %>" title="수정"><IMG src="/dog/images/update.png" class=icon></a>/
-        <a href="./read_delete.do?itemno=<%=dogVO.getItemno() %>" title="삭제"><IMG src="/dog/images/delete.png" class=icon></a></TD>
+        <TD class='td_bs'><%= itemVO.getSeqno() %></TD>
+        <TD><%=itemVO.getItem() %></TD>
+        <TD class='td_bs'><%=itemVO.getCnt() %></TD>
+        <TD><a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/item/images/update.png" class=icon></a>/
+        <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/item/images/delete.png" class=icon></a></TD>
         
       </TR>
     <%  

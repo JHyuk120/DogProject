@@ -66,19 +66,19 @@
         <TD><A href="/contents/list_by_itemno.do?itemno=<%=itemVO.getItemno() %>" ><%=itemVO.getItem() %></A></TD>
         <TD class='td_bs'><%=itemVO.getCnt() %></TD>
          <TD class='td_bs'>
-         <a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/dog/images/update.png" class=icon></a>
-         <a href="./update_seqno_decrease.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 높이기"><IMG src="/dog/images/increase.png" class=icon></a>
-         <a href="./update_seqno_increase.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 낮추기"><IMG src="/dog/images/decrease.png" class=icon></a>
-         <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/dog/images/delete.png" class=icon></a>
+         <a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/item/images/update.png" class=icon></a>
+         <a href="./update_seqno_decrease.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 높이기"><IMG src="/item/images/increase.png" class=icon></a>
+         <a href="./update_seqno_increase.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 낮추기"><IMG src="/item/images/decrease.png" class=icon></a>
+         <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/item/images/delete.png" class=icon></a>
         
         <%
         if(itemVO.getVisible().equals("Y")) {
           %>
-        <a href="./update_visible_n.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/dog/images/show.png" class=icon></a>  
+        <a href="./update_visible_n.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/item/images/show.png" class=icon></a>  
           <%
         } else {// N
           %>
-          <a href="./update_visible_y.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/dog/images/hide.png" class=icon></a>
+          <a href="./update_visible_y.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/item/images/hide.png" class=icon></a>
           <%
         }
         
