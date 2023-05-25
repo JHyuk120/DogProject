@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Dog#</title>
 <%-- /static/css/style.css --%> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
@@ -20,7 +20,7 @@
 
 <c:set var="code" value="${param.code }" /> <%--mav.addObject("code", "create_success"); --%>
 <c:set var="cnt" value="${param.cnt }" />     <%-- mav.addObject("cnt", cnt); --%>
-<c:set var="cateno" value="${param.cateno }" /> <%-- mav.addObject("cateno", contentsVO.getCateno()); // redirect parameter 적용 --%>
+<c:set var="itemno" value="${param.itemno }" /> <%-- mav.addObject("itemno", contentsVO.getitemno()); // redirect parameter 적용 --%>
 
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
@@ -79,9 +79,9 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?cateno=${cateno }'" class="btn btn-primary">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_cateno.do?cateno=${cateno }'" class="btn btn-primary">목록</button>
-        <button type='button' onclick="location.href='./list_by_cateno_grid.do?cateno=${cateno }'" class="btn btn-primary">갤러리 목록</button>
+        <button type='button' onclick="location.href='./create.do?itemno=${itemno }'" class="btn btn-primary">새로운 컨텐츠 등록</button>
+        <button type='button' onclick="location.href='./list_by_itemno.do?itemno=${itemno }'" class="btn btn-primary">목록</button>
+        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${itemno }'" class="btn btn-primary">갤러리 목록</button>
       </LI>
     </UL> 
   </fieldset>

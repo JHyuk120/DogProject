@@ -230,27 +230,6 @@ public class GoodsCont {
     return mav;
 }
 
- /**
-  * MAP 등록,  수정,  삭제 폼
-  * http://localhost:9091/goods/map.do
-  * @return
-  */
- @RequestMapping(value="/goods/map.do", method=RequestMethod.GET )
- public ModelAndView map(int goodsno) {
-   ModelAndView mav = new ModelAndView();
-
-   GoodsVO goodsVO = this.goodsProc.read(goodsno);
-   mav.addObject("goodsVO", goodsVO); // request.setAttribute("goodsVO", goodsVO);
-
-   ItemVO itemVO = this.itemProc.read(goodsVO.getItemno()); // 그룹 정보 읽기
-   mav.addObject("itemVO", itemVO); 
-
-   
-   mav.setViewName("/goods/map"); // /WEB-INF/views/goods/read.jsp
-       
-   return mav;
- }
-
  
  /**
   * 목록 + 검색 + 페이징 지원
@@ -358,8 +337,6 @@ public class GoodsCont {
    mav.addObject("itemVO", itemVO);
    
    mav.setViewName("/goods/update_text"); // /WEB-INF/views/goods/update_text.jsp
-   // String content = "장소:\n인원:\n준비물:\n비용:\n기타:\n";
-   // mav.addObject("content", content);
 
    return mav; // forward
  }

@@ -18,7 +18,14 @@
                     <c:set var="itemno" value="${itemVO.itemno }" />
                     <c:set var="item" value="${itemVO.item }" />
                     <li class="nav-item">
-                      <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >${item }</a>
+                    <c:choose>
+                          <c:when test="${itemno != 2}">
+                            <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >${item }</a>
+                          </c:when>
+                          <c:otherwise>
+                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >${item }</a>
+                          </c:otherwise>
+                      </c:choose>
                     </li>
                   </c:forEach>
                   

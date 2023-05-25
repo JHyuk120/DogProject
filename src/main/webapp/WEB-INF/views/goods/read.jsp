@@ -2,18 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="contentsno" value="${contentsVO.contentsno }" />
-<c:set var="cateno" value="${contentsVO.cateno }" />
-<c:set var="title" value="${contentsVO.title }" />        
-<c:set var="file1" value="${contentsVO.file1 }" />
-<c:set var="file1saved" value="${contentsVO.file1saved }" />
-<c:set var="thumb1" value="${contentsVO.thumb1 }" />
-<c:set var="content" value="${contentsVO.content }" />
-<c:set var="map" value="${contentsVO.map }"/>
-<c:set var="youtube" value="${contentsVO.youtube }"/>
-<c:set var="word" value="${contentsVO.word }" />
-<c:set var="size1_label" value="${contentsVO.size1_label }" />
-<c:set var="rdate" value="${contentsVO.rdate.substring(0, 16) }" />
+<c:set var="goodsno" value="${goodsVO.goodsno }" />
+<c:set var="itemno" value="${goodsVO.itemno }" />
+<c:set var="gname" value="${goodsVO.gname }" />        
+<c:set var="file1" value="${goodsVO.file1 }" />
+<c:set var="file1saved" value="${goodsVO.file1saved }" />
+<c:set var="thumb1" value="${goodsVO.thumb1 }" />
+<c:set var="content" value="${goodsVO.content }" />
+<c:set var="word" value="${goodsVO.word }" />
+<c:set var="size1_label" value="${goodsVO.size1_label }" />
+<c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
 
 
 
@@ -23,7 +21,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Dog#</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
@@ -34,42 +32,42 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_cateno.do?cateno=${cateno }" class='title_link'>${cateVO.name }</A></DIV>
+<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A></DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
      <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
     <c:if test="${sessionScope.admin_id != null }">
       <%--
-      http://localhost:9091/contents/create.do?cateno=1
-      http://localhost:9091/contents/create.do?cateno=2
-      http://localhost:9091/contents/create.do?cateno=3
+      http://localhost:9091/contents/create.do?itemno=1
+      http://localhost:9091/contents/create.do?itemno=2
+      http://localhost:9091/contents/create.do?itemno=3
       --%>
-      <A href="./create.do?cateno=${cateVO.cateno }">등록</A>
+      <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-      <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page}&word=${param.word}">글 수정</A>
+      <A href="./update_text.do?goodsno=${goodsno}&now_page=${param.now_page}&word=${param.word}">글 수정</A>
       <span class='menu_divide' >│</span>
-      <A href="./update_file.do?contentsno=${contentsno}&now_page=${param.now_page}">파일 수정</A>  
+      <A href="./update_file.do?goodsno=${goodsno}&now_page=${param.now_page}">파일 수정</A>  
       <span class='menu_divide' >│</span>
-      <A href="./map.do?cateno=${cateno }&contentsno=${contentsno}">지도</A>   <!-- 카테고리 그룹: cateno -->
+      <A href="./map.do?itemno=${itemno }&goodsno=${goodsno}">지도</A>   <!-- 카테고리 그룹: itemno -->
       <span class='menu_divide' >│</span>
-      <A href="./youtube.do?cateno=${cateno }&contentsno=${contentsno}">YouTube</A>   <!-- 카테고리 그룹: cateno -->
+      <A href="./youtube.do?itemno=${itemno }&goodsno=${goodsno}">YouTube</A>   <!-- 카테고리 그룹: itemno -->
       <span class='menu_divide' >│</span>
-      <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page}&cateno=${cateno}">삭제</A> 
+      <A href="./delete.do?goodsno=${goodsno}&now_page=${param.now_page}&itemno=${itemno}">삭제</A> 
       <span class='menu_divide' >│</span> 
     </c:if>
 
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_cateno.do?cateno=${cateno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <A href="./list_by_itemno.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
-    <A href="./list_by_cateno_grid.do?cateno=${cateno }&now_page=${param.now_page}&word=${param.word }">갤러리형</A>
+    <A href="./list_by_itemno_grid.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">갤러리형</A>
     
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_cateno.do'>
-      <input type='hidden' name='cateno' value='${cateVO.cateno }'>  <%-- 게시판의 구분 --%>
+    <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
+      <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
@@ -82,7 +80,7 @@
       <button type='submit' class='btn btn-info btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' class='btn btn-info btn-sm'
-                     onclick="location.href='./list_by_cateno.do?cateno=${cateVO.cateno}&word='">검색 취소</button>  
+                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
@@ -103,19 +101,11 @@
               </c:otherwise>
             </c:choose>
        
-          <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>      
+          <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br>      
           <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
           ${content }
         </DIV>
       </li>
-      
-            <c:if test="${youtube.trim().length() > 0 }">
-          <li class="li_none" style="clear: both; padding-top: 15px; padding-bottom: 15px;">
-                  <DIV style="text-align: center;">
-                    ${youtube }
-                  </DIV>
-          </li>
-      </c:if>
       
       <c:if test="${map.trim().length() > 0 }">
           <li class="li_none" style="clear: both; padding-top: 15px; padding-bottom: 15px;">
