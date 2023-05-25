@@ -34,7 +34,7 @@ public class ItemCont {
 //  private RecipeProcInter recipeProc;
 
   public ItemCont() {
-    System.out.println("ItemCont created.");
+    System.out.println("-> ItemCont created.");
   }
 
 //등록품  http://localhost:9093/item/create.do

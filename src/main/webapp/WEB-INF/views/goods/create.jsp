@@ -58,7 +58,15 @@
     <div>
        <label>제목</label>
        <input type='text' name='gname' value='서울 우수 야경' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 100%;'>
+                 autofocus="autofocus" class="form-control" style='width: 50%;'>
+    </div>
+    <div>
+       <label>가격</label>
+       <input type='number' name='price' value='10000' required="required" 
+                 autofocus="autofocus" class="form-control" style='width: 10%;'> 
+       <label>DC</label>
+       <input type='number' name='dc' value='1' min=0 max=100 required="required" 
+                                         autofocus="autofocus" class="form-control" style='width: 10%;'>
     </div>
     <div>
        <label>내용</label>

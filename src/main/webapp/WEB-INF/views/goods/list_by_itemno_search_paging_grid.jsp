@@ -16,13 +16,10 @@
 <body>
   <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>
-    ${itemVO.name }  
-    <c:if test="${param.word.length() > 0 }">
-      > 「${param.word }」 검색 ${list.size() } 건
-    </c:if> 
-      
-  </DIV>
+<DIV class='title_line'>
+『 ${itemVO.item } 』 ( ${search_count } )
+    
+</DIV>
 
   <DIV class='content_body'>
     <ASIDE class="aside_right">
@@ -69,7 +66,8 @@
   
       <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
         <c:forEach var="goodsVO" items="${list }" varStatus="status">
-          <c:set var="title" value="${goodsVO.title }" />
+          <c:set var="gname" value="${goodsVO.gname }" />
+          <c:set var="price" value="${goodsVO.price }" />
           <c:set var="content" value="${goodsVO.content }" />
           <c:set var="itemno" value="${goodsVO.itemno }" />
           <c:set var="goodsno" value="${goodsVO.goodsno }" />
@@ -98,16 +96,16 @@
           <strong>
             <div style='height=20px; word-break: break-all;'>
               <c:choose>
-                <c:when test="${title.length() > 20 }"> <%-- 20 이상이면 10만 출력 --%>
-                  ${title.substring(0, 20)}...
+                <c:when test="${gname.length() > 20 }"> <%-- 20 이상이면 10만 출력 --%>
+                  ${gname.substring(0, 20)}...
                 </c:when>
-                <c:when test="${title.length() <= 20 }">
-                   ${title}
+                <c:when test="${gname.length() <= 20 }">
+                   ${gname}
                 </c:when>
               </c:choose>
             </div>
           </strong>
-       
+          <div>${price }\</div>
           <div style='font-size:0.95em; word-break: break-all;'>
             <c:choose>
               <c:when test="${content.length() > 60 }"> <%-- 60 이상이면 30자만 출력 --%>

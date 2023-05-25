@@ -20,7 +20,7 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-  ${itemVO.item  }
+『 ${itemVO.item } 』 ( ${search_count } )
 </DIV>
 
 <DIV class='content_body'>
@@ -97,6 +97,7 @@
       <c:forEach var="goodsVO" items="${list}">
         <c:set var="gname" value="${goodsVO.gname }" />
         <c:set var="content" value="${goodsVO.content }" />
+        <c:set var="price" value="${goodsVO.price }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -119,6 +120,7 @@
           <td style='vertical-align: middle;'>
             <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page }&word=${param.word}">
               <div style='font-weight: bold;'>${gname }</div>
+              <div>${price }\</div>
               <c:choose> 
                 <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
                     ${content.substring(0, 160)}.....
