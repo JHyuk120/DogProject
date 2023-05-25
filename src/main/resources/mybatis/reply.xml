@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.reply.ReplyDAOInter">
+<!-- 리뷰 조회 -->
+<select  id="reply_list" parameterType="int" resultType="dev.mvc.reply.ReplyVO" >
+SELECT replyno,memberno,(SELECT id FROM member WHERE memberno = #{memberno}),recipeno,replycont,rdate,ratingValue,ratingAvg
+FROM reply
+WHERE recipeno = #{recipeno}
+ORDER BY rdate ASC
+</select>
+<!-- 리뷰 작성 -->
+<insert id="reply_create" parameterType="dev.mvc.reply.ReplyVO">
+INSERT INTO reply(replyno,memberno,id,recipeno,replycont,rdate,ratingValue) 
+VALUES(reply_seq.nextval,#{memberno}, (SELECT id FROM member WHERE memberno = #{memberno}),#{recipeno},#{replycont, jdbcType=CLOB},sysdate,#{ratingValue})
+</insert>
+</mapper>
