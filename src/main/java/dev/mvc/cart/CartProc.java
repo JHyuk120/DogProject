@@ -14,4 +14,10 @@ public class CartProc implements CartProcInter{
     return cnt;
   }
 
+  @Override
+  public int delete(int cartno) {
+    int cnt = this.cartDAO.delete(cartno);
+    return cnt;
+  }
+
 }

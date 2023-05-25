@@ -7,5 +7,12 @@ public interface CartDAOInter {
    * @return
    */
   public int insert(CartVO cartVO);
+  
+  /**
+   * 장바구니 삭제
+   * @param cartVO
+   * @return
+   */
+  public  int delete(int cartno);
 
 }
