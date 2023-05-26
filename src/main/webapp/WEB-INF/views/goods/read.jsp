@@ -4,7 +4,8 @@
 
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="itemno" value="${goodsVO.itemno }" />
-<c:set var="gname" value="${goodsVO.gname }" />        
+<c:set var="gname" value="${goodsVO.gname }" />    
+<c:set var="price" value="${goodsVO.price }" />    
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -93,27 +94,20 @@
         <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <%-- /static/contents/storage/ --%>
-                <IMG src="/contents/storage/${file1saved }" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
+                <IMG src="/dogproject/storage/${file1saved }" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/contents/images/none1.png" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
+                <IMG src="/dogproject/images/none1.png" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
               </c:otherwise>
             </c:choose>
        
-          <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br>      
+          <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
+          <div>가격: ${price }\</div><br>     
           <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
           ${content }
         </DIV>
       </li>
       
-      <c:if test="${map.trim().length() > 0 }">
-          <li class="li_none" style="clear: both; padding-top: 15px; padding-bottom: 15px;">
-                  <DIV style='text-align: center; width:640px; height: 380px; margin: 0px auto;'>
-                    ${map }
-                  </DIV>
-          </li>
-      </c:if>
      
       <li class="li_none">
         <DIV style='text-decoration: none;'>
@@ -124,9 +118,11 @@
       <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">  <%-- ServletRegister.java: registrationBean.addUrlMappings("/download");  --%>
-            첨부 파일: <A href='/download?dir=/contents/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
+            첨부 파일: <A href='/download?dir=/dogproject/goods/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>
         </DIV>
+        <a href = '/' class="btn btn-primary btn-sm">장바구니 넣기</a>
+        <a href = '/' class="btn btn-primary btn-sm">바로구매</a>
       </li>   
     </ul>
   </fieldset>

@@ -26,8 +26,10 @@
 <title>Daeng Kit</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
-
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
  <%-- 별점 스크립트 --%>
 <script type="text/javascript">
     function setStarRating(ratingValue) {
@@ -132,7 +134,7 @@
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
-                <img src="/recipe/storage/${file1saved }" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
+                <img src="/dogproject/storage/${file1saved }" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/recipe/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 

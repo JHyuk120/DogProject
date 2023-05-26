@@ -10,33 +10,28 @@
 <title>Daeng Kit</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
- 
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     
 </head> 
  
-<body>
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-『 ${itemVO.item } 』 ( ${search_count } )
+🦴 ${itemVO.item } 💛 ${search_count }개 💛
 
 </DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
   
-    <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
-    <c:if test="${sessionScope.admin_id != null }">
-      <%--
-      http://localhost:9091/recipe/create.do?itemno=1
-      http://localhost:9091/recipe/create.do?itemno=2
-      http://localhost:9091/recipe/create.do?itemno=3
-      --%>
+
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-    </c:if>
-    
+
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>    
     <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
@@ -56,11 +51,16 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
-                    onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
-      </c:if>    
+			<button type="submit" class="btn btn-custom btn-sm">검색</button>
+			<c:if test="${param.word.length() > 0 }">
+			  <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
+			</c:if>
+			    <style>
+					.btn-custom {
+					  background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+					  color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+					}
+					</style>
     </form>
   </DIV>
 
@@ -106,7 +106,7 @@
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%--registry.addResourceHandler("/recipe/storage/**").addResourceLocations("file:///" +  Recipe.getUploadDir()); --%>
-              <img src="/recipe/storage/${thumb1 }" style="width: 120px; height: 90px;">
+              <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90px;">
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/recipe/images/none1.png" style="width: 120px; height: 90px;">

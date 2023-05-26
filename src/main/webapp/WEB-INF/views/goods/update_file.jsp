@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="goodsno" value="${contentsVO.goodsno }" />
-<c:set var="itemno" value="${contentsVO.itemno }" />
-<c:set var="title" value="${contentsVO.title }" />
-<c:set var="file1" value="${contentsVO.file1 }" />
-<c:set var="file1saved" value="${contentsVO.file1saved }" />
-<c:set var="thumb1" value="${contentsVO.thumb1.toLowerCase() }" />
-<c:set var="size1" value="${contentsVO.size1 }" />
+<c:set var="goodsno" value="${goodsVO.goodsno }" />
+<c:set var="itemno" value="${goodsVO.itemno }" />
+<c:set var="gname" value="${goodsVO.gname }" />
+<c:set var="file1" value="${goodsVO.file1 }" />
+<c:set var="file1saved" value="${goodsVO.file1saved }" />
+<c:set var="thumb1" value="${goodsVO.thumb1.toLowerCase() }" />
+<c:set var="size1" value="${goodsVO.size1 }" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -17,8 +17,10 @@
 <title>Dog#</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
- 
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     
 </head> 
  
@@ -67,17 +69,17 @@
         <DIV style='text-align: center; width: 50%; float: left;'>
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <IMG src="/contents/storage/${file1saved }" style='width: 90%;'> 
+              <IMG src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없음 -->
-               <IMG src="/contents/images/none1.png" style="width: 90%;"> 
+               <IMG src="/dogproject/images/none1.png" style="width: 90%;"> 
             </c:otherwise>
           </c:choose>
           
         </DIV>
 
         <DIV style='text-align: left; width: 47%; float: left;'>
-          <span style='font-size: 1.5em;'>${title}</span>
+          <span style='font-size: 1.5em;'>${gname}</span>
           <br>
           <FORM name='frm' method='POST' action='./update_file.do' enctype="multipart/form-data">
             <input type="hidden" name="goodsno" value="${goodsno }">

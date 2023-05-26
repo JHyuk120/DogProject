@@ -4,7 +4,7 @@
 <c:set var="itemno" value="${itemVO.itemno }" />
 
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
-<c:set var="title" value="${goodsVO.title }" />
+<c:set var="gname" value="${goodsVO.gname }" />
 <c:set var="content" value="${goodsVO.content }" />
 <c:set var="word" value="${goodsVO.word }" />
  
@@ -16,15 +16,17 @@
 <title>Resort world</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
- 
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     
 </head>
  
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'> ${itemVO.item } > ${title } > 수정</DIV>
+<DIV class='title_line'> ${itemVO.item } > ${gname } > 수정</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -66,7 +68,7 @@
     
     <div>
        <label>제목</label>
-       <input type='text' name='title' value='${title }' required="required" 
+       <input type='text' name='gname' value='${gname }' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     <div>

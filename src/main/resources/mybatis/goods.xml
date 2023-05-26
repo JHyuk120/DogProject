@@ -47,7 +47,7 @@
         WHERE itemno=#{itemno}
       </when>
       <otherwise> <!-- 검색하는 경우 -->
-        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+        WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
@@ -64,7 +64,7 @@
         WHERE itemno=#{itemno}
       </when>
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
-        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+        WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
@@ -87,7 +87,7 @@
                              WHERE itemno=#{itemno}
                           </when>
                           <otherwise>
-                            WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                            WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
                           </otherwise>
@@ -114,6 +114,13 @@
   <update id="update_text" parameterType="dev.mvc.goods.GoodsVO">
     UPDATE goods
     SET gname=#{gname}, content=#{content},  word=#{word}
+    WHERE goodsno = #{goodsno}
+  </update>
+  
+    <!-- 레시피 이미지 수정 -->
+  <update id="update_file" parameterType="dev.mvc.goods.GoodsVO">
+    UPDATE goods
+    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
     WHERE goodsno = #{goodsno}
   </update>
   

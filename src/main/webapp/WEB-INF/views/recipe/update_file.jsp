@@ -17,8 +17,10 @@
 <title>Daeng Kit</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
- 
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     
 </head> 
  
@@ -67,7 +69,7 @@
         <DIV style='text-align: center; width: 50%; float: left;'>
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <IMG src="/recipe/storage/${file1saved }" style='width: 90%;'> 
+              <IMG src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없음 -->
                <IMG src="/recipe/images/none1.png" style="width: 90%;"> 
