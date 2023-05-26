@@ -15,6 +15,7 @@
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
  <c:set var="replycont" value="${replyVO.replycont}" />
 <c:set var="replyno" value="${replyVO.replyno}" />
+<c:set var="ratingAvg" value="${replyVO.ratingAvg}" />
 
  
 <!DOCTYPE html> 
@@ -52,6 +53,16 @@
     
         // rating-display의 내용을 ratingValue로 업데이트
         document.getElementById('rating-display').textContent = "("+ratingValue+")";
+    }
+<!--댓글 등록시 로그인 여부 확인 -->
+    function checkLoginStatus() {
+        var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
+        if (!isLoggedIn) {
+            // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
+            alert('로그인이 필요합니다.');
+            return false; // 폼 제출 중단
+        }
+        return true; // 폼 제출 진행
     }
 </script>
 
@@ -160,7 +171,8 @@
   </fieldset>
 </DIV>
 <%-- 댓글 조회 --%>
- <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data">
+
+ <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
@@ -181,10 +193,12 @@
     </div>
     <td>
            <div id="rating-display" >(0)</div>
+           <div>평점: ${ratingAVG } </div>
+           
     <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
     </td>
   </tr>
-   <button type='submit' class='btn btn-info btn-sm' >리뷰 등록</button>
+   <button type='submit' class='btn btn-info btn-sm'>리뷰 등록</button>
  </FORM>    
  
  <!-- 댓글 목록 -->
@@ -215,9 +229,9 @@
         <c:set var="ratingValue" value=" ${replyVO.ratingValue}" />
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
-
+        <c:set var="ratingAvg" value="${replyVO.ratingAvg}" />
         
-        <tr style="height: 112px;" class='hover'>
+        <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
            <div> ${id }</div>
@@ -235,13 +249,14 @@
             <div>${rdate}</div>
           </td>
         </tr>
-     
       </c:forEach>
 
     </tbody>
   </table>
-    </thead> 
- 
+    <!-- 페이지 목록 출력 부분 시작 -->
+  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
+  <!-- 페이지 목록 출력 부분 종료 -->
+  
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  
