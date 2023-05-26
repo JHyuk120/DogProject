@@ -17,11 +17,11 @@
     
 </head> 
  
-<body>
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-『 ${itemVO.item } 』 ( ${search_count } )
+🦴 ${itemVO.item }  ( ${search_count } )
 
 </DIV>
 

@@ -8,7 +8,7 @@
 
     <!-- 헤더 start -->
     <div class="header">
-        <nav class="navbar navbar-expand-md fixed-top navbar-custom" style='color:red;'>
+        <nav class="navbar navbar-expand-md fixed-top navbar-custom">
         <style>
 			  /* 네비게이션 바의 배경 색상을 노란색으로 변경합니다. */
 			  .navbar-custom {
