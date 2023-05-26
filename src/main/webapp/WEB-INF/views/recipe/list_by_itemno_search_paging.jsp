@@ -106,7 +106,7 @@
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%--registry.addResourceHandler("/recipe/storage/**").addResourceLocations("file:///" +  Recipe.getUploadDir()); --%>
-              <img src="/recipe/storage/${thumb1 }" style="width: 120px; height: 90px;">
+              <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90px;">
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/recipe/images/none1.png" style="width: 120px; height: 90px;">
