@@ -47,7 +47,7 @@
         WHERE itemno=#{itemno}
       </when>
       <otherwise> <!-- 검색하는 경우 -->
-        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+        WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
@@ -64,7 +64,7 @@
         WHERE itemno=#{itemno}
       </when>
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
-        WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+        WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
@@ -87,7 +87,7 @@
                              WHERE itemno=#{itemno}
                           </when>
                           <otherwise>
-                            WHERE itemno=#{itemno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                            WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
                           </otherwise>

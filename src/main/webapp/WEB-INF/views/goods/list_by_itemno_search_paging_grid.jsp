@@ -87,10 +87,10 @@
           <c:choose> 
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-              <img src="/contents/storage/${thumb1 }" style="width: 100%; height: 140px;">
+              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 140px;">
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-              <IMG src="/contents/images/none1.png" style="width: 100%; height: 140px;">
+              <IMG src="/goods/images/none1.jpg" style="width: 100%; height: 140px;">
             </c:otherwise>
           </c:choose>
           <strong>

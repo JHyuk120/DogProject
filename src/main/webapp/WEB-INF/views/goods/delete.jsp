@@ -4,7 +4,7 @@
 
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="itemno" value="${goodsVO.itemno }" />
-<c:set var="title" value="${goodsVO.title }" />
+<c:set var="gname" value="${goodsVO.gname }" />
 <c:set var="file1saved" value="${goodsVO.file1saved.toLowerCase() }" />
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -26,7 +26,7 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.name }</A> > ${title } 삭제</DIV>
+<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A> > ${gname } 삭제</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -73,7 +73,7 @@
 
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <IMG src="/contents/storage/${file1saved }" style='width: 90%;'> 
+              <IMG src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 -->
               상품 관련 이미지가 없습니다.
@@ -82,7 +82,7 @@
         </DIV>
 
         <DIV style='text-align: left; width: 47%; float: left;'>
-          <span style='font-size: 1.5em;'>${title}</span>
+          <span style='font-size: 1.5em;'>${gname}</span>
           <c:if test="${size1 > 0 }">
             <br>삭제되는 파일: ${file1 }
           </c:if>
