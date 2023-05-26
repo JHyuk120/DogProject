@@ -35,4 +35,5 @@ public interface ReplyDAOInter {
      * @return
      */
     public float ratingAVG(int recipeno);
+
 }

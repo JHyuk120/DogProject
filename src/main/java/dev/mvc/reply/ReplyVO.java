@@ -9,7 +9,7 @@ public class ReplyVO {
     private String file1 ="";
     private String file1saved ="";
     private String thumb1 ="";
-    private String id="";
+    private String mid="";
     private long size1;
     private int now_page = 1;
     private int start_num;
@@ -103,11 +103,11 @@ public class ReplyVO {
     public void setReplycnt(int replycnt) {
         this.replycnt = replycnt;
     }
-    public String getId() {
-        return id;
+    public String getMid() {
+        return mid;
     }
-    public void setId(String id) {
-        this.id = id;
+    public void setMid(String mid) {
+        this.mid = mid;
     }
     public int getRatingValue() {
         return ratingValue;

@@ -19,6 +19,7 @@ import dev.mvc.admin.AdminVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 import dev.mvc.reply.ReplyProcInter;
 import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
@@ -240,10 +241,10 @@ public class RecipeCont {
    
     ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
     mav.addObject("list", list);
-
     String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
-    
+
+
     return mav;
   }
   
