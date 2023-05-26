@@ -102,7 +102,7 @@
             </c:choose>
        
           <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-          <div>${price }</div><br>     
+          <div>가격: ${price }\</div><br>     
           <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
           ${content }
         </DIV>
@@ -121,6 +121,8 @@
             첨부 파일: <A href='/download?dir=/dogproject/goods/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>
         </DIV>
+        <a href = '/' class="btn btn-primary btn-sm">장바구니 넣기</a>
+        <a href = '/' class="btn btn-primary btn-sm">바로구매</a>
       </li>   
     </ul>
   </fieldset>
