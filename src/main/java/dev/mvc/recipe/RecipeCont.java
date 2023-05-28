@@ -26,7 +26,9 @@ import dev.mvc.tool.Upload;
 
 @Controller
 public class RecipeCont {
-  @Autowired
+  private static final ReplyVO ReplyVO = null;
+
+@Autowired
   @Qualifier("dev.mvc.admin.AdminProc") 
   private AdminProcInter adminProc;
   
@@ -206,11 +208,11 @@ public class RecipeCont {
    * @return
    */
   @RequestMapping(value="/recipe/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int recipeno) {
+  public ModelAndView read(int recipeno, ReplyVO replyVO) {
     ModelAndView mav = new ModelAndView();
 
     RecipeVO recipeVO = this.recipeProc.read(recipeno);
-    
+   
     String title = recipeVO.getTitle();
     String article = recipeVO.getArticle();
     
@@ -236,9 +238,11 @@ public class RecipeCont {
     mav.setViewName("/recipe/read"); // /WEB-INF/views/recipe/read.jsp
     // 댓글 조회
    
-    ArrayList<ReplyVO> list = this.replyProc.reply_list(recipeno);
+    ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
     mav.addObject("list", list);
 
+    String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
+    mav.addObject("paging", paging);
     
     return mav;
   }

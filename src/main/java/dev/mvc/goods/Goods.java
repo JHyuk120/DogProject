@@ -17,12 +17,12 @@ public class Goods {
         String path = "";
         if (File.separator.equals("\\")) {  // 윈도우즈 개발 환경의 파일 업로드 폴더
             // path = "C:/kd/deploy/resort_v2sbm3c/contents/storage/";
-            path="C:\\kd\\deploy\\dog_v1sbm3c\\goods\\storage\\";
+            path="C:\\kd\\deploy\\dogproject\\storage\\";
             // System.out.println("Windows 10: " + path);
             
         } else { // 서비스용 배치 폴더
             // System.out.println("Linux");
-            path = "/home/ubuntu/deploy/dog_v1sbm3c/goods/storage/";
+            path = "/home/ubuntu/deploy/dogproject/goods/storage/";
         }
         
         return path;

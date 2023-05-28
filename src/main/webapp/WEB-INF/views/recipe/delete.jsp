@@ -73,7 +73,7 @@
 
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <img src="/recipe/storage/${file1saved }" style='width: 90%;'> 
+              <img src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 -->
               상품 관련 이미지가 없습니다.
