@@ -35,5 +35,11 @@ public interface ReplyDAOInter {
      * @return
      */
     public float ratingAVG(int recipeno);
+    /**
+     * recipeno별 댓글 수
+     * @param revipeno
+     * @return
+     */
+    public int reply_count(int recipeno);
 
 }

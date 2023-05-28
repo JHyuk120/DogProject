@@ -29,7 +29,12 @@
   FROM reply 
   WHERE recipeno = #{recipeno}
 </select>
-
+<!-- 게시물 별 댓글 수 -->
+<select id="reply_count" resultType="int" parameterType="int">
+ SELECT COUNT(*) as cnt
+ FROM reply
+ WHERE recipeno=#{recipieno}
+</select>
 
  <select id="list_by_reply_paging" resultType="dev.mvc.reply.ReplyVO" parameterType="HashMap">
 SELECT replyno,memberno,mid,recipeno,replycont,rdate,ratingValue,ratingAVG, r

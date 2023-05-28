@@ -131,6 +131,11 @@ WHERE recipeno = 3;
 rollback;
 commit;
 
+-- recipeno별 댓글 수 
+ SELECT COUNT(*) as cnt
+ FROM reply
+ WHERE recipeno=6;
+
 -- 게시물 별 
  <!-- 카테고리별 검색 레코드 갯수 -->
   <select id="search_count" resultType="int" parameterType="dev.mvc.contents.ContentsVO">
