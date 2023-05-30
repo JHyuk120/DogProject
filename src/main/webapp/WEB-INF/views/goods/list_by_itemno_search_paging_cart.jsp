@@ -68,7 +68,7 @@
   }
   
   <%-- 쇼핑 카트에 상품 추가 --%>
-  function cart_ajax(contentsno) {
+  function cart_ajax(goodsno) {
     var f = $('#frm_login');
     $('#goodsno', f).val(goodsno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장.
     
