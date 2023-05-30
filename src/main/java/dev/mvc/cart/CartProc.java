@@ -1,5 +1,7 @@
 package dev.mvc.cart;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,12 @@ public class CartProc implements CartProcInter{
   public int insert(CartVO cartVO) {
     int cnt = this.insert(cartVO);
     return cnt;
+  }
+  
+  @Override
+  public ArrayList<CartVO> list_by_memberno(int memberno) {
+    ArrayList<CartVO> list = this.cartDAO.list_by_memberno(memberno);
+    return list;
   }
 
   @Override
