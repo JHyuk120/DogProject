@@ -4,8 +4,24 @@
 
 <mapper namespace="dev.mvc.cart.CartDAOInter">
 <insert id="insert" parameterType = "dev.mvc.cart.CartVO" >
-	INSERT INTO cart(cartno,memberno,goodsno, cnt,rdate)
-	VALUES(cart_seq.nextval,#{memberno},#{goodsno},#{cnt},sysdate)
+  INSERT INTO cart(cartno,memberno,goodsno, cnt,rdate)
+  VALUES(cart_seq.nextval,#{memberno},#{goodsno},#{cnt},sysdate)
 </insert>
+
+<!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
+  <select id="list_by_memberno" resultType="dev.mvc.cart.CartVO" parameterType="int">
+    SELECT t.cartno, g.goodsno, g.gname, g.thumb1, g.price, g.dc, g.saleprice, g.point, t.memberno, t.cnt, t.rdate 
+    FROM goods g, cart t
+    WHERE (g.goodsno = t.goodsno) AND t.memberno = #{memberno}
+    ORDER BY cartno ASC
+  </select>
+
+ <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM cart 
+    WHERE cartno=#{cartno}
+  </delete>
+
+
 
 </mapper>
