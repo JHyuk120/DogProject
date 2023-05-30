@@ -10,7 +10,10 @@
 <title>Dog#</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head> 
  
 <body>
@@ -105,7 +108,7 @@
               </c:choose>
             </div>
           </strong>
-          <div>${price }\</div>
+          <div>가격: ${price }\</div>
           <div style='font-size:0.95em; word-break: break-all;'>
             <c:choose>
               <c:when test="${content.length() > 60 }"> <%-- 60 이상이면 30자만 출력 --%>

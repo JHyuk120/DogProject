@@ -26,8 +26,10 @@
 <title>Daeng Kit</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
-
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
  <%-- 별점 스크립트 --%>
 <script type="text/javascript">
     function setStarRating(ratingValue) {
@@ -225,16 +227,16 @@
       </tr>
      <tbody>
       <c:forEach var="replyVO" items="${list}">
-        <c:set var="id" value=" ${replyVO.id}" />
         <c:set var="ratingValue" value=" ${replyVO.ratingValue}" />
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
         <c:set var="ratingAvg" value="${replyVO.ratingAvg}" />
-        
+         <c:set var="mid" value="${memberVO.id}" />
+         
         <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
-           <div> ${id }</div>
+           <div> ${replyVO.mid }</div>
           </td>  
           
           <td style='vertical-align: middle;'>

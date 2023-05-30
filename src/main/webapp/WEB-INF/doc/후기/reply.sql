@@ -5,7 +5,6 @@ FROM recipe;
 CREATE TABLE reply (
     replyno NUMBER(10) NOT NULL PRIMARY KEY,
     memberno NUMBER(10) NOT NULL,
-    id       VARCHAR(30)   NOT NULL ,
     recipeno  NUMBER(10) NOT NULL,
     replycont  CLOB    NOT NULL,
     file1       VARCHAR(100),  -- 원본 파일명 image
@@ -18,7 +17,6 @@ CREATE TABLE reply (
     ratingValue FLOAT(7)    DEFAULT 0,
     ratingAvg   FLOAT(7)    DEFAULT 0,
     FOREIGN KEY (memberno) REFERENCES member (memberno),
-    FOREIGN KEY (id) REFERENCES member (id),
     FOREIGN KEY (recipeno) REFERENCES recipe (recipeno)
 );
 
@@ -27,7 +25,6 @@ COMMENT ON TABLE reply is '댓글,평점';
 COMMENT ON COLUMN reply.replyno is '리뷰 번호';
 COMMENT ON COLUMN reply.memberno is '회원 번호';
 COMMENT ON COLUMN reply.recipeno is '컨텐츠(레시피) 번호';
-COMMENT ON COLUMN reply.id is '회원id';
 COMMENT ON COLUMN reply.replycont is '리뷰 내용';
 COMMENT ON COLUMN reply.ratingValue is '댓글 평점';
 COMMENT ON COLUMN reply.ratingAvg is '게시물 평점';
@@ -53,15 +50,16 @@ CREATE SEQUENCE reply_seq
   
 SELECT * FROM recipe;
 -- 리뷰 작성 
-INSERT INTO reply(replyno,memberno,id,recipeno,replycont,rdate,ratingValue) 
-VALUES(reply_seq.nextval,1, (SELECT id FROM member WHERE memberno = 1),6,'맛있어요^^',sysdate,5);
+INSERT INTO reply(replyno,memberno,recipeno,replycont,rdate,ratingValue) 
+VALUES(reply_seq.nextval,1,6,'맛있어요^^',sysdate,5);
 commit;
 
 -- 리뷰 조회
-SELECT replyno,memberno,(SELECT id FROM member WHERE memberno = 1)as id,recipeno,replycont,rdate,ratingValue,ratingAVG
+SELECT replyno,memberno,recipeno,replycont,rdate,ratingValue,ratingAVG
 FROM reply
-WHERE recipeno = 6
-ORDER BY rdate ASC;
+WHERE recipeno = 9;
+
+SELECT id FROM member WHERE memberno = 1;
 -- 리뷰 조회 페이징
    SELECT replyno,memberno,(SELECT id FROM member WHERE memberno = #{memberno})as id,recipeno,replycont,rdate,ratingValue,ratingAVG, r
    FROM (
@@ -133,6 +131,24 @@ WHERE recipeno = 3;
 rollback;
 commit;
 
---count
+-- recipeno별 댓글 수 
+ SELECT COUNT(*) as cnt
+ FROM reply
+ WHERE recipeno=6;
 
-
+-- 게시물 별 
+ <!-- 카테고리별 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="dev.mvc.contents.ContentsVO">
+    SELECT COUNT(*) as cnt
+    FROM contents
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+        WHERE cateno=#{cateno}
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE cateno=#{cateno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+      </otherwise>
+    </choose>
+  </select>    
