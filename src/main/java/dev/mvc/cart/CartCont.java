@@ -133,6 +133,29 @@ public class CartCont {
   }
   
   /**
+   * 수량 변경, http://localhost:9091/cart/delete.do
+   * @param session
+   * @param cartno 쇼핑카트 번호
+   * @param cnt 수량
+   * @return 변경된 레코드 갯수
+   */
+  @RequestMapping(value="/cart/update_cnt.do", method=RequestMethod.POST )
+  public ModelAndView update_cnt(HttpSession session,
+                                                   @RequestParam(value="cartno", defaultValue="0") int cartno,
+                                                    int cnt) {
+    ModelAndView mav = new ModelAndView();
+    
+    CartVO cartVO = new CartVO();
+    cartVO.setCartno(cartno);
+    cartVO.setCnt(cnt);
+    
+    this.cartProc.update_cnt(cartVO);      
+    mav.setViewName("redirect:/cart/list_by_memberno.do");
+    
+    return mav;
+  }
+  
+  /**
    * 상품 삭제
    * http://localhost:9091/cart/delete.do
    * @return
