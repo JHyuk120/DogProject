@@ -408,32 +408,32 @@ public class MemberCont {
    }
     
    /**
-    * Cookie + Ajax 기반 로그인 처리
-    * @param request Cookie를 읽기위해 필요
-    * @param response Cookie를 쓰기위해 필요
-    * @param session 로그인 정보를 메모리에 기록
-    * @param id  회원 아이디
-    * @param passwd 회원 패스워드
-    * @param id_save 회원 아이디 Cookie에 저장 여부
-    * @param passwd_save 패스워드 Cookie에 저장 여부
-    * @return
-    */
-   // http://localhost:9093/member/login_ajax.do 
-   @RequestMapping(value = "/member/login_ajax.do", 
-                              method = RequestMethod.POST)
-   @ResponseBody
-   public String login_cookie_proc_ajax (
-                              HttpServletRequest request,
-                              HttpServletResponse response,
-                              HttpSession session,
-                              String id, String passwd,
-                              @RequestParam(value="id_save", defaultValue="") String id_save,
-                              @RequestParam(value="passwd_save", defaultValue="") String passwd_save) {
-
+   * Cookie 기반 로그인 처리
+   * @param request Cookie를 읽기위해 필요
+   * @param response Cookie를 쓰기위해 필요
+   * @param session 로그인 정보를 메모리에 기록
+   * @param id  회원 아이디
+   * @param passwd 회원 패스워드
+   * @param id_save 회원 아이디 Cookie에 저장 여부
+   * @param passwd_save 패스워드 Cookie에 저장 여부
+   * @return
+   */
+   // http://localhost:9091/member/login.do 
+   @RequestMapping(value = "/member/login.do", 
+                             method = RequestMethod.POST)
+   public ModelAndView login_cookie_proc(
+                             HttpServletRequest request,
+                             HttpServletResponse response,
+                             HttpSession session,
+                             String id,
+                             String passwd,
+                             @RequestParam(value="id_save", defaultValue="") String id_save,
+                             @RequestParam(value="passwd_save", defaultValue="") String passwd_save) {
+     ModelAndView mav = new ModelAndView();
      HashMap<String, Object> map = new HashMap<String, Object>();
      map.put("id", id);
      map.put("passwd", passwd);
-     
+    
      int cnt = memberProc.login(map);
      if (cnt == 1) { // 로그인 성공
        // System.out.println(id + " 로그인 성공");
@@ -441,7 +441,7 @@ public class MemberCont {
        session.setAttribute("memberno", memberVO.getMemberno()); // 서버의 메모리에 기록
        session.setAttribute("id", id);
        session.setAttribute("mname", memberVO.getMname());
-       
+    
        // -------------------------------------------------------------------
        // id 관련 쿠기 저장
        // -------------------------------------------------------------------
@@ -452,46 +452,48 @@ public class MemberCont {
          response.addCookie(ck_id); // id 저장
        } else { // N, id를 저장하지 않는 경우, Checkbox를 체크 해제한 경우
          Cookie ck_id = new Cookie("ck_id", "");
-         ck_id.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
+         ck_id.setPath("/");
          ck_id.setMaxAge(0);
          response.addCookie(ck_id); // id 저장
        }
+       
        // id를 저장할지 선택하는  CheckBox 체크 여부
        Cookie ck_id_save = new Cookie("ck_id_save", id_save);
-       ck_id_save.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
+       ck_id_save.setPath("/");
        ck_id_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
        response.addCookie(ck_id_save);
        // -------------------------------------------------------------------
-
+   
        // -------------------------------------------------------------------
        // Password 관련 쿠기 저장
        // -------------------------------------------------------------------
        if (passwd_save.equals("Y")) { // 패스워드 저장할 경우
          Cookie ck_passwd = new Cookie("ck_passwd", passwd);
-         ck_passwd.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
+         ck_passwd.setPath("/");
          ck_passwd.setMaxAge(60 * 60 * 24 * 30); // 30 day
          response.addCookie(ck_passwd);
        } else { // N, 패스워드를 저장하지 않을 경우
          Cookie ck_passwd = new Cookie("ck_passwd", "");
-         ck_passwd.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
+         ck_passwd.setPath("/");
          ck_passwd.setMaxAge(0);
          response.addCookie(ck_passwd);
        }
        // passwd를 저장할지 선택하는  CheckBox 체크 여부
        Cookie ck_passwd_save = new Cookie("ck_passwd_save", passwd_save);
-       ck_passwd_save.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
+       ck_passwd_save.setPath("/");
        ck_passwd_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
        response.addCookie(ck_passwd_save);
        // -------------------------------------------------------------------
-       
-     }
-     
-     JSONObject json = new JSONObject();
-     json.put("cnt", cnt);
     
-     return json.toString(); 
+       mav.setViewName("redirect:/index.do");  
+     } else {
+       mav.addObject("url", "/member/login_fail_msg");
+       mav.setViewName("redirect:/member/msg.do"); 
+     }
+        
+     return mav;
    }
-      
+   
    /**
     * 로그아웃 처리
     * @param session
