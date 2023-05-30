@@ -21,24 +21,17 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-🦴 ${itemVO.item }  ( ${search_count } )
+🦴 ${itemVO.item } 💛 ${search_count }개 💛
 
 </DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
   
-    <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
-    <c:if test="${sessionScope.admin_id != null }">
-      <%--
-      http://localhost:9091/recipe/create.do?itemno=1
-      http://localhost:9091/recipe/create.do?itemno=2
-      http://localhost:9091/recipe/create.do?itemno=3
-      --%>
+
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-    </c:if>
-    
+
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>    
     <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
@@ -58,11 +51,16 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
-                    onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
-      </c:if>    
+			<button type="submit" class="btn btn-custom btn-sm">검색</button>
+			<c:if test="${param.word.length() > 0 }">
+			  <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
+			</c:if>
+			    <style>
+					.btn-custom {
+					  background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+					  color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+					}
+					</style>
     </form>
   </DIV>
 

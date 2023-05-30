@@ -67,8 +67,8 @@ public class ReplyProc implements ReplyProcInter {
     public String pagingBox(int recipeno, int now_page,String list_reply){
         ReplyVO replyVO = new ReplyVO();
         replyVO.setRecipeno(recipeno);
-        
-      int total_page = (int)(Math.ceil((double)Reply.RECORD_PER_PAGE)); // 전체 페이지 수 
+      int reply_count = this.ReplyDAO.reply_count(recipeno);
+      int total_page = (int)(Math.ceil((double)reply_count/Reply.RECORD_PER_PAGE)); // 전체 페이지 수 
       int total_grp = (int)(Math.ceil((double)total_page/Reply.PAGE_PER_BLOCK)); // 전체 그룹  수
       int now_grp = (int)(Math.ceil((double)now_page/Reply.PAGE_PER_BLOCK));  // 현재 그룹 번호
       
@@ -147,6 +147,14 @@ public class ReplyProc implements ReplyProcInter {
        
       return str.toString(); 
     }
+
+    @Override
+    public int reply_count(int recipeno) {
+       int cnt = this.ReplyDAO.reply_count(recipeno);
+        return cnt;
+    }
+
+
 
     
 

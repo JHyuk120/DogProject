@@ -227,16 +227,16 @@
       </tr>
      <tbody>
       <c:forEach var="replyVO" items="${list}">
-        <c:set var="id" value=" ${replyVO.id}" />
         <c:set var="ratingValue" value=" ${replyVO.ratingValue}" />
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
         <c:set var="ratingAvg" value="${replyVO.ratingAvg}" />
-        
+         <c:set var="mid" value="${memberVO.id}" />
+         
         <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
-           <div> ${id }</div>
+           <div> ${replyVO.mid }</div>
           </td>  
           
           <td style='vertical-align: middle;'>

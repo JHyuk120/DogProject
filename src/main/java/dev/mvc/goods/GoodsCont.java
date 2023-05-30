@@ -2,6 +2,7 @@ package dev.mvc.goods;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -232,8 +234,8 @@ public class GoodsCont {
 
  
  /**
-  * 목록 + 검색 + 페이징 지원
-  * http://localhost:9091/goods/list_by_itemno.do?itemno=1&word=스위스&now_page=1
+  * 목록 + 검색 + 페이징 지원 + Cooike
+  * http://localhost:9093/goods/list_by_itemno.do?itemno=1&word=스위스&now_page=1
   * 
   * @param itemno
   * @param word
@@ -241,8 +243,10 @@ public class GoodsCont {
   * @return
   */
  @RequestMapping(value = "/goods/list_by_itemno.do", method = RequestMethod.GET)
- public ModelAndView list_by_itemno_search_paging(GoodsVO goodsVO) {
+ public ModelAndView list_by_itemno_search_paging(
+                            HttpServletRequest request,GoodsVO goodsVO) {
 
+  
    ModelAndView mav = new ModelAndView();
 
    // 검색된 전체 글 수
@@ -271,7 +275,40 @@ public class GoodsCont {
    // mav.addObject("now_page", now_page);
    
    mav.setViewName("/goods/list_by_itemno_search_paging");  // /goods/list_by_itemno_search_paging.jsp
+  
+   //장바구니에 상품 등록전 로그인 폼 출력 관련 쿠키
+   Cookie[] cookies = request.getCookies();
+   Cookie cookie = null;
 
+   String ck_id = ""; // id 저장
+   String ck_id_save = ""; // id 저장 여부를 체크
+   String ck_passwd = ""; // passwd 저장
+   String ck_passwd_save = ""; // passwd 저장 여부를 체크
+
+   if (cookies != null) {  // Cookie 변수가 있다면
+     for (int i=0; i < cookies.length; i++){
+       cookie = cookies[i]; // 쿠키 객체 추출
+       
+       if (cookie.getName().equals("ck_id")){
+         ck_id = cookie.getValue();                                 // Cookie에 저장된 id
+       }else if(cookie.getName().equals("ck_id_save")){
+         ck_id_save = cookie.getValue();                          // Cookie에 id를 저장 할 것인지의 여부, Y, N
+       }else if (cookie.getName().equals("ck_passwd")){
+         ck_passwd = cookie.getValue();                          // Cookie에 저장된 password
+       }else if(cookie.getName().equals("ck_passwd_save")){
+         ck_passwd_save = cookie.getValue();                  // Cookie에 password를 저장 할 것인지의 여부, Y, N
+       }
+     }
+   }
+   
+   System.out.println("-> ck_id: " + ck_id);
+   
+   mav.addObject("ck_id", ck_id); 
+   mav.addObject("ck_id_save", ck_id_save);
+   mav.addObject("ck_passwd", ck_passwd);
+   mav.addObject("ck_passwd_save", ck_passwd_save);
+   
+   
    return mav;
  }
  

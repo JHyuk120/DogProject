@@ -22,7 +22,9 @@ public class GoodsVO {
   /** 품목 갯수 */
   private int cnt;
   /** 검색어*/
-  private String word = "";
+
+  private String word="";
+
   /** 등록일*/
   private String rdate;
   

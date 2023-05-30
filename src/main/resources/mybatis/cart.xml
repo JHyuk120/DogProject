@@ -3,11 +3,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.cart.CartDAOInter">
-	<!-- 장바구니 담기  -->
-	<insert id = "insert" parameterType="dev.mvc.cart.CartVO">
-	 INSERT INTO cart(cartno, amount, memberno, shopno)
-   VALUES(petcart_seq.nextval, #{amount}, #{memberno}, #{shopbo})	
-	</insert> 
+<insert id="insert" parameterType = "dev.mvc.cart.CartVO" >
+  INSERT INTO cart(cartno,memberno,goodsno, cnt,rdate)
+  VALUES(cart_seq.nextval,#{memberno},#{goodsno},#{cnt},sysdate)
+</insert>
 
 <!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
   <select id="list_by_memberno" resultType="dev.mvc.cart.CartVO" parameterType="int">
@@ -22,7 +21,6 @@
     DELETE FROM cart 
     WHERE cartno=#{cartno}
   </delete>
-
 
 
 

@@ -18,7 +18,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
 </head>
-<body style="background-color: #FEFCE6;">
+<body style="background-color: #B6EADA;">
 <c:import url="/menu/top.do" />
   
   <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
