@@ -10,7 +10,7 @@
     <div class="header">
         <nav class="navbar navbar-expand-md fixed-top navbar-custom">
         <style>
-			  /* 네비게이션 바의 배경 색상을 노란색으로 변경합니다. */
+
 			  .navbar-custom {
 			    background-color: #B6EADA;
 
@@ -72,7 +72,7 @@
                     <c:otherwise>
                       <li class="nav-item dropdown"> <%-- 관리자 서브 메뉴 --%>
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">🏡관리자</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu ">
                           <a class="dropdown-item" href='/item/list_all.do'>📒 카테고리 전체 목록</a>       
                           <a class="dropdown-item" href='/member/list.do'>🙂 회원 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>🔐 관리자 [${sessionScope.admin_id }] 로그아웃</a>

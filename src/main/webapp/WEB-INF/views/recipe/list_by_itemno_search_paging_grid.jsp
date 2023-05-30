@@ -78,31 +78,34 @@
       <c:set var="size1" value="${recipeVO.size1 }" />
         
       <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
-      <c:if test="${status.index % 5 == 0 && status.index != 0 }"> 
-        <HR class='menu_line'> <%-- 줄바꿈 --%>
+      <c:if test="${status.index % 4 == 0 && status.index != 0 }"> 
+
       </c:if>
         
       <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
       <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
       
-      <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'
-      style='width: 19%; height: 230px; float: left; margin: 0.5%; padding: 0.1%; background-color:  #EFFBFB; text-align: center;'>
+      <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class="hover"
+style="width: 23.2%; height: 300px; float: left; margin: 0.9%; padding: 0.5%;
+  background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;">
+  <!-- 나머지 연산자를 사용하여 홀수와 짝수를 판별하여 배경색 설정 -->
+  
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
             <%-- registry.addResourceHandler("/recipe/storage/**").addResourceLocations("file:///" +  Recipe.getUploadDir()); --%>
-            <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 140px;">
+            <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 200px;">
           </c:when>
           <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/recipe/images/none1.png -->
-            <IMG src="/recipe/images/none1.png" style="width: 100%; height: 140px;">
+            <IMG src="/recipe/images/none1.png" style="width: 100%; height: 200px;">
           </c:otherwise>
         </c:choose>
           <strong>
-	          <div style='height: 25px; word-break: break-all;'>
+	          <div style='height: 25px;  word-break: break-all;'>
 	            <c:choose> 
-                <c:when test="${title.length() > 20 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                  ${title.substring(0, 20)}.....
+                <c:when test="${title.length() > 35 }"> <%-- 160자 이상이면 160자만 출력 --%>
+                  ${title.substring(0, 35)}.....
                 </c:when>
-	              <c:when test="${title.length() <= 20 }">
+	              <c:when test="${title.length() <= 35 }">
 	                ${title}
 	              </c:when>
 	            </c:choose>
@@ -110,12 +113,12 @@
 	          <br>
           </strong>
           
-          <div style='font-size:0.8em; word-break: break-all;'>
+          <div style='font-size:0.8em;  word-break: break-all;'>
 	           <c:choose> 
-		           <c:when test="${article.length() > 40 }"> <%-- 70자 이상이면 70자만 출력 --%>
-		             ${article.substring(0, 40)}.....
+		           <c:when test="${article.length() > 30 }"> <%-- 70자 이상이면 70자만 출력 --%>
+		             ${article.substring(0, 30)}.....
 		           </c:when>
-               <c:when test="${article.length() <= 40 }">
+               <c:when test="${article.length() <= 30 }">
                  ${article}
                </c:when>
              </c:choose>
