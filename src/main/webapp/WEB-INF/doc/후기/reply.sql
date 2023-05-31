@@ -14,8 +14,8 @@ CREATE TABLE reply (
     rdate       DATE,
     recom       NUMBER(7)    DEFAULT 0  NOT NULL,
     replycnt   NUMBER(7)    DEFAULT 0  NOT NULL,
-    ratingValue FLOAT(7)    DEFAULT 0,
-    ratingAvg   FLOAT(7)    DEFAULT 0,
+    ratingValue NUMBER(7)    DEFAULT 0,
+    ratingAvg   NUMBER(7)    DEFAULT 0,
     FOREIGN KEY (memberno) REFERENCES member (memberno),
     FOREIGN KEY (recipeno) REFERENCES recipe (recipeno)
 );
@@ -103,9 +103,9 @@ WHERE recipeno = 6;
 
 
 
-SELECT ratingAvg
+SELECT *
 FROM reply
-WHERE recipeno =6;
+WHERE recipeno =17;
 
 
 -- 컨텐츠 평점
@@ -118,7 +118,7 @@ ORDER BY reply.rdate DESC;
 -- 리뷰 수정
 UPDATE reply
 SET replycont = '우리 아이가 잘먹어요^^'
-WHERE recipeno =3;
+WHERE replyno =3;
 -- 리뷰 갯수
 SELECT COUNT(*) as cnt
 FROM  reply
@@ -127,7 +127,11 @@ WHERE recipeno = 6;
 -- 리뷰 사진 삭제
 -- 리뷰 삭제
 DELETE FROM reply
-WHERE recipeno = 3;
+WHERE replyno = 3;
+-- 리뷰 수정 폼
+SELECT replycont
+FROM reply
+WHERE replyno=9;
 rollback;
 commit;
 
@@ -152,3 +156,20 @@ commit;
       </otherwise>
     </choose>
   </select>    
+  
+  
+  DELETE 
+  FROM reply
+  WHERE replyno=
+  -- 댓글 별 id 조회
+  SELECT
+  ;
+  SELECT r.replycont,r.memberno,m.id AS mid
+  FROM reply r JOIN member m ON r.memberno = m.memberno
+  WHERE replyno=3;
+  
+  
+      SELECT r.replyno, r.memberno, m.id AS mid, r.recipeno, r.replycont, r.rdate, r.ratingValue
+    FROM reply r JOIN member m ON r.memberno = m.memberno
+    WHERE r.recipeno = #{recipeno}
+    ORDER BY rdate ASC

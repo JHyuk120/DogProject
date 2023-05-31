@@ -100,8 +100,8 @@
         <c:set var="thumb1" value="${recipeVO.thumb1 }" />
         <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
         
-         <tr style="height: 112px;" onclick="location.href='./read.do?recipeno=${recipeno }'"class='hover'>
-        <td style='vertical-align: middle; text-align: center;'>
+         <tr style="height: 112px; onclick="location.href='./read.do?recipeno=${recipeno }' "class='hover'>
+        <td style='vertical-align: middle;   background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;'>
         <a href="./read.do?recipeno=${recipeno }">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
