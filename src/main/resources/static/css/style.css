@@ -52,7 +52,7 @@
   .menu_line {
     width: 100%;
     border-bottom: dotted 2px #777777;
-    margin: 5px 0px 5px 0px; /* top -> right -> bottom -> left */
+    margin: 10px 0px 5px 0px; /* top -> right -> bottom -> left */
     clear: both;
   } 
   
@@ -461,6 +461,7 @@
  .hover{
     cursor: pointer;
  }
+ 
   
  
   

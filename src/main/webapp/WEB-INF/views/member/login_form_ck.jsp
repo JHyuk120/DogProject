@@ -40,11 +40,16 @@
 <body>
 <c:import url="/menu/top.do" />
  
+  <body>
+<c:import url="/menu/top.do" />
+ 
   <DIV class='title_line'>로그인</DIV>
 
   <DIV class='content_body'> 
     <DIV style='width: 40%; margin: 0px auto;'>
       <FORM name='frm' method='POST' action='./login.do'>
+        <%-- 로그인 후 자동으로 이동할 페이지 전달 ★ --%>
+        <input type="hidden" name="return_url" value="${return_url}">
       
         <div class="form_input">
           <input type='text' class="form-control" name='id' id='id' 

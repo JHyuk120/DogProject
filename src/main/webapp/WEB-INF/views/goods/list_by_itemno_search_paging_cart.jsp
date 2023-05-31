@@ -27,6 +27,7 @@
         $('#id').val('user');
         $('#passwd').val('1234');
   } 
+  
   <%-- 로그인 --%>
   function login_ajax() {
     var params = "";
@@ -68,13 +69,13 @@
   }
   
   <%-- 쇼핑 카트에 상품 추가 --%>
-  function cart_ajax(contentsno) {
+  function cart_ajax(goodsno) {
     var f = $('#frm_login');
     $('#goodsno', f).val(goodsno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장.
     
     // console.log('-> contentsno: ' + $('#contentsno', f).val()); 
     
-    if (("${sessionScope.id}" == "" && $('#login_yn').val() != 'Y) {  // 로그인이 안되어 있다면
+    if (("${sessionScope.id}" == "" && $('#login_yn').val() != 'Y') {  // 로그인이 안되어 있다면
       $('#div_login').show();   // 로그인 폼 
     } else {  // 로그인 한 경우
       //alert('쇼핑카트에 insert 처리 Ajax 호출');
@@ -127,8 +128,6 @@
   
   
 </script>
-
-
 
 </head> 
  

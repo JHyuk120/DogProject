@@ -1,6 +1,4 @@
 DROP table reply;
-SELECT *
-FROM recipe;
 
 CREATE TABLE reply (
     replyno NUMBER(10) NOT NULL PRIMARY KEY,
@@ -14,12 +12,11 @@ CREATE TABLE reply (
     rdate       DATE,
     recom       NUMBER(7)    DEFAULT 0  NOT NULL,
     replycnt   NUMBER(7)    DEFAULT 0  NOT NULL,
-    ratingValue FLOAT(7)    DEFAULT 0,
-    ratingAvg   FLOAT(7)    DEFAULT 0,
+    ratingValue NUMBER(7)    DEFAULT 5,
+    ratingAvg   NUMBER(7,2)    DEFAULT 0,
     FOREIGN KEY (memberno) REFERENCES member (memberno),
     FOREIGN KEY (recipeno) REFERENCES recipe (recipeno)
 );
-
 
 COMMENT ON TABLE reply is '댓글,평점';
 COMMENT ON COLUMN reply.replyno is '리뷰 번호';
@@ -39,8 +36,6 @@ COMMENT ON COLUMN reply.ratingValue is '댓글별 점수';
 COMMENT ON COLUMN reply.ratingAvg is '게시물점 평점';
 DROP SEQUENCE reply_seq;
 
- 
-
 CREATE SEQUENCE reply_seq
   START WITH 1         -- 시작 번호
   INCREMENT BY 1       -- 증가값
@@ -48,64 +43,29 @@ CREATE SEQUENCE reply_seq
   CACHE 2              -- 2번은 메모리에서만 계산
   NOCYCLE;             -- 다시 1부터 생성되는 것을 방지
   
-SELECT * FROM recipe;
 -- 리뷰 작성 
 INSERT INTO reply(replyno,memberno,recipeno,replycont,rdate,ratingValue) 
-VALUES(reply_seq.nextval,1,6,'맛있어요^^',sysdate,5);
+VALUES(reply_seq.nextval,1,17,'맛있어요^^',sysdate,5);
 commit;
 
 -- 리뷰 조회
 SELECT replyno,memberno,recipeno,replycont,rdate,ratingValue,ratingAVG
 FROM reply
-WHERE recipeno = 9;
+WHERE recipeno = 17;
 
-SELECT id FROM member WHERE memberno = 1;
 -- 리뷰 조회 페이징
-   SELECT replyno,memberno,(SELECT id FROM member WHERE memberno = #{memberno})as id,recipeno,replycont,rdate,ratingValue,ratingAVG, r
+SELECT replyno,memberno,mid,recipeno,replycont,rdate,ratingValue,ratingAVG, r
    FROM (
-              SELECT replyno,memberno,(SELECT id FROM member WHERE memberno = #{memberno})as id,recipeno,replycont,rdate,ratingValue,ratingAVG, rownum as r
+              SELECT replyno,memberno,mid,recipeno,replycont,rdate,ratingValue,ratingAVG, rownum as r
               FROM (
-                        SELECT replyno,memberno,(SELECT id FROM member WHERE memberno = #{memberno})as id,recipeno,replycont,rdate,ratingValue,ratingAVG
-                        FROM reply
+                         SELECT r.replyno, r.memberno, m.id AS mid, r.recipeno, r.replycont, r.rdate, r.ratingValue,r.ratingAVG
+                        FROM reply r 
+                        JOIN member m 
+                        ON r.memberno = m.memberno
+                        WHERE r.recipeno = 17
                         ORDER BY rdate DESC
                )
-    )
-    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
-     
-    <!--  1 page: WHERE r >= 1 AND r <= 10; 
-            2 page: WHERE r >= 11 AND r <= 20;
-            3 page: WHERE r >= 21 AND r <= 30; -->
-
-
--- 평점조회
-SELECT reply.ratingValue 
-FROM reply 
-INNER JOIN member ON reply.memberno = member.memberno 
-WHERE replyno = 1
-ORDER BY reply.rdate DESC;
--- 전체 평점 조회
-
-
-SELECT AVG(ratingValue)
-FROM reply 
-WHERE recipeno = 6;
-commit;
-
-UPDATE reply
-SET ratingAvg = (
-    SELECT ROUND(AVG(ratingValue), 2)
-    FROM reply
-    WHERE recipeno = 6
-)
-WHERE recipeno = 6;
-
-
-
-
-
-SELECT ratingAvg
-FROM reply
-WHERE recipeno =6;
+    );
 
 
 -- 컨텐츠 평점
@@ -118,37 +78,23 @@ ORDER BY reply.rdate DESC;
 -- 리뷰 수정
 UPDATE reply
 SET replycont = '우리 아이가 잘먹어요^^'
-WHERE recipeno =3;
+WHERE replyno =3;
+
 -- 리뷰 갯수
 SELECT COUNT(*) as cnt
 FROM  reply
 WHERE recipeno = 6;
--- 리뷰 사진 수정
--- 리뷰 사진 삭제
+
 -- 리뷰 삭제
 DELETE FROM reply
-WHERE recipeno = 3;
-rollback;
-commit;
+WHERE replyno = 3;
+
+-- 리뷰 읽어오기
+SELECT replycont
+FROM reply
+WHERE replyno=9;
 
 -- recipeno별 댓글 수 
- SELECT COUNT(*) as cnt
- FROM reply
- WHERE recipeno=6;
-
--- 게시물 별 
- <!-- 카테고리별 검색 레코드 갯수 -->
-  <select id="search_count" resultType="int" parameterType="dev.mvc.contents.ContentsVO">
-    SELECT COUNT(*) as cnt
-    FROM contents
-    <choose>
-      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
-        WHERE cateno=#{cateno}
-      </when>
-      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
-        WHERE cateno=#{cateno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
-      </otherwise>
-    </choose>
-  </select>    
+SELECT COUNT(*) as cnt
+FROM reply
+WHERE recipeno=6;
