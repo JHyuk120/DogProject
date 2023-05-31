@@ -51,5 +51,17 @@ public interface ReplyProcInter {
      * @return 페이징 생성 문자열
      */
     String pagingBox(int recipeno, int now_page, String list_reply);
+    /**
+     * 리뷰 수정 조회
+     * @param replyno
+     * @return
+     */
+    public ReplyVO reply_read(int replyno);
+    /**
+     * 리뷰 수정
+     * @param recipeno
+     * @return
+     */
+    public int reply_update(ReplyVO replyVO);
 
 }

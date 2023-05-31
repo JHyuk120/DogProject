@@ -15,6 +15,7 @@
   INSERT INTO reply(replyno,memberno,recipeno,replycont,rdate,ratingValue) 
   VALUES(reply_seq.nextval,#{memberno},#{recipeno},#{replycont, jdbcType=CLOB},sysdate,#{ratingValue})
 </insert>
+
 <update id="ratingAVG_cal" parameterType="int">
   UPDATE reply
   SET ratingAvg = (
@@ -35,7 +36,7 @@
  FROM reply
  WHERE recipeno=#{recipieno}
 </select>
-
+  <!-- 댓글 조회 + 페이징-->
  <select id="list_by_reply_paging" resultType="dev.mvc.reply.ReplyVO" parameterType="HashMap">
 SELECT replyno,memberno,mid,recipeno,replycont,rdate,ratingValue,ratingAVG, r
    FROM (
@@ -52,4 +53,21 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,ratingValue,ratingAVG, r
     WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
 
   </select>   
+  <!-- 댓글 개별 조회 -->
+  <select id="reply_read" parameterType="int" resultType="dev.mvc.reply.ReplyVO">
+  SELECT r.replycont,r.memberno,m.id AS mid,r.replyno
+  FROM reply r JOIN member m ON r.memberno = m.memberno
+  WHERE replyno=#{replyno}
+  </select>
+  <!-- 댓글 수정 -->
+  <update id="reply_update" parameterType="dev.mvc.reply.ReplyVO" >
+  UPDATE reply
+  SET replycont = #{replycont}
+  WHERE replyno = #{replyno}
+  </update>
+  <!-- 댓글 삭제 -->
+  <delete id="reply_delete" parameterType="int">
+  DELETE FROM reply
+  WHERE replyno = #{replyno}
+  </delete>
 </mapper>

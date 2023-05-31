@@ -176,12 +176,12 @@ function setStarRating(ratingValue) {
 </DIV>
 <%-- 댓글 조회 --%>
 
- <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
+ <FORM name='frm' method='POST' action='../reply/reply_update.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
+     <input type="hidden" name="replyno" value="${replyno}"/>
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     <input type="hidden" id="star-rating" name="ratingValue" value=""/>
-
     <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
  <!-- 댓글 평점 별  -->
     <tr>
@@ -199,10 +199,11 @@ function setStarRating(ratingValue) {
            <div id="rating-display" >(0)</div>
            <div>평점: ${ratingAVG } </div>
            
-    <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
+
+    <textarea name='replycont' required="required" rows="7" cols="63">${replyVO.replycont }</textarea>
     </td>
   </tr>
-   <button type='submit' class='btn btn-info btn-sm'>리뷰 등록</button>
+   <button type='submit' class='btn btn-info btn-sm'>리뷰 수정</button>
  </FORM>    
  
  <!-- 댓글 목록 -->
