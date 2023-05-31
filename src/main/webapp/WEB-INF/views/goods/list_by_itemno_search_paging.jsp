@@ -8,7 +8,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Dog#</title>
+<title>댕키트</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -92,12 +92,12 @@
     
 </head> 
  
-<body>
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
 
-『 ${itemVO.item } 』 ( ${search_count } )
+🦴 ${itemVO.item } 💛 ${search_count }개 💛
 </DIV>
 
 <DIV class='content_body'>
@@ -134,11 +134,17 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm' >검색</button>
+      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm'
+        <button type='button' class='btn btn-custom btn-sm'
                      onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
+         <style>
+          .btn-custom {
+            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+          }
+          </style>
     </form>
   </DIV>
 
@@ -228,15 +234,15 @@
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
         
         
-        <tr style="height: 112px;" onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
+        <tr style="height: 102px;" onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                  <img src="/dogproject/storage/${thumb1 }" style="width: 130px; height: 90px;">
+                  <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90;">
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-                  <IMG src="/goods/images/none1.jpg" style="width: 130px; height: 90px;">
+                  <IMG src="/goods/images/none1.jpg" style="width: 120px; height: 90px;">
                 </c:otherwise>
               </c:choose>
             </a>

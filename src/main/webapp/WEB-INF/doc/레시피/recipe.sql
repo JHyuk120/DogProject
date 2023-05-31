@@ -3,7 +3,7 @@ DROP TABLE recipe;
 
 CREATE TABLE recipe(
         recipeno            NUMBER(10)      NOT NULL         PRIMARY KEY,
-        adminno             NUMBER(10)      NOT NULL , -- FK
+        adminno             NUMBER(10)      NOT NULL , 
         cateno              NUMBER(10)      NOT NULL , -- FK
         title               VARCHAR2(50)    NOT NULL,
         article             CLOB            NOT NULL,

@@ -243,6 +243,9 @@ public class RecipeCont {
     mav.addObject("list", list);
     String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
+    
+    int cnt = this.recipeProc.cnt_add(recipeno);
+    mav.addObject("cnt", cnt);
 
 
     return mav;
@@ -682,6 +685,28 @@ public class RecipeCont {
     return "";
   
   }
+    //조회수
+  
+   @RequestMapping(value = "/recipe/cnt_add.do", method = RequestMethod.GET)
+   public ModelAndView cnt_add(int recipeno) {
+  
+     ModelAndView mav = new ModelAndView();
+  
+     int cnt = this.recipeProc.cnt_add(recipeno);
+  
+     if (cnt == 1) {
+  
+       mav.setViewName("redirect:/index.do");
+     } else {
+  
+       mav.addObject("code", "cnt_add_fail");
+       mav.setViewName("/recipe/msg");
+     }
+  
+     mav.addObject("cnt", cnt);
+  
+     return mav;
+ }
   
    
 }
