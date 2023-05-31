@@ -511,4 +511,34 @@ public class MemberCont {
    }
    
    
+   /* http://localhost:9093/member/read_ajax.do
+   * {
+   * "tname":"왕눈이",
+   * "taddress2":"관철동",
+   * "tzipcode":"12345",
+   * "taddress1":"서울시 종로구",
+   * "ttel":"000-0000-0000"
+   * }
+   * @param memberno
+   * @return
+   */
+  @RequestMapping(value="/member/read_ajax.do", method=RequestMethod.GET)
+  @ResponseBody
+  public String read_ajax(HttpSession session){
+    int memberno = (int)session.getAttribute("memberno");
+    
+    MemberVO memberVO = this.memberProc.read(memberno);
+    
+    JSONObject json = new JSONObject();
+    json.put("tname", memberVO.getMname());
+    json.put("ttel", memberVO.getTel());
+    json.put("tzipcode", memberVO.getZipcode());
+    json.put("taddress1", memberVO.getAddress1());
+    json.put("taddress2", memberVO.getAddress2());
+    
+    return json.toString();
+  }
+
+   
+   
 }
