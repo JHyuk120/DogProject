@@ -15,6 +15,13 @@
     WHERE (g.goodsno = t.goodsno) AND t.memberno = #{memberno}
     ORDER BY cartno ASC
   </select>
+  
+  <!-- 수량 수정, id: update, 입력: CartVO, 리턴: int -->
+  <update id="update_cnt" parameterType="dev.mvc.cart.CartVO">
+    UPDATE cart
+    SET cnt=#{cnt}
+    WHERE cartno=#{cartno}
+  </update>
 
  <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
   <delete id="delete" parameterType="int">

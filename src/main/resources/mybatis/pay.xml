@@ -3,13 +3,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.pay.PayDAOInter">
-<!-- 결제 -->
-  <insert id="payment" parameterType="dev.mvc.pay.PayVO">
-    INSERT INTO pay(payno, memberno, cartno, goodsno, tname, ttel, tzipcode, taddress1, taddress2, tnotice, comp) 
-    VALUES (pay_seq.nextval, #{memberno}, #{cartno}, #{goodsno}, #{tname}, #{ttel}, #{tzipcod}, #{taddress1}, #{taddress2}, #{tnotice}, #{comp})
-    
-  </insert>
 
+  <!-- 주문 결재 등록 -->
+  <!-- 
+  <insert id="create" parameterType="dev.mvc.pay.PayVO">
+    INSERT INTO pay(payno, memberno, tname, ttel, tzipcode,
+                                     taddress1, taddress2, ptype, price, rdate)
+    VALUES (pay_seq.nextval, #{memberno}, #{tname}, #{ttel}, #{tzipcode},
+                                     #{taddress1}, #{taddress2}, #{ptype}, #{price}, sysdate)
+  </insert> 
+   -->
+   
+  <!-- 주문 결재 등록 전 payno를 PayVO에 저장  -->
+  <insert id="create" parameterType="dev.mvc.pay.PayVO">
+    <selectKey keyProperty="payno" resultType="int" order="BEFORE">
+      SELECT pay_seq.nextval FROM dual
+    </selectKey>
+    
+    INSERT INTO pay(payno, memberno, tname, ttel, tzipcode,
+                                     taddress1, taddress2, ptype, price, rdate)
+    VALUES (#{payno}, #{memberno}, #{tname}, #{ttel}, #{tzipcode},
+                                     #{taddress1}, #{taddress2}, #{ptype}, #{price}, sysdate)
+  </insert>
 
 
 

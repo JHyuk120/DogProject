@@ -41,5 +41,22 @@ public interface ReplyDAOInter {
      * @return
      */
     public int reply_count(int recipeno);
-
+    /**
+     * 리뷰 수정 조회
+     * @param replyno
+     * @return
+     */
+    public ReplyVO reply_read(int replyno);
+    /**
+     * 리뷰 수정
+     * @param recipeno
+     * @return
+     */
+    public int reply_update(ReplyVO replyVO);
+    /**
+     * 리뷰 삭제
+     * @param replyno
+     * @return
+     */
+    public int reply_delete(int replyno);
 }
