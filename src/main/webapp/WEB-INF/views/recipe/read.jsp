@@ -34,11 +34,11 @@
 <script type="text/javascript">
 function setStarRating(ratingValue) {
     // Check if ratingValue is null and set it to 0 if it is
-    if (!ratingValue) {
-        ratingValue = 0;
+    if (ratingValue === null) {
+        ratingValue = 5;
     }
 
-    const starIds = ["star-1", "star-2", "star-3", "star-4", "star-5"];
+    const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
     for (let i = 0; i < starIds.length; i++) {
         let starElement = document.getElementById(starIds[i]);
 
@@ -178,6 +178,7 @@ function setStarRating(ratingValue) {
 
  <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
+    
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     <input type="hidden" id="star-rating" name="ratingValue" value=""/>
@@ -187,11 +188,11 @@ function setStarRating(ratingValue) {
     <tr>
         <div class="stars">
          <td width="100" rowspan="2">${sessionScope.id } </td>
-      <span class="star" id="star-1" onclick="setStarRating(1)">&#9733;</span>
-       <span class="star" id="star-2" onclick="setStarRating(2)">&#9733;</span>
-      <span class="star" id="star-3" onclick="setStarRating(3)">&#9733;</span>
-      <span class="star" id="star-4" onclick="setStarRating(4)">&#9733;</span>
-      <span class="star" id="star-5" onclick="setStarRating(5)">&#9733;</span>
+      <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
+       <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
+      <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
+      <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
+      <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
       <input type="hidden" id="star-rating" value="0"/>
        <td width="100" rowspan="2" id="star-output"> </td>
     </div>
@@ -279,7 +280,7 @@ function setStarRating(ratingValue) {
             <div>${rdate}</div>
           </td>
           <td style='vertical-align: middle;'>
-            <div>수정/삭제</div>
+            <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           
           

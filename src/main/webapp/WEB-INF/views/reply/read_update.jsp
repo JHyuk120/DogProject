@@ -204,6 +204,7 @@ function setStarRating(ratingValue) {
     </td>
   </tr>
    <button type='submit' class='btn btn-info btn-sm'>리뷰 수정</button>
+   <button type='button' onclick="location.href='./reply/reply_delete.do?recipeno=${recipeno}&replyno=${replyno}" class='btn btn-info btn-sm'>리뷰 삭제</button>
  </FORM>    
  
  <!-- 댓글 목록 -->
