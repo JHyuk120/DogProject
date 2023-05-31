@@ -68,6 +68,7 @@ function setStarRating(ratingValue) {
         }
         return true; // 폼 제출 진행
     }
+
 </script>
 
 </head> 
@@ -283,7 +284,7 @@ function setStarRating(ratingValue) {
             <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           
-          
+
         </tr>
       </c:forEach>
 
