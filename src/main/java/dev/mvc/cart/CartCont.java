@@ -72,9 +72,9 @@ public class CartCont {
    * 포인트 합계 = 포인트 합계 + (포인트 * 수량)
    * 배송비 = 3000
    * 전체 주문 금액 = 할인 금액 총 합계 + 배송비
-   * http://localhost:9091/cart/list_by_memberno.do
-   * http://localhost:9091/cart/list_by_memberno.do?cateno=
-   * http://localhost:9091/cart/list_by_memberno.do?cateno=4
+   * http://localhost:9093/cart/list_by_memberno.do
+   * http://localhost:9093/cart/list_by_memberno.do?cateno=
+   * http://localhost:9093/cart/list_by_memberno.do?cateno=4
    * @return
    */
   @RequestMapping(value="/cart/list_by_memberno.do", method=RequestMethod.GET )
