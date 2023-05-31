@@ -17,6 +17,13 @@ public interface CartDAOInter {
   public ArrayList<CartVO> list_by_memberno(int memberno);
   
   /**
+   * 수량 변경
+   * @param cartno
+   * @return
+   */
+  public int update_cnt(CartVO cartVO);
+  
+  /**
    * 장바구니 삭제
    * @param cartVO
    * @return

@@ -84,7 +84,7 @@
     
     <tbody>
       <c:forEach var="goodsVO" items="${list}">
-        <c:set var="title" value="${goodsVO.title }" />
+        <c:set var="gname" value="${goodsVO.gname }" />
         <c:set var="content" value="${goodsVO.content }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />

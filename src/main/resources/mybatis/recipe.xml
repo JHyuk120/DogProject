@@ -160,4 +160,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE itemno=#{itemno}
   </delete>
   
+  <!-- 조회수 -->
+  <update id="cnt_add" parameterType="int">
+  update recipe
+  set cnt = cnt + 1
+  where recipeno = #{recipeno}
+  
+  </update>
+  
 </mapper> 
