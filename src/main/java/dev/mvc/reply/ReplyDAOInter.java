@@ -53,4 +53,10 @@ public interface ReplyDAOInter {
      * @return
      */
     public int reply_update(ReplyVO replyVO);
+    /**
+     * 리뷰 삭제
+     * @param replyno
+     * @return
+     */
+    public int reply_delete(int replyno);
 }

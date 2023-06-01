@@ -452,7 +452,13 @@ public class MemberCont {
 //        
 //     return mav;
 //   }
+<<<<<<< HEAD
    
+=======
+<<<<<<< HEAD
+//   
+
+>>>>>>> e5fb1a839477f2e1e9d9f9a0b2dba0786b05d407
    /**
     * Cookie + Ajax 기반 로그인 처리
     * @param request Cookie를 읽기위해 필요
@@ -464,8 +470,13 @@ public class MemberCont {
     * @param passwd_save 패스워드 Cookie에 저장 여부
     * @return
     */
+<<<<<<< HEAD
    // http://localhost:9091/member/login_ajax.do 
    @RequestMapping(value = "/member/login_ajax.do", 
+=======
+   // http://localhost:9093/member/login.do 
+   @RequestMapping(value = "/member/login.do", 
+>>>>>>> e5fb1a839477f2e1e9d9f9a0b2dba0786b05d407
                               method = RequestMethod.POST)
    @ResponseBody
    public String login_cookie_proc_ajax (
@@ -487,6 +498,10 @@ public class MemberCont {
        session.setAttribute("memberno", memberVO.getMemberno()); // 서버의 메모리에 기록
        session.setAttribute("id", id);
        session.setAttribute("mname", memberVO.getMname());
+<<<<<<< HEAD
+=======
+
+>>>>>>> e5fb1a839477f2e1e9d9f9a0b2dba0786b05d407
        
        // -------------------------------------------------------------------
        // id 관련 쿠기 저장
@@ -537,6 +552,10 @@ public class MemberCont {
     
      return json.toString(); 
    }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e5fb1a839477f2e1e9d9f9a0b2dba0786b05d407
     
     /**
      * Cookie 기반 로그인 처리
@@ -632,8 +651,12 @@ public class MemberCont {
           
        return mav;
      }    
+<<<<<<< HEAD
      
      
+=======
+>>>>>>> 144a0796d7d9331a0d39c18e8d0e5f2410d611e0
+>>>>>>> e5fb1a839477f2e1e9d9f9a0b2dba0786b05d407
    
    /**
     * 로그아웃 처리
@@ -650,6 +673,36 @@ public class MemberCont {
      
      return mav;
    }
+   
+   
+   /* http://localhost:9093/member/read_ajax.do
+   * {
+   * "tname":"왕눈이",
+   * "taddress2":"관철동",
+   * "tzipcode":"12345",
+   * "taddress1":"서울시 종로구",
+   * "ttel":"000-0000-0000"
+   * }
+   * @param memberno
+   * @return
+   */
+  @RequestMapping(value="/member/read_ajax.do", method=RequestMethod.GET)
+  @ResponseBody
+  public String read_ajax(HttpSession session){
+    int memberno = (int)session.getAttribute("memberno");
+    
+    MemberVO memberVO = this.memberProc.read(memberno);
+    
+    JSONObject json = new JSONObject();
+    json.put("tname", memberVO.getMname());
+    json.put("ttel", memberVO.getTel());
+    json.put("tzipcode", memberVO.getZipcode());
+    json.put("taddress1", memberVO.getAddress1());
+    json.put("taddress2", memberVO.getAddress2());
+    
+    return json.toString();
+  }
+
    
    
 }

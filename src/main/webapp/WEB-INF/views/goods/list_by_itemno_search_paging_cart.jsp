@@ -267,7 +267,7 @@
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
         
         
-        <tr style="height: 112px;" onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
+        <tr style="height: 112px;">
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>

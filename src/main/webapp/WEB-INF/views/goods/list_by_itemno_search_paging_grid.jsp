@@ -15,12 +15,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head> 
- 
-<body>
+ <body style="background-color: #FEFCE6;">
   <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-『 ${itemVO.item } 』 ( ${search_count } )
+🦴 ${itemVO.item } 💛 ${search_count }개 💛
     
 </DIV>
 
@@ -57,11 +56,17 @@
             <input type='text' name='word' id='word' value='' class='input_word'>
           </c:otherwise>
         </c:choose>
-        <button type='submit' class='btn btn-info btn-sm'>검색</button>
+        <button type='submit' class='btn btn-custom btn-sm' >검색</button>
           <c:if test="${param.word.length() > 0 }">
-            <button type='button' class='btn btn-info btn-sm' 
+            <button type='button' class='btn btn-custom btn-sm' 
                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
           </c:if>    
+          <style>
+          .btn-custom {
+            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+          }
+          </style>
         </form>
       </DIV>
 
@@ -78,14 +83,17 @@
           <c:set var="size1" value="${goodsVO.size1 }" />
         
           <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
-          <c:if test="${status.index % 5 == 0 && status.index != 0 }"> 
-            <HR class='menu_line'> <%-- 줄바꿈 --%>
+          <c:if test="${status.index % 8 == 0 && status.index != 0 }"> 
+
           </c:if>
         
           <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
           <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
+          
           <div onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'
-                    style='width: 19%; height: 240px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
+                    style="width: 15%; height: 192px; float: left; margin: 0.83%; padding: 0.5%; 
+                    background-color: rgba(255, 243, 254, 0.3); text-align: center;
+                    border: 1px solid #000000;">
         
           <c:choose> 
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
@@ -97,7 +105,7 @@
             </c:otherwise>
           </c:choose>
           <strong>
-            <div style='height=20px; word-break: break-all;'>
+            <div style='font-size:0.8em; word-break: break-all;'>
               <c:choose>
                 <c:when test="${gname.length() > 20 }"> <%-- 20 이상이면 10만 출력 --%>
                   ${gname.substring(0, 20)}...
@@ -108,17 +116,8 @@
               </c:choose>
             </div>
           </strong>
-          <div>가격: ${price }\</div>
-          <div style='font-size:0.95em; word-break: break-all;'>
-            <c:choose>
-              <c:when test="${content.length() > 60 }"> <%-- 60 이상이면 30자만 출력 --%>
-                 ${content.substring(0, 60)}...
-              </c:when>
-              <c:when test="${content.length() <= 60 }">
-                 ${content}
-              </c:when>
-           </c:choose>
-        </div>
+          <div style='font-size:0.9em; color: #0CB0AC; word-break: break-all;'>
+           ${price }원 </div>
       </div>
       
     </c:forEach>

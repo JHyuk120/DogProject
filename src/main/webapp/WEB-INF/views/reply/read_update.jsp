@@ -68,6 +68,15 @@ function setStarRating(ratingValue) {
         }
         return true; // 폼 제출 진행
     }
+
+    function confirmDelete(recipeno, replyno) {
+        if (confirm("리뷰를 삭제하시겠습니까?")) {
+            location.href = './delete.do?recipeno=${recipeno}&replyno=${replyno}';
+        } else {
+
+        }
+    }
+    
 </script>
 
 </head> 
@@ -204,6 +213,7 @@ function setStarRating(ratingValue) {
     </td>
   </tr>
    <button type='submit' class='btn btn-info btn-sm'>리뷰 수정</button>
+   <button type='button' onclick="confirmDelete(${recipeno}, ${replyno})" class='btn btn-info btn-sm'>리뷰 삭제</button>
  </FORM>    
  
  <!-- 댓글 목록 -->
@@ -280,7 +290,7 @@ function setStarRating(ratingValue) {
             <div>${rdate}</div>
           </td>
           <td style='vertical-align: middle;'>
-            <div>수정/삭제</div>
+            <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           
           

@@ -86,7 +86,7 @@ public class ReplyCont {
    * @param contentsVO
    * @return
    */
-  @RequestMapping(value="/reply/reply_update.do", method=RequestMethod.GET)
+  @RequestMapping(value="/reply/update.do", method=RequestMethod.GET)
   public ModelAndView reply_update (int replyno, int recipeno, ReplyVO replyVO ){ 
       ModelAndView mav = new ModelAndView();
       RecipeVO recipeVO = this.recipeProc.read(recipeno);
@@ -95,7 +95,7 @@ public class ReplyCont {
       ReplyVO reply2VO = this.replyProc.reply_read(replyno);
       mav.addObject("replyVO", reply2VO);
       
-      // 댓글 조회
+      // 댓글 조회`
       
       ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
       mav.addObject("list", list);
@@ -115,7 +115,7 @@ public class ReplyCont {
   * @param contentsVO
   * @return
   */
-  @RequestMapping(value = "/reply/reply_update.do", method = RequestMethod.POST)
+  @RequestMapping(value = "/reply/update.do", method = RequestMethod.POST)
   public ModelAndView reply_update(HttpSession session, ReplyVO replyVO,int recipeno) {
       ModelAndView mav = new ModelAndView();
       //현재 로그인된 id
@@ -133,4 +133,33 @@ public class ReplyCont {
       }
       return mav;
   }
+  
+  /**
+   * 
+  * 리뷰 삭제 처리
+  * http://localhost:9093/reply/reply_update.do?
+  * @param session
+  * @param reviewVO
+  * @param contentsVO
+  * @return
+  */
+ @RequestMapping(value = "/reply/delete.do", method = RequestMethod.GET)
+ public ModelAndView reply_delete(HttpSession session, ReplyVO replyVO, int replyno,int recipeno) {
+     ModelAndView mav = new ModelAndView();
+
+     // 현재 로그인된 id
+     String currentUserId = (String) session.getAttribute("id");
+     ReplyVO replyVOmid = this.replyProc.reply_read(replyno);
+
+     // 아이디 확인
+     if (replyVOmid != null && replyVOmid.getMid().equals(currentUserId)) {
+         this.replyProc.reply_delete(replyno);
+         mav.addObject("replyno", replyVO.getReplyno());
+         mav.addObject("recipeno", recipeno);
+         mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
+     } else {
+         mav.setViewName("./reply/login_need");
+     }
+     return mav;
+ }
 }

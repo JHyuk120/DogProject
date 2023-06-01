@@ -165,6 +165,12 @@ public class ReplyProc implements ReplyProcInter {
         int cnt = this.ReplyDAO.reply_update(replyVO);
         return cnt;
     }
+
+    @Override
+    public int reply_delete(int replyno) {
+        int cnt = this.ReplyDAO.reply_delete(replyno);
+        return cnt;
+    }
     
 
 

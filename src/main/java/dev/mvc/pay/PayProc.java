@@ -8,9 +8,11 @@ public class PayProc implements PayProcInter {
   @Autowired
   private PayDAOInter payDAO;
 
+
   @Override
-  public int payment(PayVO payVO) {
-    int cnt = this.payDAO.payment(payVO);
+  public int create(PayVO payVO) {
+    int cnt = this.payDAO.create(payVO);
+    
     return cnt;
   }
 
