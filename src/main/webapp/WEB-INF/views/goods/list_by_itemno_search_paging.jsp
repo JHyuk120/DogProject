@@ -31,7 +31,7 @@
   } 
 
   <%-- 로그인 --%>
-  function login_ajax() {
+  function login() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';
@@ -233,16 +233,8 @@
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
         
-        
-<<<<<<< HEAD
-        <tr style="height: 112px;">
-=======
-<<<<<<< HEAD
-        <tr style="height: 112px;">
-=======
-        <tr style="height: 102px;" onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
->>>>>>> 144a0796d7d9331a0d39c18e8d0e5f2410d611e0
->>>>>>> e5fb1a839477f2e1e9d9f9a0b2dba0786b05d407
+
+        <tr style="height: 102px;">
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>

@@ -12,8 +12,10 @@
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
 <script type="text/javascript">
   $(function() {
     // var contentsno = 0;
@@ -29,7 +31,7 @@
   } 
   
   <%-- 로그인 --%>
-  function login_ajax() {
+  function login() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';
