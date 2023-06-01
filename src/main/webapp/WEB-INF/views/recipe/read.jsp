@@ -38,7 +38,7 @@ function setStarRating(ratingValue) {
         ratingValue = 0;
     }
 
-    const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
+    const starIds = ["star-1", "star-2", "star-3", "star-4", "star-5"];
     for (let i = 0; i < starIds.length; i++) {
         let starElement = document.getElementById(starIds[i]);
 
