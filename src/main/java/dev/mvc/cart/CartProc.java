@@ -11,8 +11,8 @@ public class CartProc implements CartProcInter{
   private CartDAOInter cartDAO;
 
   @Override
-  public int insert(CartVO cartVO) {
-    int cnt = this.cartDAO.insert(cartVO);
+  public int create(CartVO cartVO) {
+    int cnt = this.cartDAO.create(cartVO);
     return cnt;
   }
   

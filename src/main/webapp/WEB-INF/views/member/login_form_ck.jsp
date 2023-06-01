@@ -77,10 +77,7 @@
 </script> 
 
 </head> 
- 
-<body>
-<c:import url="/menu/top.do" />
- 
+  
   <body>
 <c:import url="/menu/top.do" />
  
@@ -88,17 +85,14 @@
 
   <DIV class='content_body'> 
     <DIV style='width: 40%; margin: 0px auto;'>
-<<<<<<< HEAD
       <FORM name='frm_login' id='frm_login' method='POST'>
         <input type='hidden' name='contentsno' id='contentsno' value=''>
         <input type='hidden' name='login_yn' id='login_yn' value=''>
-        
-=======
+
       <FORM name='frm' method='POST' action='./login.do'>
         <%-- 로그인 후 자동으로 이동할 페이지 전달 ★ --%>
         <input type="hidden" name="return_url" value="${return_url}">
       
->>>>>>> 144a0796d7d9331a0d39c18e8d0e5f2410d611e0
         <div class="form_input">
           <input type='text' class="form-control" name='id' id='id' 
                     value="${ck_id }" required="required" 
