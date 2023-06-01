@@ -267,6 +267,12 @@ import dev.mvc.tool.Tool;
         return cnt;
       }
 
+      @Override
+      public int cnt_add(int recipeno) {
+        int cnt = this.recipeDAO.cnt_add(recipeno);
+        return cnt;
+      }
+
 
 }
  

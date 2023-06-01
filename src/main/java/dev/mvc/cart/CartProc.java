@@ -21,6 +21,12 @@ public class CartProc implements CartProcInter{
     ArrayList<CartVO> list = this.cartDAO.list_by_memberno(memberno);
     return list;
   }
+  
+  @Override
+  public int update_cnt(CartVO cartVO) {
+    int cnt = this.cartDAO.update_cnt(cartVO);
+    return cnt;
+  }
 
   @Override
   public int delete(int cartno) {

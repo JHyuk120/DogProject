@@ -76,6 +76,7 @@
       <c:set var="recipeno" value="${recipeVO.recipeno }" />
       <c:set var="thumb1" value="${recipeVO.thumb1 }" />
       <c:set var="size1" value="${recipeVO.size1 }" />
+      <c:set var="cnt" value="${recipeVO.cnt }" />
         
       <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
       <c:if test="${status.index % 4 == 0 && status.index != 0 }"> 
@@ -86,8 +87,9 @@
       <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
       
       <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class="hover"
-style="width: 23.2%; height: 300px; float: left; margin: 0.9%; padding: 0.5%;
-  background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;">
+      style="width: 23.2%; height: 300px; float: left; margin: 0.9%; padding: 0.5%;
+      background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;
+      border: 1px solid #000000;">
   <!-- 나머지 연산자를 사용하여 홀수와 짝수를 판별하여 배경색 설정 -->
   
         <c:choose> 
@@ -102,16 +104,19 @@ style="width: 23.2%; height: 300px; float: left; margin: 0.9%; padding: 0.5%;
           <strong>
 	          <div style='height: 25px;  word-break: break-all;'>
 	            <c:choose> 
-                <c:when test="${title.length() > 35 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                  ${title.substring(0, 35)}.....
+                <c:when test="${title.length() > 30 }"> <%-- 160자 이상이면 160자만 출력 --%>
+                  ${title.substring(0, 30)}.....
                 </c:when>
-	              <c:when test="${title.length() <= 35 }">
+	              <c:when test="${title.length() <= 30 }">
 	                ${title}
 	              </c:when>
 	            </c:choose>
 	          </div>
-	          <br>
           </strong>
+          
+          <div style='font-size:0.8em;  word-break: break-all;'>
+             조회수 : ${cnt } | 
+          </div>
           
           <div style='font-size:0.8em;  word-break: break-all;'>
 	           <c:choose> 
@@ -123,6 +128,7 @@ style="width: 23.2%; height: 300px; float: left; margin: 0.9%; padding: 0.5%;
                </c:when>
              </c:choose>
           </div>
+          
       </div>
       
     </c:forEach>

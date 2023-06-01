@@ -14,10 +14,10 @@
   
   <!-- 전체 상품 목록 -->
   <select id="list_all" resultType="dev.mvc.goods.GoodsVO" >
-    SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
-                                            file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
-    FROM goods
-    ORDER BY goods ASC
+      SELECT goodsno, adminno, itemno, gname, content, word, rdate, 
+                                              file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
+      FROM goods
+      ORDER BY goodsno ASC
   </select> 
   
   <!-- 특정 카테고리의 등록된 글목록 -->
@@ -117,7 +117,7 @@
     WHERE goodsno = #{goodsno}
   </update>
   
-    <!-- 레시피 이미지 수정 -->
+    <!-- 재료 이미지 수정 -->
   <update id="update_file" parameterType="dev.mvc.goods.GoodsVO">
     UPDATE goods
     SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
@@ -139,8 +139,8 @@
   
   <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
   <delete id="delete_by_itemno" parameterType="int">
-    DELETE FROM goods
-    WHERE itemno=#{itemno}
+      DELETE FROM goods
+      WHERE itemno=#{itemno}
   </delete>
 
 </mapper>
