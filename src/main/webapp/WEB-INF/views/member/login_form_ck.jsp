@@ -78,8 +78,7 @@
 
 </head> 
  
-<body>
-<c:import url="/menu/top.do" />
+
  
   <body>
 <c:import url="/menu/top.do" />
@@ -90,7 +89,7 @@
     <DIV style='width: 40%; margin: 0px auto;'>
 
       <FORM name='frm_login' id='frm_login' method='POST'>
-        <input type='hidden' name='contentsno' id='contentsno' value=''>
+        <input type='hidden' name='goodsno' id='goodsno' value=''>
         <input type='hidden' name='login_yn' id='login_yn' value=''>
 
       <FORM name='frm' method='POST' action='./login.do'>

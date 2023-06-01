@@ -8,7 +8,7 @@ public interface CartProcInter {
    * @param cartVO
    * @return
    */
-  public int insert(CartVO cartVO);
+  public int create(CartVO cartVO);
   
   /**
    * memberno 회원 번호별 쇼핑카트 목록 출력

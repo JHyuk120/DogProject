@@ -452,11 +452,7 @@ public class MemberCont {
 //        
 //     return mav;
 //   }
-<<<<<<< HEAD
 
-//   
-=======
->>>>>>> 413ed024a69061d8fca6ea2b4f1adf92b2b65e15
 
    /**
     * Cookie + Ajax 기반 로그인 처리
@@ -546,9 +542,7 @@ public class MemberCont {
      return json.toString(); 
    }
 
-    
-<<<<<<< HEAD
-=======
+
 ///**
 // * Cookie 기반 로그인 처리
 // * @param request Cookie를 읽기위해 필요
@@ -643,7 +637,7 @@ public class MemberCont {
 //      
 //   return mav;
 // }    
->>>>>>> 413ed024a69061d8fca6ea2b4f1adf92b2b65e15
+
 
    
    /**

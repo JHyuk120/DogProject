@@ -31,7 +31,7 @@
   } 
 
   <%-- 로그인 --%>
-  function login() {
+  function login_ajax() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';
@@ -39,38 +39,38 @@
     // return;
     
     $.ajax(
-            {
-              url: '/member/login.do',
-              type: 'post',  // get, post
-              cache: false, // 응답 결과 임시 저장 취소
-              async: true,  // true: 비동기 통신
-              dataType: 'json', // 응답 형식: json, html, xml...
-              data: params,      // 데이터
-              success: function(rdata) { // 응답이 온경우
-                var str = '';
-                //alert('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
+          {
+            url: '/member/login.do',
+            type: 'post',  // get, post
+            cache: false, // 응답 결과 임시 저장 취소
+            async: true,  // true: 비동기 통신
+            dataType: 'json', // 응답 형식: json, html, xml...
+            data: params,      // 데이터
+            success: function(rdata) { // 응답이 온경우
+              var str = '';
+              //alert('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
+              
+              if (rdata.cnt == 1) {
+                // 쇼핑카트에 insert 처리 Ajax 호출
+                $('#div_login').hide(); // 로그인폼 감추기
+               // alert('로그인 성공');
+                $('#login_yn').val('Y');
+
+                cart_ajax_post(); // 쇼핑카트에 상품 담기
                 
-                if (rdata.cnt == 1) {
-                  // 쇼핑카트에 insert 처리 Ajax 호출
-                  $('#div_login').hide(); // 로그인폼 감추기
-                  alert('로그인 성공');
-                  $('#login_yn').val('Y');
-
-                  cart_ajax_post(); // 쇼핑카트에 상품 담기
-                  
-                } else {
-                  alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
-                  
-                }
-              },
-              // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-              error: function(request, status, error) { // callback 함수
-                console.log(error);
+              } else {
+                alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
+                
               }
+            },
+            // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+            error: function(request, status, error) { // callback 함수
+              console.log(error);
             }
-          );  //  $.ajax END
+          }
+        );  //  $.ajax END
 
-        }
+      }
 
     <%-- 쇼핑 카트에 상품 추가 --%>
     function cart_ajax(goodsno) {
@@ -79,7 +79,7 @@
       
       // console.log('-> goodsno: ' + $('#goodsno', f).val()); 
       
-      if if ("${sessionScope.id}" == "" && $('#login_yn').val() != 'Y' {  // 로그인이 안되어 있다면
+      if("${sessionScope.id}" == "" && $('#login_yn').val() != 'Y') {  // 로그인이 안되어 있다면
         $('#div_login').show();   // 로그인 폼 
       } else {  // 로그인 한 경우
        // alert('쇼핑카트에 insert 처리 Ajax 호출');
@@ -91,7 +91,7 @@
     <%-- 쇼핑카트 상품 등록 --%>
     function cart_ajax_post() {
       var f = $('#frm_login');
-      var contentsno = $('#goodsno', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
+      var goodsno = $('#goodsno', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
       
       var params = "";
       // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
@@ -130,7 +130,7 @@
 
     }      
 </script>  
-    
+ 
     
     
     
@@ -281,7 +281,7 @@
 
    
 
-        <tr style="height: 102px;" >
+      <tr style="height: 102px;" >
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>

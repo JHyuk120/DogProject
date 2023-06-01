@@ -71,7 +71,7 @@
     http://localhost:9091/item/list_by_memberno.do?cateno=4  <- 이런 패턴만 링크 출력
     --%>
     <c:if test="${param.itemno != null and param.itemno != ''}"> 
-      <A href="/goods/list_by_itemno_search_paging.do?itemno=${param.itemno }">쇼핑 계속하기</A>
+      <A href="/goods/list_by_itemno_search_paging_cart.do?itemno=${param.itemno }">쇼핑 계속하기</A>
       <span class='menu_divide' >│</span>  
     </c:if>
  
