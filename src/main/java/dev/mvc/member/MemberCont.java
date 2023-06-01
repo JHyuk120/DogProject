@@ -453,6 +453,7 @@ public class MemberCont {
 //     return mav;
 //   }
 
+
    /**
     * Cookie + Ajax 기반 로그인 처리
     * @param request Cookie를 읽기위해 필요
@@ -541,7 +542,7 @@ public class MemberCont {
      return json.toString(); 
    }
 
-    
+
 ///**
 // * Cookie 기반 로그인 처리
 // * @param request Cookie를 읽기위해 필요
@@ -636,6 +637,7 @@ public class MemberCont {
 //      
 //   return mav;
 // }    
+
 
    
    /**

@@ -232,9 +232,8 @@
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
-        
 
-        <tr style="height: 102px;">
+        <tr style="height: 112px;">
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>

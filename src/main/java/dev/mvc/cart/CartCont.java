@@ -36,7 +36,7 @@ public class CartCont {
   }
   
   //장바구니 담기 폼
-  //http://localhost:9093/cart/insert.do
+  //http://localhost:9093/cart/create.do
   /**
    * Ajax 등록 처리
    * INSERT INTO cart(cartno,  memberno, goodsno,cnt, rdate)
@@ -73,7 +73,7 @@ public class CartCont {
    * 배송비 = 3000
    * 전체 주문 금액 = 할인 금액 총 합계 + 배송비
    * http://localhost:9093/cart/list_by_memberno.do
-   * http://localhost:9093/cart/list_by_memberno.do?cateno=
+   * http://localhost:9093/cart/list_by_memberno.do?goodsno=2
    * http://localhost:9093/cart/list_by_memberno.do?cateno=4
    * @return
    */
