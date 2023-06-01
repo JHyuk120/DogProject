@@ -55,6 +55,8 @@
                 $('#div_login').hide(); // 로그인폼 감추기
                // alert('로그인 성공');
                 $('#login_yn').val('Y');
+                location.reload(); // 페이지 새로고침
+                
 
                 cart_ajax_post(); // 쇼핑카트에 상품 담기
                 
@@ -199,7 +201,7 @@
    <DIV id='div_login' style='display: none;'>
     <div style='width: 30%; margin: 0px auto;'>
       <FORM name='frm_login' id='frm_login' method='POST'>
-        <input type='hidden' name='contentsno' id='contentsno' value=''>
+        <input type='hidden' name='goodsno' id='goodsno' value=''>
         <input type='hidden' name='login_yn' id='login_yn' value=''>
         
         <div class="form_input">
