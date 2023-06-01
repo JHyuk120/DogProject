@@ -44,7 +44,7 @@ public class CartCont {
    * @param categrpVO
    * @return
    */
-  @RequestMapping(value="/cart/insert.do",method=RequestMethod.POST)
+  @RequestMapping(value="/cart/create.do",method=RequestMethod.POST)
   @ResponseBody
   public String insert(HttpSession session, int goodsno) {
     //System.out.println("->CateCont insert()");
