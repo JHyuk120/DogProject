@@ -85,7 +85,7 @@
         $('#div_login').show();   // 로그인 폼 
       } else {  // 로그인 한 경우
        // alert('쇼핑카트에 insert 처리 Ajax 호출');
-    	  cart_ajax_post(); // 쇼핑카트에 상품 담기
+         cart_ajax_post(); // 쇼핑카트에 상품 담기
       }
   
     }

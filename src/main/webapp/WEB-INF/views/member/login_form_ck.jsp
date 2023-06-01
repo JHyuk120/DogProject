@@ -76,10 +76,7 @@
     
 </script> 
 
-</head> 
- 
-
- 
+</head>  
   <body>
 <c:import url="/menu/top.do" />
  
@@ -96,7 +93,6 @@
         <%-- 로그인 후 자동으로 이동할 페이지 전달 ★ --%>
         <input type="hidden" name="return_url" value="${return_url}">
       
-
         <div class="form_input">
           <input type='text' class="form-control" name='id' id='id' 
                     value="${ck_id }" required="required" 
