@@ -274,7 +274,7 @@ public class GoodsCont {
 
    // mav.addObject("now_page", now_page);
    
-   mav.setViewName("/goods/list_by_itemno_search_paging");  // /goods/list_by_itemno_search_paging.jsp
+   mav.setViewName("/goods/list_by_itemno_search_paging_cart");  // /goods/list_by_itemno_search_paging.jsp
   
    //장바구니에 상품 등록전 로그인 폼 출력 관련 쿠키
    Cookie[] cookies = request.getCookies();

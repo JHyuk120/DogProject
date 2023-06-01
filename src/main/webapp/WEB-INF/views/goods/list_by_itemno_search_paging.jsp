@@ -40,7 +40,7 @@
     
     $.ajax(
     	      {
-    	        url: '/member/login_ajax.do',
+    	        url: '/member/login.do',
     	        type: 'post',  // get, post
     	        cache: false, // 응답 결과 임시 저장 취소
     	        async: true,  // true: 비동기 통신
@@ -48,7 +48,7 @@
     	        data: params,      // 데이터
     	        success: function(rdata) { // 응답이 온경우
     	          var str = '';
-    	          alert('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
+    	          //alert('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
     	          
     	          if (rdata.cnt == 1) {
     	            // 쇼핑카트에 insert 처리 Ajax 호출
@@ -228,7 +228,7 @@
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
         
         
-        <tr style="height: 112px;" onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
+        <tr style="height: 112px;">
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
