@@ -31,7 +31,7 @@
   } 
 
   <%-- 로그인 --%>
-  function login_ajax() {
+  function login() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';

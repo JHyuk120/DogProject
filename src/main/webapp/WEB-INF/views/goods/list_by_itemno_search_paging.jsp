@@ -31,7 +31,7 @@
   } 
 
   <%-- 로그인 --%>
-  function login_ajax() {
+  function login() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';
@@ -227,17 +227,22 @@
         <c:set var="price" value="${goodsVO.price }" />
         <c:set var="dc" value="${goodsVO.dc }" />
         <c:set var="price" value="${goodsVO.saleprice }" />
-        <c:set var="price" value="${goodsVO.point }" />
+        <c:set var="point" value="${goodsVO.point }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
         
+<<<<<<< HEAD
         
 
         <tr style="height: 112px;">
 
         <tr style="height: 102px;" >
+=======
+
+        <tr style="height: 102px;">
+>>>>>>> 413ed024a69061d8fca6ea2b4f1adf92b2b65e15
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
@@ -276,15 +281,6 @@
             <button type='button' id='btn_cart' class="btn btn-info btn-sm" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">장바 구니</button><br>
             <button type='button' id='btn_ordering' class="btn btn-info btn-sm" onclick="cart_ajax(${goodsno })">바로 구매</button>  
           </td>
-          
-         <%--  <td style='vertical-align: middle; text-align: center;'>
-            <A href="/contents/map.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="지도"><IMG src="/contents/images/map.png" class="icon"></A>
-            <A href="/contents/youtube.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="Youtube"><IMG src="/contents/images/youtube.png" class="icon"></A>
-            <A href="/contents/update_text.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="글 수정"><IMG src="/contents/images/update.png" class="icon"></A>
-            <A href="/contents/update_file.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="파일 수정"><IMG src="/contents/images/update_file.png" class="icon"></A>
-            <A href="/contents/delete.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="삭제"><IMG src="/contents/images/delete.png" class="icon"></A>
-          </td>
-          --%>
           
           <c:choose>
             <c:when test="${sessionScope.admin_id != null }">
