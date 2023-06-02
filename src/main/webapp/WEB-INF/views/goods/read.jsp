@@ -28,6 +28,44 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     
+ <%-- 별점 스크립트 --%>
+<script type="text/javascript">
+function setStarRating(ratingValue) {
+
+    const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
+    for (let i = 0; i < starIds.length; i++) {
+        let starElement = document.getElementById(starIds[i]);
+
+        // 정수 부분만 처리하고 소수 부분은 제외
+        let intPart = Math.floor(ratingValue);
+
+        // 별의 색을 설정: 전체 별, 빈 별
+        if (i < intPart) {
+            starElement.style.color = "orange";
+        } else {
+            starElement.style.color = "lightgray";
+        }
+    }
+
+    document.getElementById('star-rating').value = ratingValue;
+
+    // rating-display의 내용을 ratingValue로 업데이트
+    document.getElementById('rating-display').textContent = "("+ratingValue+")";
+}
+<!--댓글 등록시 로그인 여부 확인 -->
+    function checkLoginStatus() {
+        var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
+        if (!isLoggedIn) {
+            // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
+            alert('로그인이 필요합니다.');
+            window.location.href = "../member/login.do";
+            return false; // 폼 제출 중단
+        }
+        return true; // 폼 제출 진행
+    }
+
+</script>
+    
 </head> 
  
 <body>
@@ -128,7 +166,126 @@
   </fieldset>
 
 </DIV>
+ <%-- 댓글 조회 --%>
+
+ <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
+    <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
+    
+    <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
+    <input type="hidden" name="id" value="${sessionScope.id}"/>
+    <input type="hidden" id="star-rating" name="ratingValue" value=""/>
+    
+
+    <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
+ <!-- 댓글 평점 별  -->
+    <tr>
+        <div class="stars">
+         <td width="100" rowspan="2">${sessionScope.id } </td>
+      <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
+       <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
+      <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
+      <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
+      <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
+      <input type="hidden" id="star-rating" value="0"/>
+       <td width="100" rowspan="2" id="star-output"> </td>
+    </div>
+    <td>
+           <div id="rating-display" >(0)</div>
+           <div>평점: ${ratingAVG } </div>
+           
+    <textarea name='reviewcont' required="required" rows="7" cols="63"></textarea>
+    </td>
+  </tr>
+   <button type='submit' class='btn btn-info btn-sm'>리뷰 등록</button>
+ </FORM>    
  
+ <!-- 댓글 목록 -->
+   <table class="table table-striped" style='width: 100%;'>
+    <colgroup>
+      <c:choose>
+          <c:when test="${sessionScope.admin_id != null}">
+              <col style="width: 10%;"></col>
+              <col style="width: 10%;"></col>
+              <col style="width: 60%;"></col>
+              <col style="width: 10%;"></col>
+              <col style="width: 10%;"></col>
+          </c:when>
+
+      </c:choose>
+
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th style='text-align: center;'>id</th>
+        <th style='text-align: center;'>평점</th>
+        <th style='text-align: center;'>리뷰</th>
+        <th style='text-align: center;'>작성일</th>
+        <th style='text-align: center;'>수정/삭제</th>
+      </tr>
+     <tbody>
+      <c:forEach var="reviewVO" items="${list}">
+        <c:set var="ratingValue" value=" ${reviewVO.ratingValue}" />
+        <c:set var="reviewcont" value="${reviewVO.reviewcont}" />
+        <c:set var="rdate" value="${reviewVO.rdate}" />
+        <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
+         <c:set var="mid" value="${memberVO.id}" />
+         
+        <tr style="height: 112px;"  class='hover'>
+          
+          <td style='vertical-align: middle; text-align: center;'>
+           <div> ${reviewVO.mid }</div>
+          </td>  
+          
+          <td style='vertical-align: middle;'>
+            <!-- <div>${ratingValue }</div>  -->
+            <!-- 별점 이미지  -->
+            <div> 
+                <c:choose>
+                  <c:when test="${ratingValue.toString() == ' 5'}">
+                    <img src="/review/images/star_5.png" style="width: 100px">
+                  </c:when>
+                  <c:when test="${ratingValue.toString() == ' 4' }">
+                     <img src="/review/images/star_4.jpg" style="width: 100px">
+                  </c:when>
+                  <c:when test="${ratingValue.toString() == ' 3'}">
+                    <img src="/review/images/star_3.jpg" style="width: 100px">
+                  </c:when>
+                  <c:when test="${ratingValue.toString() == ' 2'}">
+                    <img src="/review/images/star_2.png" style="width: 100px">
+                  </c:when>
+                  <c:when test="${ratingValue.toString() == ' 1'}">
+                    <img src="/review/images/star_1.png" style="width: 100px">
+                  </c:when>
+                   <c:otherwise> <!-- 기본 이미지 출력 -->
+                <img src="/review/images/star_0.png"> 
+              </c:otherwise>
+                </c:choose>
+                
+            </div>
+          </td>
+          
+          <td style='vertical-align: middle;'>
+            <div>${reviewcont}</div>
+          </td> 
+          
+          <td style='vertical-align: middle;'>
+            <div>${rdate}</div>
+          </td>
+          <td style='vertical-align: middle;'>
+            <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/<a href="/reply/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
+          </td>
+          
+
+        </tr>
+      </c:forEach>
+
+    </tbody>
+  </table>
+    <!-- 페이지 목록 출력 부분 시작 -->
+  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
+  <!-- 페이지 목록 출력 부분 종료 -->
+  
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  

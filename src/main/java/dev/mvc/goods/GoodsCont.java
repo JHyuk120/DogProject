@@ -21,6 +21,9 @@ import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.reply.ReplyVO;
+import dev.mvc.review.ReviewProcInter;
+import dev.mvc.review.ReviewVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 @Controller
@@ -36,6 +39,10 @@ public class GoodsCont {
   @Autowired
   @Qualifier("dev.mvc.goods.GoodsProc") 
   private GoodsProcInter goodsProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.review.ReviewProc")
+  private ReviewProcInter reviewProc;
   
   public GoodsCont () {
     System.out.println("-> GoodsCont created.");
@@ -201,7 +208,7 @@ public class GoodsCont {
  * @return
  */
   @RequestMapping(value="/goods/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int goodsno) {
+  public ModelAndView read(int goodsno, ReviewVO reviewVO) {
     ModelAndView mav = new ModelAndView();
 
     GoodsVO goodsVO = this.goodsProc.read(goodsno);
@@ -228,7 +235,11 @@ public class GoodsCont {
     mav.addObject("mname", mname);
 
     mav.setViewName("/goods/read"); // /WEB-INF/views/goods/read.jsp
-        
+    
+    ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
+    String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
+    mav.addObject("paging", paging);
+        mav.addObject("list", list);
     return mav;
 }
 

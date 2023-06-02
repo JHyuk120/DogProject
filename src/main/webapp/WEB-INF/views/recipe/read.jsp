@@ -33,11 +33,11 @@
  <%-- 별점 스크립트 --%>
 <script type="text/javascript">
 function setStarRating(ratingValue) {
-    // Check if ratingValue is null and set it to 0 if it is
-    if (ratingValue === null) {
+
+    ratingValue = parseInt(ratingValue);
+    if (isNaN(ratingValue) || ratingValue === null || ratingValue === undefined || ratingValue === "") {
         ratingValue = 5;
     }
-
     const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
     for (let i = 0; i < starIds.length; i++) {
         let starElement = document.getElementById(starIds[i]);
@@ -54,7 +54,6 @@ function setStarRating(ratingValue) {
     }
 
     document.getElementById('star-rating').value = ratingValue;
-
     // rating-display의 내용을 ratingValue로 업데이트
     document.getElementById('rating-display').textContent = "("+ratingValue+")";
 }
@@ -64,6 +63,7 @@ function setStarRating(ratingValue) {
         if (!isLoggedIn) {
             // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
             alert('로그인이 필요합니다.');
+            window.location.href = "../member/login.do";
             return false; // 폼 제출 중단
         }
         return true; // 폼 제출 진행
@@ -183,6 +183,7 @@ function setStarRating(ratingValue) {
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     <input type="hidden" id="star-rating" name="ratingValue" value=""/>
+    
 
     <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
  <!-- 댓글 평점 별  -->

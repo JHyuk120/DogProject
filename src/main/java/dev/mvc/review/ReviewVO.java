@@ -1,10 +1,10 @@
-package dev.mvc.reply;
+package dev.mvc.review;
 
-public class ReplyVO {
-    private int replyno;
+public class ReviewVO {
+    private int reviewno;
     private int memberno;
-    private int recipeno;
-    private String replycont;
+    private int goodsno;
+    private String reviewcont;
     private String rdate ="";
     private String file1 ="";
     private String file1saved ="";
@@ -15,15 +15,15 @@ public class ReplyVO {
     private int start_num;
     private int end_num;
     private int recom = 0;
-    private int replycnt = 0;
+    private int reviewcnt = 0;
     private int ratingValue =5;
     private float ratingAvg = 0;
     
-    public int getReplyno() {
-        return replyno;
+    public int getReviewno() {
+        return reviewno;
     }
-    public void setReplyno(int replyno) {
-        this.replyno = replyno;
+    public void setReviewno(int reviewno) {
+        this.reviewno = reviewno;
     }
     public int getMemberno() {
         return memberno;
@@ -31,17 +31,17 @@ public class ReplyVO {
     public void setMemberno(int memberno) {
         this.memberno = memberno;
     }
-    public int getRecipeno() {
-        return recipeno;
+    public int getGoodsno() {
+        return goodsno;
     }
-    public void setRecipeno(int recipeno) {
-        this.recipeno = recipeno;
+    public void setGoodsno(int goodsno) {
+        this.goodsno = goodsno;
     }
-    public String getReplycont() {
-        return replycont;
+    public String getReviewcont() {
+        return reviewcont;
     }
-    public void setReplycont(String replycont) {
-        this.replycont = replycont;
+    public void setReviewcont(String reviewcont) {
+        this.reviewcont = reviewcont;
     }
     public String getRdate() {
         return rdate;
@@ -66,6 +66,12 @@ public class ReplyVO {
     }
     public void setThumb1(String thumb1) {
         this.thumb1 = thumb1;
+    }
+    public String getMid() {
+        return mid;
+    }
+    public void setMid(String mid) {
+        this.mid = mid;
     }
     public long getSize1() {
         return size1;
@@ -97,17 +103,11 @@ public class ReplyVO {
     public void setRecom(int recom) {
         this.recom = recom;
     }
-    public int getReplycnt() {
-        return replycnt;
+    public int getReviewcnt() {
+        return reviewcnt;
     }
-    public void setReplycnt(int replycnt) {
-        this.replycnt = replycnt;
-    }
-    public String getMid() {
-        return mid;
-    }
-    public void setMid(String mid) {
-        this.mid = mid;
+    public void setReviewcnt(int reviewcnt) {
+        this.reviewcnt = reviewcnt;
     }
     public int getRatingValue() {
         return ratingValue;
@@ -121,7 +121,6 @@ public class ReplyVO {
     public void setRatingAvg(float ratingAvg) {
         this.ratingAvg = ratingAvg;
     }
-
     
     
 }

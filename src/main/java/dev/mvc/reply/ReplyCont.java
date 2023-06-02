@@ -62,8 +62,8 @@ public class ReplyCont {
 
              // 업데이트된 별점 평균 조회
              float ratingAVG = this.replyProc.ratingAVG(recipeVO.getRecipeno());
+             
 
-             // ModelAndView에 별점 평균 추가
              mav.addObject("ratingAVG", ratingAVG);
              mav.addObject("recipe", recipeVO);
              mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
@@ -76,6 +76,7 @@ public class ReplyCont {
      }
      return mav;
    }
+
    
    /**
     * 
@@ -94,6 +95,7 @@ public class ReplyCont {
       
       ReplyVO reply2VO = this.replyProc.reply_read(replyno);
       mav.addObject("replyVO", reply2VO);
+      
       
       // 댓글 조회`
       

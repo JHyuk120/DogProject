@@ -12,8 +12,8 @@
 
 <!-- 리뷰 작성 -->
 <insert id="reply_create" parameterType="dev.mvc.reply.ReplyVO">
-  INSERT INTO reply(replyno,memberno,recipeno,replycont,rdate,ratingValue) 
-  VALUES(reply_seq.nextval,#{memberno},#{recipeno},#{replycont, jdbcType=CLOB},sysdate,#{ratingValue})
+  INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue) 
+  VALUES(reply_seq.nextval,#{memberno},#{goodsno},#{reviewcont, jdbcType=CLOB},sysdate,#{ratingValue})
 </insert>
 
 <update id="ratingAVG_cal" parameterType="int">
