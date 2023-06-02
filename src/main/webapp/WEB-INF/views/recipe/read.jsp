@@ -38,7 +38,12 @@ function setStarRating(ratingValue) {
     if (isNaN(ratingValue) || ratingValue === null || ratingValue === undefined || ratingValue === "") {
         ratingValue = 5;
     }
+<<<<<<< HEAD
     const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
+=======
+
+    const starIds = ["star-1", "star-2", "star-3", "star-4", "star-5"];
+>>>>>>> c1d97ab04267b89dade664f98450226fc7eb4e0f
     for (let i = 0; i < starIds.length; i++) {
         let starElement = document.getElementById(starIds[i]);
 

@@ -79,13 +79,18 @@ public interface RecipeDAOInter {
   public int delete(int recipeno);
   
   /**
-   * 
    * @param itemno
    * @return
    */
   public int count_by_itemno (int itemno);
 
   public int delete_by_itemno (int itemno);
-
+  
+  /**
+   * 조회수
+   * @param itemno
+   * @return
+   */
+  public int cnt_add (int recipeno);
 
 }

@@ -8,7 +8,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Dog#</title>
+<title>댕키트</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -31,7 +31,7 @@
   } 
 
   <%-- 로그인 --%>
-  function login_ajax() {
+  function login() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';
@@ -40,7 +40,7 @@
     
     $.ajax(
     	      {
-    	        url: '/member/login_ajax.do',
+    	        url: '/member/login.do',
     	        type: 'post',  // get, post
     	        cache: false, // 응답 결과 임시 저장 취소
     	        async: true,  // true: 비동기 통신
@@ -48,7 +48,7 @@
     	        data: params,      // 데이터
     	        success: function(rdata) { // 응답이 온경우
     	          var str = '';
-    	          alert('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
+    	          //alert('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
     	          
     	          if (rdata.cnt == 1) {
     	            // 쇼핑카트에 insert 처리 Ajax 호출
@@ -92,12 +92,12 @@
     
 </head> 
  
-<body>
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
 
-『 ${itemVO.item } 』 ( ${search_count } )
+🦴 ${itemVO.item } 💛 ${search_count }개 💛
 </DIV>
 
 <DIV class='content_body'>
@@ -134,11 +134,17 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm' >검색</button>
+      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm'
+        <button type='button' class='btn btn-custom btn-sm'
                      onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
+         <style>
+          .btn-custom {
+            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+          }
+          </style>
     </form>
   </DIV>
 
@@ -221,22 +227,21 @@
         <c:set var="price" value="${goodsVO.price }" />
         <c:set var="dc" value="${goodsVO.dc }" />
         <c:set var="price" value="${goodsVO.saleprice }" />
-        <c:set var="price" value="${goodsVO.point }" />
+        <c:set var="point" value="${goodsVO.point }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
-        
-        
-        <tr style="height: 112px;" onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
+
+        <tr style="height: 112px;">
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                  <img src="/dogproject/storage/${thumb1 }" style="width: 130px; height: 90px;">
+                  <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90;">
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-                  <IMG src="/goods/images/none1.jpg" style="width: 130px; height: 90px;">
+                  <IMG src="/goods/images/none1.jpg" style="width: 120px; height: 90px;">
                 </c:otherwise>
               </c:choose>
             </a>
@@ -267,15 +272,6 @@
             <button type='button' id='btn_cart' class="btn btn-info btn-sm" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">장바 구니</button><br>
             <button type='button' id='btn_ordering' class="btn btn-info btn-sm" onclick="cart_ajax(${goodsno })">바로 구매</button>  
           </td>
-          
-         <%--  <td style='vertical-align: middle; text-align: center;'>
-            <A href="/contents/map.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="지도"><IMG src="/contents/images/map.png" class="icon"></A>
-            <A href="/contents/youtube.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="Youtube"><IMG src="/contents/images/youtube.png" class="icon"></A>
-            <A href="/contents/update_text.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="글 수정"><IMG src="/contents/images/update.png" class="icon"></A>
-            <A href="/contents/update_file.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="파일 수정"><IMG src="/contents/images/update_file.png" class="icon"></A>
-            <A href="/contents/delete.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="삭제"><IMG src="/contents/images/delete.png" class="icon"></A>
-          </td>
-          --%>
           
           <c:choose>
             <c:when test="${sessionScope.admin_id != null }">

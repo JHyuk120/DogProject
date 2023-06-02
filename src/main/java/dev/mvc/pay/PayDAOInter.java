@@ -2,6 +2,11 @@ package dev.mvc.pay;
 
 public interface PayDAOInter {
   
-  public int payment(PayVO payVO);
+  /**
+   * 
+   * @param payVO
+   * @return
+   */
+  public int create(PayVO payVO);
 
 }

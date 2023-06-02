@@ -36,7 +36,7 @@ public class CartCont {
   }
   
   //장바구니 담기 폼
-  //http://localhost:9093/cart/insert.do
+  //http://localhost:9093/cart/create.do
   /**
    * Ajax 등록 처리
    * INSERT INTO cart(cartno,  memberno, goodsno,cnt, rdate)
@@ -44,9 +44,9 @@ public class CartCont {
    * @param categrpVO
    * @return
    */
-  @RequestMapping(value="/cart/insert.do",method=RequestMethod.POST)
+  @RequestMapping(value="/cart/create.do",method=RequestMethod.POST)
   @ResponseBody
-  public String insert(HttpSession session, int goodsno) {
+  public String create(HttpSession session, int goodsno) {
     //System.out.println("->CateCont insert()");
     
     CartVO cartVO = new CartVO();
@@ -57,7 +57,7 @@ public class CartCont {
     
     cartVO.setCnt(1); //최초 구매 수량을 1개로 지정
     
-    int cnt = this.cartProc.insert(cartVO);
+    int cnt = this.cartProc.create(cartVO);
     
     JSONObject json = new JSONObject();
     json.put("cnt", cnt);
@@ -73,7 +73,7 @@ public class CartCont {
    * 배송비 = 3000
    * 전체 주문 금액 = 할인 금액 총 합계 + 배송비
    * http://localhost:9093/cart/list_by_memberno.do
-   * http://localhost:9093/cart/list_by_memberno.do?cateno=
+   * http://localhost:9093/cart/list_by_memberno.do?goodsno=2
    * http://localhost:9093/cart/list_by_memberno.do?cateno=4
    * @return
    */
