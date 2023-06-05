@@ -24,17 +24,7 @@ public interface ReplyDAOInter {
      */
     public int reply_create(ReplyVO replyVO);
     /**
-     * 후기 평균계산 
-     * @param recipeno
-     * @return
-     */
-    public float ratingAVG_cal(int recipeno);
-    /**
-     * 후기 평균 조회
-     * @param recipeno
-     * @return
-     */
-    public float ratingAVG(int recipeno);
+
     /**
      * recipeno별 댓글 수
      * @param revipeno

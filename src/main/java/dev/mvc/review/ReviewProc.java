@@ -152,6 +152,18 @@ public class ReviewProc implements ReviewProcInter{
         float cnt = this.reviewDAO.ratingAVG(goodsno);
         return cnt;
     }
+
+    @Override
+    public ReviewVO review_read(int reviewno) {
+        ReviewVO cnt = this.reviewDAO.review_read(reviewno);
+        return cnt;
+    }
+
+    @Override
+    public int review_update(ReviewVO reviewVO) {
+       int cnt = this.reviewDAO.review_update(reviewVO);
+        return cnt;
+    }
     
 
 }

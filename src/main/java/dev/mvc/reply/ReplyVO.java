@@ -16,8 +16,7 @@ public class ReplyVO {
     private int end_num;
     private int recom = 0;
     private int replycnt = 0;
-    private int ratingValue =5;
-    private float ratingAvg = 0;
+
     
     public int getReplyno() {
         return replyno;
@@ -108,18 +107,6 @@ public class ReplyVO {
     }
     public void setMid(String mid) {
         this.mid = mid;
-    }
-    public int getRatingValue() {
-        return ratingValue;
-    }
-    public void setRatingValue(int ratingValue) {
-        this.ratingValue = ratingValue;
-    }
-    public float getRatingAvg() {
-        return ratingAvg;
-    }
-    public void setRatingAvg(float ratingAvg) {
-        this.ratingAvg = ratingAvg;
     }
 
     

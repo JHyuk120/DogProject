@@ -15,7 +15,6 @@
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
  <c:set var="replycont" value="${replyVO.replycont}" />
 <c:set var="replyno" value="${replyVO.replyno}" />
-<c:set var="ratingAvg" value="${replyVO.ratingAvg}" />
 
  
 <!DOCTYPE html> 
@@ -30,34 +29,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
- <%-- 별점 스크립트 --%>
 <script type="text/javascript">
-function setStarRating(ratingValue) {
-    // Check if ratingValue is null and set it to 0 if it is
-    if (!ratingValue) {
-        ratingValue = 0;
-    }
-
-    const starIds = ["star-1", "star-2", "star-3", "star-4", "star-5"];
-    for (let i = 0; i < starIds.length; i++) {
-        let starElement = document.getElementById(starIds[i]);
-
-        // 정수 부분만 처리하고 소수 부분은 제외
-        let intPart = Math.floor(ratingValue);
-
-        // 별의 색을 설정: 전체 별, 빈 별
-        if (i < intPart) {
-            starElement.style.color = "orange";
-        } else {
-            starElement.style.color = "lightgray";
-        }
-    }
-
-    document.getElementById('star-rating').value = ratingValue;
-
-    // rating-display의 내용을 ratingValue로 업데이트
-    document.getElementById('rating-display').textContent = "("+ratingValue+")";
-}
 <!--댓글 등록시 로그인 여부 확인 -->
     function checkLoginStatus() {
         var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
@@ -185,45 +157,26 @@ function setStarRating(ratingValue) {
 </DIV>
 <%-- 댓글 조회 --%>
 
- <FORM name='frm' method='POST' action='../reply/reply_update.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
+ <FORM name='frm' method='POST' action='../reply/update.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
      <input type="hidden" name="replyno" value="${replyno}"/>
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
-    <input type="hidden" id="star-rating" name="ratingValue" value=""/>
-    <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
- <!-- 댓글 평점 별  -->
-    <tr>
-        <div class="stars">
-         <td width="100" rowspan="2">${sessionScope.id } </td>
-      <span class="star" id="star-1" onclick="setStarRating(1)">&#9733;</span>
-       <span class="star" id="star-2" onclick="setStarRating(2)">&#9733;</span>
-      <span class="star" id="star-3" onclick="setStarRating(3)">&#9733;</span>
-      <span class="star" id="star-4" onclick="setStarRating(4)">&#9733;</span>
-      <span class="star" id="star-5" onclick="setStarRating(5)">&#9733;</span>
-      <input type="hidden" id="star-rating" value="0"/>
-       <td width="100" rowspan="2" id="star-output"> </td>
-    </div>
     <td>
-           <div id="rating-display" >(0)</div>
-           <div>평점: ${ratingAVG } </div>
-           
-
-    <textarea name='replycont' required="required" rows="7" cols="63">${replyVO.replycont }</textarea>
+      <textarea name='replycont' required="required" rows="7" cols="63">${replyVO.replycont }</textarea>
     </td>
-  </tr>
+  
    <button type='submit' class='btn btn-info btn-sm'>리뷰 수정</button>
    <button type='button' onclick="confirmDelete(${recipeno}, ${replyno})" class='btn btn-info btn-sm'>리뷰 삭제</button>
  </FORM>    
  
  <!-- 댓글 목록 -->
-   <table class="table table-striped" style='width: 100%;'>
+   <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
     <colgroup>
       <c:choose>
           <c:when test="${sessionScope.admin_id != null}">
               <col style="width: 10%;"></col>
-              <col style="width: 10%;"></col>
-              <col style="width: 60%;"></col>
+              <col style="width: 70%;"></col>
               <col style="width: 10%;"></col>
               <col style="width: 10%;"></col>
           </c:when>
@@ -235,17 +188,14 @@ function setStarRating(ratingValue) {
     <thead>
       <tr>
         <th style='text-align: center;'>id</th>
-        <th style='text-align: center;'>평점</th>
         <th style='text-align: center;'>리뷰</th>
         <th style='text-align: center;'>작성일</th>
         <th style='text-align: center;'>수정/삭제</th>
       </tr>
      <tbody>
       <c:forEach var="replyVO" items="${list}">
-        <c:set var="ratingValue" value=" ${replyVO.ratingValue}" />
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
-        <c:set var="ratingAvg" value="${replyVO.ratingAvg}" />
          <c:set var="mid" value="${memberVO.id}" />
          
         <tr style="height: 112px;"  class='hover'>
@@ -253,34 +203,6 @@ function setStarRating(ratingValue) {
           <td style='vertical-align: middle; text-align: center;'>
            <div> ${replyVO.mid }</div>
           </td>  
-          
-          <td style='vertical-align: middle;'>
-            <!-- <div>${ratingValue }</div>  -->
-            <!-- 별점 이미지  -->
-            <div> 
-                <c:choose>
-                  <c:when test="${ratingValue.toString() == ' 5'}">
-                    <img src="/reply/images/star_5.png" style="width: 100px">
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 4' }">
-                     <img src="/reply/images/star_4.jpg" style="width: 100px">
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 3'}">
-                    <img src="/reply/images/star_3.jpg" style="width: 100px">
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 2'}">
-                    <img src="/reply/images/star_2.png" style="width: 100px">
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 1'}">
-                    <img src="/reply/images/star_1.png" style="width: 100px">
-                  </c:when>
-                   <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/reply/images/star_0.png"> 
-              </c:otherwise>
-                </c:choose>
-                
-            </div>
-          </td>
           
           <td style='vertical-align: middle;'>
             <div>${replycont}</div>

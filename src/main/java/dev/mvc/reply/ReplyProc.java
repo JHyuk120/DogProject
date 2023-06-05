@@ -26,17 +26,6 @@ public class ReplyProc implements ReplyProcInter {
         return cnt;
     }
 
-    @Override
-    public float ratingAVG_cal(int recipeno) {
-        float cnt = this.ReplyDAO.ratingAVG(recipeno);
-        return cnt;
-    }
-
-    @Override
-    public float ratingAVG(int recipeno) {
-        float cnt = this.ReplyDAO.ratingAVG(recipeno);
-        return cnt;
-    }
 
     @Override
     public ArrayList<ReplyVO> list_by_reply_paging(ReplyVO replyVO) {
