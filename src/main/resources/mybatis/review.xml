@@ -31,6 +31,13 @@ WHERE r.goodsno = ${goodsno}
 ORDER BY rdate ASC
 </select>
 
+  <!-- 댓글 개별 조회 (수정시 조회)-->
+  <select id="review_read" parameterType="int" resultType="dev.mvc.review.ReviewVO">
+  SELECT r.reviewcont,r.memberno,m.id AS mid,r.reviewno
+  FROM review r JOIN member m ON r.memberno = m.memberno
+  WHERE reviewno=#{reviewno}
+  </select>
+
  <!-- 댓글 조회 + 페이징-->
  <select id="list_by_review_paging" resultType="dev.mvc.review.ReviewVO" parameterType="HashMap">
 SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, r
@@ -55,5 +62,12 @@ SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, r
  FROM review
  WHERE goodsno=#{goodsno}
 </select>
+
+<!-- 리뷰 수정 -->
+  <update id="review_update" parameterType="dev.mvc.review.ReviewVO" >
+  UPDATE review
+  SET reviewcont = #{reviewcont}
+  WHERE reviewno = #{reviewno}
+  </update>
 
 </mapper>

@@ -50,5 +50,17 @@ public interface ReviewProcInter {
      * @return
      */
     public int review_count(int goodsno);
+    /**
+     * 리뷰 수정 조회
+     * @param reviewno
+     * @return
+     */
+    public ReviewVO review_read(int reviewno);
+    /**
+     * 리뷰 수정
+     * @param reviewVO
+     * @return
+     */
+    public int review_update(ReviewVO reviewVO);
 
 }

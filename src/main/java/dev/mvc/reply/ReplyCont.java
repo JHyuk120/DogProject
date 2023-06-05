@@ -57,14 +57,6 @@ public class ReplyCont {
        int cnt=this.replyProc.reply_create(replyVO);
      if(memberProc.isMember(session)) {
          if (cnt == 1) {
-             // 별점 평균 계산 
-             this.replyProc.ratingAVG_cal(recipeVO.getRecipeno());
-
-             // 업데이트된 별점 평균 조회
-             float ratingAVG = this.replyProc.ratingAVG(recipeVO.getRecipeno());
-             
-
-             mav.addObject("ratingAVG", ratingAVG);
              mav.addObject("recipe", recipeVO);
              mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
          } else {

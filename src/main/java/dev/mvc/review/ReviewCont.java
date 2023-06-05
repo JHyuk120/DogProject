@@ -1,5 +1,7 @@
 package dev.mvc.review;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +64,75 @@ public class ReviewCont {
          }
          return mav;
        }
+       /**
+        * 
+       * 리뷰 수정 폼
+       * http://localhost:9093/review/update.do?
+       * @param session
+       * @param reviewVO
+       * @param contentsVO
+       * @return
+       */
+      @RequestMapping(value="/review/update.do", method=RequestMethod.GET)
+      public ModelAndView review_update (int reviewno, int goodsno, ReviewVO reviewVO ){ 
+          ModelAndView mav = new ModelAndView();
+          
+          GoodsVO goodsVO = this.goodsProc.read(goodsno);
+          mav.addObject("goodsVO", goodsVO);
+          
+          ReviewVO review2VO = this.reviewProc.review_read(reviewno);
+          mav.addObject("reviewVO", review2VO);
+          
+          
+          // 댓글 조회`
+          ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
+          mav.addObject("list", list);
+          String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
+          mav.addObject("paging", paging);
+          
 
+        mav.setViewName("/review/review_update");
+        return mav;
+      }
+      /**
+       * 
+      * 리뷰 수정 처리
+      * http://localhost:9093/reply/reply_update.do?
+      * @param session
+      * @param reviewVO
+      * @param contentsVO
+      * @return
+      */
+      @RequestMapping(value = "/review/update.do", method = RequestMethod.POST)
+      public ModelAndView review_update(HttpSession session, ReviewVO reviewVO, int goodsno) {
+          ModelAndView mav = new ModelAndView();
+          //현재 로그인된 id
+          String currentUserId = (String) session.getAttribute("id");
+          ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
+          
+          int reviewNo = reviewVO.getReviewno();
+          System.out.println("Review number: " + reviewNo);
+          
+          if (reviewVOmid != null) {
+              String mid = reviewVOmid.getMid();
+              System.out.println("mid=>" + mid);
+          } else {
+              System.out.println("reviewVOmid is null");
+          }
+          
+          
+           // 아이디 확인
+          if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
+              this.reviewProc.review_update(reviewVO);
+              mav.addObject("reviewno", reviewVO.getReviewno());
+              mav.addObject("goodsno", goodsno);
+              mav.setViewName("redirect:/goods/read.do");
+          } else {
+              mav.setViewName("./reply/login_need");
+          }
+          return mav;
+      }
+      
        
         
     }
