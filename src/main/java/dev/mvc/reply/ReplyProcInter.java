@@ -60,6 +60,12 @@ public interface ReplyProcInter {
      * @return
      */
     public int reply_delete(int replyno);
+    /**
+     * 댓글 갯수     
+     * @param recipeno
+     * @return
+     */
+    public ReplyVO replycnt(int recipeno);
 
 
 }

@@ -22,12 +22,10 @@ public class PayCont {
   @Qualifier("dev.mvc.pay.PayProc")
   private PayProcInter payProc;
   
-
   @Autowired
-  @Qualifier("dev.mvc.cart.cartProc")
+  @Qualifier("dev.mvc.cart.CartProc")
   private CartProcInter cartProc;
-  
-
+ 
   public PayCont() {
     System.out.println("-> PayCont created.");
   }

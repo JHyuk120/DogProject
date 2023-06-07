@@ -69,5 +69,11 @@ SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, r
   SET reviewcont = #{reviewcont}
   WHERE reviewno = #{reviewno}
   </update>
+  
+  <!-- 댓글 삭제 -->
+<delete id="review_delete" parameterType="int">
+  DELETE FROM review
+  WHERE reviewno = #{review}
+</delete>
 
 </mapper>
