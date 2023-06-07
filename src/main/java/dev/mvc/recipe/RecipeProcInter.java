@@ -104,6 +104,13 @@ public interface RecipeProcInter {
    * @return
    */
   public int cnt_add (int recipeno);
+  
+  /**
+   * 추천수(따봉)
+   * @param itemno
+   * @return
+   */
+  public int recom_add (int recipeno);
 
 
 }

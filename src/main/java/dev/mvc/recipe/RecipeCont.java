@@ -248,7 +248,6 @@ public class RecipeCont {
 
     ReplyVO replycnt = this.replyProc.replycnt(recipeno);
     mav.addObject("replycnt", replycnt);
-    System.out.println("replycnt=>" + replycnt.getReplycnt());
     
     int cnt = this.recipeProc.cnt_add(recipeno);
     mav.addObject("cnt", cnt);
@@ -691,7 +690,7 @@ public class RecipeCont {
     return "";
   
   }
-    //조회수
+   //조회수
   
    @RequestMapping(value = "/recipe/cnt_add.do", method = RequestMethod.GET)
    public ModelAndView cnt_add(int recipeno) {
@@ -713,6 +712,28 @@ public class RecipeCont {
   
      return mav;
  }
+   
+    //추천수(따봉)
+   
+   @RequestMapping(value = "/recipe/recom_add.do", method = RequestMethod.GET)
+   public ModelAndView recom_add(int recipeno) {
+       ModelAndView mav = new ModelAndView();
+
+       int cnt = this.recipeProc.recom_add(recipeno);
+
+       if (cnt == 1) {
+         
+           mav.setViewName("redirect:/recipe/read.do");
+
+       } else {
+           mav.addObject("code", "recom_add_fail");
+           mav.setViewName("/recipe/msg");
+       }
+
+       mav.addObject("cnt", cnt);
+
+       return mav;
+   }
   
    
 }

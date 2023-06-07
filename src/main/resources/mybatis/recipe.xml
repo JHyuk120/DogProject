@@ -168,4 +168,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   </update>
   
+    <!-- 추천수(따봉) -->
+  <update id="recom_add" parameterType="int">
+  update recipe
+  set recom = recom + 1
+  where recipeno = #{recipeno}
+  
+  </update>
+  
 </mapper> 
