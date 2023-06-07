@@ -81,7 +81,8 @@ public class GoodsCont {
       String file1 = "";          // 원본 파일명 image
       String file1saved = "";   // 저장된 파일명, image
       String thumb1 = "";     // preview image
-
+      int saleprice = (int) (goodsVO.getPrice() * (1.0 -  (goodsVO.getDc() / 100.0)));
+      
       String upDir =  Goods.getUploadDir();
       System.out.println("-> upDir: " + upDir);
       
@@ -105,7 +106,7 @@ public class GoodsCont {
         }
         
       }    
-      
+      goodsVO.setSaleprice(saleprice); // 할인된 가격
       goodsVO.setFile1(file1);   // 순수 원본 파일명
       goodsVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       goodsVO.setThumb1(thumb1);      // 원본이미지 축소판
