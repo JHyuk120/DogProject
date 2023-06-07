@@ -20,6 +20,7 @@ import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.reply.ReplyDAOInter;
 import dev.mvc.reply.ReplyProcInter;
 import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
@@ -243,6 +244,11 @@ public class RecipeCont {
     mav.addObject("list", list);
     String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
+    //this.replyProc.replycnt_update(recipeno);
+
+    ReplyVO replycnt = this.replyProc.replycnt(recipeno);
+    mav.addObject("replycnt", replycnt);
+    System.out.println("replycnt=>" + replycnt.getReplycnt());
     
     int cnt = this.recipeProc.cnt_add(recipeno);
     mav.addObject("cnt", cnt);

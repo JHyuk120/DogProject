@@ -83,9 +83,16 @@ SET replycont = '우리 아이가 잘먹어요^^'
 WHERE replyno =3;
 
 -- 리뷰 갯수
-SELECT COUNT(*) as cnt
-FROM  reply
-WHERE recipeno = 6;
+UPDATE reply
+SET replycnt = (
+    SELECT COUNT(*) as cnt
+    FROM  reply
+    WHERE recipeno = 17)
+WHERE recipeno = 17;
+
+SELECT DISTINCT replycnt
+FROM reply
+WHERE recipeno = 17;
 
 -- 리뷰 삭제
 DELETE FROM reply

@@ -158,7 +158,7 @@
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
-           
+    <div>리뷰 수: ${replycnt.replycnt }</div>      
     <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
     </td>
   </tr>
