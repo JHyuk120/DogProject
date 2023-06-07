@@ -105,21 +105,6 @@
       <c:choose>
         <c:when test="${list.size() > 0 }"> <%-- 상품이 있는지 확인 --%>
           <c:forEach var="cartVO" items="${list }">  <%-- 상품 목록 출력 --%>
-<<<<<<< HEAD
-            <c:set var="cartno" value="${cartVO.cartno }" />
-            <c:set var="goodsno" value="${cartVO.goodsno }" />
-            <c:set var="gname" value="${cartVO.gname }" />
-            <c:set var="thumb1" value="${cartVO.thumb1 }" />
-            <c:set var="price" value="${cartVO.price }" />
-            <c:set var="dc" value="${cartVO.dc }" />
-            <c:set var="saleprice" value="${cartVO.saleprice }" />
-            <c:set var="point" value="${cartVO.point }" />
-            <c:set var="memberno" value="${cartVO.memberno }" />
-            <c:set var="cnt" value="${cartVO.cnt }" />
-            <c:set var="tot" value="${cartVO.tot }" />
-            <c:set var="rdate" value="${cartVO.rdate }" />
-=======
-
             <c:set var="cartno" value="${cartVO.cartno }" />
             <c:set var="goodsno" value="${cartVO.goodsno }" />
             <c:set var="gname" value="${goodsVO.gname }" />
@@ -132,21 +117,6 @@
             <c:set var="cnt" value="${cartVO.cnt }" />
             <c:set var="tot" value="${cartVO.tot}" />     
             <c:set var="rdate" value="${cartVO.rdate }" />
-
-            <c:set var="itemno" value="${itemVO.itemno }" />
-            <c:set var="goodsno" value="${itemVO.goodsno }" />
-            <c:set var="gname" value="${itemVO.gname }" />
-            <c:set var="thumb1" value="${itemVO.thumb1 }" />
-            <c:set var="price" value="${itemVO.price }" />
-            <c:set var="dc" value="${itemVO.dc }" />
-            <c:set var="saleprice" value="${itemVO.saleprice }" />
-            <c:set var="point" value="${itemVO.point }" />
-            <c:set var="memberno" value="${itemVO.memberno }" />
-            <c:set var="cnt" value="${itemVO.cnt }" />
-            <c:set var="tot" value="${itemVO.tot }" />
-            <c:set var="rdate" value="${itemVO.rdate }" />
-
->>>>>>> 7d50dc9b9c03a89fccc139a66ff1c03a6b833a4b
             
             <tr> 
               <td style='vertical-align: middle; text-align: center;'>
