@@ -4,8 +4,8 @@ public class DetailVO {
   private int detailno;
   private int payno;
   private int memberno;
-  private int goosno;
-  private String title = "";
+  private int goodsno;
+  private String gname = "";
   private int saleprice;
   private int cnt = 0;
   private int tot;
@@ -31,17 +31,17 @@ public class DetailVO {
   public void setMemberno(int memberno) {
     this.memberno = memberno;
   }
-  public int getGoosno() {
-    return goosno;
+  public int getGoodsno() {
+    return goodsno;
   }
-  public void setGoosno(int goosno) {
-    this.goosno = goosno;
+  public void setGoodsno(int goodsno) {
+    this.goodsno = goodsno;
   }
-  public String getTitle() {
-    return title;
+  public String getGname() {
+    return gname;
   }
-  public void setTitle(String title) {
-    this.title = title;
+  public void setGname(String gname) {
+    this.gname = gname;
   }
   public int getSaleprice() {
     return saleprice;

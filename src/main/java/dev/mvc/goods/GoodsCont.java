@@ -2,6 +2,7 @@ package dev.mvc.goods;
 
 import java.util.ArrayList;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,7 +66,7 @@ public class GoodsCont {
   }
   
   /**
-   * 등록 처리 http://localhost:9091/goods/create.do
+   * 등록 처리 http://localhost:9093/goods/create.do
    * 
    * @return
    */
@@ -81,8 +82,15 @@ public class GoodsCont {
       String file1 = "";          // 원본 파일명 image
       String file1saved = "";   // 저장된 파일명, image
       String thumb1 = "";     // preview image
+<<<<<<< HEAD
       int saleprice = (int) (goodsVO.getPrice() * (1.0 -  (goodsVO.getDc() / 100.0)));
       
+=======
+      int price = goodsVO.getPrice();  // 정가
+      int dc = goodsVO.getDc();
+      int saleprice = (int)(price - (price * (dc / 100.0)));// 할인된 금액//saleprice = price - price * (dc / 100)
+     
+>>>>>>> 7d50dc9b9c03a89fccc139a66ff1c03a6b833a4b
       String upDir =  Goods.getUploadDir();
       System.out.println("-> upDir: " + upDir);
       
@@ -111,6 +119,7 @@ public class GoodsCont {
       goodsVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       goodsVO.setThumb1(thumb1);      // 원본이미지 축소판
       goodsVO.setSize1(size1);  // 파일 크기
+      goodsVO.setSaleprice(saleprice);
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 종료
       // ------------------------------------------------------------------------------
@@ -221,7 +230,9 @@ public class GoodsCont {
     content = Tool.convertChar(content); 
     
     goodsVO.setGname(gname);
-    goodsVO.setContent(content);  
+    goodsVO.setContent(content);
+    
+    
     
     long size1 = goodsVO.getSize1();
     goodsVO.setSize1_label(Tool.unit(size1));    
@@ -254,7 +265,7 @@ public class GoodsCont {
   * @param now_page
   * @return
   */
- @RequestMapping(value = "/goods/list_by_itemno.do", method = RequestMethod.GET)
+ @RequestMapping(value = "/goods/list_by_itemno_search_paging_cart.do", method = RequestMethod.GET)
  public ModelAndView list_by_itemno_search_paging(
                             HttpServletRequest request,GoodsVO goodsVO) {
 
@@ -281,7 +292,7 @@ public class GoodsCont {
     * @param word 검색어
     * @return 페이징용으로 생성된 HTML/CSS tag 문자열
     */
-   String paging = goodsProc.pagingBox(goodsVO.getItemno(), goodsVO.getNow_page(), goodsVO.getWord(), "list_by_itemno.do");
+   String paging = goodsProc.pagingBox(goodsVO.getItemno(), goodsVO.getNow_page(), goodsVO.getWord(), "list_by_itemno_search_paging_cart.do");
    mav.addObject("paging", paging);
 
    // mav.addObject("now_page", now_page);

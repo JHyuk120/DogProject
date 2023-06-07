@@ -64,7 +64,6 @@
         <c:set var="title" value="${goodsVO.title }" />
         <c:set var="content" value="${goodsVO.content }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
-        <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         
         <tr style="height: 112px;" onclick="location.href='./read.do?goodsno=${goodsno }' " class='hover'>

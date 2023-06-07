@@ -105,6 +105,7 @@
       <c:choose>
         <c:when test="${list.size() > 0 }"> <%-- 상품이 있는지 확인 --%>
           <c:forEach var="cartVO" items="${list }">  <%-- 상품 목록 출력 --%>
+<<<<<<< HEAD
             <c:set var="cartno" value="${cartVO.cartno }" />
             <c:set var="goodsno" value="${cartVO.goodsno }" />
             <c:set var="gname" value="${cartVO.gname }" />
@@ -117,6 +118,35 @@
             <c:set var="cnt" value="${cartVO.cnt }" />
             <c:set var="tot" value="${cartVO.tot }" />
             <c:set var="rdate" value="${cartVO.rdate }" />
+=======
+
+            <c:set var="cartno" value="${cartVO.cartno }" />
+            <c:set var="goodsno" value="${cartVO.goodsno }" />
+            <c:set var="gname" value="${goodsVO.gname }" />
+            <c:set var="thumb1" value="${cartVO.thumb1 }" />
+            <c:set var="price" value="${cartVO.price }" />
+            <c:set var="dc" value="${cartVO.dc }" />
+            <c:set var="saleprice" value="${cartVO.saleprice}" />
+            <c:set var="point" value="${cartVO.point }" />
+            <c:set var="memberno" value="${cartVO.memberno }" />
+            <c:set var="cnt" value="${cartVO.cnt }" />
+            <c:set var="tot" value="${cartVO.tot}" />     
+            <c:set var="rdate" value="${cartVO.rdate }" />
+
+            <c:set var="itemno" value="${itemVO.itemno }" />
+            <c:set var="goodsno" value="${itemVO.goodsno }" />
+            <c:set var="gname" value="${itemVO.gname }" />
+            <c:set var="thumb1" value="${itemVO.thumb1 }" />
+            <c:set var="price" value="${itemVO.price }" />
+            <c:set var="dc" value="${itemVO.dc }" />
+            <c:set var="saleprice" value="${itemVO.saleprice }" />
+            <c:set var="point" value="${itemVO.point }" />
+            <c:set var="memberno" value="${itemVO.memberno }" />
+            <c:set var="cnt" value="${itemVO.cnt }" />
+            <c:set var="tot" value="${itemVO.tot }" />
+            <c:set var="rdate" value="${itemVO.rdate }" />
+
+>>>>>>> 7d50dc9b9c03a89fccc139a66ff1c03a6b833a4b
             
             <tr> 
               <td style='vertical-align: middle; text-align: center;'>
@@ -135,9 +165,9 @@
                 <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
               </td> 
               <td style='vertical-align: middle; text-align: center;'>
-                <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
                 <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
@@ -183,7 +213,7 @@
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
+          <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='get'>
             <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
           </form>
         <td>
