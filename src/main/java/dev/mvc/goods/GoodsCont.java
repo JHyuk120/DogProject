@@ -82,15 +82,11 @@ public class GoodsCont {
       String file1 = "";          // 원본 파일명 image
       String file1saved = "";   // 저장된 파일명, image
       String thumb1 = "";     // preview image
-<<<<<<< HEAD
-      int saleprice = (int) (goodsVO.getPrice() * (1.0 -  (goodsVO.getDc() / 100.0)));
       
-=======
       int price = goodsVO.getPrice();  // 정가
       int dc = goodsVO.getDc();
       int saleprice = (int)(price - (price * (dc / 100.0)));// 할인된 금액//saleprice = price - price * (dc / 100)
      
->>>>>>> 7d50dc9b9c03a89fccc139a66ff1c03a6b833a4b
       String upDir =  Goods.getUploadDir();
       System.out.println("-> upDir: " + upDir);
       
