@@ -272,8 +272,8 @@
         <c:set var="content" value="${goodsVO.content }" />
         <c:set var="price" value="${goodsVO.price }" />
         <c:set var="dc" value="${goodsVO.dc }" />
-        <c:set var="price" value="${goodsVO.saleprice }" />
-        <c:set var="price" value="${goodsVO.point }" />
+        <c:set var="saleprice" value="${goodsVO.saleprice }" />
+        <c:set var="point" value="${goodsVO.point }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -299,22 +299,13 @@
           <td style='vertical-align: middle;'>
             <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page }&word=${param.word}">
               <div style='font-weight: bold;'>${gname }</div>
-              <div>${price }\</div>
-              <c:choose> 
-                <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                    ${content.substring(0, 160)}.....
-                </c:when>
-                <c:when test="${content.length() <= 160 }">
-                    ${content}
-                </c:when>
-              </c:choose>
               <br>
               <div style = 'font-size: 0.95em;' >${rdate }</div>
             </a>
           </td> 
           
            <td style='vertical-align: middle; text-align: center;'>
-            <del><fmt:formatNumber value="${goodsVO.price}" pattern="#,###" /></del><br>
+            <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${goodsVO.dc} %</span>
             <strong><fmt:formatNumber value="${goodsVO.saleprice}" pattern="#,###" /></strong><br>
             <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${goodsVO.point}" pattern="#,###" /></span>

@@ -32,9 +32,9 @@ public class PayCont {
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
   
-//  @Autowired
-//  @Qualifier("dev.mvc.cart.Cart")
-//  private CartProcInter cartProc;
+  @Autowired
+  @Qualifier("dev.mvc.cart.CartProc")
+  private CartProcInter cartProc;
  
   public PayCont() {
     System.out.println("-> payCont created.");

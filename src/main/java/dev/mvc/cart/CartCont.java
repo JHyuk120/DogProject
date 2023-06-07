@@ -20,7 +20,7 @@ import dev.mvc.member.MemberProcInter;
 @Controller
 public class CartCont {
   @Autowired //자동생성
-  @Qualifier("dev.mvc.cart.cartProc")
+  @Qualifier("dev.mvc.cart.CartProc")
   private CartProcInter cartProc; //cartProc 객체 자동생성후 할당
   
   @Autowired //자동생성
