@@ -13,6 +13,7 @@
 <c:set var="word" value="${recipeVO.word }" />
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
+<c:set var="recom" value="${recipeVO.recom }" />
  <c:set var="replycont" value="${replyVO.replycont}" />
 <c:set var="replyno" value="${replyVO.replyno}" />
 
@@ -109,6 +110,29 @@
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
+          <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
+          <div style="font-size: 0.7em;">${mname}${rdate }</div>
+          
+<div>
+  <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
+  좋아요 <span id="recom_add">${recom}</span>개
+
+  <script>
+    var recomButton = document.getElementById("recom");
+    var recom_addElement = document.getElementById("recom_add");
+    var recom_add = parseInt(recom_addElement.textContent);
+
+    recomButton.addEventListener("click", function() {
+      if (recomButton.innerHTML === "🤍") {
+        recomButton.innerHTML = "❤️";
+        recom_add += 1;
+      }
+
+      recom_addElement.textContent = recom_add.toString();
+    });
+  </script>
+</div>
+	
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
@@ -118,9 +142,7 @@
                 <img src="/recipe/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
               </c:otherwise>
             </c:choose>
-          
-         <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-         <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+        <br>
         ${article }
         </DIV>
       </li>
@@ -158,14 +180,18 @@
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
-           
+    <div>🗨️댓글 ${replycnt.replycnt }개</div>      
     <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
     </td>
   </tr>
-   <button type='submit' class='btn btn-info btn-sm'>리뷰 등록</button>
+  <br>
+   <button type='submit' class='btn btn-info btn-sm'>댓글 등록</button>
  </FORM>    
+ <br>
  
  <!-- 댓글 목록 -->
+ 전체 댓글:
+ <br>
    <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
     <colgroup>
               <col style="width: 10%;"></col>

@@ -51,4 +51,10 @@ public interface ReviewDAOInter {
      * @return
      */
     public int review_update(ReviewVO reviewVO);
+    /**
+     * 리뷰 삭제
+     * @param reviewno
+     * @return
+     */
+    public int review_delete(int reviewno);
 }

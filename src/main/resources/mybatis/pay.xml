@@ -4,16 +4,6 @@
 
 <mapper namespace="dev.mvc.pay.PayDAOInter">
 
-  <!-- 주문 결재 등록 -->
-  <!-- 
-  <insert id="create" parameterType="dev.mvc.pay.PayVO">
-    INSERT INTO pay(payno, memberno, tname, ttel, tzipcode,
-                                     taddress1, taddress2, ptype, price, rdate)
-    VALUES (pay_seq.nextval, #{memberno}, #{tname}, #{ttel}, #{tzipcode},
-                                     #{taddress1}, #{taddress2}, #{ptype}, #{price}, sysdate)
-  </insert> 
-   -->
-   
   <!-- 주문 결재 등록 전 payno를 PayVO에 저장  -->
   <insert id="create" parameterType="dev.mvc.pay.PayVO">
     <selectKey keyProperty="payno" resultType="int" order="BEFORE">
@@ -21,10 +11,18 @@
     </selectKey>
     
     INSERT INTO pay(payno, memberno, tname, ttel, tzipcode,
-                                     taddress1, taddress2, ptype, price, rdate)
+                                     taddress1, taddress2, amount, ptype, rdate)
     VALUES (#{payno}, #{memberno}, #{tname}, #{ttel}, #{tzipcode},
-                                     #{taddress1}, #{taddress2}, #{ptype}, #{price}, sysdate)
+                                     #{taddress1}, #{taddress2}, #{amount}, #{ptype}, sysdate)
   </insert>
+  
+  <!-- 회원별 주문 결재 목록 -->
+  <select id="pay_list" resultType="dev.mvc.pay.PayVO" parameterType="int">
+    SELECT payno, memberno, tname, ttel, tzipcode, taddress1, taddress2, ptype, amount, rdate
+    FROM pay
+    WHERE memberno=#{memberno}
+    ORDER BY payno DESC
+  </select>
 
 
 

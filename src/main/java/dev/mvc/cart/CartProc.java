@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("dev.mvc.cart.cartProc")
+@Component("dev.mvc.cart.CartProc")
 public class CartProc implements CartProcInter{
   @Autowired
   private CartDAOInter cartDAO;

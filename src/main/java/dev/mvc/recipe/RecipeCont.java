@@ -20,6 +20,7 @@ import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.reply.ReplyDAOInter;
 import dev.mvc.reply.ReplyProcInter;
 import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
@@ -243,6 +244,10 @@ public class RecipeCont {
     mav.addObject("list", list);
     String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
+    //this.replyProc.replycnt_update(recipeno);
+
+    ReplyVO replycnt = this.replyProc.replycnt(recipeno);
+    mav.addObject("replycnt", replycnt);
     
     int cnt = this.recipeProc.cnt_add(recipeno);
     mav.addObject("cnt", cnt);
@@ -685,7 +690,7 @@ public class RecipeCont {
     return "";
   
   }
-    //조회수
+   //조회수
   
    @RequestMapping(value = "/recipe/cnt_add.do", method = RequestMethod.GET)
    public ModelAndView cnt_add(int recipeno) {
@@ -707,6 +712,28 @@ public class RecipeCont {
   
      return mav;
  }
+   
+    //추천수(따봉)
+   
+   @RequestMapping(value = "/recipe/recom_add.do", method = RequestMethod.GET)
+   public ModelAndView recom_add(int recipeno) {
+       ModelAndView mav = new ModelAndView();
+
+       int cnt = this.recipeProc.recom_add(recipeno);
+
+       if (cnt == 1) {
+         
+           mav.setViewName("redirect:/recipe/read.do");
+
+       } else {
+           mav.addObject("code", "recom_add_fail");
+           mav.setViewName("/recipe/msg");
+       }
+
+       mav.addObject("cnt", cnt);
+
+       return mav;
+   }
   
    
 }

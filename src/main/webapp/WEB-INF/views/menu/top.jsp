@@ -45,6 +45,8 @@
                       <div class="dropdown-menu">                       
                           <a class="dropdown-item" href="/member/create.do">🤹‍♂️ 회원 가입</a>
                           <a class="dropdown-item" href="/member/read.do">🏅 가입 정보</a>
+                          <a class="dropdown-item" href="/cart/list_by_memberno.do">장바구니</a>
+                          <a class="dropdown-item" href="/pay/pay_list.do">결제 리스트</a>
                           <a class="dropdown-item" href="#">🌕 아이디 찾기</a>
                           <a class="dropdown-item" href="#">⭐ 비밀번호 찾기</a>
                           <a class="dropdown-item" href="/member/passwd_update.do">💫 비밀번호 변경</a>

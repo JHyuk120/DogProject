@@ -47,6 +47,7 @@ public class ReviewCont {
            int cnt=this.reviewProc.review_create(reviewVO);
          if(memberProc.isMember(session)) {
              if (cnt == 1) {
+
                  // 별점 평균 계산 
                  this.reviewProc.ratingAVG_cal(reviewVO.getGoodsno());
                  // 업데이트된 별점 평균 조회
@@ -55,6 +56,7 @@ public class ReviewCont {
                  mav.addObject("ratingAVG", ratingAVG);
                  mav.addObject("goods", goodsVO);
                  mav.setViewName("redirect:/goods/read.do?goodsno=" + goodsVO.getGoodsno());
+                 
              } else {
                mav.addObject("code", "review_create_fail");
              }
@@ -110,17 +112,6 @@ public class ReviewCont {
           String currentUserId = (String) session.getAttribute("id");
           ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
           
-          int reviewNo = reviewVO.getReviewno();
-          System.out.println("Review number: " + reviewNo);
-          
-          if (reviewVOmid != null) {
-              String mid = reviewVOmid.getMid();
-              System.out.println("mid=>" + mid);
-          } else {
-              System.out.println("reviewVOmid is null");
-          }
-          
-          
            // 아이디 확인
           if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
               this.reviewProc.review_update(reviewVO);
@@ -132,7 +123,34 @@ public class ReviewCont {
           }
           return mav;
       }
+      /**
+       * 리뷰 삭제
+       * @param session
+       * @param reviewVO
+       * @param goodsno
+       * @param reviewno
+       * @return
+       */
+      @RequestMapping(value = "/review/delete.do", method = RequestMethod.GET)
+      public ModelAndView review_delete(HttpSession session, ReviewVO reviewVO, int goodsno, int reviewno) {
+          ModelAndView mav = new ModelAndView();
+          //현재 로그인된 id
+          String currentUserId = (String) session.getAttribute("id");
+          ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
+          
+           // 아이디 확인
+          if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
+              this.reviewProc.review_delete(reviewno);
+              mav.addObject("reviewno", reviewVO.getReviewno());
+              mav.addObject("goodsno", goodsno);
+              mav.setViewName("redirect:/goods/read.do?goodno="+goodsno);
+          } else {
+              mav.setViewName("./reply/login_need");
+          }
+          return mav;
+      }
       
+             
        
         
     }

@@ -59,7 +59,6 @@
      
         <div class="form_input">
           <button type="submit" class="btn btn-info">로그인</button>
-          <button type='button' id='btn_loadDefault' class="btn btn-info">테스트 계정</button>
         </div>   
         
       </FORM>

@@ -272,8 +272,13 @@
         <c:set var="content" value="${goodsVO.content }" />
         <c:set var="price" value="${goodsVO.price }" />  
         <c:set var="dc" value="${goodsVO.dc }" />
+<<<<<<< HEAD
         <c:set var="saleprice" value="${goodsVO.saleprice}" />  
         <c:set var="price" value="${goodsVO.point }" />
+=======
+        <c:set var="saleprice" value="${goodsVO.saleprice }" />
+        <c:set var="point" value="${goodsVO.point }" />
+>>>>>>> 6125e708c9f98737133347dddc4a4a4e3296830a
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -299,6 +304,7 @@
           <td style='vertical-align: middle;'>
             <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page }&word=${param.word}">
               <div style='font-weight: bold;'>${gname }</div>
+<<<<<<< HEAD
                <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
@@ -310,13 +316,15 @@
                     ${content}
                 </c:when>
               </c:choose>
+=======
+>>>>>>> 6125e708c9f98737133347dddc4a4a4e3296830a
               <br>
               <div style = 'font-size: 0.95em;' >${rdate }</div>
             </a>
           </td> 
           
            <td style='vertical-align: middle; text-align: center;'>
-            <del><fmt:formatNumber value="${goodsVO.price}" pattern="#,###" /></del><br>
+            <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${goodsVO.dc} %</span>
             <strong><fmt:formatNumber value="${goodsVO.saleprice}" pattern="#,###" /></strong><br>
             <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${goodsVO.point}" pattern="#,###" /></span>
