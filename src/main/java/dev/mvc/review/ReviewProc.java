@@ -164,6 +164,12 @@ public class ReviewProc implements ReviewProcInter{
        int cnt = this.reviewDAO.review_update(reviewVO);
         return cnt;
     }
+
+    @Override
+    public int review_delete(int reviewno) {
+       int cnt = this.reviewDAO.review_delete(reviewno);
+        return cnt;
+    }
     
 
 }

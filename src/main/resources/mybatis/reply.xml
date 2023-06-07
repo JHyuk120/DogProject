@@ -56,4 +56,10 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,r
   DELETE FROM reply
   WHERE replyno = #{replyno}
   </delete>
-</mapper>
+  
+  <select id="replycnt" parameterType="int" resultType="dev.mvc.reply.ReplyVO">
+  SELECT COUNT(*) as replycnt
+  FROM  reply
+  WHERE recipeno = #{recipeno}
+  </select> 
+ </mapper>

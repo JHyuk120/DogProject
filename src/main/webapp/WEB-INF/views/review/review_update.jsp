@@ -355,7 +355,7 @@ function setStarRating(ratingValue) {
 
  <FORM name='frm' method='POST' action='../review/update.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
-    <input type="hidden" name="reviewno" value="${reviewno}"/>  
+    <input type="hidden" name="reviewno" value="${reviewVO.reviewno}"/>  
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     <input type="hidden" id="star-rating" name="ratingValue" value=""/>
@@ -458,7 +458,7 @@ function setStarRating(ratingValue) {
             <div>${rdate}</div>
           </td>
           <td style='vertical-align: middle;'>
-            <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/<a href="/reply/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
+            <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           
 
