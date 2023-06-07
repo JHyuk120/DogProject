@@ -116,7 +116,6 @@
     <div style='text-align: center; margin: 10px auto;'>
       <button type="button" id='btn_login' class="btn btn-outline-info btn-sm" onclick="login_ajax()">로그인</button>
       <button type='button' onclick="location.href='./create.do'" class="btn btn-outline-info btn-sm">회원가입</button>
-      <button type='button' id='btn_loadDefault' class="btn btn-outline-info btn-sm" onclick="loadDefault()">테스트 계정</button>
     </div>
     
  

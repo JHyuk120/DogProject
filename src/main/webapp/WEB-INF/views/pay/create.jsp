@@ -132,7 +132,7 @@
       <c:forEach var="cartVO" items="${list }">
         <c:set var="cartno" value="${cartVO.cartno }" />
         <c:set var="goodsno" value="${cartVO.goodsno }" />
-        <c:set var="title" value="${cartVO.title }" />
+        <c:set var="gname" value="${cartVO.gname }" />
         <c:set var="thumb1" value="${cartVO.thumb1 }" />
         <c:set var="price" value="${cartVO.price }" />
         <c:set var="dc" value="${cartVO.dc }" />
@@ -156,7 +156,7 @@
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="/goods/read.do?goodsno=${goodsno}"><strong>${title}</strong></a> 
+            <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
           </td> 
           <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
