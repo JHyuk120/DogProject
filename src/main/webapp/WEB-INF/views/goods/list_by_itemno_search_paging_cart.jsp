@@ -306,9 +306,9 @@
           
            <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
-            <span style="color: #FF0000; font-size: 1.2em;">${goodsVO.dc} %</span>
-            <strong><fmt:formatNumber value="${goodsVO.saleprice}" pattern="#,###" /></strong><br>
-            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${goodsVO.point}" pattern="#,###" /></span>
+            <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+            <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
             <br>
             <button type='button' id='btn_cart' class="btn btn-info btn-sm" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">장바 구니</button><br>
             <button type='button' id='btn_ordering' class="btn btn-info btn-sm" onclick="cart_ajax(${goodsno })">바로 구매</button>  
