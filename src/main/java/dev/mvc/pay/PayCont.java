@@ -151,7 +151,7 @@ public class PayCont {
        
        detailVO.setTot(tot); // 상품 1건당 총 결재 금액
        
-       // 주문 상태(stateno):  1: 결재 완료, 2: 상품 준비중, 3: 배송 시작, 4: 배달중, 5: 오늘 도착, 6: 배달 완료  
+       // 주문 상태(stateno):  1: 상품 준비중, 2: 배달중, 3: 배달 완료  
        detailVO.setStateno(1); // 신규 주문 등록임으로 1 
        
        this.detailProc.create(detailVO); // 주문 상세 등록

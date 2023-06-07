@@ -29,7 +29,7 @@ $(function(){
 <c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
-    ${sessionScope.mname }님 주문 결재 상세 내역
+    ${sessionScope.mname }님 주문 결제 상세 내역
   </DIV>
    
     <table class="table table-striped" style='width: 100%;'>
@@ -47,7 +47,7 @@ $(function(){
      
     </colgroup>
     <TR>
-      <TH class='th_bs'>주문<br>결재</TH>
+      <TH class='th_bs'>주문<br>결제</TH>
       <TH class='th_bs'>주문<br>상세</TH>
       <TH class='th_bs'>회원<br>번호</TH>
       <TH class='th_bs'>컨텐츠<br>번호</TH>
@@ -106,7 +106,7 @@ $(function(){
    
   <DIV class='bottom_menu'>
     <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
-    <button type='button' onclick="location.href='/pay/pay_list.do?memberno=${memberno}'" class="btn btn-primary">결재 목록</button>
+    <button type='button' onclick="location.href='/pay/pay_list.do?memberno=${memberno}'" class="btn btn-primary">결제 목록</button>
   </DIV>
 </DIV>
  

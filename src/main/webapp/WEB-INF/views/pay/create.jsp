@@ -293,9 +293,9 @@
 
   <div class='menu_line'></div>
   <div style=" text-align: left;">
-    <label style="cursor: pointer;"><input type="radio" name="paytype" id="paytype" value="1" checked="checked"> 신용 카드</label>  
-    <label style="cursor: pointer;"><input type="radio" name="paytype" id="paytype" value="2"> 모바일</label>  
-    <label style="cursor: pointer;"><input type="radio" name="paytype" id="paytype" value="3"> 포인트</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="1" checked="checked"> 신용 카드</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="2"> 모바일</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="3"> 포인트</label>  
   </div>
   
   <table class="table table-striped" style='margin-top: 20px; margin-bottom: 50px; width: 100%; clear: both;'>

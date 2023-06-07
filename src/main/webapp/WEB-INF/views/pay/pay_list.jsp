@@ -26,7 +26,7 @@ $(function(){
 <body>
 <c:import url="/menu/top.do" />
  <DIV class='title_line'>
-    ${sessionScope.mname }님 주문결재 내역
+    ${sessionScope.mname }님 주문결제 내역
   </DIV>
 
   <DIV class='content_body' style='width: 100%;'>
@@ -49,8 +49,8 @@ $(function(){
       <TH class='th_bs'>수취인<br>성명</TH>
       <TH class='th_bs'>수취인<br>전화번호</TH>
       <TH class='th_bs'>수취인<br>주소</TH>
-      <TH class='th_bs'>결재 타입</TH>
-      <TH class='th_bs'>결재 금액</TH>
+      <TH class='th_bs'>결제 타입</TH>
+      <TH class='th_bs'>결제 금액</TH>
       <TH class='th_bs'>주문일</TH>
       <TH class='th_bs'>조회</TH>
     </TR>
@@ -70,19 +70,19 @@ $(function(){
       <TD class=td_basic>${payno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
       <TD class='td_basic'>${tname}</TD>
-      <TD class='td_left'>${ttel}</TD>
+      <TD class='td_basic'>${ttel}</TD>
       <TD class='td_basic'>${address}</TD>
       <TD class='td_basic'>
         <c:choose>
           <c:when test="${ptype == 1}">신용 카드</c:when>
           <c:when test="${ptype == 2}">모바일</c:when>
-          <c:when test="${ptype == 3}">포이트</c:when>
+          <c:when test="${ptype == 3}">포인트</c:when>
         </c:choose>
       </TD>
       <TD class='td_basic'><fmt:formatNumber value="${amount }" pattern="#,###" /></TD>
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
       <TD class='td_basic'>
-        <A href="/detail/detail_list.do?payno=${payno}"><img src="/pay/images/bu6.png" title="주문 내역 상세 조회"></A>
+        <A href="/detail/detail_list.do?payno=${payno}"><img src="/pay/images/receipt(1).png" title="주문 내역 상세 조회"></A>
       </TD>
       
     </TR>
