@@ -312,7 +312,7 @@ public class GoodsCont {
      }
    }
    
-   System.out.println("-> ck_id1  : " + ck_id);
+   System.out.println("-> ck_id  : " + ck_id);
    
    mav.addObject("ck_id", ck_id); 
    mav.addObject("ck_id_save", ck_id_save);
