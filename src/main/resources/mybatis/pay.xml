@@ -4,15 +4,7 @@
 
 <mapper namespace="dev.mvc.pay.PayDAOInter">
 
-  <!-- 주문 결재 등록 -->
-  <!-- 
-  <insert id="create" parameterType="dev.mvc.pay.PayVO">
-    INSERT INTO pay(payno, memberno, tname, ttel, tzipcode,
-                                     taddress1, taddress2, ptype, price, rdate)
-    VALUES (pay_seq.nextval, #{memberno}, #{tname}, #{ttel}, #{tzipcode},
-                                     #{taddress1}, #{taddress2}, #{ptype}, #{price}, sysdate)
-  </insert> 
-   -->
+
    
   <!-- 주문 결재 등록 전 payno를 PayVO에 저장  -->
   <insert id="create" parameterType="dev.mvc.pay.PayVO">
@@ -21,9 +13,9 @@
     </selectKey>
     
     INSERT INTO pay(payno, memberno, tname, ttel, tzipcode,
-                                     taddress1, taddress2, ptype, price, rdate)
+                                     taddress1, taddress2, amount, ptype, rdate)
     VALUES (#{payno}, #{memberno}, #{tname}, #{ttel}, #{tzipcode},
-                                     #{taddress1}, #{taddress2}, #{ptype}, #{price}, sysdate)
+                                     #{taddress1}, #{taddress2}, #{amount}, #{ptype}, sysdate)
   </insert>
 
 
