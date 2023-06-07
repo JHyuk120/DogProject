@@ -111,11 +111,12 @@
             <c:set var="thumb1" value="${cartVO.thumb1 }" />
             <c:set var="price" value="${cartVO.price }" />
             <c:set var="dc" value="${cartVO.dc }" />
-            <c:set var="saleprice" value="${cartVO.saleprice }" />
+            <c:set var="saleprice" value="${cartVO.saleprice}" />
             <c:set var="point" value="${cartVO.point }" />
             <c:set var="memberno" value="${cartVO.memberno }" />
             <c:set var="cnt" value="${cartVO.cnt }" />
-            <c:set var="tot" value="${cartVO.tot }" />
+            <c:set var="tot" value="${cartVO.tot}" />
+            
             <c:set var="rdate" value="${cartVO.rdate }" />
             
             <tr> 
@@ -134,9 +135,9 @@
                 <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
               </td> 
               <td style='vertical-align: middle; text-align: center;'>
-                <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
                 <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
@@ -182,7 +183,7 @@
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
+          <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='get'>
             <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
           </form>
         <td>

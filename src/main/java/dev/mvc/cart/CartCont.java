@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.goods.GoodsProcInter;
+import dev.mvc.goods.GoodsVO;
 import dev.mvc.member.MemberProcInter;
 
 @Controller
@@ -78,7 +79,7 @@ public class CartCont {
    * @return
    */
   @RequestMapping(value="/cart/list_by_memberno.do", method=RequestMethod.GET )
-  public ModelAndView list_by_memberno(HttpSession session) {
+  public ModelAndView list_by_memberno(HttpSession session,GoodsVO goodsVO) {
     ModelAndView mav = new ModelAndView();
     
     int tot = 0;               // 할인 금액 합계 = 할인 금액 * 수량
@@ -87,13 +88,15 @@ public class CartCont {
     int baesong_tot = 0;   // 배송비 합계
     int total_order = 0;    // 전체 주문 금액
     
+    
     if (session.getAttribute("memberno") != null) { // 회원으로 로그인을 했다면 쇼핑카트로 이동
       int memberno = (int)session.getAttribute("memberno");
       
       // 목록
       ArrayList<CartVO> list = this.cartProc.list_by_memberno(memberno);
-      
+
       for (CartVO cartVO : list) {
+
         tot = cartVO.getSaleprice() * cartVO.getCnt();  // 판매 금액 합계 = 판매 금액(단가) * 수량
         cartVO.setTot(tot);
         
@@ -122,7 +125,7 @@ public class CartCont {
       mav.setViewName("/cart/list_by_memberno"); // /WEB-INF/views/categrp/list_by_memberno.jsp
       
     } else { // 회원으로 로그인하지 않았다면
-      // http://localhost:9091/member/login.do?return_url=/cart/list_by_memberno.do
+      // http://localhost:9093/member/login.do?return_url=/cart/list_by_memberno.do
       
       mav.addObject("return_url", "/cart/list_by_memberno.do"); // 로그인 후 이동할 주소 ★
       

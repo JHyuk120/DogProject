@@ -5,7 +5,9 @@
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="itemno" value="${goodsVO.itemno }" />
 <c:set var="gname" value="${goodsVO.gname }" />    
-<c:set var="price" value="${goodsVO.price }" />    
+<c:set var="price" value="${goodsVO.price }" />  
+<c:set var="dc" value="${goodsVO.dc }" />
+<c:set var="saleprice" value="${goodsVO.saleprice}" />  
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -30,7 +32,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
     
-<<<<<<< HEAD
+
  <%-- 별점 스크립트 --%>
 <script type="text/javascript">
 function setStarRating(ratingValue) {
@@ -303,7 +305,9 @@ function setStarRating(ratingValue) {
             </c:choose>
        
           <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-          <div>가격: ${price }\</div><br>     
+          <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
           <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
           ${content }
         </DIV>

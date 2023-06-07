@@ -270,9 +270,9 @@
       <c:forEach var="goodsVO" items="${list}">
         <c:set var="gname" value="${goodsVO.gname }" />
         <c:set var="content" value="${goodsVO.content }" />
-        <c:set var="price" value="${goodsVO.price }" />
+        <c:set var="price" value="${goodsVO.price }" />  
         <c:set var="dc" value="${goodsVO.dc }" />
-        <c:set var="price" value="${goodsVO.saleprice }" />
+        <c:set var="saleprice" value="${goodsVO.saleprice}" />  
         <c:set var="price" value="${goodsVO.point }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
@@ -299,7 +299,9 @@
           <td style='vertical-align: middle;'>
             <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page }&word=${param.word}">
               <div style='font-weight: bold;'>${gname }</div>
-              <div>${price }\</div>
+               <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+               <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+               <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
               <c:choose> 
                 <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
                     ${content.substring(0, 160)}.....

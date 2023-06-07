@@ -75,7 +75,9 @@
       <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
         <c:forEach var="goodsVO" items="${list }" varStatus="status">
           <c:set var="gname" value="${goodsVO.gname }" />
-          <c:set var="price" value="${goodsVO.price }" />
+          <c:set var="price" value="${goodsVO.price }" />  
+          <c:set var="dc" value="${goodsVO.dc }" />
+          <c:set var="saleprice" value="${goodsVO.saleprice}" />  
           <c:set var="content" value="${goodsVO.content }" />
           <c:set var="itemno" value="${goodsVO.itemno }" />
           <c:set var="goodsno" value="${goodsVO.goodsno }" />
@@ -91,21 +93,25 @@
           <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
           
           <div onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'
-                    style="width: 15%; height: 192px; float: left; margin: 0.83%; padding: 0.5%; 
+                    style="width: 18%; height: 250px; float: left; margin: 1%; padding: 0.5%; 
                     background-color: rgba(255, 243, 254, 0.3); text-align: center;
                     border: 1px solid #000000;">
         
           <c:choose> 
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 140px;">
+              <div style="padding-bottom: 10px;">
+              <img src="/dogproject/storage/${thumb1 }" style="width: 120%; height: 155px; ">
+              </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-              <IMG src="/goods/images/none1.jpg" style="width: 100%; height: 140px;">
+            <div style="padding-bottom:10px;">
+              <IMG src="/goods/images/none1.jpg" style="width: 100%; height: 160px; ">
+              </div>
             </c:otherwise>
           </c:choose>
           <strong>
-            <div style='font-size:0.8em; word-break: break-all;'>
+            <div style='font-size:1em; word-break: break-all;'>
               <c:choose>
                 <c:when test="${gname.length() > 20 }"> <%-- 20 이상이면 10만 출력 --%>
                   ${gname.substring(0, 20)}...
@@ -116,8 +122,11 @@
               </c:choose>
             </div>
           </strong>
-          <div style='font-size:0.9em; color: #0CB0AC; word-break: break-all;'>
-           ${price }원 </div>
+         
+          <del style="font-size: 0.9em;">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+          <span style="color: #FF0000; font-size: 0.9em;">${dc} %</span>
+          <strong style="font-size: 0.9em;">￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+         
       </div>
       
     </c:forEach>

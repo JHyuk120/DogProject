@@ -2,6 +2,7 @@ package dev.mvc.goods;
 
 import java.util.ArrayList;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,7 +66,7 @@ public class GoodsCont {
   }
   
   /**
-   * 등록 처리 http://localhost:9091/goods/create.do
+   * 등록 처리 http://localhost:9093/goods/create.do
    * 
    * @return
    */
@@ -81,7 +82,10 @@ public class GoodsCont {
       String file1 = "";          // 원본 파일명 image
       String file1saved = "";   // 저장된 파일명, image
       String thumb1 = "";     // preview image
-
+      int price = goodsVO.getPrice();  // 정가
+      int dc = goodsVO.getDc();
+      int saleprice = (int)(price - (price * (dc / 100.0)));// 할인된 금액//saleprice = price - price * (dc / 100)
+     
       String upDir =  Goods.getUploadDir();
       System.out.println("-> upDir: " + upDir);
       
@@ -110,6 +114,7 @@ public class GoodsCont {
       goodsVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       goodsVO.setThumb1(thumb1);      // 원본이미지 축소판
       goodsVO.setSize1(size1);  // 파일 크기
+      goodsVO.setSaleprice(saleprice);
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 종료
       // ------------------------------------------------------------------------------
@@ -220,7 +225,9 @@ public class GoodsCont {
     content = Tool.convertChar(content); 
     
     goodsVO.setGname(gname);
-    goodsVO.setContent(content);  
+    goodsVO.setContent(content);
+    
+    
     
     long size1 = goodsVO.getSize1();
     goodsVO.setSize1_label(Tool.unit(size1));    
