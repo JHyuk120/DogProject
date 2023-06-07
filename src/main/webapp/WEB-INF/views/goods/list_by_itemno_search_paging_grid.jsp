@@ -39,13 +39,13 @@
     
       <A href="javascript:location.reload();">새로고침</A>
       <span class='menu_divide' >│</span>    
-      <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
+      <A href="./list_by_itemno_search_paging_cart.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
       <span class='menu_divide' >│</span>
       <A href="./list_by_itemno_grid.do?itemno=${param.itemno }&now_page=${param.now_page == null ? 1: param.now_page}&word=${param.word }">갤러리형</A>
     </ASIDE>
   
     <DIV style="text-align: right; clear: both;">  
-      <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
+      <form name='frm' id='frm' method='get' action='./list_by_itemno_search_paging_cart.do'>
         <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
         <c:choose>
@@ -59,7 +59,7 @@
         <button type='submit' class='btn btn-custom btn-sm' >검색</button>
           <c:if test="${param.word.length() > 0 }">
             <button type='button' class='btn btn-custom btn-sm' 
-                    onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
+                    onclick="location.href='./list_by_itemno_search_paging_cart?itemno=${itemVO.itemno}&word='">검색 취소</button>  
           </c:if>    
           <style>
           .btn-custom {

@@ -248,7 +248,7 @@ function reviewcnt(){
     }      
 </script>  
  
->>>>>>> c1d97ab04267b89dade664f98450226fc7eb4e0f
+
 </head> 
  
 <body>
@@ -281,7 +281,7 @@ function reviewcnt(){
 
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <A href="./list_by_itemno_search_paging_cart.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
     <A href="./list_by_itemno_grid.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">갤러리형</A>
     
@@ -364,9 +364,9 @@ function reviewcnt(){
             </c:choose>
        
           <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-          <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+          <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
+                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
           <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
           ${content }
         </DIV>

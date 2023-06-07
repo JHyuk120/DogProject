@@ -260,7 +260,7 @@ public class GoodsCont {
   * @param now_page
   * @return
   */
- @RequestMapping(value = "/goods/list_by_itemno.do", method = RequestMethod.GET)
+ @RequestMapping(value = "/goods/list_by_itemno_search_paging_cart.do", method = RequestMethod.GET)
  public ModelAndView list_by_itemno_search_paging(
                             HttpServletRequest request,GoodsVO goodsVO) {
 
@@ -287,7 +287,7 @@ public class GoodsCont {
     * @param word 검색어
     * @return 페이징용으로 생성된 HTML/CSS tag 문자열
     */
-   String paging = goodsProc.pagingBox(goodsVO.getItemno(), goodsVO.getNow_page(), goodsVO.getWord(), "list_by_itemno.do");
+   String paging = goodsProc.pagingBox(goodsVO.getItemno(), goodsVO.getNow_page(), goodsVO.getWord(), "list_by_itemno_search_paging_cart.do");
    mav.addObject("paging", paging);
 
    // mav.addObject("now_page", now_page);

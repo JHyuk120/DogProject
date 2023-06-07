@@ -105,7 +105,7 @@
       <c:choose>
         <c:when test="${list.size() > 0 }"> <%-- 상품이 있는지 확인 --%>
           <c:forEach var="cartVO" items="${list }">  <%-- 상품 목록 출력 --%>
-<<<<<<< HEAD
+
             <c:set var="cartno" value="${cartVO.cartno }" />
             <c:set var="goodsno" value="${cartVO.goodsno }" />
             <c:set var="gname" value="${goodsVO.gname }" />
@@ -116,10 +116,9 @@
             <c:set var="point" value="${cartVO.point }" />
             <c:set var="memberno" value="${cartVO.memberno }" />
             <c:set var="cnt" value="${cartVO.cnt }" />
-            <c:set var="tot" value="${cartVO.tot}" />
-            
+            <c:set var="tot" value="${cartVO.tot}" />     
             <c:set var="rdate" value="${cartVO.rdate }" />
-=======
+
             <c:set var="itemno" value="${itemVO.itemno }" />
             <c:set var="goodsno" value="${itemVO.goodsno }" />
             <c:set var="gname" value="${itemVO.gname }" />
@@ -132,7 +131,7 @@
             <c:set var="cnt" value="${itemVO.cnt }" />
             <c:set var="tot" value="${itemVO.tot }" />
             <c:set var="rdate" value="${itemVO.rdate }" />
->>>>>>> 6125e708c9f98737133347dddc4a4a4e3296830a
+
             
             <tr> 
               <td style='vertical-align: middle; text-align: center;'>
