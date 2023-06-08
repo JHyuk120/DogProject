@@ -1,5 +1,6 @@
 package dev.mvc.detail;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +24,18 @@ public class DetailProc implements DetailProcInter {
     list = this.detailDAO.detail_list(map);
     
     return list;
+  }
+
+  @Override
+  public ArrayList<DetailVO> order_list() {
+    ArrayList<DetailVO> list_a = this.detailDAO.order_list();
+    return list_a;
+  }
+
+  @Override
+  public int update_stateno(int detailno) {
+    int cnt = this.detailDAO.update_stateno(detailno);
+    return cnt;
   }
 
 }

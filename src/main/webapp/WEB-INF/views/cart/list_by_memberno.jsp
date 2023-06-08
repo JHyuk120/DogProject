@@ -107,7 +107,7 @@
           <c:forEach var="cartVO" items="${list }">  <%-- 상품 목록 출력 --%>
             <c:set var="cartno" value="${cartVO.cartno }" />
             <c:set var="goodsno" value="${cartVO.goodsno }" />
-            <c:set var="gname" value="${goodsVO.gname }" />
+            <c:set var="gname" value="${cartVO.gname }" />
             <c:set var="thumb1" value="${cartVO.thumb1 }" />
             <c:set var="price" value="${cartVO.price }" />
             <c:set var="dc" value="${cartVO.dc }" />

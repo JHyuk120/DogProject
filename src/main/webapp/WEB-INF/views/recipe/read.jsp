@@ -57,7 +57,7 @@
 <DIV class='content_body'>
   <ASIDE class="aside_right">
     <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
-    <c:if test="${sessionScope.admin_id != null }">
+    <c:if test="${sessionScope.id != null }">
       <%--
       http://localhost:9091/recipe/create.do?itemno=1
       http://localhost:9091/recipe/create.do?itemno=2
@@ -115,21 +115,10 @@
           
 <div>
   <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
-  좋아요 <span id="recom_add">${recom}</span>개
+  <%-- 좋아요 <span id="recom_add">${recom}</span>개 --%>
 
   <script>
-    var recomButton = document.getElementById("recom");
-    var recom_addElement = document.getElementById("recom_add");
-    var recom_add = parseInt(recom_addElement.textContent);
-
-    recomButton.addEventListener("click", function() {
-      if (recomButton.innerHTML === "🤍") {
-        recomButton.innerHTML = "❤️";
-        recom_add += 1;
-      }
-
-      recom_addElement.textContent = recom_add.toString();
-    });
+    
   </script>
 </div>
 	

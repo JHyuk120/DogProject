@@ -295,18 +295,6 @@
           <td style='vertical-align: middle;'>
             <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page == null? 1: param.now_page}&word=${param.word}">
               <div style='font-weight: bold;'>${gname }</div>
-               <del style="font-size: 0.9em;">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
-              
-               <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-               <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-              <c:choose> 
-                <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                    ${content.substring(0, 160)}.....
-                </c:when>
-                <c:when test="${content.length() <= 160 }">
-                    ${content}
-                </c:when>
-              </c:choose>
 
               <br>
               <div style = 'font-size: 0.95em;' >${rdate }</div>
