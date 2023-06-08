@@ -138,7 +138,8 @@
                 <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
                 <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-                <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
+                <img src="/cart/images/point.jpg" class="icon">
+                <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
               <%-- 레코드에 따라 ID를 고유하게 구분할 목적으로 id 값 생성, 예) 1_cnt, 2_cnt, c_cnt... --%>
@@ -173,7 +174,7 @@
           <div class='cart_label'>상품 금액</div>
           <div class='cart_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
           
-          <div class='cart_label'>포인트</div>
+          <div class='cart_label'>총 적립금</div>
           <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
           
           <div class='cart_label'>배송비</div>

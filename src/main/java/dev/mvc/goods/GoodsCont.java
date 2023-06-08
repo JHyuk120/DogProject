@@ -86,6 +86,7 @@ public class GoodsCont {
       int price = goodsVO.getPrice();  // 정가
       int dc = goodsVO.getDc();
       int saleprice = (int)(price - (price * (dc / 100.0)));// 할인된 금액//saleprice = price - price * (dc / 100)
+      int point = (int)( saleprice * (2 / 100.0)); //포인트
      
       String upDir =  Goods.getUploadDir();
       System.out.println("-> upDir: " + upDir);
@@ -116,6 +117,7 @@ public class GoodsCont {
       goodsVO.setThumb1(thumb1);      // 원본이미지 축소판
       goodsVO.setSize1(size1);  // 파일 크기
       goodsVO.setSaleprice(saleprice);
+      goodsVO.setPoint(point);
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 종료
       // ------------------------------------------------------------------------------
