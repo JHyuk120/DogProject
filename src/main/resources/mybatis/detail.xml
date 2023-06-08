@@ -24,11 +24,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       ORDER BY detailno DESC
    </select>
 
+    <!-- 관리자가 보는 고객 주문 사항 -->
    <select id="order_list" resultType="dev.mvc.detail.DetailVO">
       SELECT d.detailno, d.memberno, d.payno, d.goodsno, d.cnt, d.tot, d.stateno, d.rdate, g.gname
       FROM detail d, goods g
       WHERE d.goodsno = g.goodsno
       ORDER BY detailno DESC
    </select>
+   
+   <!-- 배송 상태 변경 -->
+   <update id="update_stateno" parameterType="int">
+     update detail
+     set stateno = stateno + 1
+     where detailno = #{detailno}
+     
+  </update>
+   
 
 </mapper>

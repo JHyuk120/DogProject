@@ -76,15 +76,15 @@ $(function(){
       <TD class=td_basic>${detailno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
       <TD class=td_basic><A href="/goods/read.do?goodsno=${goodsno}">${goodsno}</A></TD>
-      <TD class='td_left'>${gname}</TD>
-      <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
+      <TD class='td_basic'>${gname}</TD>
+      <TD class='td_basic'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
       <TD class='td_basic'>
         <c:choose>
           <c:when test="${stateno == 1}">상품 준비중</c:when>
-          <c:when test="${stateno == 2}">배달중</c:when>
-          <c:when test="${stateno == 3}">배달 완료</c:when>
+          <c:when test="${stateno == 2}">배송중</c:when>
+          <c:when test="${stateno == 3}">배송 완료</c:when>
         </c:choose>
       </TD>
       

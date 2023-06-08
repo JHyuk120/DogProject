@@ -25,5 +25,12 @@ public interface DetailDAOInter {
    * @return
    */
   public ArrayList<DetailVO> order_list();
+  
+  /**
+   * 배송 상태 변경
+   * @param detailno
+   * @return
+   */
+  public int update_stateno(int detailno);
 
 }

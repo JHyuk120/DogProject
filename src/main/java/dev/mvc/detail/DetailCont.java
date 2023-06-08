@@ -88,15 +88,32 @@ public class DetailCont {
     
     ModelAndView mav = new ModelAndView();
         
-        if (this.adminProc.isAdmin(session) == true) {
-          mav.setViewName("/detail/order_list");
+    if (this.adminProc.isAdmin(session) == true) {
+      mav.setViewName("/detail/order_list");
     
-          ArrayList<DetailVO> list_a = this.detailProc.order_list();
-          mav.addObject("list", list_a);
+      ArrayList<DetailVO> list_a = this.detailProc.order_list();
+      mav.addObject("list", list_a);
           
-        } else {
-          mav.setViewName("/admin/login_need");
-        }
+    } else {
+      mav.setViewName("/admin/login_need");
+    }
+    
+    return mav;
+  }
+  
+  
+  /**
+   * 
+   */
+  @RequestMapping(value="/detail/update_stateno.do", method = RequestMethod.GET)
+  public ModelAndView update_stateno(int detailno) {
+    ModelAndView mav = new ModelAndView();
+    
+    int stateno = this.detailProc.update_stateno(detailno);
+    if (stateno == 1) {
+      mav.setViewName("redirect:/detail/order_list.do");
+    }
+    mav.addObject("stateno", stateno);
     
     return mav;
   }
