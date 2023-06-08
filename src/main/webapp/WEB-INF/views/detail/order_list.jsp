@@ -80,7 +80,7 @@ $(function(){
         <c:choose>
           <c:when test="${stateno == 1}"><a href="./update_stateno.do?detailno=${detailno }" title="상품 준비중"><img src="/detail/images/b1.png" class=icon2></a></c:when>
           <c:when test="${stateno == 2}"><a href="./update_stateno.do?detailno=${detailno }" title="배송중"><img src="/detail/images/b2.png" class=icon2></a></c:when>
-          <c:when test="${stateno == 3}"><a title="배송 완료"><img src="/detail/images/b3.png" class=icon2></a></c:when>
+          <c:when test="${stateno == 3}"><img src="/detail/images/b3.png" class=icon2 title="배송 완료"></c:when>
         </c:choose>
       </TD>
       

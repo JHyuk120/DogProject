@@ -82,9 +82,9 @@ $(function(){
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
       <TD class='td_basic'>
         <c:choose>
-          <c:when test="${stateno == 1}">상품 준비중</c:when>
-          <c:when test="${stateno == 2}">배송중</c:when>
-          <c:when test="${stateno == 3}">배송 완료</c:when>
+          <c:when test="${stateno == 1}"><img src="/detail/images/b1.png" class=icon2 title="상품 준비중"></c:when>
+          <c:when test="${stateno == 2}"><img src="/detail/images/b2.png" class=icon2 title="배송중"></c:when>
+          <c:when test="${stateno == 3}"><img src="/detail/images/b3.png" class=icon2 title="배송 완료"></c:when>
         </c:choose>
       </TD>
       
