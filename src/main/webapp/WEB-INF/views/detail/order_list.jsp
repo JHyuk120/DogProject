@@ -29,17 +29,16 @@ $(function(){
 <c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
-    ${sessionScope.mname }님 주문 결제 상세 내역
+    고객님의 주문 사항
   </DIV>
    
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
-      <col style='width: 5%;'/>
-      <col style='width: 5%;'/>
+      <col style='width: 8%;'/>
+      <col style='width: 7%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 30%;'/>
-      <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
@@ -52,7 +51,6 @@ $(function(){
       <TH class='th_bs'>회원<br>번호</TH>
       <TH class='th_bs'>상품<br>번호</TH>
       <TH class='th_bs'>상품명</TH>
-      <TH class='th_bs'>가격</TH>
       <TH class='th_bs'>수량</TH>
       <TH class='th_bs'>금액</TH>
       <TH class='th_bs'>배송상태</TH>
@@ -65,7 +63,6 @@ $(function(){
       <c:set var="memberno" value ="${detailVO.memberno}" />
       <c:set var="goodsno" value ="${detailVO.goodsno}" />
       <c:set var="gname" value ="${detailVO.gname}" />
-      <c:set var="saleprice" value ="${detailVO.saleprice}" />
       <c:set var="cnt" value ="${detailVO.cnt}" />
       <c:set var="tot" value ="${detailVO.tot}" />
       <c:set var="stateno" value ="${detailVO.stateno}" />
@@ -76,8 +73,7 @@ $(function(){
       <TD class=td_basic>${detailno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
       <TD class=td_basic><A href="/goods/read.do?goodsno=${goodsno}">${goodsno}</A></TD>
-      <TD class='td_left'>${gname}</TD>
-      <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
+      <TD class='td_basic'>${gname}</TD>
       <TD class='td_basic'>${cnt }</TD>
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
       <TD class='td_basic'>
@@ -94,19 +90,9 @@ $(function(){
     </c:forEach>
     
   </TABLE>
-  
-  <table class="table table-striped" style='width: 100%;'>
-    <TR>
-      <TD colspan="10"  style="text-align: right; font-size: 1.3em;">
-        배송비: <fmt:formatNumber value="${baesong_tot }" pattern="#,###" />  
-        총 주문 금액: <fmt:formatNumber value="${total_order }" pattern="#,###" />  
-      </TD>
-    </TR>  
-  </table>    
    
   <DIV class='bottom_menu'>
     <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
-    <button type='button' onclick="location.href='/pay/pay_list.do?memberno=${memberno}'" class="btn btn-primary">결제 목록</button>
   </DIV>
 </DIV>
  

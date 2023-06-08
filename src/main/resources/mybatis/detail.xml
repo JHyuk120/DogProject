@@ -3,21 +3,32 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
 <mapper namespace="dev.mvc.detail.DetailDAOInter">
 
-  <insert id="create" parameterType="dev.mvc.detail.DetailVO">
-    INSERT INTO detail(detailno, memberno, payno, goodsno, cnt, tot, stateno, rdate)
-    VALUES (detail_seq.nextval, #{memberno}, #{payno}, #{goodsno}, #{cnt}, #{tot}, #{stateno}, sysdate)
-  </insert> 
-  
-  <!-- 회원별 주문 결재 목록 -->
-  <select id="detail_list" resultType="dev.mvc.detail.DetailVO" parameterType="HashMap">
-    SELECT d.detailno, d.memberno, d.payno, d.goodsno, d.cnt, d.tot, d.stateno, d.rdate,
-               g.gname, g.saleprice
-    FROM detail d, goods g 
-    WHERE (d.goodsno = g.goodsno) AND payno=#{payno} AND memberno = #{memberno}
-    ORDER BY detailno DESC
-  </select>
+   <insert id="create" parameterType="dev.mvc.detail.DetailVO">
+      INSERT INTO detail(detailno, memberno, payno, goodsno, cnt, tot, stateno,
+      rdate)
+      VALUES (detail_seq.nextval, #{memberno}, #{payno}, #{goodsno}, #{cnt},
+      #{tot}, #{stateno}, sysdate)
+   </insert>
+
+   <!-- 회원별 주문 결재 목록 -->
+   <select id="detail_list" resultType="dev.mvc.detail.DetailVO"
+      parameterType="HashMap">
+      SELECT d.detailno, d.memberno, d.payno, d.goodsno, d.cnt, d.tot, d.stateno,
+      d.rdate,
+      g.gname, g.saleprice
+      FROM detail d, goods g
+      WHERE (d.goodsno = g.goodsno) AND payno=#{payno} AND memberno = #{memberno}
+      ORDER BY detailno DESC
+   </select>
+
+   <select id="order_list" resultType="dev.mvc.detail.DetailVO">
+      SELECT d.detailno, d.memberno, d.payno, d.goodsno, d.cnt, d.tot, d.stateno, d.rdate, g.gname
+      FROM detail d, goods g
+      WHERE d.goodsno = g.goodsno
+      ORDER BY detailno DESC
+   </select>
 
 </mapper>
