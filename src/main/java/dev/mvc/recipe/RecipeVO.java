@@ -10,8 +10,8 @@ import lombok.ToString;
 public class RecipeVO {
     /** 컨텐츠 번호 */
     private int recipeno;
-    /** 관리자 번호 */
-    private int adminno;
+    /** 회원 번호 */
+    private int memberno;
     /** 품목 번호 */
     private int itemno;
     /** 제목 */
@@ -19,7 +19,7 @@ public class RecipeVO {
     /** 글 내용 */
     private String article = "";
     /** 추천수 */
-    private int recom;
+    private String recom;
     /** 조회수 */
     private int cnt = 0;
     /** 댓글수 */
@@ -72,7 +72,6 @@ public class RecipeVO {
     /** 현재 페이지 */
     private int now_page=1;
 
-   
 
 
 }

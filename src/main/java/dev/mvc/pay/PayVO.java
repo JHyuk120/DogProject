@@ -6,7 +6,7 @@ public class PayVO {
   private int goosno;
   private String tname  = "";
   private String ttel  = "";
-  private String tzipcode1  = "";
+  private String tzipcode  = "";
   private String taddress1  = "";
   private String taddress2  = "";
   private int amount = 1;
@@ -50,11 +50,11 @@ public class PayVO {
   public void setTtel(String ttel) {
     this.ttel = ttel;
   }
-  public String getTzipcode1() {
-    return tzipcode1;
+  public String getTzipcode() {
+    return tzipcode;
   }
-  public void setTzipcode1(String tzipcode1) {
-    this.tzipcode1 = tzipcode1;
+  public void setTzipcode(String tzipcode) {
+    this.tzipcode = tzipcode;
   }
   public String getTaddress1() {
     return taddress1;

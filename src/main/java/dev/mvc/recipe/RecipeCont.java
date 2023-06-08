@@ -18,6 +18,7 @@ import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.member.MemberProc;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
 import dev.mvc.reply.ReplyDAOInter;
@@ -82,7 +83,8 @@ public class RecipeCont {
   public ModelAndView create(HttpServletRequest request, HttpSession session, RecipeVO recipeVO,ReplyVO replyVO) {
     ModelAndView mav = new ModelAndView();
 
-    if (adminProc.isAdmin(session)) { // 관리자로 로그인한경우
+    if (memberProc.isMember(session)) { // 회원으로 로그인 한 경우
+      int memberno = (int)session.getAttribute("memberno");
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
@@ -113,7 +115,7 @@ public class RecipeCont {
         }
         
       }    
-      
+      recipeVO.setMemberno(memberno);
       recipeVO.setFile1(file1);   // 순수 원본 파일명
       recipeVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       recipeVO.setThumb1(thumb1);      // 원본이미지 축소판
@@ -135,6 +137,7 @@ public class RecipeCont {
       if (cnt == 1) {
         this.itemProc.update_cnt_add(recipeVO.getItemno()); //item테이블 글 수 증가
           mav.addObject("code", "create_success");
+          
           // itemProc.increaseCnt(recipeVO.getItemno()); // 글수 증가
       } else {
           mav.addObject("code", "create_fail");
@@ -149,7 +152,7 @@ public class RecipeCont {
       mav.setViewName("redirect:/recipe/msg.do"); 
 
     } else {
-      mav.setViewName("/admin/login_need"); // /WEB-INF/views/admin/login_need.jsp
+      mav.setViewName("/member/login_need"); // /WEB-INF/views/admin/login_need.jsp
     }
     
     
@@ -232,9 +235,9 @@ public class RecipeCont {
     ItemVO itemVO = this.itemProc.read(recipeVO.getItemno()); // 그룹 정보 읽기
     mav.addObject("itemVO", itemVO); 
     
-    //회원번호 : adminno -> 
-    AdminVO adminVO = this.adminProc.read(recipeVO.getAdminno());
-    String mname = adminVO.getMname();
+    //회원번호 : memberno -> 
+    MemberVO memberVO = this.memberProc.read(recipeVO.getMemberno());
+    String mname = memberVO.getMname();
     mav.addObject("mname", mname);
 
     mav.setViewName("/recipe/read"); // /WEB-INF/views/recipe/read.jsp
@@ -713,13 +716,35 @@ public class RecipeCont {
      return mav;
  }
    
-    //추천수(따봉)
+    //좋아요Y(추천수, 따봉)
    
-   @RequestMapping(value = "/recipe/recom_add.do", method = RequestMethod.GET)
-   public ModelAndView recom_add(int recipeno) {
+   @RequestMapping(value = "/recipe/recom_y.do", method = RequestMethod.GET)
+   public ModelAndView recom_y(int memberno) {
        ModelAndView mav = new ModelAndView();
 
-       int cnt = this.recipeProc.recom_add(recipeno);
+       int cnt = this.recipeProc.recom_y(memberno);
+
+       if (cnt == 1) {
+         
+           mav.setViewName("redirect:/recipe/read.do");
+
+       } else {
+           mav.addObject("code", "recom_add_fail");
+           mav.setViewName("/recipe/msg");
+       }
+
+       mav.addObject("cnt", cnt);
+
+       return mav;
+   }
+   
+ //좋아요N(추천수, 따봉)
+   
+   @RequestMapping(value = "/recipe/recom_n.do", method = RequestMethod.GET)
+   public ModelAndView recom_n(int memberno) {
+       ModelAndView mav = new ModelAndView();
+
+       int cnt = this.recipeProc.recom_y(memberno);
 
        if (cnt == 1) {
          

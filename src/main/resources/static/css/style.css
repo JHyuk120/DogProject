@@ -157,8 +157,8 @@
   }
     
   .fieldset_basic {
-    width: 90%; 
-    margin: 10px auto; 
+    width: 110%; 
+    margin: 1px auto; 
     border-top: none;
     border-right: none;
     border-bottom: none;
@@ -452,6 +452,10 @@
     width: 16px;
   }
   
+  .icon2{
+    width: 24px;
+  }
+  
   .input_word{
     width: 20%;
     padding-bottom: 2px;
@@ -461,6 +465,8 @@
  .hover{
     cursor: pointer;
  }
+
+ 
  
   
  

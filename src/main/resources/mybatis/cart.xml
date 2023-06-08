@@ -14,7 +14,7 @@
     SELECT t.cartno, g.goodsno, g.gname, g.thumb1, g.price, g.dc, g.saleprice, g.point, t.memberno, t.cnt, t.rdate 
     FROM goods g, cart t
     WHERE (g.goodsno = t.goodsno) AND t.memberno = #{memberno}
-    ORDER BY cartno ASC
+    ORDER BY cartno DESC
   </select>
   
   <!-- 수량 수정, id: update, 입력: CartVO, 리턴: int -->
