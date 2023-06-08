@@ -39,7 +39,7 @@ public class GoodsVO {
   
   /** 정가*/
   private int price;
-  /** 할인율*/
+  /** 할인율*/      
   private int dc;
   /** 할인된 가격*/
   private int saleprice ;

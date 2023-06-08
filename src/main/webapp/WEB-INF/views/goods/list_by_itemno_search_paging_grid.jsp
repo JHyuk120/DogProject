@@ -78,6 +78,7 @@
           <c:set var="price" value="${goodsVO.price }" />  
           <c:set var="dc" value="${goodsVO.dc }" />
           <c:set var="saleprice" value="${goodsVO.saleprice}" />  
+          <c:set var="point" value="${goodsVO.point}" />  
           <c:set var="content" value="${goodsVO.content }" />
           <c:set var="itemno" value="${goodsVO.itemno }" />
           <c:set var="goodsno" value="${goodsVO.goodsno }" />
@@ -85,7 +86,7 @@
           <c:set var="size1" value="${goodsVO.size1 }" />
         
           <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
-          <c:if test="${status.index % 8 == 0 && status.index != 0 }"> 
+          <c:if test="${status.index % 4 == 0&& status.index != 0 }"> 
 
           </c:if>
         
@@ -93,7 +94,7 @@
           <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
           
           <div onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'
-                    style="width: 18%; height: 250px; float: left; margin: 1%; padding: 0.5%; 
+                    style="width: 22%; height: 320px; float: left; margin: 1.5%; padding: 0.5%; 
                     background-color: rgba(255, 243, 254, 0.3); text-align: center;
                     border: 1px solid #000000;">
         
@@ -101,7 +102,7 @@
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
               <div style="padding-bottom: 10px;">
-              <img src="/dogproject/storage/${thumb1 }" style="width: 120%; height: 155px; ">
+              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 195px; ">
               </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
@@ -123,9 +124,13 @@
             </div>
           </strong>
          
-          <del style="font-size: 0.9em;">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+         
           <span style="color: #FF0000; font-size: 0.9em;">${dc} %</span>
           <strong style="font-size: 0.9em;">￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+           <del style="font-size: 0.8em;">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+          <img src="/cart/images/point.jpg" class="icon">
+          <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
+          
          
       </div>
       

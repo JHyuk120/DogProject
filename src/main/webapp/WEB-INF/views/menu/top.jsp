@@ -33,7 +33,7 @@
                             <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🦴${item }</a>
                           </c:when>
                           <c:otherwise>
-                            <a class="nav-link" href="/goods/list_by_itemno_search_paging_cart.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
+                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
                           </c:otherwise>
                       </c:choose>
                     </li>

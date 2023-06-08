@@ -152,7 +152,7 @@ public class RecipeCont {
       mav.setViewName("redirect:/recipe/msg.do"); 
 
     } else {
-      mav.setViewName("/admin/login_need"); // /WEB-INF/views/admin/login_need.jsp
+      mav.setViewName("/member/login_need"); // /WEB-INF/views/admin/login_need.jsp
     }
     
     

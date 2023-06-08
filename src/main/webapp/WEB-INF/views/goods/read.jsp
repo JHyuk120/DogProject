@@ -350,13 +350,14 @@ function reviewcnt(){
   
   <DIV class='menu_line'></DIV>
 
-  <fieldset class="fieldset_basic">
+<fieldset class="fieldset_basic">
+ 
     <ul>
       <li class="li_none">
         <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <IMG src="/dogproject/storage/${file1saved }" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
+                <IMG src="/dogproject/storage/${file1saved }" style="width: 30%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/dogproject/images/none1.png" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
@@ -391,10 +392,12 @@ function reviewcnt(){
       </li>   
     </ul>
   </fieldset>
+  
 
 </DIV>
  <%-- 댓글 조회 --%>
 
+<fieldset class="fieldset_basic">
  <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
     
@@ -428,7 +431,7 @@ function reviewcnt(){
 <script>
     document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
 </script>
-  
+    </fieldset>
    
  </FORM>    
  
