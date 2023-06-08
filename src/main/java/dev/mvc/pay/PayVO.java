@@ -3,7 +3,6 @@ package dev.mvc.pay;
 public class PayVO {
   private int payno;
   private int memberno;
-  private int goosno;
   private String tname  = "";
   private String ttel  = "";
   private String tzipcode  = "";
@@ -31,12 +30,6 @@ public class PayVO {
   }
   public void setMemberno(int memberno) {
     this.memberno = memberno;
-  }
-  public int getGoosno() {
-    return goosno;
-  }
-  public void setGoosno(int goosno) {
-    this.goosno = goosno;
   }
   public String getTname() {
     return tname;
