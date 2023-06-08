@@ -1,5 +1,6 @@
 package dev.mvc.detail;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,4 +20,10 @@ public interface DetailProcInter {
    */
   public List<DetailVO> detail_list(HashMap<String, Object> map);
 
+  /**
+   * 관리자가 보는 주문 사항
+   * @return
+   */
+  public ArrayList<DetailVO> order_list();
+  
 }

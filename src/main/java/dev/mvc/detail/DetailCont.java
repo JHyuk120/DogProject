@@ -1,5 +1,6 @@
 package dev.mvc.detail;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,11 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.admin.AdminProcInter;
+import dev.mvc.item.ItemVO;
+
 @Controller
 public class DetailCont {
   @Autowired 
   @Qualifier("dev.mvc.detail.DetailProc")
   private DetailProcInter detailProc;
+  
+  @Autowired 
+  @Qualifier("dev.mvc.admin.AdminProc")
+  private AdminProcInter adminProc;
   
   public DetailCont() {
     System.out.println("-> DetailCont created.");
@@ -68,5 +76,31 @@ public class DetailCont {
     
     return mav;
   }
+  
+  
+  /**
+   * 관리자가 보는 주문 사항
+   * http://localhost:9093/detail/order_list.do 
+   * @return
+   */
+  @RequestMapping(value = "/detail/order_list.do", method = RequestMethod.GET)
+  public ModelAndView order_list(HttpSession session) {
+    
+    ModelAndView mav = new ModelAndView();
+        
+        if (this.adminProc.isAdmin(session) == true) {
+          mav.setViewName("/detail/order_list");
+    
+          ArrayList<DetailVO> list_a = this.detailProc.order_list();
+          mav.addObject("list", list_a);
+          
+        } else {
+          mav.setViewName("/admin/login_need");
+        }
+    
+    return mav;
+  }
+  
+  
   
 }
