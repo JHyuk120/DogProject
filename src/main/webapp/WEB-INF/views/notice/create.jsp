@@ -18,23 +18,23 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢공지사항 등록</DIV>
+<DIV class='title_line'>📢 공지사항 글 등록</DIV>
 
 <DIV class='content_body'>
   
-  <DIV style="text-align: right; clear: both;">  
+  <DIV style="text-align: left; clear: both;">  
   <FORM name='frm' method='POST' action='./create.do'> 
     
     <div>
        <label>제목</label>
-       <input type='text' name='title' value='📢제목을 입력하시오' required="required" 
+       <input type='text' name='title' value='🖤제목을 입력하시오🖤' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     
     <div>
        <label>글</label>
        <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>
-📢글을 입력하시오
+✒️글을 입력하시오
 
 
 </textarea>

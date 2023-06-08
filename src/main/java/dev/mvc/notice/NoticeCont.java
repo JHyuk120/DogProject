@@ -131,10 +131,6 @@ public class NoticeCont {
     public ModelAndView list_all(NoticeVO noticeVO) {
       ModelAndView mav = new ModelAndView();
       
-      // 검색된 전체 글 수
-      int search_count = this.noticeProc.search_count(noticeVO);
-      mav.addObject("search_count", search_count);
-      
       ArrayList<NoticeVO> list = this.noticeProc.list_all();
       mav.addObject("list", list);
       
@@ -369,24 +365,7 @@ public class NoticeCont {
       // -------------------------------------------------------------------
           
       this.noticeProc.delete(noticeVO.getNoticeno()); // DBMS 삭제
-      
-          
-      // -------------------------------------------------------------------------------------
-      // 마지막 페이지의 마지막 레코드 삭제시의 페이지 번호 -1 처리
-      // -------------------------------------------------------------------------------------    
-      // 마지막 페이지의 마지막 10번째 레코드를 삭제후
-      // 하나의 페이지가 3개의 레코드로 구성되는 경우 현재 9개의 레코드가 남아 있으면
-      // 페이지수를 4 -> 3으로 감소 시켜야함, 마지막 페이지의 마지막 레코드 삭제시 나머지는 0 발생
-      int now_page = noticeVO.getNow_page();
-      if (noticeProc.search_count(noticeVO) % Notice.RECORD_PER_PAGE == 0) {
-        now_page = now_page - 1;
-        if (now_page < 1) {
-          now_page = 1; // 시작 페이지
-        }
-      }
-      // -------------------------------------------------------------------------------------
 
-      mav.addObject("now_page", now_page);
       
       return mav;
     }   

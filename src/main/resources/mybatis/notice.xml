@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
  <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.notice.NoticeVO">
-    SELECT noticeno, adminno, title, content, recom, cnt, replycnt, rdate,
+    SELECT noticeno, adminno, title, content, cnt, rdate,
               file1, file1saved, thumb1, size1
     FROM notice 
     ORDER BY noticeno DESC
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
-    SELECT noticeno, adminno, title, content, recom, cnt, replycnt, passwd, word, rdate,
+    SELECT noticeno, adminno, title, content, cnt, passwd, word, rdate,
               file1, file1saved, thumb1, size1
     FROM notice
     WHERE noticeno = #{noticeno}

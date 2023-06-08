@@ -46,12 +46,6 @@ import dev.mvc.tool.Tool;
     }
 
     @Override
-    public int search_count(NoticeVO noticeVO) {
-      int cnt=this.noticeDAO.search_count(noticeVO);
-      return cnt;
-    }
-
-    @Override
     public int password_check(NoticeVO noticeVO) {
       int cnt = this.noticeDAO.password_check(noticeVO);
       return cnt;

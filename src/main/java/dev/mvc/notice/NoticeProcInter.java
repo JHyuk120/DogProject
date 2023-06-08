@@ -21,12 +21,7 @@ public interface NoticeProcInter {
    * @return
    */
   public NoticeVO read(int noticeno);
-  
-  /**
-   * 검색된 레코드 개수 리턴
-   */
-  public int search_count(NoticeVO noticeVO);
-  
+
   /**
    * 패스워드 확인
    * @param noticeVO

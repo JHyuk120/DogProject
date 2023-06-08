@@ -9,11 +9,11 @@ CREATE TABLE notice(
         cnt                 NUMBER(7)       DEFAULT 0         NOT NULL,
         passwd              VARCHAR2(15)    NOT NULL,
         word                VARCHAR2(100)   NULL ,
-        rdate               DATE            NOT NULL
+        rdate               DATE            NOT NULL,
         file1               VARCHAR(100)    NULL,  -- 원본 파일명 image
         file1saved          VARCHAR(100)    NULL,  -- 저장된 파일명, image
         thumb1              VARCHAR(100)    NULL,   -- preview image
-        size1               NUMBER(10)      DEFAULT 0 NULL,  -- 파일 사이즈
+        size1               NUMBER(10)      DEFAULT 0 NULL  -- 파일 사이즈
 );
 COMMENT ON TABLE notice is '공지사항';
 COMMENT ON COLUMN notice.noticeno is '공지사항 번호';
@@ -39,4 +39,4 @@ CREATE SEQUENCE notice_seq
   CACHE 2                        -- 2번은 메모리에서만 계산
   NOCYCLE;                      -- 다시 1부터 생성되는 것을 방지
 
-
+commit;

@@ -17,16 +17,21 @@
     
 </head> 
  
-<body>
+<body style="background-color: #EFF8FB;">
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-  전체 글 목록
+  📢 전체 공지사항
 </DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
+  <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
+    <c:if test="${sessionScope.admin_id != null }">
+     <A href="./create.do"> ✒️공지사항 등록</A>
+    <span class='menu_divide' >│</span>
+    </c:if>
+    <A href="javascript:location.reload();">🔄새로고침</A>
   </ASIDE> 
   
   
