@@ -46,15 +46,20 @@ commit;
 
 
 -- 전체 목록
-SELECT detailno, memberno, payno, goodsno, cnt, tot, stateno, rdate
-FROM detail
+SELECT d.detailno, d.memberno, d.payno, d.goodsno, d.cnt, d.tot, d.stateno, d.rdate, g.gname
+FROM detail d, goods g
+WHERE d.goodsno = g.goodsno
 ORDER BY detailno DESC;
 
 --회원별 목록
 SELECT detailno, memberno, payno, goodsno, cnt, tot, stateno, rdate
 FROM detail
-WHERE memberno=1
+WHERE memberno=2
 ORDER BY detailno DESC;
+
+--배송상태 변경
+update detail set stateno = stateno + 1
+where detailno = 1;
 
 
 -- 수정: 개발 안함.

@@ -32,4 +32,10 @@ public class DetailProc implements DetailProcInter {
     return list_a;
   }
 
+  @Override
+  public int update_stateno(int detailno) {
+    int cnt = this.detailDAO.update_stateno(detailno);
+    return cnt;
+  }
+
 }
