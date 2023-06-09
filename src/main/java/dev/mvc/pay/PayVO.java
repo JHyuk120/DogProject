@@ -3,15 +3,14 @@ package dev.mvc.pay;
 public class PayVO {
   private int payno;
   private int memberno;
-  private int goosno;
-  private String tname;
-  private String ttel;
-  private String tzipcode1;
-  private String taddress1;
-  private String taddress2;
-  private int price;
-  private int ptype;
-  private String rdate;
+  private String tname  = "";
+  private String ttel  = "";
+  private String tzipcode  = "";
+  private String taddress1  = "";
+  private String taddress2  = "";
+  private int amount = 1;
+  private int ptype = 0;
+  private String rdate  = "";
   
   
   public String getRdate() {
@@ -32,12 +31,6 @@ public class PayVO {
   public void setMemberno(int memberno) {
     this.memberno = memberno;
   }
-  public int getGoosno() {
-    return goosno;
-  }
-  public void setGoosno(int goosno) {
-    this.goosno = goosno;
-  }
   public String getTname() {
     return tname;
   }
@@ -50,11 +43,11 @@ public class PayVO {
   public void setTtel(String ttel) {
     this.ttel = ttel;
   }
-  public String getTzipcode1() {
-    return tzipcode1;
+  public String getTzipcode() {
+    return tzipcode;
   }
-  public void setTzipcode1(String tzipcode1) {
-    this.tzipcode1 = tzipcode1;
+  public void setTzipcode(String tzipcode) {
+    this.tzipcode = tzipcode;
   }
   public String getTaddress1() {
     return taddress1;
@@ -68,11 +61,11 @@ public class PayVO {
   public void setTaddress2(String taddress2) {
     this.taddress2 = taddress2;
   }
-  public int getPrice() {
-    return price;
+  public int getamount() {
+    return amount;
   }
-  public void setPrice(int price) {
-    this.price = price;
+  public void setamount(int amount) {
+    this.amount = amount;
   }
   public int getPtype() {
     return ptype;

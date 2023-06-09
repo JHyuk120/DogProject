@@ -7,10 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.recipe.RecipeDAOInter"> 
     <!--  등록한 레코드 갯수 1 리턴 -->
   <insert id="create" parameterType="dev.mvc.recipe.RecipeVO">
-    INSERT INTO recipe(recipeno, adminno, itemno, title, article, 
+    INSERT INTO recipe(recipeno, memberno, itemno, title, article, 
                       passwd, word, file1, file1saved,
                       thumb1, size1, ingredient, rdate)
-    VALUES(recipe_seq.nextval, #{adminno}, #{itemno}, #{title}, #{article}, 
+    VALUES(recipe_seq.nextval, #{memberno}, #{itemno}, #{title}, #{article}, 
           #{passwd}, #{word}, #{file1}, #{file1saved}, 
           #{thumb1}, #{size1}, #{ingredient}, sysdate)
   </insert>
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
  <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.recipe.RecipeVO">
-    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
                       thumb1, size1, youtube, ingredient, review, star
     FROM recipe 
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
    <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_itemno" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
-    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
                       thumb1, size1, youtube, ingredient, review, star
     FROM recipe
@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
     <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
-    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
                       thumb1, size1, youtube, ingredient, review, star
     FROM recipe
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 카테고리별 검색 목록 -->
   <select id="list_by_itemno_search" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
-    SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt,
+    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
                       thumb1, size1, youtube, ingredient, review, star
     FROM recipe
@@ -89,13 +89,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
-   SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
+   SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
                 file1, file1saved, thumb1, size1,   youtube, r
      FROM (
-                SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
+                SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
                            file1, file1saved, thumb1, size1,   youtube, rownum as r
                 FROM (
-                          SELECT recipeno, adminno, itemno, title, article, recom, cnt, replycnt, rdate,
+                          SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
                                      file1, file1saved, thumb1, size1,   youtube
                           FROM recipe
                           <choose>
@@ -162,10 +162,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 조회수 -->
   <update id="cnt_add" parameterType="int">
-  update recipe
-  set cnt = cnt + 1
-  where recipeno = #{recipeno}
+  UPDATE recipe
+  SET cnt = cnt + 1
+  WHERE recipeno = #{recipeno}
   
+  </update>
+  
+  <!-- 좋아요 yes or no -->
+   <update id='recom_y' parameterType="int">
+    UPDATE recipe 
+    SET recom='Y' 
+    WHERE memberno=#{memberno}
+  </update>
+  
+  <update id='recom_n' parameterType="int">
+ UPDATE recipe 
+  SET recom='n' 
+  WHERE memberno=#{memberno}
   </update>
   
 </mapper> 

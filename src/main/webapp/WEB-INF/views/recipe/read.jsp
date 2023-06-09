@@ -13,6 +13,7 @@
 <c:set var="word" value="${recipeVO.word }" />
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
+<c:set var="recom" value="${recipeVO.recom }" />
  <c:set var="replycont" value="${replyVO.replycont}" />
 <c:set var="replyno" value="${replyVO.replyno}" />
 
@@ -56,7 +57,7 @@
 <DIV class='content_body'>
   <ASIDE class="aside_right">
     <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
-    <c:if test="${sessionScope.admin_id != null }">
+    <c:if test="${sessionScope.id != null }">
       <%--
       http://localhost:9091/recipe/create.do?itemno=1
       http://localhost:9091/recipe/create.do?itemno=2
@@ -109,6 +110,18 @@
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
+          <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
+          <div style="font-size: 0.7em;">${mname}${rdate }</div>
+          
+<div>
+  <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
+  <%-- 좋아요 <span id="recom_add">${recom}</span>개 --%>
+
+  <script>
+    
+  </script>
+</div>
+	
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
@@ -118,9 +131,7 @@
                 <img src="/recipe/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
               </c:otherwise>
             </c:choose>
-          
-         <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-         <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+        <br>
         ${article }
         </DIV>
       </li>
@@ -159,14 +170,18 @@
     <input type="hidden" name="adminno" value="${sessionScope.adminno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
-    <div>리뷰 수: ${replycnt.replycnt }</div>      
+    <div>🗨️댓글 ${replycnt.replycnt }개</div>      
     <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
     </td>
   </tr>
-   <button type='submit' class='btn btn-info btn-sm'>리뷰 등록</button>
+  <br>
+   <button type='submit' class='btn btn-info btn-sm'>댓글 등록</button>
  </FORM>    
+ <br>
  
  <!-- 댓글 목록 -->
+ 전체 댓글:
+ <br>
    <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
     <colgroup>
               <col style="width: 10%;"></col>

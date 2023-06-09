@@ -115,7 +115,7 @@
           </strong>
           
           <div style='font-size:0.8em;  word-break: break-all;'>
-             조회수 : ${cnt } | 
+             조회수 : ${cnt } | 좋아요 : ${recom }
           </div>
           
           <div style='font-size:0.8em;  word-break: break-all;'>

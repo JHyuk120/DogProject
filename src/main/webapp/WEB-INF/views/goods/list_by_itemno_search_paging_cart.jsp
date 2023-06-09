@@ -162,14 +162,14 @@
     
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null? 1: param.now_page}&word=${param.word }">기본 목록형</A>    
+    <A href="./list_by_itemno_search_paging_cart.do?itemno=${param.itemno }&now_page=${param.now_page == null? 1: param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
     <A href="./list_by_itemno_grid.do?itemno=${param.itemno }&now_page=${param.now_page == null? 1: param.now_page}&word=${param.word }">갤러리형</A>
     
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
+    <form name='frm' id='frm' method='get' action='./list_by_itemno_search_paging_cart.do'>
       <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
       <c:choose>
@@ -183,7 +183,7 @@
       <button type='submit' class='btn btn-custom btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' class='btn btn-custom btn-sm'
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
+                     onclick="location.href='./list_by_itemno_search_paging_cart.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
          <style>
           .btn-custom {
@@ -270,54 +270,43 @@
       <c:forEach var="goodsVO" items="${list}">
         <c:set var="gname" value="${goodsVO.gname }" />
         <c:set var="content" value="${goodsVO.content }" />
-        <c:set var="price" value="${goodsVO.price }" />
-        <c:set var="dc" value="${goodsVO.dc }" />
-        <c:set var="price" value="${goodsVO.saleprice }" />
-        <c:set var="price" value="${goodsVO.point }" />
+        <c:set var="price" value="${goodsVO.price }" />   
+        <c:set var="dc" value="${goodsVO.dc }" /> 
+        <c:set var="point" value="${goodsVO.point }" />
+        <c:set var="saleprice" value="${goodsVO.saleprice }" />
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
-        
-        
-
-   
 
       <tr style="height: 102px;" >
           <td style='vertical-align: middle; text-align: center;'>
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                  <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90;">
+                  <img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;">
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-                  <IMG src="/goods/images/none1.jpg" style="width: 120px; height: 90px;">
+                  <IMG src="/goods/images/none1.jpg" style="width: 150px; height: 150px;">
                 </c:otherwise>
               </c:choose>
             </a>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page }&word=${param.word}">
+            <a href="./read.do?goodsno=${goodsno }&now_page=${param.now_page == null? 1: param.now_page}&word=${param.word}">
               <div style='font-weight: bold;'>${gname }</div>
-              <div>${price }\</div>
-              <c:choose> 
-                <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                    ${content.substring(0, 160)}.....
-                </c:when>
-                <c:when test="${content.length() <= 160 }">
-                    ${content}
-                </c:when>
-              </c:choose>
+
               <br>
               <div style = 'font-size: 0.95em;' >${rdate }</div>
             </a>
           </td> 
           
            <td style='vertical-align: middle; text-align: center;'>
-            <del><fmt:formatNumber value="${goodsVO.price}" pattern="#,###" /></del><br>
-            <span style="color: #FF0000; font-size: 1.2em;">${goodsVO.dc} %</span>
-            <strong><fmt:formatNumber value="${goodsVO.saleprice}" pattern="#,###" /></strong><br>
-            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${goodsVO.point}" pattern="#,###" /></span>
+            <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+            <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+            <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+            <img src="/cart/images/point.jpg" class="icon">
+            <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
             <br>
             <button type='button' id='btn_cart' class="btn btn-info btn-sm" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">장바 구니</button><br>
             <button type='button' id='btn_ordering' class="btn btn-info btn-sm" onclick="cart_ajax(${goodsno })">바로 구매</button>  

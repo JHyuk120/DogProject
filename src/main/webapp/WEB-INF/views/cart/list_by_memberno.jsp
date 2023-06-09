@@ -107,15 +107,15 @@
           <c:forEach var="cartVO" items="${list }">  <%-- 상품 목록 출력 --%>
             <c:set var="cartno" value="${cartVO.cartno }" />
             <c:set var="goodsno" value="${cartVO.goodsno }" />
-            <c:set var="gname" value="${goodsVO.gname }" />
+            <c:set var="gname" value="${cartVO.gname }" />
             <c:set var="thumb1" value="${cartVO.thumb1 }" />
             <c:set var="price" value="${cartVO.price }" />
             <c:set var="dc" value="${cartVO.dc }" />
-            <c:set var="saleprice" value="${cartVO.saleprice }" />
+            <c:set var="saleprice" value="${cartVO.saleprice}" />
             <c:set var="point" value="${cartVO.point }" />
             <c:set var="memberno" value="${cartVO.memberno }" />
             <c:set var="cnt" value="${cartVO.cnt }" />
-            <c:set var="tot" value="${cartVO.tot }" />
+            <c:set var="tot" value="${cartVO.tot}" />     
             <c:set var="rdate" value="${cartVO.rdate }" />
             
             <tr> 
@@ -125,6 +125,7 @@
                     <%-- /static/contents/storage/ --%>
                     <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
                   </c:when>
+                  
                   <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
                     ${goodsVO.file1}
                   </c:otherwise>
@@ -134,10 +135,11 @@
                 <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
               </td> 
               <td style='vertical-align: middle; text-align: center;'>
-                <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-                <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
+                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+                <img src="/cart/images/point.jpg" class="icon">
+                <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
               <%-- 레코드에 따라 ID를 고유하게 구분할 목적으로 id 값 생성, 예) 1_cnt, 2_cnt, c_cnt... --%>
@@ -172,7 +174,7 @@
           <div class='cart_label'>상품 금액</div>
           <div class='cart_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
           
-          <div class='cart_label'>포인트</div>
+          <div class='cart_label'>총 적립금</div>
           <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
           
           <div class='cart_label'>배송비</div>
@@ -182,7 +184,7 @@
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
+          <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='get'>
             <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
           </form>
         <td>

@@ -55,14 +55,14 @@
   
   <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
     <input type="hidden" name="itemno" value="${param.itemno }">
-    <input type="hidden" name="adminno" value="1"> <%-- 관리자 개발후 변경 필요 --%>
+    
     
     <div>
        <label>제목</label>
        <input type='text' name='title' value='♥레시피 이름을 입력해주세요♥' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
-    <div>
+    
     <div>
        <label>재료</label>
        <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>

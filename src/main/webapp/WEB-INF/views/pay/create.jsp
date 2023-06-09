@@ -21,7 +21,7 @@
   $(function() { // 자동 실행
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_my_address').on('click', my_address);          // 나의 주소 가져오기
-    $('#btn_pay').on('click', send);                      // 결재
+    $('#btn_pay').on('click', send);                      // 결제
   });
 
   // 나의 주소 가져오기, jQuery ajax 요청
@@ -108,7 +108,7 @@
 
 <body>
 <c:import url="/menu/top.do" />
-<DIV class='title_line'>주문, 결재</DIV>
+<DIV class='title_line'>주문, 결제</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_left">
@@ -132,7 +132,7 @@
       <c:forEach var="cartVO" items="${list }">
         <c:set var="cartno" value="${cartVO.cartno }" />
         <c:set var="goodsno" value="${cartVO.goodsno }" />
-        <c:set var="title" value="${cartVO.title }" />
+        <c:set var="gname" value="${cartVO.gname }" />
         <c:set var="thumb1" value="${cartVO.thumb1 }" />
         <c:set var="price" value="${cartVO.price }" />
         <c:set var="dc" value="${cartVO.dc }" />
@@ -151,12 +151,12 @@
                 <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/goods/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
               </c:when>
               <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
-                ${goodsVO.file1}
+                <IMG src="/goods/images/none1.jpg" style="width: 120px; height: 90px;">
               </c:otherwise>
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="/goods/read.do?goodsno=${goodsno}"><strong>${title}</strong></a> 
+            <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
           </td> 
           <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
@@ -288,14 +288,14 @@
   
   <div style='margin-top: 20px; width: 100%; clear: both;'> </div>  
   <ASIDE class="aside_left" style='margin-top: 50px;'>
-    결재 정보<br>
+    결제 정보<br>
   </ASIDE> 
 
   <div class='menu_line'></div>
   <div style=" text-align: left;">
-    <label style="cursor: pointer;"><input type="radio" name="paytype" id="paytype" value="1" checked="checked"> 신용 카드</label>  
-    <label style="cursor: pointer;"><input type="radio" name="paytype" id="paytype" value="2"> 계좌 이체</label>  
-    <label style="cursor: pointer;"><input type="radio" name="paytype" id="paytype" value="3"> 직접 입금</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="1" checked="checked"> 신용 카드</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="2"> 모바일</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="3"> 포인트</label>  
   </div>
   
   <table class="table table-striped" style='margin-top: 20px; margin-bottom: 50px; width: 100%; clear: both;'>
@@ -315,8 +315,8 @@
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <button type='button' id='btn_pay' class='btn btn-info' style='font-size: 1.5em;'>결재하기</button>
-          <button type='button' id='btn_cart' class='btn btn-info' onclick="location.href='/cart/list_by_memberno.do'" 
+          <button type='button' id='btn_pay' class='btn btn-outline-primary btn-sm' style='font-size: 1.5em;'>결제하기</button>
+          <button type='button' id='btn_cart' class='btn btn-outline-dark btn-sm' onclick="location.href='/cart/list_by_memberno.do'" 
                       style='font-size: 1.5em;'>취소하기(쇼핑카트)</button>
         <td>
       </tr>

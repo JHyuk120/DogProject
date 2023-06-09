@@ -98,7 +98,7 @@ public class ReplyCont {
       mav.addObject("replyVO", reply2VO);
       
       
-      // 댓글 조회`
+      // 댓글 조회
       
       ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
       mav.addObject("list", list);

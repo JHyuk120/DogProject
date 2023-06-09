@@ -33,11 +33,20 @@
                             <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🦴${item }</a>
                           </c:when>
                           <c:otherwise>
-                            <a class="nav-link" href="/goods/list_by_itemno.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
+                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
                           </c:otherwise>
                       </c:choose>
                     </li>
                   </c:forEach>
+                  
+                  
+
+                  <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👨‍💻고객센터</a>
+                      <div class="dropdown-menu">                       
+                          <a class="dropdown-item" href="/notice/list_all.do">📢 공지사항</a>
+                      </div>
+                  </li>
                   
                   
                   <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
@@ -45,6 +54,8 @@
                       <div class="dropdown-menu">                       
                           <a class="dropdown-item" href="/member/create.do">🤹‍♂️ 회원 가입</a>
                           <a class="dropdown-item" href="/member/read.do">🏅 가입 정보</a>
+                          <a class="dropdown-item" href="/cart/list_by_memberno.do">🧺 장바구니</a>
+                          <a class="dropdown-item" href="/pay/pay_list.do">🧾결제 리스트</a>
                           <a class="dropdown-item" href="#">🌕 아이디 찾기</a>
                           <a class="dropdown-item" href="#">⭐ 비밀번호 찾기</a>
                           <a class="dropdown-item" href="/member/passwd_update.do">💫 비밀번호 변경</a>
@@ -52,6 +63,8 @@
                           <a class="dropdown-item" href="#">🥺 회원 탈퇴</a>
                       </div>
                   </li>
+                  
+                  
                   <li class="nav-item">
                     <c:choose>
                       <c:when test="${sessionScope.id == null}">
@@ -63,6 +76,7 @@
                     </c:choose>   
                   </li>
                 </ul>
+                
                 <ul class="navbar-nav float-right" style='margin-right: 20px'>
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
@@ -75,7 +89,8 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">🏡관리자</a>
                         <div class="dropdown-menu dropdown-menu-right">
                           <a class="dropdown-item" href='/item/list_all.do'>📒 카테고리 전체 목록</a>       
-                          <a class="dropdown-item" href='/member/list.do'>🙂 회원 목록</a>
+                          <a class="dropdown-item" href='/member/list.do'>👨‍👩‍👦 회원 목록</a>  
+                          <a class="dropdown-item" href='/detail/order_list.do'>🙂 고객 주문 사항</a>
                           <a class="dropdown-item" href='/admin/logout.do'>🔐 관리자 [${sessionScope.admin_id }] 로그아웃</a>
                         </div>
                       </li>

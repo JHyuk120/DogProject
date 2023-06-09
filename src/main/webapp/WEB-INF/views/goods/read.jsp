@@ -5,7 +5,9 @@
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="itemno" value="${goodsVO.itemno }" />
 <c:set var="gname" value="${goodsVO.gname }" />    
-<c:set var="price" value="${goodsVO.price }" />    
+<c:set var="price" value="${goodsVO.price }" />  
+<c:set var="dc" value="${goodsVO.dc }" />
+<c:set var="saleprice" value="${goodsVO.saleprice}" />  
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -30,16 +32,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
     
-<<<<<<< HEAD
 
+ <%-- 별점 스크립트 --%>
 <script type="text/javascript">
-<%-- 별점 스크립트 --%>
+
 function setStarRating(ratingValue) {
 
-    const starIds = ["star1", "star2", "star3", "star4", "star5"];
+    const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
     
     for (let i = 0; i < starIds.length; i++) {
         let starElement = document.getElementById(starIds[i]);
+
         // 정수 부분만 처리하고 소수 부분은 제외
         let intPart = Math.floor(ratingValue);
 
@@ -52,20 +55,61 @@ function setStarRating(ratingValue) {
     }
 
     document.getElementById('star-rating').value = ratingValue;
+
+    // rating-display의 내용을 ratingValue로 업데이트
     document.getElementById('rating-display').textContent = "("+ratingValue+")";
 }
-<!--리뷰 등록시 별점 체크-->
-function checkRatingValue() {
-    var ratingValue = document.getElementById('star-rating').value;
-    if (ratingValue == null || ratingValue == 0) {
-        alert("별점을 선택하세요.");
-        event.preventDefault();  // 폼 제출을 막음
-        return false;  // 폼 제출을 막음
-    } else {
-        return true;  // 폼 제출을 허용
-    }
-}
 
+function checkRatingValue() {
+    var ratingValue = ${sessionScope.ratingValue}; // 선택한 별점 확인
+    if (ratingValue == null || ratingValue === "" || ratingValue == 0 ) {
+        // 별점을 선택하지 않은 경우
+        alert('로그인이 필요합니다.');
+        return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 진행
+} 
+
+
+/*     function starcheck(ratingValue){
+        var ratingValue = document.getElementById('star-rating').value;
+    
+        if (!ratingValue || ratingValue < 1 || ratingValue > 5) {
+            alert("별점을 선택해주세요.");
+            return false; // 폼 제출을 중지
+        }
+        return true; // 폼 제출을 허용 
+    }
+ */
+/*    $('starcheck').submit(function(e) {
+        e.preventDefault(); // 폼의 기본 제출 동작을 중지합니다.
+
+        var ratingValue = parseFloat($('ratingValue').val()); // 별점 값 가져오기. 여기서 'rating'은 별점 입력 필드의 ID입니다.
+
+        if (!ratingValue || ratingValue < 1 || ratingValue > 5) {
+            alert("별점을 선택해주세요.");
+            return; // 폼 제출을 중지합니다.
+        }
+
+        // AJAX 요청 시작
+        $.ajax({
+            type: "POST",
+            url: "/path/to/your/server", // 별점을 처리할 서버 URL입니다.
+            data: {
+                rating: ratingValue
+            },
+            success: function(response) {
+                alert("성공적으로 제출되었습니다.");
+                // 필요한 경우 추가 처리
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // 오류 처리
+                alert("제출 실패: " + textStatus);
+            }
+        });
+    });
+*/
+    
 
 <!-- 리뷰 갯수 -->
 function reviewcnt(){
@@ -204,7 +248,7 @@ function reviewcnt(){
     }      
 </script>  
  
->>>>>>> c1d97ab04267b89dade664f98450226fc7eb4e0f
+
 </head> 
  
 <body>
@@ -237,7 +281,7 @@ function reviewcnt(){
 
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <A href="./list_by_itemno_search_paging_cart.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
     <A href="./list_by_itemno_grid.do?itemno=${itemno }&now_page=${param.now_page}&word=${param.word }">갤러리형</A>
     
@@ -306,13 +350,14 @@ function reviewcnt(){
   
   <DIV class='menu_line'></DIV>
 
-  <fieldset class="fieldset_basic">
+<fieldset class="fieldset_basic">
+ 
     <ul>
       <li class="li_none">
         <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <IMG src="/dogproject/storage/${file1saved }" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
+                <IMG src="/dogproject/storage/${file1saved }" style="width: 30%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/dogproject/images/none1.png" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
@@ -320,7 +365,9 @@ function reviewcnt(){
             </c:choose>
        
           <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-          <div>가격: ${price }\</div><br>     
+          <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
           <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
           ${content }
         </DIV>
@@ -345,10 +392,12 @@ function reviewcnt(){
       </li>   
     </ul>
   </fieldset>
+  
 
 </DIV>
  <%-- 댓글 조회 --%>
 
+<fieldset class="fieldset_basic">
  <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
     
@@ -360,17 +409,16 @@ function reviewcnt(){
     <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
  <!-- 댓글 평점 별  -->
     <tr>
-    <td width="100" rowspan="2">${sessionScope.id}</td>
-    <td width="100" rowspan="2">
-        <span class="star" id="star1" onclick="setStarRating(1)">&#9733;</span>
-        <span class="star" id="star2" onclick="setStarRating(2)">&#9733;</span>
-        <span class="star" id="star3" onclick="setStarRating(3)">&#9733;</span>
-        <span class="star" id="star4" onclick="setStarRating(4)">&#9733;</span>
-        <span class="star" id="star5" onclick="setStarRating(5)">&#9733;</span>
-        <input type="hidden" id="star-rating" />
-    </td>
-    <td width="100" rowspan="2" id="star-output"></td>
-
+        <div class="stars">
+         <td width="100" rowspan="2">${sessionScope.id } </td>
+      <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
+       <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
+      <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
+      <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
+      <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
+      <input type="hidden" id="star-rating" value="0"/>
+       <td width="100" rowspan="2" id="star-output"> </td>
+    </div>
     <td>
            <div id="rating-display" >(0)</div>
            <div>평점: ${ratingAVG } </div>
@@ -379,9 +427,11 @@ function reviewcnt(){
     </td>
   </tr>
 
-<button  id="submitBtn" type='submit' class='btn btn-info btn-sm'  onclick="checkRatingValue(event)">리뷰 등록</button>
-
-  
+<button  id="submitBtn" type='submit' class='btn btn-info btn-sm' >리뷰 등록</button>
+<script>
+    document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
+</script>
+    </fieldset>
    
  </FORM>    
  
@@ -415,13 +465,12 @@ function reviewcnt(){
         <c:set var="reviewcont" value="${reviewVO.reviewcont}" />
         <c:set var="rdate" value="${reviewVO.rdate}" />
         <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
-        <c:set var="mid" value="${memberVO.mid}" />
-         
+         <c:set var="mid" value="${memberVO.id}" />
          
         <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
-            <div>${reviewVO.mid }</div>
+           <div> ${reviewVO.mid }</div>
           </td>  
           
           <td style='vertical-align: middle;'>
@@ -452,14 +501,14 @@ function reviewcnt(){
             </div>
           </td>
           
-          <td style='vertical-align: middle; text-align: center;'>
+          <td style='vertical-align: middle;'>
             <div>${reviewcont}</div>
           </td> 
           
-          <td style='vertical-align: middle; text-align: center;'>
+          <td style='vertical-align: middle;'>
             <div>${rdate}</div>
           </td>
-          <td style='vertical-align: middle; text-align: center;'>
+          <td style='vertical-align: middle;'>
             <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           

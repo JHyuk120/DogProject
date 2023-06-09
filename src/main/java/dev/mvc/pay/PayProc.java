@@ -1,5 +1,7 @@
 package dev.mvc.pay;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,13 @@ public class PayProc implements PayProcInter {
     int cnt = this.payDAO.create(payVO);
     
     return cnt;
+  }
+
+
+  @Override
+  public List<PayVO> pay_list(int memberno) {
+    List<PayVO> list = this.payDAO.pay_list(memberno);
+    return list;
   }
 
   

@@ -92,5 +92,19 @@ public interface RecipeDAOInter {
    * @return
    */
   public int cnt_add (int recipeno);
+  
+  /**
+   * 좋아요 Y
+   * @param itemno
+   * @return
+   */
+  public int recom_y (int memberno);
+  
+  /**
+   * 좋아요 N
+   * @param itemno
+   * @return
+   */
+  public int recom_n (int memberno);
 
 }

@@ -62,20 +62,6 @@ public class MemberProc implements MemberProcInter {
       }
     }
     
-//    int grade = 99;
-//    
-//    // System.out.println("-> grade: " + session.getAttribute("grade"));
-//    if (session != null) {
-//      String id = (String)session.getAttribute("id");
-//      if (session.getAttribute("grade") != null) {
-//        grade = (int)session.getAttribute("grade");
-//      }
-//      
-//      if (id != null && grade <= 20){ // 관리자 + 회원
-//        sw = true;  // 로그인 한 경우
-//      }
-//    }
-    
     return sw;
   }
 

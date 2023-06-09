@@ -183,7 +183,7 @@
     <input type="hidden" name="memberno" value="${memberVO.memberno }">
     <div class="form_input"  style = "margin-bottom:10px;">
       <label>아이디:*</label> <br>
-      <input type='text' class="form-control form-control-sm" name='id' id='id' value="${memberVO.id} " required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
+      <input type='text' class="form-control form-control-sm" name='id' id='id' value="${memberVO.id }" required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
       <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-info btn-sm">중복확인</button>
     </div>   
     

@@ -273,6 +273,19 @@ import dev.mvc.tool.Tool;
         return cnt;
       }
 
+      @Override
+      public int recom_y(int memberno) {
+        int cnt = this.recipeDAO.recom_y(memberno);
+        return cnt;
+      }
+
+      @Override
+      public int recom_n(int memberno) {
+        int cnt = this.recipeDAO.recom_n(memberno);
+        return cnt;
+      }
+
+ 
 
 }
  
