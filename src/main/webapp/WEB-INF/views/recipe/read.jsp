@@ -193,7 +193,7 @@
     <thead>
       <tr>
         <th style='text-align: center;'>id</th>
-        <th style='text-align: center;'>리뷰</th>
+        <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
         <th style='text-align: center;'>수정/삭제</th>
       </tr>

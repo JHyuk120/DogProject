@@ -71,15 +71,6 @@ function checkRatingValue() {
     }
 }
 
-function checkRatingValue() {
-    var ratingValue = ${sessionScope.ratingValue}; // 선택한 별점 확인
-    if (ratingValue == null || ratingValue === "" || ratingValue == 0 ) {
-        // 별점을 선택하지 않은 경우
-        alert('로그인이 필요합니다.');
-        return false; // 폼 제출 중단
-    }
-    return true; // 폼 제출 진행
-} 
 
 <!-- 리뷰 갯수 -->
 function reviewcnt(){
