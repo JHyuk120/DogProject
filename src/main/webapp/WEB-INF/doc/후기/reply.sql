@@ -107,3 +107,13 @@ WHERE replyno=9;
 SELECT COUNT(*) as cnt
 FROM reply
 WHERE recipeno=6;
+
+-- 댓글 추천
+UPDATE reply
+SET recom =recom+ 1
+WHERE replyno=6;
+
+--댓글 추천 조회
+SELECT recom
+FROM reply
+WHERE replyno=6;

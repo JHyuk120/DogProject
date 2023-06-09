@@ -60,10 +60,12 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,r
   DELETE FROM reply
   WHERE replyno = #{replyno}
   </delete>
-  
+  <!-- 게시물별 댓글 수 조회 -->
   <select id="replycnt" parameterType="int" resultType="dev.mvc.reply.ReplyVO">
-  SELECT COUNT(*) as replycnt
+  SELECT COUNT(replyno) as replycnt
   FROM  reply
   WHERE recipeno = #{recipeno}
   </select> 
+
+  
  </mapper>

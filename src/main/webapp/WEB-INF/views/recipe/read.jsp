@@ -46,6 +46,11 @@
         return true; // 폼 제출 진행
     }
 
+    <!--댓글 추천 클릭시 on/off -->
+    function recom() {
+        
+    }
+
 </script>
 
 </head> 
@@ -186,7 +191,8 @@
    <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
     <colgroup>
               <col style="width: 10%;"></col>
-              <col style="width: 70%;"></col>
+              <col style="width: 60%;"></col>
+              <col style="width: 10%;"></col>
               <col style="width: 10%;"></col>
               <col style="width: 10%;"></col>
     </colgroup>
@@ -196,6 +202,7 @@
         <th style='text-align: center;'>id</th>
         <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
+        <th style='text-align: center;'>추천</th>
         <th style='text-align: center;'>수정/삭제</th>
       </tr>
      <tbody>
@@ -203,7 +210,8 @@
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
          <c:set var="mid" value="${memberVO.id}" />
-         
+         <c:set var="recom" value="${replyVO.recom}" />
+            
         <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
@@ -217,6 +225,12 @@
           <td style='vertical-align: middle; text-align: center;'>
             <div>${rdate}</div>
           </td>
+          
+          <td style='vertical-align: middle; text-align: center;'>
+            <div><a onclick="recom();">👍</a>${recom}</div>
+            
+          </td>
+          
           <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
