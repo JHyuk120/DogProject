@@ -58,7 +58,7 @@
     <tbody>
   <c:forEach var="noticeVO" items="${list}">
         <c:set var="title" value="${noticeVO.title }" />
-        <c:set var="article" value="${noticeVO.article }" />
+        <c:set var="content" value="${noticeVO.content }" />
         <c:set var="noticeno" value="${noticeVO.noticeno }" />
         <c:set var="thumb1" value="${noticeVO.thumb1 }" />
         
@@ -81,11 +81,11 @@
          <a href="./read.do?noticeno=${noticeno }" style="display: block; width: 100%; height: 100%;">
           <div style='font-weight:bold;'>${title }</div>
             <c:choose>
-              <c:when test="${article.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
-                  ${article.substring(0, 160)}.....
+              <c:when test="${content.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
+                  ${content.substring(0, 160)}.....
               </c:when>
-              <c:when test="${article.length() <= 160 }">
-                  ${article}
+              <c:when test="${content.length() <= 160 }">
+                  ${content}
               </c:when>
             </c:choose>
             

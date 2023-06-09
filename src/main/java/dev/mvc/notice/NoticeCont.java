@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.item.ItemProcInter;
 import dev.mvc.notice.NoticeVO;
 import dev.mvc.notice.Notice;
 import dev.mvc.reply.ReplyVO;
@@ -38,7 +39,7 @@ public class NoticeCont {
   
   //등록품  http://localhost:9093/notice/create.do
   @RequestMapping(value = "/notice/create.do", method = RequestMethod.GET)
-  public ModelAndView create(HttpSession session) {
+  public ModelAndView create(HttpSession session, NoticeVO noticeVO) {
 
     ModelAndView mav = new ModelAndView();
     
@@ -54,10 +55,11 @@ public class NoticeCont {
  
   //등록 처리
   @RequestMapping(value = "/notice/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, HttpSession session, NoticeVO noticeVO,ReplyVO replyVO) {
+  public ModelAndView create(HttpServletRequest request, HttpSession session, NoticeVO noticeVO) {
     ModelAndView mav = new ModelAndView();
 
     if (adminProc.isAdmin(session)) { // 관리자로 로그인한경우
+      
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
@@ -88,6 +90,8 @@ public class NoticeCont {
         }
         
       }    
+      int adminno = (int)(session.getAttribute("adminno"));
+      noticeVO.setAdminno(adminno);
       
       noticeVO.setFile1(file1);   // 순수 원본 파일명
       noticeVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
@@ -99,10 +103,14 @@ public class NoticeCont {
       
       // Call By Reference: 메모리 공유, Hashcode 전달
       int cnt = this.noticeProc.create(noticeVO); 
+     
+      if (cnt == 1) {
+        mav.addObject("code", "create_success");
+          // itemProc.increaseCnt(goodsVO.getItemno()); // 글수 증가
+      } else {
+          mav.addObject("code", "create_fail");
+      }
       
-      mav.addObject("cnt", cnt); 
-      
-
       mav.addObject("url", "/notice/msg"); // msg.jsp, redirect parameter 적용
       mav.setViewName("redirect:/notice/msg.do"); 
 
