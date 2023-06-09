@@ -7,7 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Daeng Kit</title>
+<title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>itle>
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
@@ -151,7 +152,7 @@
                 <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/goods/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
               </c:when>
               <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
-                <IMG src="/goods/images/none1.jpg" style="width: 120px; height: 90px;">
+               <IMG src="/recipe/images/ee.png" style="width: 90%; height: 90px; margin-bottom:4px; margin-top:4px; "><br>
               </c:otherwise>
             </c:choose>
           </td>  

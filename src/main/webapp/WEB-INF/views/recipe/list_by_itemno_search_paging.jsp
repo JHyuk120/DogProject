@@ -7,7 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Daeng Kit</title>
+<title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -21,7 +22,7 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-🦴 ${itemVO.item } 💛 ${search_count }개 💛
+<img src="/recipe/images/bone3.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }<img src="/recipe/images/arrow.png" class="icon" style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
 
 </DIV>
 
@@ -100,7 +101,7 @@
         <c:set var="thumb1" value="${recipeVO.thumb1 }" />
         <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
         
-         <tr style="height: 112px; onclick="location.href='./read.do?recipeno=${recipeno }' "class='hover'>
+         <tr style="height: 102px; onclick="location.href='./read.do?recipeno=${recipeno }' "class='hover'>
         <td style='vertical-align: middle;   background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;'>
         <a href="./read.do?recipeno=${recipeno }">
             <c:choose>
@@ -109,7 +110,7 @@
               <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90px;">
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/recipe/images/none1.png" style="width: 120px; height: 90px;">
+              <IMG src="/recipe/images/ee.png" style="width: 100%; height: 120px; margin-bottom:4px; margin-top:4px; "><br>
               </c:otherwise>
             </c:choose>
             </a>
