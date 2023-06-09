@@ -66,7 +66,17 @@
     %>
         <TR>
         <TD class='td_bs'><%= itemVO.getSeqno() %></TD>
-        <TD><A href="/contents/list_by_itemno.do?itemno=<%=itemVO.getItemno() %>" ><%=itemVO.getItem() %></A></TD>
+        <%
+        if (itemVO.getItemno() == 2){
+          %>
+          <TD><A href="/goods/list_by_itemno_grid.do?itemno=<%=itemVO.getItemno() %>&now_page=1" ><%=itemVO.getItem() %></A></TD>  
+          <%
+        } else {
+          %>
+          <TD><A href="/recipe/list_by_itemno.do?itemno=<%=itemVO.getItemno() %>&now_page=1" ><%=itemVO.getItem() %></A></TD>
+          <%
+        }
+        %>
         <TD class='td_bs'><%=itemVO.getCnt() %></TD>
          <TD class='td_bs'>
          <a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/item/images/update.png" class=icon></a>

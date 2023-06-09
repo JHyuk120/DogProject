@@ -103,7 +103,7 @@ public class DetailCont {
   
   
   /**
-   * 
+   * stateno 증가 (배송 상태)
    */
   @RequestMapping(value="/detail/update_stateno.do", method = RequestMethod.GET)
   public ModelAndView update_stateno(int detailno) {

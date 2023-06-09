@@ -4,7 +4,7 @@ CREATE TABLE recom(
     recomno                     NUMBER(10)     NOT NULL    PRIMARY KEY,
     memberno                       NUMBER(10)    NOT NULL ,
     recipeno                          NUMBER(10)    NOT NULL ,
-    haddu                              CHAR(1)                 DEFAULT 'N'     NOT NULL,
+    haddu                              NUMBER(1)                 DEFAULT 0     NOT NULL,
   FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO),
   FOREIGN KEY (RECIPENO) REFERENCES RECIPE (RECIPENO)
 );
@@ -26,12 +26,13 @@ CREATE SEQUENCE recom_seq
   
   commit;
   
-  select count(haddu) from recom where haddu = 'N';
+  select count(haddu) from recom where haddu = 1 and recipeno=9;
   
-  update recom set haddu = 'Y' where recipeno = 9;
-  update recom set haddu = 'N' where recipeno = 9;
+  update recom set haddu = 1 where recipeno = 9;
+  update recom set haddu = 0 where recipeno = 9;
   
 INSERT INTO recom(recomno, memberno, recipeno, haddu)
-VALUES (recom_seq.nextval, 7, 9, 'N');
+VALUES (recom_seq.nextval, 7, 9, 0);
 
 select haddu from recom;
+select * from recom;
