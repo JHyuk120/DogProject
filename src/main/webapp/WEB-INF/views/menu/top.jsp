@@ -40,22 +40,18 @@
                       </c:choose>
                     </li>
                   </c:forEach>
-                  
-                  
 
-                  <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
+                  <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👨‍💻고객센터</a>
                       <div class="dropdown-menu">                       
                           <a class="dropdown-item" href="/notice/list_all.do">📢 공지사항</a>
                       </div>
                   </li>
                   
-                  
                   <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
                        <img src="/menu/images/pcircle.svg" class="icon"  style='margin-left:5px'>&nbsp;회원</a>
                       <div class="dropdown-menu">                       
-<<<<<<< HEAD
                           <a class="dropdown-item" href="/member/create.do">
                            <img src="/menu/images/pheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 가입</a>
                           <a class="dropdown-item" href="/member/read.do">
@@ -74,17 +70,6 @@
                           <img src="/menu/images/pg.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                           <a class="dropdown-item" href="#">
                            <img src="/menu/images/px.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
-=======
-                          <a class="dropdown-item" href="/member/create.do">🤹‍♂️ 회원 가입</a>
-                          <a class="dropdown-item" href="/member/read.do">🏅 가입 정보</a>
-                          <a class="dropdown-item" href="/cart/list_by_memberno.do">🧺 장바구니</a>
-                          <a class="dropdown-item" href="/pay/pay_list.do">🧾결제 리스트</a>
-                          <a class="dropdown-item" href="#">🌕 아이디 찾기</a>
-                          <a class="dropdown-item" href="#">⭐ 비밀번호 찾기</a>
-                          <a class="dropdown-item" href="/member/passwd_update.do">💫 비밀번호 변경</a>
-                          <a class="dropdown-item" href="/member/update.do">✍ 회원 정보 수정</a>
-                          <a class="dropdown-item" href="#">🥺 회원 탈퇴</a>
->>>>>>> 12af8a306246e27691e77c775dd1ebf8aa37e87a
                       </div>
                   </li>
                   
