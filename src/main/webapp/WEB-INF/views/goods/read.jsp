@@ -59,6 +59,17 @@ function setStarRating(ratingValue) {
     // rating-display의 내용을 ratingValue로 업데이트
     document.getElementById('rating-display').textContent = "("+ratingValue+")";
 }
+<!--리뷰 등록시 별점 체크-->
+function checkRatingValue() {
+    var ratingValue = document.getElementById('star-rating').value;
+    if (ratingValue == null || ratingValue == 0) {
+        alert("별점을 선택하세요.");
+        event.preventDefault();  // 폼 제출을 막음
+        return false;  // 폼 제출을 막음
+    } else {
+        return true;  // 폼 제출을 허용
+    }
+}
 
 function checkRatingValue() {
     var ratingValue = ${sessionScope.ratingValue}; // 선택한 별점 확인
@@ -69,47 +80,6 @@ function checkRatingValue() {
     }
     return true; // 폼 제출 진행
 } 
-
-
-/*     function starcheck(ratingValue){
-        var ratingValue = document.getElementById('star-rating').value;
-    
-        if (!ratingValue || ratingValue < 1 || ratingValue > 5) {
-            alert("별점을 선택해주세요.");
-            return false; // 폼 제출을 중지
-        }
-        return true; // 폼 제출을 허용 
-    }
- */
-/*    $('starcheck').submit(function(e) {
-        e.preventDefault(); // 폼의 기본 제출 동작을 중지합니다.
-
-        var ratingValue = parseFloat($('ratingValue').val()); // 별점 값 가져오기. 여기서 'rating'은 별점 입력 필드의 ID입니다.
-
-        if (!ratingValue || ratingValue < 1 || ratingValue > 5) {
-            alert("별점을 선택해주세요.");
-            return; // 폼 제출을 중지합니다.
-        }
-
-        // AJAX 요청 시작
-        $.ajax({
-            type: "POST",
-            url: "/path/to/your/server", // 별점을 처리할 서버 URL입니다.
-            data: {
-                rating: ratingValue
-            },
-            success: function(response) {
-                alert("성공적으로 제출되었습니다.");
-                // 필요한 경우 추가 처리
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                // 오류 처리
-                alert("제출 실패: " + textStatus);
-            }
-        });
-    });
-*/
-    
 
 <!-- 리뷰 갯수 -->
 function reviewcnt(){
@@ -478,37 +448,37 @@ function reviewcnt(){
             <!-- 별점 이미지  -->
             <div> 
                 <c:choose>
-                  <c:when test="${ratingValue.toString() == ' 5'}">
-                    <img src="/review/images/star_5.png" style="width: 100px">
+                  <c:when test="${ratingValue.toString() == ' 5'}"><center>
+                    <img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
                   </c:when>
-                  <c:when test="${ratingValue.toString() == ' 4' }">
-                     <img src="/review/images/star_4.jpg" style="width: 100px">
+                  <c:when test="${ratingValue.toString() == ' 4' }"><center>
+                     <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
                   </c:when>
-                  <c:when test="${ratingValue.toString() == ' 3'}">
-                    <img src="/review/images/star_3.jpg" style="width: 100px">
+                  <c:when test="${ratingValue.toString() == ' 3'}"><center>
+                    <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
                   </c:when>
-                  <c:when test="${ratingValue.toString() == ' 2'}">
-                    <img src="/review/images/star_2.png" style="width: 100px">
+                  <c:when test="${ratingValue.toString() == ' 2'}"><center>
+                    <img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
                   </c:when>
-                  <c:when test="${ratingValue.toString() == ' 1'}">
-                    <img src="/review/images/star_1.png" style="width: 100px">
+                  <c:when test="${ratingValue.toString() == ' 1'}"><center>
+                    <img src="/review/images/star_1.png" style="width: 100px; text-align: center;"></center>
                   </c:when>
                    <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/review/images/star_0.png"> 
+                <img src="/review/images/star_0.png" style="width: 100px; text-align: center;"> 
               </c:otherwise>
                 </c:choose>
                 
             </div>
           </td>
           
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${reviewcont}</div>
           </td> 
           
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${rdate}</div>
           </td>
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           

@@ -439,19 +439,19 @@ function checkRatingValue() {
             <div> 
                 <c:choose>
                   <c:when test="${ratingValue.toString() == ' 5'}">
-                    <img src="/review/images/star_5.png" style="width: 100px">
+                    <img src="/review/images/star_5.png" style="width: 100px; text-align: center;" >
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 4' }">
-                     <img src="/review/images/star_4.jpg" style="width: 100px">
+                     <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;">
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 3'}">
-                    <img src="/review/images/star_3.jpg" style="width: 100px">
+                    <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;">
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 2'}">
-                    <img src="/review/images/star_2.png" style="width: 100px">
+                    <img src="/review/images/star_2.png" style="width: 100px; text-align: center;">
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 1'}">
-                    <img src="/review/images/star_1.png" style="width: 100px">
+                    <img src="/review/images/star_1.png" style="width: 100px; text-align: center;">
                   </c:when>
                    <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/review/images/star_0.png"> 
