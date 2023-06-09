@@ -6,7 +6,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
 <%-- /static/css/style.css --%> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 

@@ -23,7 +23,7 @@
 <DIV class='content_body'>
   
   <DIV style="text-align: left; clear: both;">  
-  <FORM name='frm' method='POST' action='./create.do'> 
+  <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data"> 
     
     <div>
        <label>제목</label>

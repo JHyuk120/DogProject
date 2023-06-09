@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
 import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 import dev.mvc.recipe.RecipeVO;
 import dev.mvc.reply.ReplyVO;
 
@@ -86,13 +87,13 @@ public class ReviewCont {
           mav.addObject("reviewVO", review2VO);
           
           
-          // 댓글 조회`
+          // 댓글 조회
           ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
           mav.addObject("list", list);
           String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
           mav.addObject("paging", paging);
-          
 
+          
         mav.setViewName("/review/review_update");
         return mav;
       }

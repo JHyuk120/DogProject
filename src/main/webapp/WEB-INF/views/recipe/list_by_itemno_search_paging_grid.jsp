@@ -7,8 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Daeng Kit</title>
- 
+<title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -21,7 +21,7 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-🦴 ${itemVO.item } 💛 ${search_count }개 💛
+<img src="/recipe/images/bone3.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }<img src="/recipe/images/arrow.png" class="icon" style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
     
     
 </DIV>
@@ -87,9 +87,8 @@
       <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
       
       <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class="hover"
-      style="width: 23.2%; height: 300px; float: left; margin: 0.9%; padding: 0.5%;
-      background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;
-      border: 1px solid #000000;">
+      style="width: 22%; height: 300px; float: left; margin: 1.5%; padding: 0.5%;
+      background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;">
   <!-- 나머지 연산자를 사용하여 홀수와 짝수를 판별하여 배경색 설정 -->
   
         <c:choose> 
@@ -98,7 +97,7 @@
             <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 200px;">
           </c:when>
           <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/recipe/images/none1.png -->
-            <IMG src="/recipe/images/none1.png" style="width: 100%; height: 200px;">
+            <IMG src="/recipe/images/ee.png" style="width: 100%; height: 190px; margin-bottom:20px; margin-top:8px; "><br>
           </c:otherwise>
         </c:choose>
           <strong>

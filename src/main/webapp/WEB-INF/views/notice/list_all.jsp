@@ -27,6 +27,7 @@
 <DIV class='content_body'>
   <ASIDE class="aside_right">
   <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
+  
     <c:if test="${sessionScope.admin_id != null }">
      <A href="./create.do"> ✒️공지사항 등록</A>
     <span class='menu_divide' >│</span>
@@ -34,31 +35,60 @@
     <A href="javascript:location.reload();">🔄새로고침</A>
   </ASIDE> 
   
+  <DIV style="text-align: right; clear: both;">  
+    <form name='frm' id='frm' method='get' action='./list_by_noticeno.do'>
+      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>  <%-- 게시판의 구분 --%>
+      
+      <c:choose>
+        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
+          <input type='text' name='word' id='word' value='${param.word }' class='input_word'>
+        </c:when>
+        <c:otherwise> <%-- 검색하지 않는 경우 --%>
+          <input type='text' name='word' id='word' value='' class='input_word'>
+        </c:otherwise>
+      </c:choose>
+      <button type="submit" class="btn btn-custom btn-sm">검색</button>
+      <c:if test="${param.word.length() > 0 }">
+        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_all'">검색 취소</button>
+      </c:if>
+          <style>
+          .btn-custom {
+            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+          }
+          </style>
+    </form>
+  </DIV>
   
-
   <DIV class='menu_line'></DIV>
   
-  <table class="table table-striped" style='width: 100%;'>
+  <table class="table table-striped">
     <colgroup>
     <c:choose>
         <c:when test="${sessionScope.admin_id != null }">
-      <col style="width: 10%;"></col>
-      <col style="width: 80%;"></col>
+      <col style="width: 10%; "></col>
+      <col style="width: 50%;"></col>
+      <col style="width: 30%;"></col>
       <col style="width: 10%;"></col>
         </c:when>
-        <c:otherwise>
-      <col style="width: 10%;"></col>
-      <col style="width: 90%;"></col>
-        </c:otherwise>
     </c:choose>
     
     </colgroup>
 
-  
-    <tbody>
+<thead>
+  <tr>
+    <th style="text-align: center;">번호</th>
+    <th style="text-align: center;">제목</th>
+    <th style="text-align: center;">날짜</th>
+    <th style="text-align: center;">조회수</th>
+  </tr>
+</thead>
+
+ 
+ <tbody>
   <c:forEach var="noticeVO" items="${list}">
         <c:set var="title" value="${noticeVO.title }" />
-        <c:set var="article" value="${noticeVO.article }" />
+        <c:set var="content" value="${noticeVO.content }" />
         <c:set var="noticeno" value="${noticeVO.noticeno }" />
         <c:set var="thumb1" value="${noticeVO.thumb1 }" />
         
@@ -81,11 +111,11 @@
          <a href="./read.do?noticeno=${noticeno }" style="display: block; width: 100%; height: 100%;">
           <div style='font-weight:bold;'>${title }</div>
             <c:choose>
-              <c:when test="${article.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
-                  ${article.substring(0, 160)}.....
+              <c:when test="${content.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
+                  ${content.substring(0, 160)}.....
               </c:when>
-              <c:when test="${article.length() <= 160 }">
-                  ${article}
+              <c:when test="${content.length() <= 160 }">
+                  ${content}
               </c:when>
             </c:choose>
             
@@ -94,9 +124,24 @@
 
         </tr>
   
+    <tr style="height: 40px;">
+      <td style='vertical-align: middle; text-align: center;'>
+        ${list.size() - loop.index}
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+        <a href="./read.do?noticeno=${noticeno}" style="display: block;">
+          <div style='font-weight:bold;'>${title}</div>
+        </a>
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+        <div>${rdate}</div>
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+        <div>${cnt}</div>
+      </td>
+    </tr>
   </c:forEach>
-
-    </tbody>
+</tbody>
   </table>
 </DIV>
 
