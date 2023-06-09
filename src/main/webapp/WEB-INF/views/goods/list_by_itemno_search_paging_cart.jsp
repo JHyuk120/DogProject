@@ -143,7 +143,7 @@
  
 <DIV class='title_line'>
 
-🦴 ${itemVO.item } 💛 ${search_count }개 💛
+<img src="/goods/images/vege.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }<img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
 </DIV>
 
 <DIV class='content_body'>
@@ -287,7 +287,7 @@
                   <img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;">
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-                  <IMG src="/goods/images/none1.jpg" style="width: 150px; height: 150px;">
+                  <IMG src="/goods/images/ee.png" style="width: 100%; height: 120px; ">
                 </c:otherwise>
               </c:choose>
             </a>

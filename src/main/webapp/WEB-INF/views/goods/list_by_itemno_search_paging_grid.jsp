@@ -7,7 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Dog#</title>
+<title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,7 +20,7 @@
   <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-🦴 ${itemVO.item } 💛 ${search_count }개 💛
+<img src="/goods/images/vege.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }<img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
     
 </DIV>
 
@@ -94,20 +95,19 @@
           <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
           
           <div onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'
-                    style="width: 22%; height: 320px; float: left; margin: 1.5%; padding: 0.5%; 
-                    background-color: rgba(255, 243, 254, 0.3); text-align: center;
-                    border: 1px solid #000000;">
+                    style="width: 22%; height: 400px; float: left; margin: 1.5%; padding: 0.5%; 
+                    background-color: #FEFCE6; text-align: left;">
         
           <c:choose> 
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
               <div style="padding-bottom: 10px;">
-              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 195px; ">
+              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 270px; ">
               </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
             <div style="padding-bottom:10px;">
-              <IMG src="/goods/images/none1.jpg" style="width: 100%; height: 160px; ">
+              <IMG src="/goods/images/ee.png" style="width: 100%; height: 230px; ">
               </div>
             </c:otherwise>
           </c:choose>
@@ -127,7 +127,7 @@
          
           <span style="color: #FF0000; font-size: 0.9em;">${dc} %</span>
           <strong style="font-size: 0.9em;">￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-           <del style="font-size: 0.8em;">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+           <del style="font-size: 0.8em; color: #949494">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
           <img src="/cart/images/point.jpg" class="icon">
           <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
           
