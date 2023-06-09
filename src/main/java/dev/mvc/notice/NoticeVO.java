@@ -12,6 +12,7 @@ public class NoticeVO {
     private int noticeno;
     /** 관리자 번호 */
     private int adminno;
+
     /** 제목 */
     private String title = "";
     /** 내용 */
@@ -54,6 +55,9 @@ public class NoticeVO {
     
     /** 현재 페이지 */
     private int now_page=1;
+
+
+    
 
 
 
