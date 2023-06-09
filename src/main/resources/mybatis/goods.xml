@@ -140,7 +140,7 @@
   <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
   <delete id="delete_by_itemno" parameterType="int">
       DELETE FROM goods
-      WHERE itemno=#{itemno}
+      WHERE goodsno=#{goodsno}
   </delete>
 
 </mapper>
