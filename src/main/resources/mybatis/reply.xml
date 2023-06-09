@@ -23,6 +23,7 @@
  WHERE recipeno=#{recipieno}
 </select>
   <!-- 댓글 조회 + 페이징-->
+ 
  <select id="list_by_reply_paging" resultType="dev.mvc.reply.ReplyVO" parameterType="HashMap">
 SELECT replyno,memberno,mid,recipeno,replycont,rdate,r
    FROM (
@@ -39,6 +40,9 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,r
     WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
 
   </select>   
+
+
+
   <!-- 댓글 개별 조회 -->
   <select id="reply_read" parameterType="int" resultType="dev.mvc.reply.ReplyVO">
   SELECT r.replycont,r.memberno,m.id AS mid,r.replyno

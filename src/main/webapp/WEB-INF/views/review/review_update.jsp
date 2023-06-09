@@ -55,6 +55,17 @@ function setStarRating(ratingValue) {
     // rating-display의 내용을 ratingValue로 업데이트
     document.getElementById('rating-display').textContent = "("+ratingValue+")";
 }
+<!--리뷰 등록시 별점 체크-->
+function checkRatingValue() {
+    var ratingValue = document.getElementById('star-rating').value;
+    if (ratingValue == null || ratingValue == 0) {
+        alert("별점을 선택하세요.");
+        event.preventDefault();  // 폼 제출을 막음
+        return false;  // 폼 제출을 막음
+    } else {
+        return true;  // 폼 제출을 허용
+    }
+}
 <!--댓글 등록시 로그인 여부 확인 -->
     function checkLoginStatus() {
         var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
@@ -381,7 +392,7 @@ function setStarRating(ratingValue) {
     <textarea name='reviewcont' required="required" rows="7" cols="63">${reviewVO.reviewcont }</textarea>
     </td>
   </tr>
-   <button type='submit' class='btn btn-info btn-sm'>리뷰 등록</button>
+   <button type='submit' class='btn btn-info btn-sm'  onclick="checkRatingValue(event)">리뷰 수정</button>
  </FORM>    
  
  <!-- 댓글 목록 -->
@@ -428,19 +439,19 @@ function setStarRating(ratingValue) {
             <div> 
                 <c:choose>
                   <c:when test="${ratingValue.toString() == ' 5'}">
-                    <img src="/review/images/star_5.png" style="width: 100px">
+                    <img src="/review/images/star_5.png" style="width: 100px; text-align: center;" >
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 4' }">
-                     <img src="/review/images/star_4.jpg" style="width: 100px">
+                     <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;">
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 3'}">
-                    <img src="/review/images/star_3.jpg" style="width: 100px">
+                    <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;">
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 2'}">
-                    <img src="/review/images/star_2.png" style="width: 100px">
+                    <img src="/review/images/star_2.png" style="width: 100px; text-align: center;">
                   </c:when>
                   <c:when test="${ratingValue.toString() == ' 1'}">
-                    <img src="/review/images/star_1.png" style="width: 100px">
+                    <img src="/review/images/star_1.png" style="width: 100px; text-align: center;">
                   </c:when>
                    <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/review/images/star_0.png"> 
@@ -450,14 +461,14 @@ function setStarRating(ratingValue) {
             </div>
           </td>
           
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${reviewcont}</div>
           </td> 
           
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${rdate}</div>
           </td>
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           

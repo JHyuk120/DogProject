@@ -62,7 +62,7 @@
        <input type='text' name='title' value='♥레시피 이름을 입력해주세요♥' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
-    <div>
+    
     <div>
        <label>재료</label>
        <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>

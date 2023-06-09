@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.recipe.RecipeVO;
+import dev.mvc.admin.AdminProcInter;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.recipe.RecipeProcInter;
 import dev.mvc.reply.ReplyVO;
@@ -39,6 +40,11 @@ public class ReplyCont {
     @Qualifier("dev.mvc.member.MemberProc")
     private MemberProcInter memberProc;
     
+    @Autowired
+    @Qualifier("dev.mvc.admin.AdminProc")
+    private AdminProcInter adminProc;
+    
+    
     public ReplyCont() {
         System.out.println("-> ReplyCont created");
     }
@@ -55,14 +61,17 @@ public class ReplyCont {
        
        ModelAndView mav = new ModelAndView();
        int cnt=this.replyProc.reply_create(replyVO);
+       
      if(memberProc.isMember(session)) {
+         
          if (cnt == 1) {
              mav.addObject("recipe", recipeVO);
              mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
          } else {
            mav.addObject("code", "reply_create_fail");
          }
-     }else {
+     }
+      else {
          mav.addObject("url", "/member/login_need"); 
          mav.setViewName("redirect:/reply/msg.do"); 
      }
@@ -89,7 +98,7 @@ public class ReplyCont {
       mav.addObject("replyVO", reply2VO);
       
       
-      // 댓글 조회`
+      // 댓글 조회
       
       ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
       mav.addObject("list", list);
@@ -151,7 +160,13 @@ public class ReplyCont {
          mav.addObject("replyno", replyVO.getReplyno());
          mav.addObject("recipeno", recipeno);
          mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
-     } else {
+     } else if(adminProc.isAdmin(session)) {
+         this.replyProc.reply_delete(replyno);
+         mav.addObject("replyno", replyVO.getReplyno());
+         mav.addObject("recipeno", recipeno);
+         mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
+     }
+     else {
          mav.setViewName("./reply/login_need");
      }
      return mav;

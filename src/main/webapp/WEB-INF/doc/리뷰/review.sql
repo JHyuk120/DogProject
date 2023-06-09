@@ -45,7 +45,7 @@ CREATE SEQUENCE review_seq
   
 -- 리뷰 작성 
 INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue) 
-VALUES(review_seq.nextval,1,21,'좋아요^^',sysdate,5);
+VALUES(review_seq.nextval,1,53,'좋아요^^',sysdate,5);
 commit;
 
 -- 리뷰 조회
@@ -101,3 +101,7 @@ WHERE replyno=9;
 SELECT COUNT(*) as cnt
 FROM reply
 WHERE recipeno=6;
+--
+SELECT *
+FROM member
+WHERE memberno=1;

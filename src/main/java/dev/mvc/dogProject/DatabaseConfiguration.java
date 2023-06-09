@@ -27,7 +27,8 @@ import com.zaxxer.hikari.HikariDataSource;
                                                               "dev.mvc.recipe",
                                                               "dev.mvc.reply",
                                                               "dev.mvc.review",
-                                                              "dev.mvc.detail"})        // 패키지 인식
+                                                              "dev.mvc.detail",
+                                                              "dev.mvc.notice"})        // 패키지 인식
 
 public class DatabaseConfiguration {
     

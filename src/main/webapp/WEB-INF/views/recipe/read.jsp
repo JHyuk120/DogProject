@@ -168,6 +168,7 @@
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
     
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
+    <input type="hidden" name="adminno" value="${sessionScope.adminno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
     <div>🗨️댓글 ${replycnt.replycnt }개</div>      
@@ -193,7 +194,7 @@
     <thead>
       <tr>
         <th style='text-align: center;'>id</th>
-        <th style='text-align: center;'>리뷰</th>
+        <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
         <th style='text-align: center;'>수정/삭제</th>
       </tr>
