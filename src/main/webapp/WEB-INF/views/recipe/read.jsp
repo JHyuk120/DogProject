@@ -8,6 +8,7 @@
 <c:set var="file1" value="${recipeVO.file1 }" />
 <c:set var="file1saved" value="${recipeVO.file1saved }" />
 <c:set var="thumb1" value="${recipeVO.thumb1 }" />
+<c:set var="ingredient" value="${recipeVO.ingredient }" />
 <c:set var="article" value="${recipeVO.article }" />
 <c:set var="youtube" value="${recipeVO.youtube }" />
 <c:set var="word" value="${recipeVO.word }" />
@@ -117,28 +118,24 @@
       <li class="li_none">
         <DIV style="width:100%;">
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-          <div style="font-size: 0.7em;">${mname}${rdate }</div>
+          <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+                ${ingredient } <br>    
           
-<div>
-  <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
-  <%-- 좋아요 <span id="recom_add">${recom}</span>개 --%>
-
-  <script>
-    
-  </script>
-</div>
-	
-            <c:choose>
-              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+          <div>
+              <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
+              <%-- 좋아요 <span id="recom_add">${recom}</span>개 --%>
+          </div>
+          <c:choose>
+            <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
                 <img src="/dogproject/storage/${file1saved }" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
-              </c:when>
-              <c:otherwise> <!-- 기본 이미지 출력 -->
+            </c:when>
+            <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/recipe/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
-              </c:otherwise>
+            </c:otherwise>
             </c:choose>
-        <br>
-        ${article }
+            <br>
+            ${article }
         </DIV>
       </li>
       

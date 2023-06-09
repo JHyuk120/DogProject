@@ -101,7 +101,6 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
                          <img src="/menu/images/user.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
                         <div class="dropdown-menu dropdown-menu-right">
-<<<<<<< HEAD
                           <a class="dropdown-item" href='/item/list_all.do'>
                             <img src="/menu/images/list.png" class="icon"  style='margin-left:5px'>&nbsp;카테고리 전체 목록</a>       
                           <a class="dropdown-item" href='/member/list.do'>
@@ -110,12 +109,7 @@
                            <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 고객 주문 사항</a>
                           <a class="dropdown-item" href='/admin/logout.do'>
                            <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp; 관리자 [${sessionScope.admin_id }] 로그아웃</a>
-=======
-                          <a class="dropdown-item" href='/item/list_all.do'>📒 카테고리 전체 목록</a>       
-                          <a class="dropdown-item" href='/member/list.do'>👨‍👩‍👦 회원 목록</a>  
-                          <a class="dropdown-item" href='/detail/order_list.do'>🙂 고객 주문 사항</a>
-                          <a class="dropdown-item" href='/admin/logout.do'>🔐 관리자 [${sessionScope.admin_id }] 로그아웃</a>
->>>>>>> 12af8a306246e27691e77c775dd1ebf8aa37e87a
+
                         </div>
                       </li>
                     </c:otherwise>
