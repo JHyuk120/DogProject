@@ -31,16 +31,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
     
 <<<<<<< HEAD
- <%-- 별점 스크립트 --%>
-<script type="text/javascript">
 
+<script type="text/javascript">
+<%-- 별점 스크립트 --%>
 function setStarRating(ratingValue) {
 
-    const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
+    const starIds = ["star1", "star2", "star3", "star4", "star5"];
     
     for (let i = 0; i < starIds.length; i++) {
         let starElement = document.getElementById(starIds[i]);
-
         // 정수 부분만 처리하고 소수 부분은 제외
         let intPart = Math.floor(ratingValue);
 
@@ -53,61 +52,20 @@ function setStarRating(ratingValue) {
     }
 
     document.getElementById('star-rating').value = ratingValue;
-
-    // rating-display의 내용을 ratingValue로 업데이트
     document.getElementById('rating-display').textContent = "("+ratingValue+")";
 }
-
+<!--리뷰 등록시 별점 체크-->
 function checkRatingValue() {
-    var ratingValue = ${sessionScope.ratingValue}; // 선택한 별점 확인
-    if (ratingValue == null || ratingValue === "" || ratingValue == 0 ) {
-        // 별점을 선택하지 않은 경우
-        alert('로그인이 필요합니다.');
-        return false; // 폼 제출 중단
+    var ratingValue = document.getElementById('star-rating').value;
+    if (ratingValue == null || ratingValue == 0) {
+        alert("별점을 선택하세요.");
+        event.preventDefault();  // 폼 제출을 막음
+        return false;  // 폼 제출을 막음
+    } else {
+        return true;  // 폼 제출을 허용
     }
-    return true; // 폼 제출 진행
-} 
+}
 
-
-/*     function starcheck(ratingValue){
-        var ratingValue = document.getElementById('star-rating').value;
-    
-        if (!ratingValue || ratingValue < 1 || ratingValue > 5) {
-            alert("별점을 선택해주세요.");
-            return false; // 폼 제출을 중지
-        }
-        return true; // 폼 제출을 허용 
-    }
- */
-/*    $('starcheck').submit(function(e) {
-        e.preventDefault(); // 폼의 기본 제출 동작을 중지합니다.
-
-        var ratingValue = parseFloat($('ratingValue').val()); // 별점 값 가져오기. 여기서 'rating'은 별점 입력 필드의 ID입니다.
-
-        if (!ratingValue || ratingValue < 1 || ratingValue > 5) {
-            alert("별점을 선택해주세요.");
-            return; // 폼 제출을 중지합니다.
-        }
-
-        // AJAX 요청 시작
-        $.ajax({
-            type: "POST",
-            url: "/path/to/your/server", // 별점을 처리할 서버 URL입니다.
-            data: {
-                rating: ratingValue
-            },
-            success: function(response) {
-                alert("성공적으로 제출되었습니다.");
-                // 필요한 경우 추가 처리
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                // 오류 처리
-                alert("제출 실패: " + textStatus);
-            }
-        });
-    });
-*/
-    
 
 <!-- 리뷰 갯수 -->
 function reviewcnt(){
@@ -402,16 +360,17 @@ function reviewcnt(){
     <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
  <!-- 댓글 평점 별  -->
     <tr>
-        <div class="stars">
-         <td width="100" rowspan="2">${sessionScope.id } </td>
-      <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
-       <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
-      <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
-      <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
-      <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
-      <input type="hidden" id="star-rating" value="0"/>
-       <td width="100" rowspan="2" id="star-output"> </td>
-    </div>
+    <td width="100" rowspan="2">${sessionScope.id}</td>
+    <td width="100" rowspan="2">
+        <span class="star" id="star1" onclick="setStarRating(1)">&#9733;</span>
+        <span class="star" id="star2" onclick="setStarRating(2)">&#9733;</span>
+        <span class="star" id="star3" onclick="setStarRating(3)">&#9733;</span>
+        <span class="star" id="star4" onclick="setStarRating(4)">&#9733;</span>
+        <span class="star" id="star5" onclick="setStarRating(5)">&#9733;</span>
+        <input type="hidden" id="star-rating" />
+    </td>
+    <td width="100" rowspan="2" id="star-output"></td>
+
     <td>
            <div id="rating-display" >(0)</div>
            <div>평점: ${ratingAVG } </div>
@@ -420,10 +379,8 @@ function reviewcnt(){
     </td>
   </tr>
 
-<button  id="submitBtn" type='submit' class='btn btn-info btn-sm' >리뷰 등록</button>
-<script>
-    document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
-</script>
+<button  id="submitBtn" type='submit' class='btn btn-info btn-sm'  onclick="checkRatingValue(event)">리뷰 등록</button>
+
   
    
  </FORM>    
@@ -458,12 +415,13 @@ function reviewcnt(){
         <c:set var="reviewcont" value="${reviewVO.reviewcont}" />
         <c:set var="rdate" value="${reviewVO.rdate}" />
         <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
-         <c:set var="mid" value="${memberVO.id}" />
+        <c:set var="mid" value="${memberVO.mid}" />
+         
          
         <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
-           <div> ${reviewVO.mid }</div>
+            <div>${reviewVO.mid }</div>
           </td>  
           
           <td style='vertical-align: middle;'>
@@ -494,14 +452,14 @@ function reviewcnt(){
             </div>
           </td>
           
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${reviewcont}</div>
           </td> 
           
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${rdate}</div>
           </td>
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
           

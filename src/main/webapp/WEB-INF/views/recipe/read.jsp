@@ -156,6 +156,7 @@
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
     
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
+    <input type="hidden" name="adminno" value="${sessionScope.adminno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
     <div>리뷰 수: ${replycnt.replycnt }</div>      

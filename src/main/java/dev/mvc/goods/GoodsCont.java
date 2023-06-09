@@ -1,6 +1,8 @@
 package dev.mvc.goods;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,8 @@ import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 import dev.mvc.reply.ReplyVO;
 import dev.mvc.review.ReviewProcInter;
 import dev.mvc.review.ReviewVO;
@@ -43,6 +47,10 @@ public class GoodsCont {
   @Autowired
   @Qualifier("dev.mvc.review.ReviewProc")
   private ReviewProcInter reviewProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.member.MemberProc")
+  private MemberProcInter memberProc;
   
   public GoodsCont () {
     System.out.println("-> GoodsCont created.");
@@ -236,10 +244,15 @@ public class GoodsCont {
 
     mav.setViewName("/goods/read"); // /WEB-INF/views/goods/read.jsp
     
+    
+
+    
     ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
     String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
-        mav.addObject("list", list);
+    mav.addObject("list", list);
+ 
+
     return mav;
 }
 
