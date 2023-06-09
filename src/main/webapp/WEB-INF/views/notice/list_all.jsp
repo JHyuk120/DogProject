@@ -86,48 +86,19 @@
 
  
  <tbody>
-  <c:forEach var="noticeVO" items="${list}">
+<c:forEach var="noticeVO" items="${list}" varStatus="loop">
         <c:set var="title" value="${noticeVO.title }" />
         <c:set var="content" value="${noticeVO.content }" />
         <c:set var="noticeno" value="${noticeVO.noticeno }" />
-        <c:set var="thumb1" value="${noticeVO.thumb1 }" />
-        
-        <tr style="height: 112px;" onclick="location.href='./read.do?noticeno=${noticeno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }'"class='hover'>
-        <td style='vertical-align: middle; text-align: center;'>
-        <a href="./read.do?noticeno=${noticeno }">
-            <c:choose>
-              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
-              <%--registry.addResourceHandler("/notice/storage/**").addResourceLocations("file:///" +  Notice.getUploadDir()); --%>
-              <img src="/notice/storage/${thumb1 }" style="width: 120px; height: 90px;">
-              </c:when>
-              <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/notice/images/none1.png" style="width: 120px; height: 90px;">
-              </c:otherwise>
-            </c:choose>
-            </a>
-          </td>  
-          <td style='vertical-align: middle;'>
-        
-         <a href="./read.do?noticeno=${noticeno }" style="display: block; width: 100%; height: 100%;">
-          <div style='font-weight:bold;'>${title }</div>
-            <c:choose>
-              <c:when test="${content.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
-                  ${content.substring(0, 160)}.....
-              </c:when>
-              <c:when test="${content.length() <= 160 }">
-                  ${content}
-              </c:when>
-            </c:choose>
-            
-            </a> 
-          </td> 
-
-        </tr>
-  
-    <tr style="height: 40px;">
-      <td style='vertical-align: middle; text-align: center;'>
+        <c:set var="rdate" value="${noticeVO.rdate }" />
+        <c:set var="cnt" value="${noticeVO.cnt }" />   
+         
+  <tr style="height: 50px;">
+    <td style='vertical-align: middle; text-align: center;'>
+      <a href="./read.do?noticeno=${noticeno}">
         ${list.size() - loop.index}
-      </td>
+      </a>
+    </td>
       <td style='vertical-align: middle; text-align: center;'>
         <a href="./read.do?noticeno=${noticeno}" style="display: block;">
           <div style='font-weight:bold;'>${title}</div>
