@@ -24,8 +24,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Dog#</title>
- 
+<title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -299,12 +299,18 @@ function reviewcnt(){
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm' >검색</button>
+      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' class='btn btn-info btn-sm'
                      onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
+           <style>
+          .btn-custom {
+            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+          }
+          </style>
   </DIV>
   
     <%-- ******************** Ajax 기반 로그인 폼 시작 ******************** --%>
@@ -360,35 +366,30 @@ function reviewcnt(){
                 <IMG src="/dogproject/storage/${file1saved }" style="width: 30%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/dogproject/images/none1.png" style="width: 50%; float: left; margin-top: 0.5%; margin_right: 1%;"> 
+                <IMG src="/goods/images/ee.png" style="width: 25%; height:480px; float: left; margin-top: 0.5%; margin-right:5%;"> 
               </c:otherwise>
             </c:choose>
        
           <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-          <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
                 <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
-          <div style="font-size: 1em;">${mname } ${rdate }</div><br>     
-          ${content }
+                <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
+             <div style="width: 90%; height: 310px; ">${content }</DIV>
         </DIV>
       </li>
       
      
       <li class="li_none">
         <DIV style='text-decoration: none;'>
+        
         <br>
-          검색어(키워드): ${word }
-        </DIV>
-      </li>
-      <li class="li_none">
-        <DIV>
-          <c:if test="${file1.trim().length() > 0 }">  <%-- ServletRegister.java: registrationBean.addUrlMappings("/download");  --%>
-            첨부 파일: <A href='/download?dir=/dogproject/goods/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
-          </c:if>
-        </DIV>
-        <br>
-        <button type='button' id='btn_cart' class="btn btn-info btn-sm" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">장바 구니</button>
-        <button type='button' id='btn_ordering' class="btn btn-info btn-sm" onclick="cart_ajax(${goodsno })">바로 구매</button>  
+        <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+         <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+         </svg>
+       </button>
+
+        <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg " onclick="cart_ajax(${goodsno })">바로 구매</button>  
       </li>   
     </ul>
   </fieldset>
@@ -427,7 +428,7 @@ function reviewcnt(){
     </td>
   </tr>
 
-<button  id="submitBtn" type='submit' class='btn btn-info btn-sm' >리뷰 등록</button>
+<button  id="submitBtn" type='submit' class='btn btn-outline-dark btn-sm' style="margin-bottom: 20px;" >리뷰 등록</button>
 <script>
     document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
 </script>

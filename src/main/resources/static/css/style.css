@@ -3,7 +3,7 @@
   *{
      font-family: "한컴 말랑말랑";
      font-size: 16px; 
-     margin: 0px;  /* top right bottom left */
+     margin: 0px;  /*  right bottom left */
      padding: 0px;
      color: #555555;
   }  
@@ -466,7 +466,11 @@
     cursor: pointer;
  }
 
- 
+ .btn-custom {
+   background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+   color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+ }
+
  
   
  

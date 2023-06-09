@@ -8,6 +8,7 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -123,10 +124,11 @@
                 <c:choose>
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                     <%-- /static/contents/storage/ --%>
-                    <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
+                    <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/dogproject/storage/${thumb1 }" style="width: 130px; height: 120px;"></a> 
                   </c:when>
                   
                   <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
+                  <IMG src="/recipe/images/ee.png" style="width: 100%; height: 100px; margin-bottom:4px; margin-top:4px; "><br>
                     ${goodsVO.file1}
                   </c:otherwise>
                 </c:choose>

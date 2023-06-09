@@ -18,7 +18,7 @@
 			</style>
 
 
-            <a class="navbar-brand" href="/">🐶댕키트🍚</a>
+            <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 100px;  height: 40px;  '></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle Navigation">
               <span class="navbar-toggler-icon"></span>
             </button>    
@@ -30,10 +30,12 @@
                     <li class="nav-item">
                     <c:choose>
                           <c:when test="${itemno != 2}">
-                            <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🦴${item }</a>
+                            <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >
+                             <img src="/menu/images/bone3.png" class="icon"  style='margin-left:5px'>&nbsp;${item }</a>
                           </c:when>
                           <c:otherwise>
-                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
+                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >
+                             <img src="/menu/images/vege.png" class="icon"  style='margin-left:5px'>&nbsp;${item }</a>
                           </c:otherwise>
                       </c:choose>
                     </li>
@@ -41,26 +43,38 @@
                   
                   
                   <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👑회원</a>
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                       <img src="/menu/images/pcircle.svg" class="icon"  style='margin-left:5px'>&nbsp;회원</a>
                       <div class="dropdown-menu">                       
-                          <a class="dropdown-item" href="/member/create.do">🤹‍♂️ 회원 가입</a>
-                          <a class="dropdown-item" href="/member/read.do">🏅 가입 정보</a>
-                          <a class="dropdown-item" href="/cart/list_by_memberno.do">장바구니</a>
-                          <a class="dropdown-item" href="/pay/pay_list.do">결제 리스트</a>
-                          <a class="dropdown-item" href="#">🌕 아이디 찾기</a>
-                          <a class="dropdown-item" href="#">⭐ 비밀번호 찾기</a>
-                          <a class="dropdown-item" href="/member/passwd_update.do">💫 비밀번호 변경</a>
-                          <a class="dropdown-item" href="/member/update.do">✍ 회원 정보 수정</a>
-                          <a class="dropdown-item" href="#">🥺 회원 탈퇴</a>
+                          <a class="dropdown-item" href="/member/create.do">
+                           <img src="/menu/images/pheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 가입</a>
+                          <a class="dropdown-item" href="/member/read.do">
+                           <img src="/menu/images/plines.svg" class="icon"  style='margin-left:5px'>&nbsp; 가입 정보</a>
+                          <a class="dropdown-item" href="/cart/list_by_memberno.do">
+                           <img src="/menu/images/cart4.svg" class="icon"  style='margin-left:5px'>&nbsp;  장바구니</a>
+                          <a class="dropdown-item" href="/pay/pay_list.do">
+                           <img src="/menu/images/receipt.svg" class="icon"  style='margin-left:5px'>&nbsp;결제 리스트</a>
+                          <a class="dropdown-item" href="#">
+                           <img src="/menu/images/sheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 아이디 찾기</a>
+                          <a class="dropdown-item" href="#">
+                           <img src="/menu/images/sh2.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
+                          <a class="dropdown-item" href="/member/passwd_update.do">
+                           <img src="/menu/images/plock.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 변경</a>
+                          <a class="dropdown-item" href="/member/update.do">
+                          <img src="/menu/images/pg.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
+                          <a class="dropdown-item" href="#">
+                           <img src="/menu/images/px.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                       </div>
                   </li>
                   <li class="nav-item">
                     <c:choose>
                       <c:when test="${sessionScope.id == null}">
-                        <a class="nav-link" href="/member/login.do">🔒login</a>
+                        <a class="nav-link" href="/member/login.do">
+                         <img src="/menu/images/lock.png" class="icon"  style='margin-left:5px'>&nbsp;login</a>
                       </c:when>
                       <c:otherwise>
-                        <a class="nav-link" href='/member/logout.do'>🔓 logout</a>
+                        <a class="nav-link" href='/member/logout.do'>
+                         <img src="/menu/images/unlock.png" class="icon"  style='margin-left:5px'>&nbsp; logout</a>
                       </c:otherwise>
                     </c:choose>   
                   </li>
@@ -69,17 +83,23 @@
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
                       <li class="nav-item">
-                        <a class="nav-link" href="/admin/login.do">🔐관리자</a>
+                        <a class="nav-link" href="/admin/login.do">
+                         <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
                       </li>
                     </c:when>
                     <c:otherwise>
                       <li class="nav-item dropdown" > <%-- 관리자 서브 메뉴 --%>
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">🏡관리자</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                         <img src="/menu/images/user.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href='/item/list_all.do'>📒 카테고리 전체 목록</a>       
-                          <a class="dropdown-item" href='/member/list.do'>🙂 회원 목록</a>  
-                          <a class="dropdown-item" href='/detail/order_list.do'>🙂 고객 주문 사항</a>
-                          <a class="dropdown-item" href='/admin/logout.do'>🔐 관리자 [${sessionScope.admin_id }] 로그아웃</a>
+                          <a class="dropdown-item" href='/item/list_all.do'>
+                            <img src="/menu/images/list.png" class="icon"  style='margin-left:5px'>&nbsp;카테고리 전체 목록</a>       
+                          <a class="dropdown-item" href='/member/list.do'>
+                           <img src="/menu/images/team.png" class="icon"  style='margin-left:5px'>&nbsp; 회원 목록</a>  
+                          <a class="dropdown-item" href='/detail/order_list.do'>
+                           <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 고객 주문 사항</a>
+                          <a class="dropdown-item" href='/admin/logout.do'>
+                           <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp; 관리자 [${sessionScope.admin_id }] 로그아웃</a>
                         </div>
                       </li>
                     </c:otherwise>

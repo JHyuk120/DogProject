@@ -9,6 +9,7 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>댕키트</title>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -241,7 +242,7 @@
                   <img src="/dogproject/storage/${thumb1 }" style="width: 120px; height: 90;">
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-                  <IMG src="/goods/images/none1.jpg" style="width: 120px; height: 90px;">
+                 <IMG src="/goods/images/ee.png" style="width: 100%; height: 270px; ">
                 </c:otherwise>
               </c:choose>
             </a>
