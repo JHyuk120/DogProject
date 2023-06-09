@@ -5,9 +5,9 @@ DROP TABLE detail CASCADE CONSTRAINTS;
 
 CREATE TABLE detail(
         detailno                     NUMBER(10)         NOT NULL         PRIMARY KEY,
-        memberno                        NUMBER(10)         NULL ,
+        memberno                        NUMBER(10)        NOT NULL ,
         payno                     NUMBER(10)         NOT NULL,
-        goodsno                        NUMBER(10)         NULL ,
+        goodsno                        NUMBER(10)        NOT NULL ,
         cnt                                   NUMBER(5)         DEFAULT 1         NOT NULL,
         tot                                   NUMBER(10)         DEFAULT 0         NOT NULL,
         stateno                               NUMBER(1)         DEFAULT 0         NOT NULL,
