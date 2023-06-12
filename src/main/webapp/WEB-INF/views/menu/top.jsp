@@ -30,19 +30,17 @@
                     <li class="nav-item">
                     <c:choose>
                           <c:when test="${itemno != 2}">
-                            <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >
-                             <img src="/menu/images/bone3.png" class="icon"  style='margin-left:5px'>&nbsp;${item }</a>
+                            <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🦴${item }</a>
                           </c:when>
                           <c:otherwise>
-                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >
-                             <img src="/menu/images/vege.png" class="icon"  style='margin-left:5px'>&nbsp;${item }</a>
+                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
                           </c:otherwise>
                       </c:choose>
                     </li>
                   </c:forEach>
 
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👨‍💻고객센터</a>
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👨‍고객센터</a>
                       <div class="dropdown-menu">                       
                           <a class="dropdown-item" href="/notice/list_all.do">📢 공지사항</a>
                       </div>
