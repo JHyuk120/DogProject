@@ -40,10 +40,14 @@
                   </c:forEach>
 
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👨‍고객센터</a>
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                         <img src="/menu/images/call.png" class="icon"  style='margin-left:5px'>‍&nbsp;고객센터</a>
+                        
                       <div class="dropdown-menu">                       
-                          <a class="dropdown-item" href="/notice/list_all.do">📢 공지사항</a>
-                          <a class="dropdown-item" href="/qna/list_all.do">📢 Q&A</a>
+                          <a class="dropdown-item" href="/notice/list_all.do">
+                           <img src="/menu/images/a.png" class="icon"  style='margin-left:5px'>&nbsp; 공지사항</a>                         
+                          <a class="dropdown-item" href="/qna/list_by_search.do">
+                           <img src="/menu/images/qa.png" class="icon"  style='margin-left:5px'>&nbsp; Q&A</a>
                       </div>
                   </li>
                   

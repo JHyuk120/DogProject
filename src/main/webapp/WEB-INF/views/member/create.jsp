@@ -125,7 +125,7 @@
       return false; // submit 중지
     }
 
-    let mname = $('#mname').val(); // 태그의 아이디가 'id'인 태그의 값
+    let mname = $('#mname').val(); // 태그의 아이디가 'mname'인 태그의 값
       if ($.trim(mname).length == 0) { // id를 입력받지 않은 경우
         msg = '· 이름을 입력하세요.<br>· 이름 입력은 필수입니다.';
         
@@ -137,7 +137,7 @@
         return false;
         } 
 
-    let tel = $('#tel').val().trim(); // 태그의 아이디가 'id'인 태그의 값
+    let tel = $('#tel').val().trim(); // 태그의 아이디가 'tel'인 태그의 값
       if (tel.length == 0) { // id를 입력받지 않은 경우
         msg = '· 전화번호를 입력하세요.<br>· 전화번호 입력은 필수입니다.';
         
@@ -145,6 +145,30 @@
         $('#modal_title').html('전화번호 입력 누락'); // 제목 
         $('#modal_content').html(msg);        // 내용
         $('#btn_close').attr("data-focus", "tel");  // 닫기 버튼 클릭시 tel 입력으로 focus 이동
+        $('#modal_panel').modal();               // 다이얼로그 출력
+        return false;
+        } 
+      
+      let zipcode = $('#zipcode').val().trim(); // 태그의 아이디가 'zipcode'인 태그의 값
+      if (zipcode.length == 0) { // id를 입력받지 않은 경우
+        msg = '· 우편번호를 입력하세요.<br>· 우편번호 입력은 필수입니다.';
+        
+        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+        $('#modal_title').html('우편번호 입력 누락'); // 제목 
+        $('#modal_content').html(msg);        // 내용
+        $('#btn_close').attr("data-focus", "zipcode");  // 닫기 버튼 클릭시 tel 입력으로 focus 이동
+        $('#modal_panel').modal();               // 다이얼로그 출력
+        return false;
+        } 
+
+      let add2 = $('#address2').val().trim(); // 태그의 아이디가 'address2'인 태그의 값
+      if (add2.length == 0) { // id를 입력받지 않은 경우
+        msg = '· 상세주소를 입력하세요.<br>· 상세주소 입력은 필수입니다.';
+        
+        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+        $('#modal_title').html('상세주소 입력 누락'); // 제목 
+        $('#modal_content').html(msg);        // 내용
+        $('#btn_close').attr("data-focus", "address2");  // 닫기 버튼 클릭시 tel 입력으로 focus 이동
         $('#modal_panel').modal();               // 다이얼로그 출력
         return false;
         } 
@@ -182,6 +206,10 @@
   <DIV class='title_line'>회원 가입</DIV>
 
   <DIV class='content_body'>
+  
+  <ASIDE class="aside_left" style="margin-left:760px;  font-size: 14px;">
+   <span style="color: red;  margin-right: 5px;" >*</span>필수입력사항
+  </ASIDE>
 
   <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>
@@ -196,51 +224,51 @@
   <div style="width: 60%; margin: 0px auto ">
   <FORM name='frm' id='frm' method='POST' action='./create.do' class="">
   
-    <div class="form_input"  style = "margin-bottom:10px;">
-      <label>아이디:</label> <br>
-      <input type='text' class="form-control form-control-sm" name='id' id='id' value="user@gmail.com" required="required" style='width: 30%; display: inline-block;' placeholder="아이디*" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-success btn-sm">중복확인</button>
+    <div class="form_input"  style = "margin-bottom:10px; ">
+      <label>아이디</label><span style="color: red;  margin-right: 95px;" >*</span>
+      <input type='text' class="form-control form-control-sm" name='id' id='id' value="" required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
+      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;중복확인&emsp;</button>
     </div>   
                 
-    <div class="form_input"  style = "margin-bottom:10px;">
-      <label>패스워드:</label><br>
-      <input type='password' class="form-control form-control-sm" name='passwd' id='passwd' value='1234' required="required" style='width: 30%;' placeholder="패스워드*">
+    <div class="form_input"  style = "margin-bottom:10px; ">
+      <label>패스워드</label><span style="color: red;  margin-right: 80px;" >*</span>
+      <input type='password' class="form-control form-control-sm" name='passwd' id='passwd' value='' required="required" style='width: 30%; display: inline-block;' placeholder="패스워드">
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>패스워드 확인:</label><br>
-      <input type='password' class="form-control form-control-sm" name='passwd2' id='passwd2' value='1234' required="required" style='width: 30%;' placeholder="패스워드 확인*">
+      <label>패스워드 확인</label><span style="color: red;  margin-right: 43px;" >*</span>
+      <input type='password' class="form-control form-control-sm" name='passwd2' id='passwd2' value='' required="required" style='width: 30%; display: inline-block;' placeholder="패스워드 확인">
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>성명:</label><br>
+      <label>성명</label><span style="color: red;  margin-right: 113px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='mname' id='mname' 
-                value='이름' required="required" style='width: 30%;' placeholder="성명*">
+                value='' required="required" style='width: 30%; display: inline-block;' placeholder="성명">
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>전화 번호:</label><br>
+      <label>휴대폰</label><span style="color: red;  margin-right: 97px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='tel' id='tel' 
-                value='010-****-****' required="required" style='width: 30%;' placeholder="전화번호*"> 
+                value='010-****-****' required="required" style='width: 30%; display: inline-block;' placeholder="전화번호"> 
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>우편 번호:</label> <br>
+      <label>우편번호</label><span style="color: red;  margin-right: 82px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='zipcode' id='zipcode' 
                 value='' style='width: 30%; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-info btn-sm">우편번호 찾기</button>
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;우편번호 찾기&emsp;</button>
     </div>  
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label> 주 소 :</label><br>
+      <label>주소</label><span style="color: red;  margin-right: 115px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='address1' id='address1' 
-                 value='' style='width: 65%;' placeholder="주소">
+                 value='' required="required" style='width: 65%; display: inline-block;' placeholder="주소">
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>상세 주소:</label><br>
+      <label>상세주소</label><span style="color: red;  margin-right: 84px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='address2' id='address2' 
-                value='' style='width: 65%;' placeholder="상세 주소">
+                value='' required="required" style='width: 65%; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
     </div>   
 
     <div>
@@ -317,8 +345,8 @@
     </div>
     
     <div class="form_input">
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-info btn-sm">가입</button>
-      <button type="button" onclick="history.back()" class="btn btn-info btn-sm">취소</button>
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="margin-left:80px; width: 500px;" >가입하기</button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark"><img src="/member/images/home.png" class="icon" style="width:23px"></button>
     </div>   
   </FORM>
   </DIV>
@@ -329,3 +357,4 @@
 </body>
 
 </html>
+

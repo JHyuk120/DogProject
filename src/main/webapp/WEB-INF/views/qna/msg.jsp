@@ -81,7 +81,7 @@
         </c:choose>
         
         <button type='button' onclick="location.href='./create.do'" class="btn btn-primary">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_all.do'" class="btn btn-primary">목록</button>
+        <button type='button' onclick="location.href='./list_by_search.do'" class="btn btn-primary">목록</button>
       </LI>
     </UL>
   </fieldset>

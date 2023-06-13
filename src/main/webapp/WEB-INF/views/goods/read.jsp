@@ -345,12 +345,10 @@ function reviewcnt(){
         
         <br>
         <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-         <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-         </svg>
+          <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
        </button>
 
-        <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg " onclick="cart_ajax(${goodsno })">바로 구매</button>  
+        <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg " onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>  
       </li>   
     </ul>
   </fieldset>
@@ -372,7 +370,7 @@ function reviewcnt(){
  <!-- 댓글 평점 별  -->
     <tr>
         <div class="stars">
-         <td width="100" rowspan="2">${sessionScope.id } </td>
+         <td  width="100" rowspan="2">${sessionScope.id } </td>
       <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
        <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
       <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
