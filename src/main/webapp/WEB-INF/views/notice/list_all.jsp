@@ -36,8 +36,8 @@
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_noticeno.do'>
-      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>  <%-- 게시판의 구분 --%>
+    <form name='frm' id='frm' method='get' action='./list_by_search.do'>
+      <input type='hidden'>  <%-- 게시판의 구분 --%>
       
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
@@ -95,12 +95,12 @@
          
   <tr style="height: 50px;">
     <td style='vertical-align: middle; text-align: center;'>
-      <a href="./read.do?noticeno=${noticeno}">
+      <a href="./read.do?noticeno=${noticeno}&now_page=${param.now_page == null?1:now_page }">
         ${list.size() - loop.index}
       </a>
     </td>
       <td style='vertical-align: middle; text-align: center;'>
-        <a href="./read.do?noticeno=${noticeno}" style="display: block;">
+        <a href="./read.do?noticeno=${noticeno}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
           <div style='font-weight:bold;'>${title}</div>
         </a>
       </td>
