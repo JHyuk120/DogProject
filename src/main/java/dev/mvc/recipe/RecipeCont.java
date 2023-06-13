@@ -655,7 +655,7 @@ public class RecipeCont {
 
     mav.addObject("itemno", recipeVO.getItemno());
     mav.addObject("now_page", now_page);
-    mav.setViewName("redirect:/recipe/list_by_itemno.do"); 
+    mav.setViewName("redirect:/recipe/list_by_itemno_grid.do"); 
     
     return mav;
   }   
