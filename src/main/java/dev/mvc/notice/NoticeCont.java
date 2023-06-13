@@ -16,8 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
-import dev.mvc.item.ItemProcInter;
-import dev.mvc.item.ItemVO;
 import dev.mvc.notice.NoticeVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
@@ -105,7 +103,7 @@ public class NoticeCont {
      
       if (cnt == 1) {
         mav.addObject("code", "create_success");
-          // itemProc.increaseCnt(goodsVO.getItemno()); // 글수 증가
+          // noticeProc.increaseCnt(goodsVO.getNoticeno()); // 글수 증가
       } else {
           mav.addObject("code", "create_fail");
       }
@@ -403,6 +401,7 @@ public class NoticeCont {
     
        return mav;
    }
+     
     
   
 }

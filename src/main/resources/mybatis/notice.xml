@@ -25,10 +25,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
     SELECT noticeno, adminno, title, content, cnt, passwd, word, rdate,
-              file1, file1saved, thumb1, size1
+              file1, file1saved
     FROM notice
     WHERE noticeno = #{noticeno}
   </select>
+  
 
    <!-- 패스워드 확인 -->
   <select id="password_check" resultType="int" parameterType="dev.mvc.notice.NoticeVO">
@@ -62,6 +63,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   update notice
   set cnt = cnt + 1
   where noticeno = #{noticeno}
-  
   </update>
+
 </mapper> 
