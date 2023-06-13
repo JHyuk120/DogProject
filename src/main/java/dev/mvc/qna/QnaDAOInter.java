@@ -47,7 +47,7 @@ public interface QnaDAOInter {
    * 특정 카테고리의 검색된 페이지 목록
    * @return
    */
-  public ArrayList<QnaVO> list_by_search_paging(QnaVO naVO);
+  public ArrayList<QnaVO> list_by_search_paging(QnaVO qnaVO);
 
   /**
    * 패스워드 확인

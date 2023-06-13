@@ -43,19 +43,7 @@
     <form name='frm' id='frm' method='get' action='./list_all.do'>
       <input type='hidden'>  <%-- 게시판의 구분 --%>
       
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' style='width: 20%;'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
-                     onclick="location.href='./list_all'">검색 취소</button>  
-      </c:if>    
+
     </form>
   </DIV>
   
@@ -71,7 +59,10 @@
               <img src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 -->
-              상품 관련 이미지가 없습니다.
+              <div style="text-align: center;">
+                <br><br><br><br>
+                🖼️상품 관련 이미지가 없습니다.
+              </div>
             </c:otherwise>
           </c:choose>
         </DIV>
@@ -85,11 +76,11 @@
           <FORM name='frm' method='POST' action='./delete.do'>
               <input type='hidden' name='noticeno' value='${noticeno}'>
               <br><br>
-              <div style='text-align: center; margin: 10px auto;'>
-                <span style="color: #FF0000; font-weight: bold;">삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
+              <div style='text-align: left; margin: 10px auto;'>
+                <span style="color: #FF0000; font-weight: bold;">⚠️삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                 <br><br>
-                <button type = "submit" class="btn btn-primary">삭제 진행</button>
-                <button type = "button" onclick = "history.back()" class="btn btn-primary">취소</button>
+                <button type = "submit" class="btn btn-danger">삭제 진행</button>
+                <button type = "button" onclick = "history.back()" class="btn btn-dark">취소</button>
               </div>   
           </FORM>
         </DIV>
