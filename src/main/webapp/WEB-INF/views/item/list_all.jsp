@@ -4,6 +4,16 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.item.ItemVO" %>
 
+<%
+ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
+ItemVO itemVO;
+int seqno = 0;
+if (list.size() > 0){
+  itemVO = list.get(list.size()-1);
+  seqno = itemVO.getSeqno();
+}
+%>
+
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -33,7 +43,7 @@
       <input type='text' name='item' value='' required="required" style='width: 35%;' margin-right= 10px; autofocus="autofocus">
       
       <label>순서 지정</label>
-      <input type='number' name='seqno' min="1" value='1' required="required" style='width: 5%;'>
+      <input type='number' name='seqno' min="1" value=<%=seqno + 1%> required="required" style='width: 5%;'>
   
       <button type="submit" id='submit' class='btn btn-success btn-sm'>등록</button>
       <button type="button" onclick="cancel();" class='btn btn-info btn-sm'>취소</button>
@@ -59,10 +69,8 @@
     
     <tbody>
     <%
-      ArrayList<ItemVO> list = (ArrayList<ItemVO>)request.getAttribute("list");
-        
         for (int i=0; i < list.size(); i++) {
-      ItemVO itemVO = list.get(i);
+          itemVO = list.get(i);
     %>
         <TR>
         <TD class='td_bs'><%= itemVO.getSeqno() %></TD>
