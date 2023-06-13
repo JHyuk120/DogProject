@@ -80,7 +80,7 @@ public class MemberCont {
         
     int cnt= memberProc.create(memberVO);
     
-    if (cnt == 1) {
+    if (cnt == 1) { //insert 레코드 갯수
       mav.addObject("code", "create_success");
       mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 가입을 축하합니다.
       mav.addObject("id", memberVO.getId());
