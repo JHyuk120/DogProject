@@ -43,6 +43,15 @@
     frm.submit();
   }   
 
+  function go_pay(total_order){
+    //var frm = $('#frm_post');
+	  if (total_order == 0 ){
+      alert('쇼핑카트에 상품이 없습니다.')
+      location.href='/goods/list_by_itemno_grid.do';
+	  }
+	  
+	}
+
 
 </script>
 
@@ -186,7 +195,7 @@
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='get'>
+          <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='get' onsubmit='go_pay(${total_order });'>
             <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
           </form>
         <td>
