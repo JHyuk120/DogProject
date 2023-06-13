@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
 import dev.mvc.item.ItemProcInter;
+import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.qna.QnaVO;
 import dev.mvc.qna.Qna;
@@ -132,6 +133,49 @@ public class QnaCont {
       
       mav.addObject("qnaVO", qnaVO); // request.setAttribute("qnaVO", qnaVO);
     
+      return mav;
+    }
+    
+    /**
+     * 목록 + 검색 + 페이징 지원
+     * http://localhost:9091/qna/list_all.do
+     * 
+     * @param auction_no
+     * @param word
+     * @param now_page
+     * @return
+     */
+    @RequestMapping(value = "/qna/list_by_search.do", method = RequestMethod.GET)
+    public ModelAndView list_by_search_paging(QnaVO qnaVO) {
+
+      ModelAndView mav = new ModelAndView();
+      
+      //검색된 전체 글 수
+      int search_count = this.qnaProc.search_count(qnaVO);
+      mav.addObject("search_count", search_count);
+      
+      // 검색 목록
+      ArrayList<QnaVO> list = qnaProc.list_by_search_paging(qnaVO);
+      mav.addObject("list", list);
+      
+      mav.addObject("qnaVO", qnaVO);
+
+      /*
+       * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 현재 페이지: 11 / 22 [이전] 11 12 13 14 15 16 17
+       * 18 19 20 [다음]
+       * @param auction_no 카테고리번호
+       * @param search_count 검색(전체) 레코드수
+       * @param now_page 현재 페이지
+       * @param word 검색어
+       * @return 페이징용으로 생성된 HTML/CSS tag 문자열
+       */
+      String paging = qnaProc.pagingBox(qnaVO.getNow_page(), qnaVO.getWord(), "list_by_search.do");
+      mav.addObject("paging", paging);
+
+      // mav.addObject("now_page", now_page);
+      
+      mav.setViewName("/qna/list_all");  
+
       return mav;
     }
     

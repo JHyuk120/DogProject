@@ -30,7 +30,37 @@ public interface QnaProcInter {
    */
   public QnaVO read(int qnano);
   
+  /**
+   * 특정 카테고리의 검색된 글목록
+   * @return
+   */
+  public ArrayList<QnaVO> list_by_search(QnaVO QnaVO);
+  
+  /**
+   * 검색 수
+   * @return
+   */
+  public int search_count(QnaVO qnaVO);
+  
+  /**
+   * 특정 카테고리의 검색된 페이지 목록
+   * @return
+   */
+  public ArrayList<QnaVO> list_by_search_paging(QnaVO naVO);
 
+  /** 
+   * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 
+   * 현재 페이지: 11 / 22   [이전] 11 12 13 14 15 16 17 18 19 20 [다음] 
+   *
+   * @param cateno          카테고리번호 
+   * @param search_count  검색(전체) 레코드수 
+   * @param now_page      현재 페이지
+   * @param word 검색어
+   * @param list_file 파일 목록
+   * @return 페이징 생성 문자열
+   */ 
+  public String pagingBox(int now_page, String word, String list_file);
+  
   /**
    * 패스워드 확인
    * @param qnaVO

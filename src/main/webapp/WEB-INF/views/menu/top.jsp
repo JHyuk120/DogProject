@@ -43,7 +43,7 @@
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">👨‍고객센터</a>
                       <div class="dropdown-menu">                       
                           <a class="dropdown-item" href="/notice/list_all.do">📢 공지사항</a>
-                          <a class="dropdown-item" href="/qna/list_all.do">📢 Q&A</a>
+                          <a class="dropdown-item" href="/qna/list_by_search.do">📢 Q&A</a>
                       </div>
                   </li>
                   
