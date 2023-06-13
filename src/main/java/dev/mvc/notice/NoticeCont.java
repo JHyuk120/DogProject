@@ -374,6 +374,9 @@ public class NoticeCont {
           
       this.noticeProc.delete(noticeVO.getNoticeno()); // DBMS 삭제
 
+      mav.setViewName("redirect:/notice/list_all.do"); 
+
+
       
       return mav;
     }   
