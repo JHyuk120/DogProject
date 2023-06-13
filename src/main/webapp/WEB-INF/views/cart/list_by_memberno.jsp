@@ -146,7 +146,7 @@
               <td style='vertical-align: middle; text-align: center;'>
               <%-- 레코드에 따라 ID를 고유하게 구분할 목적으로 id 값 생성, 예) 1_cnt, 2_cnt, c_cnt... --%>
                 <input type='number' id='${cartno }_cnt' min='1' max='100' step='1' value="${cnt }" style='width: 52px;'><br>
-                <button type='button' onclick="update_cnt(${cartno})" class='btn btn-light btn-sm' style='margin-top: 5px;'>변경</button>
+                <button type='button' onclick="update_cnt(${cartno})" class='btn btn-outline-dark btn-sm' style='margin-top: 5px;'>변경</button>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
                 <fmt:formatNumber value="${tot}" pattern="#,###" />
@@ -193,7 +193,7 @@
                <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품을 선택하고 다시 와주십시오.</div>
               </c:when>
               <c:otherwise>
-                <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
+                <button type='submit' id='btn_order' class='btn btn-dark btn-sm' style='font-size: 1.5em; right;'>주문하기</button>
               </c:otherwise>
             </c:choose>
           </form>
