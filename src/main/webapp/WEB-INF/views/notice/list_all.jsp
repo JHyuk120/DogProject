@@ -36,8 +36,8 @@
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_noticeno.do'>
-      <input type='hidden' name='noticeno' value='${noticeVO.noticeno }'>  <%-- 게시판의 구분 --%>
+    <form name='frm' id='frm' method='get' action='./list_by_search.do'>
+      <input type='hidden'>  <%-- 게시판의 구분 --%>
       
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>

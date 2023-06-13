@@ -74,5 +74,5 @@ import dev.mvc.tool.Tool;
       int cnt = this.noticeDAO.cnt_add(noticeno);
       return cnt;
     }
-}
 
+}

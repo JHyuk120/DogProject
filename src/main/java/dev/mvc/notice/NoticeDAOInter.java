@@ -26,6 +26,8 @@ public interface NoticeDAOInter {
   public NoticeVO read(int noticeno);
   
 
+  
+
   /**
    * 패스워드 확인
    * @param noticeVO
