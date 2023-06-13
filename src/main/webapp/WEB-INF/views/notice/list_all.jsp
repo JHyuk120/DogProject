@@ -95,12 +95,12 @@
          
   <tr style="height: 50px;">
     <td style='vertical-align: middle; text-align: center;'>
-      <a href="./read.do?noticeno=${noticeno}">
+      <a href="./read.do?noticeno=${noticeno}&now_page=${param.now_page == null?1:now_page }">
         ${list.size() - loop.index}
       </a>
     </td>
       <td style='vertical-align: middle; text-align: center;'>
-        <a href="./read.do?noticeno=${noticeno}" style="display: block;">
+        <a href="./read.do?noticeno=${noticeno}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
           <div style='font-weight:bold;'>${title}</div>
         </a>
       </td>
