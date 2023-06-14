@@ -58,7 +58,7 @@
                           <a class="dropdown-item" href="/member/create.do">
                            <img src="/menu/images/pheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 가입</a>
                           <a class="dropdown-item" href="/member/read.do">
-                           <img src="/menu/images/plines.svg" class="icon"  style='margin-left:5px'>&nbsp; 가입 정보</a>
+                          <img src="/menu/images/pg.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                           <a class="dropdown-item" href="/cart/list_by_memberno.do">
                            <img src="/menu/images/cart4.svg" class="icon"  style='margin-left:5px'>&nbsp;  장바구니</a>
                           <a class="dropdown-item" href="/pay/pay_list.do">
@@ -69,8 +69,6 @@
                            <img src="/menu/images/sh2.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
                           <a class="dropdown-item" href="/member/passwd_update.do">
                            <img src="/menu/images/plock.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 변경</a>
-                          <a class="dropdown-item" href="/member/update.do">
-                          <img src="/menu/images/pg.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                           <a class="dropdown-item" href="#">
                            <img src="/menu/images/px.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                       </div>

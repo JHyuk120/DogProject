@@ -168,6 +168,10 @@
   <DIV class='title_line'>회원 정보 조회 및 수정</DIV>
 
   <DIV class='content_body'>
+  
+  <ASIDE class="aside_left" style="margin-left:790px;  font-size: 14px;">
+   <span style="color: red;  margin-right: 5px;" >*</span>필수입력사항
+  </ASIDE>
 
   <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>
@@ -179,44 +183,44 @@
 
   <div class='menu_line'></div>
   
-  <div style="width: 60%; margin: 0px auto ">
+  <div style="width: 45%; margin: 0px auto ">
   <FORM name='frm' id='frm' method='POST' action='./update.do' class="">
     <input type="hidden" name="memberno" value="${memberVO.memberno }">
-    <div class="form_input"  style = "margin-bottom:10px;">
-      <label>아이디:*</label> <br>
+    <div class="form_input"  style = "margin-bottom:10px; margin-top:40px;">
+      <label>아이디</label><span style="color: red;  margin-right: 95px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='id' id='id' value="${memberVO.id }" required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-info btn-sm">중복확인</button>
+      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark btn-sm">중복확인</button>
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>성명:*</label><br>
+      <label>성명</label><span style="color: red;  margin-right: 113px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='mname' id='mname' 
-                value='${memberVO.mname }' required="required" style='width: 30%;' placeholder="성명">
-    </div>   
+                value='${memberVO.mname }' required="required" style='width: 30%; display: inline-block;' placeholder="성명">
+    </div> 
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>전화 번호:</label><br>
+      <label>휴대폰</label><span style="color: red;  margin-right: 97px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='tel' id='tel' 
-                value='${memberVO.tel }' required="required" style='width: 30%;' placeholder="전화번호"> 
-    </div>   
-    
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>우편 번호:</label> <br>
-      <input type='text' class="form-control form-control-sm" name='zipcode' id='zipcode' 
-                value='${memberVO.zipcode }' style='width: 30%; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-info btn-sm">우편번호 찾기</button>
+                value='${memberVO.tel }' required="required" style='width: 30%; display: inline-block;' placeholder="010********"> 
     </div>  
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label> 주 소 :</label><br>
+      <label>우편번호</label><span style="color: red;  margin-right: 82px;" >*</span>
+      <input type='text' class="form-control form-control-sm" name='zipcode' id='zipcode' 
+                value='${memberVO.zipcode }' style='width: 30%; display: inline-block;' placeholder="우편번호">
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;우편번호 찾기&emsp;</button>
+    </div>  
+  
+     <div class="form_input" style = "margin-bottom:10px;">
+      <label>주소</label><span style="color: red;  margin-right: 115px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='address1' id='address1' 
-                 value='${memberVO.address1 }' style='width: 65%;' placeholder="주소">
-    </div>   
+                 value='${memberVO.address1 }' required="required" style='width: 65%; display: inline-block;' placeholder="주소">
+    </div>  
     
     <div class="form_input" style = "margin-bottom:10px;">
-      <label>상세 주소:</label><br>
+      <label>상세주소</label><span style="color: red;  margin-right: 84px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='address2' id='address2' 
-                value='${memberVO.address2 }' style='width: 65%;' placeholder="상세 주소">
+                value='${memberVO.address2 }' required="required" style='width: 65%; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
     </div>   
 
     <div>
@@ -294,8 +298,8 @@
     </div>
     
     <div class="form_input">
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-info btn-sm">수정</button>
-      <button type="button" onclick="history.back()" class="btn btn-info btn-sm">취소</button>
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="width: 80px; margin-left:250px;">수정</button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark"><img src="/member/images/back.png" class="icon" style="width:23px"></button>
     </div>   
   </FORM>
   </DIV>

@@ -47,12 +47,10 @@
             <span class="span_success">${param.mname }님(아이디: ${param.id }) 회원 정보를 변경했습니다.</span>
           </LI>
           <LI class='li_none'>
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark"><img src="/member/images/home.png" class="icon" style="width:23px"></button>
             <button type='button' 
-                         onclick="location.href='/'"
-                         class="btn btn-primary">시작 화면</button>
-            <button type='button' 
-                         onclick="location.href='/member/list.do'"
-                         class="btn btn-primary">회원 목록</button>                   
+                         onclick="location.href='/member/read.do'"
+                         class="btn btn-dark">수정 페이지로 돌아가기</button>                   
           </LI>                                                                       
         </c:when>
                 

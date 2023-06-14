@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+
+
 <script type="text/javascript">
     // jQuery ajax 요청
     function checkID() {
@@ -89,6 +91,7 @@
     
     }
 
+  
   function setFocus() {  // focus 이동
     // console.log('btn_close click!');
     
@@ -110,20 +113,37 @@
         $('#modal_panel').modal();               // 다이얼로그 출력
         return false;
         } 
-         
-    // 패스워드를 정상적으로 2번 입력했는지 확인
-    if ($('#passwd').val() != $('#passwd2').val()) {
-      msg = '입력된 패스워드가 일치하지 않습니다.<br>';
-      msg += "패스워드를 다시 입력해주세요.<br>"; 
       
-      $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
-      $('#modal_title').html('패스워드 일치 여부  확인'); // 제목 
-      $('#modal_content').html(msg);  // 내용
-      $('#btn_close').attr('data-focus', 'passwd');
-      $('#modal_panel').modal();         // 다이얼로그 출력
-      
-      return false; // submit 중지
-    }
+   // 패스워드를 정상적으로 2번 입력했는지 확인
+      if ($('#passwd').val() != $('#passwd2').val()) {
+        msg = '입력된 패스워드가 일치하지 않습니다.<br>';
+        msg += "패스워드를 다시 입력해주세요.<br>"; 
+        
+        $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+        $('#modal_title').html('패스워드 일치 여부 확인'); // 제목 
+        $('#modal_content').html(msg);  // 내용
+        $('#btn_close').attr('data-focus', 'passwd');
+        $('#modal_panel').modal();         // 다이얼로그 출력
+        
+        return false; // submit 중지
+      }
+
+      // 패스워드 유효성 검사
+      let passwd = $('#passwd').val();
+      let passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d|.*?[!@#$%^&*()\-_=+[\]{};:'"\\|,.<>/?]).{10,16}$/;
+      if (!passwordRegex.test(passwd)) { 
+        msg = '영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자<br>';
+        msg += "패스워드를 다시 입력해주세요.<br>"; 
+        
+        $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+        $('#modal_title').html('패스워드 조건 성립 확인'); // 제목 
+        $('#modal_content').html(msg);  // 내용
+        $('#btn_close').attr('data-focus', 'passwd');
+        $('#modal_panel').modal();  
+        return false; // submit 중지
+      }
+
+    
 
     let mname = $('#mname').val(); // 태그의 아이디가 'mname'인 태그의 값
       if ($.trim(mname).length == 0) { // id를 입력받지 않은 경우
@@ -207,7 +227,7 @@
 
   <DIV class='content_body'>
   
-  <ASIDE class="aside_left" style="margin-left:760px;  font-size: 14px;">
+  <ASIDE class="aside_left" style="margin-left:790px;  font-size: 14px;">
    <span style="color: red;  margin-right: 5px;" >*</span>필수입력사항
   </ASIDE>
 
@@ -221,10 +241,10 @@
 
   <div class='menu_line'></div>
   
-  <div style="width: 60%; margin: 0px auto ">
+  <div style="width: 45%; margin: 0px auto ">
   <FORM name='frm' id='frm' method='POST' action='./create.do' class="">
   
-    <div class="form_input"  style = "margin-bottom:10px; ">
+    <div class="form_input"  style = "margin-bottom:10px;  margin-top:40px; ">
       <label>아이디</label><span style="color: red;  margin-right: 95px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='id' id='id' value="" required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
       <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;중복확인&emsp;</button>
@@ -233,11 +253,12 @@
     <div class="form_input"  style = "margin-bottom:10px; ">
       <label>패스워드</label><span style="color: red;  margin-right: 80px;" >*</span>
       <input type='password' class="form-control form-control-sm" name='passwd' id='passwd' value='' required="required" style='width: 30%; display: inline-block;' placeholder="패스워드">
-    </div>   
+    </div>
     
     <div class="form_input" style = "margin-bottom:10px;">
       <label>패스워드 확인</label><span style="color: red;  margin-right: 43px;" >*</span>
       <input type='password' class="form-control form-control-sm" name='passwd2' id='passwd2' value='' required="required" style='width: 30%; display: inline-block;' placeholder="패스워드 확인">
+      <div  style="font-size: 5px; color:red; margin-left:158px;" >영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</div>
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
@@ -249,7 +270,7 @@
     <div class="form_input" style = "margin-bottom:10px;">
       <label>휴대폰</label><span style="color: red;  margin-right: 97px;" >*</span>
       <input type='text' class="form-control form-control-sm" name='tel' id='tel' 
-                value='010-****-****' required="required" style='width: 30%; display: inline-block;' placeholder="전화번호"> 
+                value='' required="required" style='width: 30%; display: inline-block;' placeholder="010********"> 
     </div>   
     
     <div class="form_input" style = "margin-bottom:10px;">
@@ -345,8 +366,8 @@
     </div>
     
     <div class="form_input">
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="margin-left:80px; width: 500px;" >가입하기</button>
-      <button type="button" onclick="history.back()" class="btn btn-outline-dark"><img src="/member/images/home.png" class="icon" style="width:23px"></button>
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="margin-left:18px; width: 500px;" >가입하기</button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark"><img src="/member/images/back.png" class="icon" style="width:23px"></button>
     </div>   
   </FORM>
   </DIV>
