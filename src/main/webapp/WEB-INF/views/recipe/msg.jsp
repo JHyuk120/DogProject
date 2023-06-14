@@ -83,7 +83,7 @@
         </c:choose>
         
         <button type='button' onclick="location.href='./create.do?itemno=${itemno}'" class="btn btn-primary">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }'" class="btn btn-primary">목록</button>
+        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }'" class="btn btn-primary">목록</button>
       </LI>
     </UL>
   </fieldset>

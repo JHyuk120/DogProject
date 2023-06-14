@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dev.mvc.goods.GoodsVO;
 import dev.mvc.notice.NoticeVO;
 
 public interface QnaDAOInter {
@@ -30,6 +31,23 @@ public interface QnaDAOInter {
    */
   public QnaVO read(int qnano);
   
+  /**
+   * 특정 카테고리의 검색된 글목록
+   * @return
+   */
+  public ArrayList<QnaVO> list_by_search(QnaVO QnaVO);
+  
+  /**
+   * 검색 수
+   * @return
+   */
+  public int search_count(QnaVO qnaVO);
+  
+  /**
+   * 특정 카테고리의 검색된 페이지 목록
+   * @return
+   */
+  public ArrayList<QnaVO> list_by_search_paging(QnaVO qnaVO);
 
   /**
    * 패스워드 확인

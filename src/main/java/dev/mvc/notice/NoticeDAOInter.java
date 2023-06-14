@@ -25,7 +25,23 @@ public interface NoticeDAOInter {
    */
   public NoticeVO read(int noticeno);
   
-
+  /**
+   * 특정 카테고리의 검색된 글목록
+   * @return
+   */
+  public ArrayList<NoticeVO> list_by_search(NoticeVO NoticeVO);
+  
+  /**
+   * 검색 수
+   * @return
+   */
+  public int search_count(NoticeVO noticeVO);
+  
+  /**
+   * 특정 카테고리의 검색된 페이지 목록
+   * @return
+   */
+  public ArrayList<NoticeVO> list_by_search_paging(NoticeVO noticeVO);
   
 
   /**

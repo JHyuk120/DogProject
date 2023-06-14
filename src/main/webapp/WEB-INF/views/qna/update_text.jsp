@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="noticeno" value="${noticeVO.noticeno }" />
-<c:set var="title" value="${noticeVO.title }" />
-<c:set var="content" value="${noticeVO.content }" />
-<c:set var="word" value="${noticeVO.word }" />
+<c:set var="qnano" value="${qnaVO.qnano }" />
+<c:set var="title" value="${qnaVO.title }" />
+<c:set var="content" value="${qnaVO.content }" />
+<c:set var="word" value="${qnaVO.word }" />
 
  
 <!DOCTYPE html> 
@@ -38,7 +38,7 @@
   <DIV class='menu_line'></DIV>
   <%--수정 폼 --%>
   <FORM name='frm' method='POST' action='./update_text.do'>
-    <input type="hidden" name="noticeno" value="${noticeno }">
+    <input type="hidden" name="qnano" value="${qnano }">
     <input type="hidden" name="now_page" value="${param.now_page }">
 
 

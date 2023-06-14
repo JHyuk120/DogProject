@@ -172,6 +172,49 @@ public class NoticeCont {
       return mav;
     }
     
+    /**
+     * 목록 + 검색 + 페이징 지원
+     * http://localhost:9091/notice/list_all.do
+     * 
+     * @param notice_no
+     * @param word
+     * @param now_page
+     * @return
+     */
+    @RequestMapping(value = "/notice/list_by_search.do", method = RequestMethod.GET)
+    public ModelAndView list_by_search_paging(NoticeVO noticeVO) {
+
+      ModelAndView mav = new ModelAndView();
+      
+      //검색된 전체 글 수
+      int search_count = this.noticeProc.search_count(noticeVO);
+      mav.addObject("search_count", search_count);
+      
+      // 검색 목록
+      ArrayList<NoticeVO> list = noticeProc.list_by_search_paging(noticeVO);
+      mav.addObject("list", list);
+      
+      mav.addObject("noticeVO", noticeVO);
+
+      /*
+       * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 현재 페이지: 11 / 22 [이전] 11 12 13 14 15 16 17
+       * 18 19 20 [다음]
+       * @param auction_no 카테고리번호
+       * @param search_count 검색(전체) 레코드수
+       * @param now_page 현재 페이지
+       * @param word 검색어
+       * @return 페이징용으로 생성된 HTML/CSS tag 문자열
+       */
+      String paging = noticeProc.pagingBox(noticeVO.getNow_page(), noticeVO.getWord(), "list_by_search.do");
+      mav.addObject("paging", paging);
+
+      // mav.addObject("now_page", now_page);
+      
+      mav.setViewName("/notice/list_all");  
+
+      return mav;
+    }
+    
     // 수정폼
     @RequestMapping(value = "/notice/update_text.do", method = RequestMethod.GET)
     public ModelAndView update_text(int noticeno) {
@@ -373,6 +416,9 @@ public class NoticeCont {
       // -------------------------------------------------------------------
           
       this.noticeProc.delete(noticeVO.getNoticeno()); // DBMS 삭제
+
+      mav.setViewName("redirect:/notice/list_all.do"); 
+
 
       
       return mav;
