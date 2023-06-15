@@ -47,10 +47,10 @@
             <span class="span_success">${param.mname }님(아이디: ${param.id }) 회원 정보를 변경했습니다.</span>
           </LI>
           <LI class='li_none'>
-            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark"><img src="/member/images/home.png" class="icon" style="width:23px"></button>
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>
             <button type='button' 
                          onclick="location.href='/member/read.do'"
-                         class="btn btn-dark">수정 페이지로 돌아가기</button>                   
+                         class="btn btn-dark" style='width:200px; height:50px;'>수정 페이지로 돌아가기</button>                   
           </LI>                                                                       
         </c:when>
                 
@@ -83,7 +83,7 @@
           </LI>   
           <LI class='li_none'>
             <button type='button' 
-                         onclick="location.href='/'"
+                         onclick="location.href='/member/login.do'"
                          class="btn btn-primary">확인</button>
           </LI>                                                                     
         </c:when>   
@@ -93,6 +93,12 @@
             <span class="span_fail">${param.mname }님(${param.id }) 패스워드 변경에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>  
+        
+         <c:when test="${code == 'passwd_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">${param.mname }님(${param.id }) 현재 패스워드를 올바르게 입력해주세요.</span>
+          </LI>                                                                      
+        </c:when> 
         
         <c:otherwise>
           <LI class='li_none_left'>
