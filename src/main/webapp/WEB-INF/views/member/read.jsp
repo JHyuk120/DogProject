@@ -134,6 +134,36 @@
         $('#modal_panel').modal();               // 다이얼로그 출력
         return false;
         } 
+      
+      let current_passwd = $('#current_passwd').val().trim(); // 태그의 아이디가 'current_passwd'인 태그의 값
+      if (current_passwd.length == 0) { // id를 입력받지 않은 경우
+        msg = '현재 비밀번호를 입력하세요.<br>· 현재 비밀번호 입력은 필수입니다.';
+        
+        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+        $('#modal_title').html('현재 비밀번호 입력 누락 '); // 제목 
+        $('#modal_content').html(msg);        // 내용
+        $('#btn_close').attr("data-focus", "current_passwd");  // 닫기 버튼 클릭시 tel 입력으로 focus 이동
+        $('#modal_panel').modal();               // 다이얼로그 출력
+        return false;
+        } 
+      
+      
+      
+      if ($('#new_passwd').val() != $('#new_passwd2').val()) {  // 새로 입력되는 2개의 패스워드 비교
+          $('#modal_title').html('패스워드 일치 여부  확인'); // 제목 
+
+          $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+          msg = '· 입력된 패스워드가 일치하지 않습니다.<br>';
+          msg += "· 패스워드를 다시 입력해주세요.<br>"; 
+          $('#modal_content').html(msg);  // 내용
+          $('#modal_panel').modal();         // 다이얼로그 출력
+          
+          $('#btn_close').attr("data-focus", "new_passwd"); // 모달창에서 닫기 버튼 클릭시 focus를 이동할 태그 설정
+          
+          return false; // submit 중지
+        }
+
+
 
     $('#frm').submit(); // required="required" 작동 안됨.
   }  
@@ -169,9 +199,6 @@
 
   <DIV class='content_body'>
   
-  <ASIDE class="aside_left" style="margin-left:790px;  font-size: 14px;">
-   <span style="color: red;  margin-right: 5px;" >*</span>필수입력사항
-  </ASIDE>
 
   <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>
@@ -183,44 +210,63 @@
 
   <div class='menu_line'></div>
   
-  <div style="width: 45%; margin: 0px auto ">
+  <div style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top:20px; ">
   <FORM name='frm' id='frm' method='POST' action='./update.do' class="">
     <input type="hidden" name="memberno" value="${memberVO.memberno }">
-    <div class="form_input"  style = "margin-bottom:10px; margin-top:40px;">
-      <label>아이디</label><span style="color: red;  margin-right: 95px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='id' id='id' value="${memberVO.id }" required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark btn-sm">중복확인</button>
-    </div>   
+    <div class="form_input"  style = "margin-bottom:20px; margin-top:40px;">
+      <label style="  margin-right: 124px; font-size: 18px;" >아이디</label>
+      <input type='text' class="form-control " name='id' id='id' value="${memberVO.id }" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
+      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark "  style='width:150px; height:50px; margin-bottom:2px; margin-left:5px;'>중복확인</button>
+    </div>  
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>성명</label><span style="color: red;  margin-right: 113px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='mname' id='mname' 
-                value='${memberVO.mname }' required="required" style='width: 30%; display: inline-block;' placeholder="성명">
+     <div class="form_input" style = "margin-bottom:20px;">
+        <label style="  margin-right: 63px; font-size: 18px;">현재 패스워드</label>    
+        <input type='password' class="form-control" name='current_passwd' 
+                    id='current_passwd' value='' required="required" style='width: 400px; height:50px; display: inline-block;' ' placeholder="현재 패스워드">
+      </div>   
+                      
+      <div class="form_input"  style = "margin-bottom:20px;">
+        <label style="  margin-right: 82px; font-size: 18px;">새 비밀번호</label>    
+        <input type='password' class="form-control" name='new_passwd' 
+                  id='new_passwd' value='' required="required"  style='width: 400px; height:50px;display: inline-block; ' placeholder="새로운 패스워드">
+      </div>   
+   
+      <div class="form_input"  style = "margin-bottom:20px;">
+        <label style="  margin-right: 40px; font-size: 18px;">새 비밀번호 확인</label>    
+        <input type='password' class="form-control" name='new_passwd2' 
+                  id='new_passwd2' value='' required="required"  style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드">
+      </div>   
+       
+    
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="  margin-right: 143px; font-size: 18px;">성명</label>
+      <input type='text' class="form-control " name='mname' id='mname' 
+                value='${memberVO.mname }' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="성명">
     </div> 
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>휴대폰</label><span style="color: red;  margin-right: 97px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='tel' id='tel' 
-                value='${memberVO.tel }' required="required" style='width: 30%; display: inline-block;' placeholder="010********"> 
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="  margin-right: 124px; font-size: 18px;" >휴대폰</label>
+      <input type='text' class="form-control " name='tel' id='tel' 
+                value='${memberVO.tel }' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="010********"> 
     </div>  
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>우편번호</label><span style="color: red;  margin-right: 82px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='zipcode' id='zipcode' 
-                value='${memberVO.zipcode }' style='width: 30%; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;우편번호 찾기&emsp;</button>
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="margin-right: 107px; font-size: 18px;">우편번호</label>
+      <input type='text' class="form-control " name='zipcode' id='zipcode' 
+                value='${memberVO.zipcode }' style='width: 400px; height:50px;; display: inline-block;' placeholder="우편번호">
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark"  style='width:150px; height:50px; margin-bottom:2px; margin-left:5px;'>우편번호 찾기</button>
     </div>  
   
-     <div class="form_input" style = "margin-bottom:10px;">
-      <label>주소</label><span style="color: red;  margin-right: 115px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='address1' id='address1' 
-                 value='${memberVO.address1 }' required="required" style='width: 65%; display: inline-block;' placeholder="주소">
+     <div class="form_input" style = "margin-bottom:20px;">
+      <label  style="margin-right: 143px; font-size: 18px;">주소</label>
+      <input type='text' class="form-control" name='address1' id='address1' 
+                 value='${memberVO.address1 }' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="주소">
     </div>  
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>상세주소</label><span style="color: red;  margin-right: 84px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='address2' id='address2' 
-                value='${memberVO.address2 }' required="required" style='width: 65%; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label  style="margin-right: 107px; font-size: 18px;"> 상세주소</label>
+      <input type='text' class="form-control" name='address2' id='address2' 
+                value='${memberVO.address2 }' required="required" style='width: 400px; height:50px; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
     </div>   
 
     <div>
@@ -297,9 +343,9 @@
 
     </div>
     
-    <div class="form_input">
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="width: 80px; margin-left:250px;">수정</button>
-      <button type="button" onclick="history.back()" class="btn btn-outline-dark"><img src="/member/images/back.png" class="icon" style="width:23px"></button>
+    <div class="form_input" >
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="width: 100px; height:50px; margin-left:255px;">수정</button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/back.png" class="icon" style="width:30px"></button>
     </div>   
   </FORM>
   </DIV>

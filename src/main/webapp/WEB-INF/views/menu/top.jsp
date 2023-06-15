@@ -67,9 +67,7 @@
                            <img src="/menu/images/sheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 아이디 찾기</a>
                           <a class="dropdown-item" href="#">
                            <img src="/menu/images/sh2.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
-                          <a class="dropdown-item" href="/member/passwd_update.do">
-                           <img src="/menu/images/plock.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 변경</a>
-                          <a class="dropdown-item" href="#">
+                          <a class="dropdown-item" href="/member/delete.do">
                            <img src="/menu/images/px.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                       </div>
                   </li>
