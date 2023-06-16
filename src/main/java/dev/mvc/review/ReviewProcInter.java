@@ -20,7 +20,7 @@ public interface ReviewProcInter {
      * @param goodsno
      * @return
      */
-    public int ratingAVG_cal(int goodsno);
+    //public int ratingAVG_cal(int goodsno);
     /**
      * 리뷰 평균 조회
      * @param goodsno

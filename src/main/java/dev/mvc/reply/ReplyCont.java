@@ -189,44 +189,6 @@ public class ReplyCont {
          mav.setViewName("./reply/login_need");
      }
      return mav;
- }
- 
- @RequestMapping(value="/reply/recom_create.do", method=RequestMethod.POST)
- public ModelAndView reply_recom_create (HttpSession session, int memberno, int replyno, int recipeno){ 
-     
-     ModelAndView mav = new ModelAndView();
-    
-     if(memberProc.isMember(session)) {
-         int cnt = this.replyProc.reply_recom_create(memberno, replyno);
-         if (cnt == 1) {
-             mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
-         } else {
-           mav.addObject("code", "reply_create_fail");
-         }
-     }else {
-         mav.setViewName("./reply/login_need");
-     }
-    return mav;
- }
-    
-     @RequestMapping(value="/reply/likeUp.do", method=RequestMethod.GET)
-     @ResponseBody
-     public int reply_recom_create(int memberno,int replyno) {
-         
-         System.out.println("댓글기능: reply_likeUp");
-         // 댓글의 좋아요 수 증가 작업 수행
-         int reply_recom =  this.replyProc.reply_recom_create(memberno, replyno);
-
-         // 증가된 좋아요 수를 로그로 출력
-         System.out.println("Updated like count: " + reply_recom);
-         return reply_recom;
-     }
-     @RequestMapping(value="/reply/likeDown.do", method=RequestMethod.POST)
-     public void reply_recom_undo(int memberno, int replyno) {
-         System.out.println("댓글기능: reply_likeDown");
-     
-     }
-
-
+ }  
  
 }

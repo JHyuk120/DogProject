@@ -259,7 +259,13 @@ public class GoodsCont {
     mav.addObject("paging", paging);
     mav.addObject("list", list);
  
-
+    // 게시물 별 리뷰 평점
+    float ratingAVG = this.reviewProc.ratingAVG(goodsno);
+    mav.addObject("ratingAVG", ratingAVG);
+    // 게시물 별 리뷰 수
+   int reviewcnt =  this.reviewProc.review_count(goodsno);
+   mav.addObject("reviewcnt", reviewcnt);
+   
     return mav;
 }
 

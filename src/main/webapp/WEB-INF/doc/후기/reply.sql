@@ -71,10 +71,10 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,ratingValue,ratingAVG, r
 
 
 -- 컨텐츠 평점
-SELECT AVG(reply.ratingValue) 
+SELECT reply.ratingValue 
 FROM reply 
 INNER JOIN member ON reply.memberno = member.memberno 
-WHERE reply.recipeno = 3 
+WHERE reply.recipeno = 18
 ORDER BY reply.rdate DESC;
 
 -- 리뷰 수정

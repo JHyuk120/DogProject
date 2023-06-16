@@ -380,6 +380,7 @@ function reviewcnt(){
     </div>
     <td>
            <div id="rating-display" >(0)</div>
+           <div>리뷰수: ${reviewcnt } </div>
            <div>평점: ${ratingAVG } </div>
     <textarea name='reviewcont' required="required" rows="7" cols="63"></textarea>
     

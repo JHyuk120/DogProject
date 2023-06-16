@@ -20,7 +20,7 @@ public interface ReviewDAOInter {
      * @param goodsno
      * @return
      */
-    public int ratingAVG_cal(int goodsno);
+    //public int ratingAVG_cal(int goodsno);
     /**w
      * 리뷰 평균 조회
      * @param goodsno

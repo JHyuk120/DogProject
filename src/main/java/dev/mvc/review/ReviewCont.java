@@ -52,9 +52,6 @@ public class ReviewCont {
            
          if(memberProc.isMember(session)) {
             // if (cnt == 1) {
-
-                 // 별점 평균 계산 
-                 this.reviewProc.ratingAVG_cal(reviewVO.getGoodsno());
                  // 업데이트된 별점 평균 조회
                  float ratingAVG = this.reviewProc.ratingAVG(goodsVO.getGoodsno());
                  

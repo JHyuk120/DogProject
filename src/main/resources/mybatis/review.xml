@@ -7,7 +7,8 @@
 INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue,file2, file2saved, thumb2, size2) 
 VALUES(review_seq.nextval,#{memberno},#{goodsno},#{reviewcont},sysdate,#{ratingValue},#{file2},#{file2saved},#{thumb2},#{size2})
 </insert>
-<!-- 별점 평균 계산 -->
+<!-- 
+
 <update id="ratingAVG_cal" parameterType="int">
   UPDATE review
   SET ratingAvg = (
@@ -16,10 +17,10 @@ VALUES(review_seq.nextval,#{memberno},#{goodsno},#{reviewcont},sysdate,#{ratingV
       WHERE goodsno = #{goodsno}
       )
   WHERE goodsno = #{goodsno}
-</update>
+</update>  -->
 <!-- 별점 평균 조회 -->
 <select id="ratingAVG" parameterType="int" resultType="float" >
-  SELECT AVG(ratingValue)
+  SELECT ROUND(AVG(ratingValue), 2) AS ratingAvg
   FROM review
   WHERE goodsno = #{goodsno}
 </select>
