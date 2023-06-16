@@ -227,7 +227,7 @@
 
   <DIV class='content_body'>
   
-  <ASIDE class="aside_left" style="margin-left:790px;  font-size: 14px;">
+  <ASIDE class="aside_left" style="margin-left:900px;  font-size: 16px;">
    <span style="color: red;  margin-right: 5px;" >*</span>필수입력사항
   </ASIDE>
 
@@ -241,55 +241,55 @@
 
   <div class='menu_line'></div>
   
-  <div style="width: 45%; margin: 0px auto ">
+  <div style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top:20px; ">
   <FORM name='frm' id='frm' method='POST' action='./create.do' class="">
   
-    <div class="form_input"  style = "margin-bottom:10px;  margin-top:40px; ">
-      <label>아이디</label><span style="color: red;  margin-right: 95px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='id' id='id' value="" required="required" style='width: 30%; display: inline-block;' placeholder="아이디" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;중복확인&emsp;</button>
+    <div class="form_input"  style = "margin-bottom:20px;  margin-top:40px; ">
+      <label style="font-size: 18px;">아이디</label><span style="color: red;  margin-right:124px;" >*</span>
+      <input type='text' class="form-control " name='id' id='id' value="" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
+      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark" style='width:150px; height:50px; margin-bottom:2px; margin-left:5px;'>중복확인</button>
     </div>   
                 
-    <div class="form_input"  style = "margin-bottom:10px; ">
-      <label>패스워드</label><span style="color: red;  margin-right: 80px;" >*</span>
-      <input type='password' class="form-control form-control-sm" name='passwd' id='passwd' value='' required="required" style='width: 30%; display: inline-block;' placeholder="패스워드">
+    <div class="form_input"  style = "margin-bottom:20px; ">
+      <label style="font-size: 18px;">패스워드</label><span style="color: red;  margin-right: 107px;" >*</span>
+      <input type='password' class="form-control " name='passwd' id='passwd' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드">
     </div>
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>패스워드 확인</label><span style="color: red;  margin-right: 43px;" >*</span>
-      <input type='password' class="form-control form-control-sm" name='passwd2' id='passwd2' value='' required="required" style='width: 30%; display: inline-block;' placeholder="패스워드 확인">
-      <div  style="font-size: 5px; color:red; margin-left:158px;" >영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</div>
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="font-size: 18px;">패스워드 확인</label><span style="color: red;  margin-right: 63px;" >*</span>
+      <input type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드 확인">
+      <div  style="font-size: 13px; color:red; margin-left:190px;" >영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</div>
     </div>   
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>성명</label><span style="color: red;  margin-right: 113px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='mname' id='mname' 
-                value='' required="required" style='width: 30%; display: inline-block;' placeholder="성명">
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="font-size: 18px;">성명</label><span style="color: red;  margin-right: 143px;" >*</span>
+      <input type='text' class="form-control" name='mname' id='mname' 
+                value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="성명">
     </div>   
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>휴대폰</label><span style="color: red;  margin-right: 97px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='tel' id='tel' 
-                value='' required="required" style='width: 30%; display: inline-block;' placeholder="010********"> 
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="font-size: 18px;">휴대폰</label><span style="color: red;  margin-right: 124px;" >*</span>
+      <input type='text' class="form-control " name='tel' id='tel' 
+                value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="010********"> 
     </div>   
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>우편번호</label><span style="color: red;  margin-right: 82px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='zipcode' id='zipcode' 
-                value='' style='width: 30%; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark btn-sm" style="margin-bottom:3px; margin-left:5px">&emsp;우편번호 찾기&emsp;</button>
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="font-size: 18px;">우편번호</label><span style="color: red;  margin-right: 107px;" >*</span>
+      <input type='text' class="form-control" name='zipcode' id='zipcode' 
+                value='' style='width: 400px; height:50px; display: inline-block;' placeholder="우편번호">
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style="width:150px; height:50px; margin-bottom:2px; margin-left:5px;">우편번호 찾기</button>
     </div>  
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>주소</label><span style="color: red;  margin-right: 115px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='address1' id='address1' 
-                 value='' required="required" style='width: 65%; display: inline-block;' placeholder="주소">
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="font-size: 18px;">주소</label><span style="color: red;  margin-right: 143px;" >*</span>
+      <input type='text' class="form-control " name='address1' id='address1' 
+                 value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="주소">
     </div>   
     
-    <div class="form_input" style = "margin-bottom:10px;">
-      <label>상세주소</label><span style="color: red;  margin-right: 84px;" >*</span>
-      <input type='text' class="form-control form-control-sm" name='address2' id='address2' 
-                value='' required="required" style='width: 65%; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
+    <div class="form_input" style = "margin-bottom:20px;">
+      <label style="font-size: 18px;">상세주소</label><span style="color: red;  margin-right: 107px;" >*</span>
+      <input type='text' class="form-control" name='address2' id='address2' 
+                value='' required="required" style='width: 400px; height:50px; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
     </div>   
 
     <div>
@@ -366,8 +366,8 @@
     </div>
     
     <div class="form_input">
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="margin-left:18px; width: 500px;" >가입하기</button>
-      <button type="button" onclick="history.back()" class="btn btn-outline-dark"><img src="/member/images/back.png" class="icon" style="width:23px"></button>
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="margin-left:30px; width: 500px;  height:50px;" >가입하기</button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/back.png" class="icon"  style="width:30px"></button>
     </div>   
   </FORM>
   </DIV>

@@ -11,49 +11,29 @@
         <nav class="navbar navbar-expand-md fixed-top navbar-custom">
         <style>
 
-			  .navbar-custom {
-			    background-color: #B6EADA;
+        .navbar-custom {
+          background-color: white;
+          height: 35px; /* 높이 설정 */
+          width: 100%; /* 넓이 설정 */
+        }
 
-			  }
-			</style>
-
-
-            <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 100px;  height: 40px;  '></a>
+      </style>
+            
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle Navigation">
               <span class="navbar-toggler-icon"></span>
             </button>    
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                  <c:forEach var="itemVO" items="${list_y}">
-                    <c:set var="itemno" value="${itemVO.itemno }" />
-                    <c:set var="item" value="${itemVO.item }" />
-                    <li class="nav-item">
-                    <c:choose>
-                          <c:when test="${itemno != 2}">
-                            <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🦴${item }</a>
-                          </c:when>
-                          <c:otherwise>
-                            <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno }&now_page=1" >🥗${item }🥗</a>
-                          </c:otherwise>
-                      </c:choose>
-                    </li>
-                  </c:forEach>
 
-                  <li class="nav-item dropdown">
+                </ul>
+                
+                <ul class="navbar-nav float-right" style='margin-right: 20px'>
+                
+               
+                <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                         <img src="/menu/images/call.png" class="icon"  style='margin-left:5px'>‍&nbsp;고객센터</a>
-                        
-                      <div class="dropdown-menu">                       
-                          <a class="dropdown-item" href="/notice/list_all.do">
-                           <img src="/menu/images/a.png" class="icon"  style='margin-left:5px'>&nbsp; 공지사항</a>                         
-                          <a class="dropdown-item" href="/qna/list_by_search.do">
-                           <img src="/menu/images/qa.png" class="icon"  style='margin-left:5px'>&nbsp; Q&A</a>
-                      </div>
-                  </li>
-                  
-                  <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                       <img src="/menu/images/pcircle.svg" class="icon"  style='margin-left:5px'>&nbsp;회원</a>
+                       <img src="/menu/images/pcircle.svg" class="icon"  style='margin-left:5px'>&nbsp;마이페이지</a>
                       <div class="dropdown-menu">                       
                           <a class="dropdown-item" href="/member/create.do">
                            <img src="/menu/images/pheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 가입</a>
@@ -67,13 +47,10 @@
                            <img src="/menu/images/sheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 아이디 찾기</a>
                           <a class="dropdown-item" href="#">
                            <img src="/menu/images/sh2.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
-                          <a class="dropdown-item" href="/member/passwd_update.do">
-                           <img src="/menu/images/plock.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 변경</a>
-                          <a class="dropdown-item" href="#">
+                          <a class="dropdown-item" href="/member/delete.do">
                            <img src="/menu/images/px.svg" class="icon"  style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                       </div>
                   </li>
-                  
                   
                   <li class="nav-item">
                     <c:choose>
@@ -87,9 +64,7 @@
                       </c:otherwise>
                     </c:choose>   
                   </li>
-                </ul>
-                
-                <ul class="navbar-nav float-right" style='margin-right: 20px'>
+                  
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
                       <li class="nav-item">
@@ -122,8 +97,56 @@
 
     </div>
     <!-- 헤더 end -->
+
+    <nav class="navbar navbar-expand-md navbar-main border-bottom">
+
+                
+            </form> <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#dropdown6" aria-expanded="false"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="navbar-collapse collapse d-flex align-items-center id="dropdown6" style=" height: 130px">
+            
+            <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 200px;  height: 80px;  '></a>
+            
+                <ul class="navbar-nav float-center mr-auto  ">
+                    <c:forEach var="itemVO" items="${list_y}">
+                    <c:set var="itemno" value="${itemVO.itemno }" />
+                    <c:set var="item" value="${itemVO.item }" />
+                    <li class="nav-item">
+                    <c:choose>
+                    
+                          <c:when test="${itemno != 2}">
+                    <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 20px;">🦴${item}</a>
+					                </c:when>
+					                <c:otherwise>
+                    <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 20px;">🥗${item}🥗</a>
+                          </c:otherwise>
+                      </c:choose>
+                    </li>
+                  </c:forEach>
+                  </ul>
+                  
+                  
+                <ul class="navbar-nav float-right" style='margin-right: 10px'>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                         <img src="/menu/images/call.png" class="icon"  style='margin-left:5px'>‍&nbsp;고객센터</a>
+                        
+                      <div class="dropdown-menu">                       
+                          <a class="dropdown-item" href="/notice/list_all.do">
+                           <img src="/menu/images/a.png" class="icon"  style='margin-left:5px'>&nbsp; 공지사항</a>                         
+                          <a class="dropdown-item" href="/qna/list_by_search.do">
+                           <img src="/menu/images/qa.png" class="icon"  style='margin-left:5px'>&nbsp; Q&A</a>
+                           </ul>
+                      </div>
+                  </li>
+                
+                </ul>
+                
+                
+            </div>
+        </div>
+    </nav>
     
-    <%-- 내용 --%> 
-    <DIV class='content'>
+
     
-      <div style='clear: both; height: 50px;'></div>
+    
+</header>

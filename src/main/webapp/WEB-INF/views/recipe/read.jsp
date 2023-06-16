@@ -174,13 +174,13 @@ function likeUpDown(){
       --%>
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-	    <A href="./update_text.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
-	    <span class='menu_divide' >│</span>
-	    <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }">파일 수정</A>  
-	    <span class='menu_divide' >│</span>
+      <A href="./update_text.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
+      <span class='menu_divide' >│</span>
+      <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }">파일 수정</A>  
+      <span class='menu_divide' >│</span>
       <A href="./youtube.do?recipeno=${recipeno}">유튜브</A> 
       <span class='menu_divide' >│</span>
-	    <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
+      <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
     <span class='menu_divide' >│</span>
     </c:if>
 
