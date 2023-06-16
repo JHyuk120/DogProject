@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.recipe.RecipeVO;
 import dev.mvc.admin.AdminProcInter;
@@ -64,6 +66,14 @@ public class ReplyCont {
        
      if(memberProc.isMember(session)) {
          
+         if (cnt == 1) {
+             mav.addObject("recipe", recipeVO);
+             mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
+         } else {
+           mav.addObject("code", "reply_create_fail");
+         }
+     }
+     else if(adminProc.isAdmin(session)) {
          if (cnt == 1) {
              mav.addObject("recipe", recipeVO);
              mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
@@ -124,7 +134,16 @@ public class ReplyCont {
       //현재 로그인된 id
       String currentUserId = (String) session.getAttribute("id");
       ReplyVO replyVOmid = this.replyProc.reply_read(replyVO.getReplyno());
+      System.out.println("-> id: "+ currentUserId);
+      
+      //로그인 확인 출력
+      if(currentUserId != null) {
+          System.out.println("User logged in with id: " + currentUserId);
+      } else {
+          System.out.println("No user is currently logged in");
+      }
 
+      
       // 아이디 확인
       if (replyVOmid != null && replyVOmid.getMid().equals(currentUserId)) {
           this.replyProc.reply_update(replyVO);
@@ -171,4 +190,43 @@ public class ReplyCont {
      }
      return mav;
  }
+ 
+ @RequestMapping(value="/reply/recom_create.do", method=RequestMethod.POST)
+ public ModelAndView reply_recom_create (HttpSession session, int memberno, int replyno, int recipeno){ 
+     
+     ModelAndView mav = new ModelAndView();
+    
+     if(memberProc.isMember(session)) {
+         int cnt = this.replyProc.reply_recom_create(memberno, replyno);
+         if (cnt == 1) {
+             mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
+         } else {
+           mav.addObject("code", "reply_create_fail");
+         }
+     }else {
+         mav.setViewName("./reply/login_need");
+     }
+    return mav;
+ }
+    
+     @RequestMapping(value="/reply/likeUp.do", method=RequestMethod.GET)
+     @ResponseBody
+     public int reply_recom_create(int memberno,int replyno) {
+         
+         System.out.println("댓글기능: reply_likeUp");
+         // 댓글의 좋아요 수 증가 작업 수행
+         int reply_recom =  this.replyProc.reply_recom_create(memberno, replyno);
+
+         // 증가된 좋아요 수를 로그로 출력
+         System.out.println("Updated like count: " + reply_recom);
+         return reply_recom;
+     }
+     @RequestMapping(value="/reply/likeDown.do", method=RequestMethod.POST)
+     public void reply_recom_undo(int memberno, int replyno) {
+         System.out.println("댓글기능: reply_likeDown");
+     
+     }
+
+
+ 
 }

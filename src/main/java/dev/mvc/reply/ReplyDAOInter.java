@@ -55,5 +55,24 @@ public interface ReplyDAOInter {
      * @return
      */
     public ReplyVO replycnt(int recipeno);
+    /**
+     * 댓글 추천
+     * @param memberno
+     * @param replyno
+     * @return
+     */
+    public int reply_recom_create (int memberno, int replyno);
+    /**
+     * 추천 취소
+     * @param replyno
+     * @return
+     */
+    public int reply_recom_undo (int replyno);
+    /**
+     * 추천 조회
+     * @param replyno
+     * @return
+     */
+    public int reply_recom(int replyno);
 
 }

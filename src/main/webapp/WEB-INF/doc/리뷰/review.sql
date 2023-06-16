@@ -5,10 +5,10 @@ CREATE TABLE review (
     memberno NUMBER(10) NOT NULL,
     goodsno  NUMBER(10) NOT NULL,
     reviewcont  CLOB    NOT NULL,
-    file1       VARCHAR(100),  -- 원본 파일명 image
-    file1saved  VARCHAR(100),  -- 저장된 파일명, image
-    thumb1      VARCHAR(100),   -- preview image
-    size1       NUMBER(10) DEFAULT 0,  -- 파일 사이즈
+    file2       VARCHAR(100),  -- 원본 파일명 image
+    file2saved  VARCHAR(100),  -- 저장된 파일명, image
+    thumb2      VARCHAR(100),   -- preview image
+    size2       NUMBER(10) DEFAULT 0,  -- 파일 사이즈
     rdate       DATE,
     recom       NUMBER(7)    DEFAULT 0  NOT NULL,
     reviewcnt   NUMBER(7)    DEFAULT 0  NOT NULL,
@@ -50,7 +50,7 @@ commit;
 
 -- 리뷰 조회
 
-SELECT r.reviewno,r.memberno,r.goodsno,m.id AS mid,r.reviewcont,r.rdate,r.ratingValue,r.ratingAVG
+SELECT r.reviewno,r.memberno,r.goodsno,m.id AS mid,r.reviewcont,r.rdate,r.ratingValue,r.ratingAVG,r.file2,r.file1saved,r.thumb2, r.size2
 FROM review r JOIN member m on r.memberno = m.memberno
 WHERE r. goodsno =21
 ORDER BY rdate ASC;
@@ -103,5 +103,5 @@ FROM reply
 WHERE recipeno=6;
 --
 SELECT *
-FROM member
-WHERE memberno=1;
+FROM review;
+

@@ -224,7 +224,7 @@ public class GoodsCont {
  * @return
  */
   @RequestMapping(value="/goods/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int goodsno, ReviewVO reviewVO) {
+  public ModelAndView read(HttpServletRequest request, HttpSession session,int goodsno, ReviewVO reviewVO) {
     ModelAndView mav = new ModelAndView();
 
     GoodsVO goodsVO = this.goodsProc.read(goodsno);
@@ -253,9 +253,6 @@ public class GoodsCont {
     mav.addObject("mname", mname);
 
     mav.setViewName("/goods/read"); // /WEB-INF/views/goods/read.jsp
-    
-    
-
     
     ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
     String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");

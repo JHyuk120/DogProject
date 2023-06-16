@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.goods.GoodsVO;
 import dev.mvc.reply.Reply;
 import dev.mvc.reply.ReplyDAOInter;
 import dev.mvc.reply.ReplyVO;
@@ -170,6 +171,12 @@ public class ReviewProc implements ReviewProcInter{
        int cnt = this.reviewDAO.review_delete(reviewno);
         return cnt;
     }
-    
+
+    @Override
+    public int update_file(ReviewVO reviewVO) {
+       int cnt = this.reviewDAO.update_file(reviewVO);
+        return cnt;
+    }
+
 
 }

@@ -167,6 +167,24 @@ public class ReplyProc implements ReplyProcInter {
         return cnt;
     }
 
+    @Override
+    public int reply_recom_create(int memberno, int replyno) {
+        int cnt = this.ReplyDAO.reply_recom_create(memberno, replyno);
+        return cnt;
+    }
+
+    @Override
+    public int reply_recom_undo(int replyno) {
+       int cnt = this.ReplyDAO.reply_recom_undo(replyno);
+        return cnt;
+    }
+
+    @Override
+    public int reply_recom(int replyno) {
+        int cnt = this.ReplyDAO.reply_recom(replyno);
+        return cnt;
+    }
+
 
 
 }

@@ -36,21 +36,123 @@
 <script type="text/javascript">
 
 <!--댓글 등록시 로그인 여부 확인 -->
-    function checkLoginStatus() {
-        var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
-        if (!isLoggedIn) {
-            // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
-            alert('로그인이 필요합니다.');
-            window.location.href = "../member/login.do";
-            return false; // 폼 제출 중단
-        }
-        return true; // 폼 제출 진행
+function checkLoginStatus() {
+    var isMemberLoggedIn = ${sessionScope.id != null};
+    
+    // 일반 사용자가 로그인한 경우 댓글을 작성할 수 있음
+    if (!isMemberLoggedIn) {
+        // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
+        
+        alert('로그인이 필요합니다.');
+        window.location.href = "../member/login.do";
+        return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 진행
+}
+<%--
+function likeUpDown(){    
+	  
+    var replyno = <%= replyVO.getReply() %>;
+    var memberno = <%= replyVO.getMemberno() %>;
+	$.ajax({
+	    type: 'POST',
+	    url: '/reply/likeUp.do?memberno=' + memberno + '&replyno=' + replyno,
+	    data: JSON.stringify(data),
+	    contentType: 'application/json',
+      async: true;
+	    success: function(response) {
+	      // 요청이 성공한 경우 실행할 동작
+	      console.log(response);
+	      console.log("성공");
+	    },
+	    error: function(xhr, status, error) {
+	      // 요청이 실패한 경우 실행할 동작
+	      console.error(xhr, status, error);
+	      console.log("실패");
+	    }
+		});
+    
+}
+--%>
+	<!--댓글 추천 클릭시 on/off -->  
+	var recomCount = 0; // 함수 외부에 변수를 두어 클릭 사이에 상태를 유지
+
+	function recom() {
+	    var recomText = document.querySelector('#recomText');
+
+	    if (recomCount % 2 === 0) { // recomCount가 짝수일 때
+	        recomCount++; // 추천하면 recomCount 증가
+	        console.log("추천, 현재 추천 수: " + recomCount);
+
+	        // 서버에 추천 생성 요청 보내기
+	        fetch('/reply/recom_create.do', {
+	            method: 'POST',
+	            headers: {
+	                'Content-Type': 'application/json'
+	            },
+	            body: JSON.stringify({ memberno: yourMemberNo, replyno: yourReplyNo }) // 적절한 회원 번호와 리뷰 번호를 넣으세요.
+	        })
+	        .then(response => response.json())
+	        .then(data => {
+	            // HTML 요소의 텍스트를 갱신합니다.
+	            recomText.innerText = recomCount;
+	        })
+	        .catch((error) => {
+	          console.error('Error:', error);
+	        });
+	    } else { // recomCount가 홀수일 때
+	        recomCount--; // 추천 취소하면 recomCount 감소
+	        console.log("추천 취소, 현재 추천 수: " + recomCount);
+
+	        // 이곳에 추천 취소 로직을 추가
+	    }
+	}
+
+	// 추천 버튼의 참조를 가져옵니다.
+	var recomButton = document.querySelector('#recomButton');
+
+	// 클릭 이벤트 리스너를 설정합니다.
+	recomButton.addEventListener('click', recom);
+
+
+<%--
+    function getComments(orderBy) {
+        $.ajax({
+            url: '/comments', // 댓글 데이터를 가져오는 URL
+            type: 'GET',
+            data: {
+                orderBy: orderBy // 정렬 기준: 'date' 또는 'likes'
+            },
+            success: function(data) {
+                // 서버로부터 받은 댓글 데이터로 페이지를 업데이트
+                updateComments(data.comments);
+            },
+            error: function(err) {
+                console.error('Error:', err);
+            }
+        });
     }
 
-    <!--댓글 추천 클릭시 on/off -->
-    function recom() {
-        
+    function updateComments(comments) {
+        var commentsContainer = $('#comments-container');
+        commentsContainer.empty();
+
+        comments.forEach(function(comment) {
+            var commentElement = $('<div></div>')
+                .addClass('comment')
+                .text(comment.text);
+            commentsContainer.append(commentElement);
+        });
     }
+
+    $('#sort-by-date').click(function() {
+        getComments('date');
+    });
+
+    $('#sort-by-likes').click(function() {
+        getComments('likes');
+    });
+        --%>
 
 </script>
 
@@ -168,9 +270,7 @@
 
  <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
-    
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
-    <input type="hidden" name="adminno" value="${sessionScope.adminno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
     <div>🗨️댓글 ${replycnt.replycnt }개</div>      
@@ -183,7 +283,8 @@
  <br>
  
  <!-- 댓글 목록 -->
- 전체 댓글:
+ <button class='short-by-button' id="sort-by-date" onclick="getComments('date')">▤ 날짜순  </button>
+ <button class='short-by-button' id="sort-by-likes" onclick="getComments('likes')">  ▤ 추천순 </button>
  <br>
    <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
     <colgroup>
@@ -224,15 +325,14 @@
           </td>
           
           <td style='vertical-align: middle; text-align: center;'>
-            <div><a onclick="recom();">👍</a>${recom}</div>
-            
+            <%--<div><a id="recomButton">👍 </a>${recom}</div> --%>
+            <a class="LikeBtn" id="like">👍 </a><span id="recomText">${replyVO.recom}</span>
+            <button class="LikeBtn" id="likeButton" onclick="likeUpDown()" data-memberno="${replyVO.memberno}" data-recipeno="${replyVO.recipeno}" >👍</button>
           </td>
           
           <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
-          
-
         </tr>
       </c:forEach>
 

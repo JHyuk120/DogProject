@@ -67,5 +67,35 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,r
   WHERE recipeno = #{recipeno}
   </select> 
 
-  
+<!--댓글 추천 -->
+
+
+<!-- 댓글최초 생성시 추천수 -->
+<insert id="reply_recom_create" parameterType="HashMap">
+ MERGE INTO reply_recom r
+  USING (SELECT 1 as replyno FROM dual) vals
+  ON (r.replyno = vals.replyno)
+
+  WHEN MATCHED THEN
+    UPDATE SET r.replyrecom = r.replyrecom + 1
+    
+  WHEN NOT MATCHED THEN
+    INSERT (replyno,memberno,replyrecom)
+    VALUES (vals.replyno,memberno=#{memberno},1);
+</insert>
+
+<!-- 추천 취소 -->
+<update id="reply_recom_undo" parameterType="int">
+  UPDATE reply_recom
+  SET replyrecom = replyrecom-1
+  WHERE replyno=#{replyno}
+</update>
+
+<!-- 추천 조회 -->
+<select id="reply_recom" parameterType="int" resultType="int">
+  SELECT replyrecom
+  FROM reply_recom
+  WHERE replyno=#{replyno}
+</select>
+
  </mapper>
