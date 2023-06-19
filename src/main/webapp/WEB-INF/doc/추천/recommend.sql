@@ -27,3 +27,10 @@ CREATE SEQUENCE RECOMMEND_SEQ
   CACHE 2                       -- 2번은 메모리에서만 계산
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
+-- 존재하는 memberno, cateno 등록
+INSERT INTO recommend(recommendno, memberno, itemno, seq, rdate)
+VALUES(RECOMMEND_SEQ.nextval, 1,1,1,sysdate);
+
+-- 1번 회원은 9번 카테고리를 추천필요.
+SELECT recommendno, memberno, itemno, seq, rdate FROM recommend ORDER BY recommendno ASC;
+

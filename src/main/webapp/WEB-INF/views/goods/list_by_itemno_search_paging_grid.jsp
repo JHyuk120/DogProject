@@ -130,8 +130,30 @@
            <del style="font-size: 0.8em; color: #949494">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
           <img src="/cart/images/point.jpg" class="icon">
           <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
+          <span>
+                  <c:choose>
+          <c:when test="${ratingValue >= 5}">
+            <center><img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
+          </c:when>
+          <c:when test="${ratingValue >= 4 && ratingValue < 5}">
+            <center><img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
+          </c:when>
+          <c:when test="${ratingValue >= 3 && ratingValue < 4}">
+            <center><img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
+          </c:when>
+          <c:when test="${ratingValue >= 2 && ratingValue < 3}">
+            <center><img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
+          </c:when>
+          <c:when test="${ratingValue >= 1 && ratingValue < 2}">
+            <center><img src="/review/images/star_1.png" style="width: 100px; text-align: center;"></center>
+          </c:when>
+             <c:otherwise> <!-- 기본 이미지 출력 -->
+                <img src="/review/images/star_0.png" style="width: 100px; text-align: center;"> 
+              </c:otherwise>
+        </c:choose>
+          (${reviewcnt }) <!-- 리뷰 수 -->
           
-         
+          </span>
       </div>
       
     </c:forEach>

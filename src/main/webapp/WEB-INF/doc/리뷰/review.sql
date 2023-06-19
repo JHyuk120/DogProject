@@ -72,11 +72,9 @@ SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, r
 
 
 -- 컨텐츠 평점
-SELECT AVG(review.ratingValue) 
+SELECT ROUND(AVG(ratingValue), 2) AS average_rating
 FROM review 
-INNER JOIN member ON review.memberno = member.memberno 
-WHERE review.goodsno = 3 
-ORDER BY review.rdate DESC;
+WHERE goodsno = 86;
 
 -- 리뷰 수정
 UPDATE review

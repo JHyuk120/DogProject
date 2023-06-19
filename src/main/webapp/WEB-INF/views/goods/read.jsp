@@ -15,9 +15,6 @@
 <c:set var="word" value="${goodsVO.word }" />
 <c:set var="size1_label" value="${goodsVO.size1_label }" />
 <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
-
-
-
  
 <!DOCTYPE html> 
 <html lang="ko"> 

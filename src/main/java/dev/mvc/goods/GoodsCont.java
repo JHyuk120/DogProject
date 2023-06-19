@@ -359,7 +359,7 @@ public class GoodsCont {
   * @return
   */
  @RequestMapping(value = "/goods/list_by_itemno_grid.do", method = RequestMethod.GET)
- public ModelAndView list_by_itemno_search_paging_grid(GoodsVO goodsVO) {
+ public ModelAndView list_by_itemno_search_paging_grid(GoodsVO goodsVO,ReviewVO reviewVO) {
 
    ModelAndView mav = new ModelAndView();
 
@@ -389,6 +389,19 @@ public class GoodsCont {
    // mav.addObject("now_page", now_page);
    
    mav.setViewName("/goods/list_by_itemno_search_paging_grid");  // /goods/list_by_itemno_search_paging_grid.jsp
+   
+   for (GoodsVO goods : list) {
+       int goodsno = goods.getGoodsno();
+       System.out.println(goodsno); // 또는 다른 로직에서 사용하면 됩니다.
+       
+       int reviewcnt = this.reviewProc.review_count(goods.getGoodsno());
+       mav.addObject("reviewcnt", reviewcnt);
+       System.out.println(reviewcnt); 
+       
+      Float ratingAVG = this.reviewProc.ratingAVG(goods.getGoodsno());
+      mav.addObject("ratingAVG", ratingAVG);
+      System.out.println(ratingAVG); 
+   }
 
    return mav;
  }

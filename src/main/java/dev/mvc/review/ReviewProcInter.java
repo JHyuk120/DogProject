@@ -26,7 +26,7 @@ public interface ReviewProcInter {
      * @param goodsno
      * @return
      */
-    public float ratingAVG(int goodsno);
+    public Float ratingAVG(int goodsno);
     /**
      * 리뷰 리스트 + 페이징
      * @param goodsno

@@ -77,6 +77,8 @@ INNER JOIN member ON reply.memberno = member.memberno
 WHERE reply.recipeno = 18
 ORDER BY reply.rdate DESC;
 
+select*from reply;
+
 -- 리뷰 수정
 UPDATE reply
 SET replycont = '우리 아이가 잘먹어요^^'
