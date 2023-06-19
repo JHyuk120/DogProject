@@ -1,5 +1,7 @@
 package dev.mvc.recom;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +19,6 @@ public class RecomProc implements RecomProcInter{
   }
 
   @Override
-  public int cnt(int recipeno) {
-    int cnt = this.recomDAO.cnt(recipeno);
-    
-    return cnt;
-  }
-
-  @Override
   public int check(RecomVO recomVO) {
     int cnt = this.recomDAO.check(recomVO);
     
@@ -33,7 +28,9 @@ public class RecomProc implements RecomProcInter{
   @Override
   public int delete(int memberno) {
     int cnt = this.recomDAO.delete(memberno);
+    
     return cnt;
   }
+
 
 }

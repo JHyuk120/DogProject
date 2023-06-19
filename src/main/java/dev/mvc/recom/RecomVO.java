@@ -11,5 +11,7 @@ public class RecomVO {
   private int recipeno;
   private String rdate  = "";
   
+  private String title = "";
+  
 
 }

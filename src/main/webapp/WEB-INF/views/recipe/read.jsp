@@ -165,17 +165,19 @@ function checkLoginStatus() {
 <!-- 좋아요 -->
 <form name= 'frm' action="/recom/create.do" method='POST'>
   <input type="hidden" name="recipeno" value="${recipeno}"/>
-  <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
   <input type="hidden" name="check" value="${check}"/>
   <c:choose>
+    <c:when test="${sessionScope.adminno != null}">
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+    </c:when>  
     <c:when test="${sessionScope.memberno == null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom_cnt }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
     </c:when>    
     <c:when test="${check == 1 }">
-      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom_cnt }</button>
+      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
     </c:when>
     <c:otherwise>
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom_cnt }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
     </c:otherwise>
   </c:choose>
 

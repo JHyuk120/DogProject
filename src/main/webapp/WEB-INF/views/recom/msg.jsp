@@ -28,40 +28,16 @@
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
     <UL>
-      <c:choose>
-        <c:when test="${code == 'passwd_fail'}">
-          <LI class='li_none'>
-            <span class="span_fail">패스워드가 일치하지 않습니다.</span>
-          </LI> 
-        </c:when>
-        
-        <c:when test="${code == 'create_success'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_success">새로운 컨텐츠를 등록했습니다.</span>
-          </LI> 
-        </c:when>
-        
+      <c:choose>        
         <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
             <span class="span_fail">새로운 컨텐츠 등록에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
-        <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
+        <c:when test="${code == 'admin_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">컨텐츠 수정에 실패했습니다.</span>
-          </LI>                                                                      
-        </c:when>
-        
-        <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_success">컨텐츠 삭제에 성공했습니다.</span>
-          </LI>                                                                      
-        </c:when>        
-        
-        <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_fail">컨텐츠 삭제에 실패했습니다.</span>
+            <span class="span_fail">관리자는 누르지 마세요.</span>
           </LI>                                                                      
         </c:when> 
         
@@ -82,8 +58,7 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?itemno=${itemno}'" class="btn btn-primary">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }'" class="btn btn-primary">목록</button>
+        <button type='button' onclick="history.back()" class="btn btn-outline-dark">뒤로가기</button>  
       </LI>
     </UL>
   </fieldset>

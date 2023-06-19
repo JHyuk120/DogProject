@@ -106,18 +106,18 @@ public interface RecipeProcInter {
   public int cnt_add (int recipeno);
   
   /**
-   * 좋아요 Y
+   * 좋아요 ++
    * @param itemno
    * @return
    */
-  public int recom_y (int memberno);
+  public int recom_add (int recipeno);
   
   /**
-   * 좋아요 N
+   * 좋아요--
    * @param itemno
    * @return
    */
-  public int recom_n (int memberno);
+  public int recom_sub (int recipeno);
 
 
 }
