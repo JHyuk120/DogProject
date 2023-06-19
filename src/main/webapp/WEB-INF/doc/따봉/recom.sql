@@ -58,3 +58,6 @@ delete from recom where memberno = 7;
 
 --adminList
 select title, recom, rdate from recipe order by recom desc;
+
+--memberList
+select p.title, p.recom, p.article from recipe p inner join recom c on p.recipeno = c.recipeno where c.memberno =  7;

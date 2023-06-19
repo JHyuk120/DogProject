@@ -103,6 +103,27 @@ public class RecomCont {
     return mav; // forward
   }
   
+  /**
+   * 관리자가 보는 좋아요가 많은 목록
+   * @param session
+   * @return
+   */
+  @RequestMapping(value = "/recom/adminList.do", method = RequestMethod.GET)
+  public ModelAndView adminList(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    if (adminProc.isAdmin(session)) {
+      ArrayList<RecipeVO> list_a = this.recipeProc.adminList();
+      mav.addObject("list_a", list_a);
+      
+    } else {
+      mav.addObject("code", "admin_fail");
+      mav.setViewName("redirect:/recom/msg.do");
+      
+    }
+
+    return mav; 
+  }
   
 
 }

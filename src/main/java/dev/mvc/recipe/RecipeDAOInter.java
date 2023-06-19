@@ -106,5 +106,11 @@ public interface RecipeDAOInter {
    * @return
    */
   public int recom_sub (int recipeno);
+  
+  /**
+   * 관리자가 보는 좋아요 많은 레시피
+   * @return
+   */
+  public ArrayList<RecipeVO> adminList();
 
 }

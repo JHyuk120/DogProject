@@ -285,6 +285,12 @@ import dev.mvc.tool.Tool;
         return cnt;
       }
 
+      @Override
+      public ArrayList<RecipeVO> adminList() {
+        ArrayList<RecipeVO> list_a = this.recipeDAO.adminList();
+        return list_a;
+      }
+
  
 
 }

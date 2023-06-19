@@ -168,7 +168,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   </update>
   
-  <!-- 좋아요 yes or no -->
+  <!-- 좋아요 add or sub -->
    <update id='recom_add' parameterType="int">
     UPDATE recipe 
     SET recom = recom + 1 
@@ -180,5 +180,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   SET recom = recom - 1 
   WHERE recipeno=#{recipeno}
   </update>
+  
+  <!-- 관리자가 확인하는 추천 많은 레시피 -->
+  <select id="adminList" resultType="dev.mvc.recipe.RecipeVO">
+    SELECT recipeno, title, recom, rdate 
+    FROM recipe 
+    ORDER BY recom DESC, rdate DESC
+  
+  </select>
   
 </mapper> 

@@ -21,7 +21,7 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-  📢 전체 공지사항
+ ♥ 좋아요 많은 글 ♥
 </DIV>
 
 <DIV class='content_body'>
@@ -30,8 +30,9 @@
     <colgroup>
     <c:choose>
         <c:when test="${sessionScope.admin_id != null }">
-      <col style="width: 50%; "></col>
-      <col style="width: 50%;"></col>
+      <col style="width: 60%; "></col>
+      <col style="width: 15%;"></col>
+      <col style="width: 25%;"></col>
         </c:when>
     </c:choose>
     
@@ -39,24 +40,31 @@
 
 <thead>
   <tr>
-    <th style="text-align: center;">번호</th>
-    <th style="text-align: center;">카운트</th>
+    <th style="text-align: center;">제목</th>
+    <th style="text-align: center;">좋아요 수</th>
+    <th style="text-align: center;">날짜</th>
   </tr>
 </thead>
 
  
  <tbody>
-<c:forEach var="recomVO" items="${list_a}" varStatus="loop">
-        <c:set var="recipeno" value="${recomVO.recipeno }" />
+<c:forEach var="recipeVO" items="${list_a}" varStatus="loop">
+        <c:set var="recipeno" value="${recipeVO.recipeno }" />
+        <c:set var="title" value="${recipeVO.title }" />
+        <c:set var="recom" value="${recipeVO.recom }" />
+        <c:set var="rdate" value="${recipeVO.rdate }" />
          
   <tr style="height: 50px;">
       <td style='vertical-align: middle; text-align: center;'>
-        <a href="./read.do?noticeno=${noticeno}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
-          <div style='font-weight:bold;'>${recipeno}</div>
+        <a href="../recipe/read.do?recipeno=${recipeno}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
+          <div style='font-weight:bold;'>${title}</div>
         </a>
       </td>
       <td style='vertical-align: middle; text-align: center;'>
-        <div>${cnt}</div>
+        <div>${recom}</div>
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+        <div>${rdate}</div>
       </td>
     </tr>
   </c:forEach>
