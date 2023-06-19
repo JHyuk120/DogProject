@@ -16,7 +16,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head> 
-<body>
+
+<body style="background-color: #FEFCE6;">
+
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>알림</DIV>
