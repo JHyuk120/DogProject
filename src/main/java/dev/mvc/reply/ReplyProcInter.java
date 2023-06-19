@@ -67,5 +67,4 @@ public interface ReplyProcInter {
      */
     public ReplyVO replycnt(int recipeno);
 
-
 }

@@ -1,16 +1,19 @@
 package dev.mvc.review;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReviewVO {
     private int reviewno;
     private int memberno;
     private int goodsno;
     private String reviewcont;
     private String rdate ="";
-    private String file1 ="";
-    private String file1saved ="";
-    private String thumb1 ="";
+    private MultipartFile file2MF;
+    private String file2 ="";
+    private String file2saved ="";
+    private String thumb2 ="";
     private String mid="";
-    private long size1;
+    private long size2;
     private int now_page = 1;
     private int start_num;
     private int end_num;
@@ -18,6 +21,7 @@ public class ReviewVO {
     private int reviewcnt = 0;
     private int ratingValue =5;
     private float ratingAvg = 0;
+    
     
     public int getReviewno() {
         return reviewno;
@@ -49,35 +53,12 @@ public class ReviewVO {
     public void setRdate(String rdate) {
         this.rdate = rdate;
     }
-    public String getFile1() {
-        return file1;
-    }
-    public void setFile1(String file1) {
-        this.file1 = file1;
-    }
-    public String getFile1saved() {
-        return file1saved;
-    }
-    public void setFile1saved(String file1saved) {
-        this.file1saved = file1saved;
-    }
-    public String getThumb1() {
-        return thumb1;
-    }
-    public void setThumb1(String thumb1) {
-        this.thumb1 = thumb1;
-    }
+    
     public String getMid() {
         return mid;
     }
     public void setMid(String mid) {
         this.mid = mid;
-    }
-    public long getSize1() {
-        return size1;
-    }
-    public void setSize1(long size1) {
-        this.size1 = size1;
     }
     public int getNow_page() {
         return now_page;
@@ -121,6 +102,39 @@ public class ReviewVO {
     public void setRatingAvg(float ratingAvg) {
         this.ratingAvg = ratingAvg;
     }
+    
+    public String getFile2() {
+        return file2;
+    }
+    public void setFile2(String file2) {
+        this.file2 = file2;
+    }
+    public String getFile2saved() {
+        return file2saved;
+    }
+    public void setFile2saved(String file2saved) {
+        this.file2saved = file2saved;
+    }
+    public String getThumb2() {
+        return thumb2;
+    }
+    public void setThumb2(String thumb2) {
+        this.thumb2 = thumb2;
+    }
+    public long getSize2() {
+        return size2;
+    }
+    public void setSize2(long size2) {
+        this.size2 = size2;
+    }
+    public MultipartFile getFile2MF() {
+        return file2MF;
+    }
+    public void setFile2MF(MultipartFile file2mf) {
+        file2MF = file2mf;
+    }
+    
+    
     
     
 }

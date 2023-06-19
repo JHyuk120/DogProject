@@ -20,13 +20,13 @@ public interface ReviewProcInter {
      * @param goodsno
      * @return
      */
-    public int ratingAVG_cal(int goodsno);
+    //public int ratingAVG_cal(int goodsno);
     /**
      * 리뷰 평균 조회
      * @param goodsno
      * @return
      */
-    public float ratingAVG(int goodsno);
+    public Float ratingAVG(int goodsno);
     /**
      * 리뷰 리스트 + 페이징
      * @param goodsno
@@ -68,5 +68,11 @@ public interface ReviewProcInter {
      * @return
      */
     public int review_delete(int reviewno);
+    /**
+     * 이미지 수정
+     * @param reviewVO
+     * @return
+     */
+    public int update_file(ReviewVO reviewVO);
 
 }
