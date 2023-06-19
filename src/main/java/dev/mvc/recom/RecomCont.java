@@ -32,44 +32,62 @@ public class RecomCont {
     System.out.println("-> RecomCont created");
   }
 
+  /**
+   * 좋아요 생성 및 삭제
+   * @param session
+   * @param recomVO
+   * @param recipeVO
+   * @return
+   */
   @RequestMapping(value = "/recom/create.do", method = RequestMethod.POST)
   public ModelAndView create(HttpSession session, RecomVO recomVO, RecipeVO recipeVO) {
     ModelAndView mav = new ModelAndView();
-    
-   
-    
+
     if (memberProc.isMember(session)) {
-      int memberno = (int)(session.getAttribute("memberno"));
+      int memberno = (int) (session.getAttribute("memberno"));
       recomVO.setMemberno(memberno);
-      
-      int cnt = this.recomProc.create(recomVO); 
-      
-      if (cnt == 1) {
+
+      int check = this.recomProc.check(recomVO);
+
+      if (check != 1) {
+        int cnt = this.recomProc.create(recomVO);
+
+        if (cnt == 1) {
+          mav.addObject("recipeVO", recipeVO);
+          mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
+
+        } else {
+          mav.addObject("code", "create_fail");
+
+        }
+      } else {
+        int delete_recom = this.recomProc.delete(memberno);
+        
         mav.addObject("recipeVO", recipeVO);
         mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
-
-      } else {
-//        mav.addObject("code", "recom_create_fail");
-
+        
       }
-    } else { 
+    } else {
       mav.addObject("url", "/member/login_need");
-      mav.setViewName("redirect:/recom/msg.do"); 
+      mav.setViewName("redirect:/recom/msg.do");
 
     }
 
     return mav;
   }
-  
-  @RequestMapping(value="/recom/msg.do", method=RequestMethod.GET)
-  public ModelAndView msg(String url){
+
+  /**
+   * 오류 메시지
+   * @param url
+   * @return
+   */
+  @RequestMapping(value = "/recom/msg.do", method = RequestMethod.GET)
+  public ModelAndView msg(String url) {
     ModelAndView mav = new ModelAndView();
 
     mav.setViewName(url); // forward
-    
+
     return mav; // forward
-  } 
-  
-  
+  }
 
 }

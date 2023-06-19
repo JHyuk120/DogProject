@@ -9,13 +9,26 @@
   
   </insert>
   
+  <!-- 카운트 -->
   <select id="cnt" resultType="int" parameterType="int">
     SELECT COUNT(recomno) FROM recom
     WHERE recipeno = #{recipeno}
   
   </select>
+    
+  <!-- 체크 -->
+  <select id="check"  resultType="int" parameterType="dev.mvc.recom.RecomVO">
+  SELECT COUNT(recipeno) FROM recom
+  WHERE recipeno = #{recipeno} AND memberno = #{memberno}
   
+  </select>
   
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="dev.mvc.recom.RecomVO">
+    DELETE FROM RECOM 
+    WHERE memberno = #{memberno}
+  
+  </delete>
   
   
 </mapper>
