@@ -57,9 +57,4 @@ delete from recom where memberno = 7;
 
 
 --adminList
-select recipeno, count(recomno) from recom group by recipeno order by count(recomno) desc;
-select recipeno, recomno from recom;
-
-commit;
-
-select recom from recipe;
+select title, recom, rdate from recipe order by recom desc;
