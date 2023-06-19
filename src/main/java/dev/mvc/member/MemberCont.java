@@ -145,23 +145,19 @@ public class MemberCont {
      ModelAndView mav = new ModelAndView();
      
      int memberno = 0;
-     if (this.memberProc.isMember(session) || this.adminProc.isAdmin(session)) { 
+     if (this.memberProc.isMember(session)) { 
        // 로그인한 경우
 
        if (this.memberProc.isMember(session)) { // 회원으로 로그인
          memberno = (int)session.getAttribute("memberno");
          
-       } else if (this.adminProc.isAdmin(session)) { // 관리자로 로그인
-         memberno = Integer.parseInt(request.getParameter("memberno"));
-         
-       }
-
+       } 
        MemberVO memberVO = this.memberProc.read(memberno);
        mav.addObject("memberVO", memberVO);
        mav.setViewName("/member/read"); // /member/read.jsp
        
      } else {
-       // 로그인을 하지 않은 경우
+       // 회원으로 로그인을 하지 않은 경우
        mav.setViewName("/member/login_need"); // /webapp/WEB-INF/views/member/login_need.jsp
      }
      
@@ -205,24 +201,28 @@ public class MemberCont {
      int update_cnt = 0; // 변경된 패스워드 수
      
      if (cnt == 1) { // 현재 패스워드가 일치하는 경우
-       map.put("passwd", new_passwd); // 새로운 패스워드를 저장
-       update_cnt = this.memberProc.passwd_update(map); // 패스워드 변경 처리
-       
-       if (update_cnt == 1) {
-         mav.addObject("code", "passwd_update_success"); // 패스워드 변경 성공
-       
-       }else {
-         cnt = 0;  // 패스워드는 일치했으나 변경하지는 못함.
-         mav.addObject("code", "passwd_update_fail");       // 패스워드 변경 실패
+       if (!new_passwd.isEmpty()) { // 새로운 비밀번호가 비어 있지 않은 경우에만 처리
+         map.put("passwd", new_passwd); // 새로운 패스워드를 저장
+         update_cnt = this.memberProc.passwd_update(map); // 패스워드 변경 처리
+       } else {
+         update_cnt = 1; // 비밀번호 변경을 진행하지 않음
        }
        
-       mav.addObject("update_cnt", update_cnt);  // 변경된 패스워드의 갯수    
-     } else {
-       cnt=0;
-       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
-       
-      
-     }
+         if (update_cnt == 1) {
+           mav.addObject("code", "update_success"); // 패스워드 변경 성공
+         
+         }else {
+           update_cnt = 0;  // 패스워드는 일치했으나 변경하지는 못함.
+           mav.addObject("code", "passwd_update_fail");       // 패스워드 변경 실패
+         }
+         
+         mav.addObject("update_cnt", update_cnt);  // 변경된 패스워드의 갯수    
+       } else {
+         
+         mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
+         
+        
+       }
 
      mav.addObject("cnt", cnt); // 패스워드 일치 여부
      mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
