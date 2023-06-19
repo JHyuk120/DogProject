@@ -17,8 +17,22 @@ public class RecomProc implements RecomProcInter{
   }
 
   @Override
-  public int cnt(int memberno) {
-    int cnt = this.recomDAO.cnt(memberno);
+  public int cnt(int recipeno) {
+    int cnt = this.recomDAO.cnt(recipeno);
+    
+    return cnt;
+  }
+
+  @Override
+  public int check(RecomVO recomVO) {
+    int cnt = this.recomDAO.check(recomVO);
+    
+    return cnt;
+  }
+
+  @Override
+  public int delete(int memberno) {
+    int cnt = this.recomDAO.delete(memberno);
     return cnt;
   }
 
