@@ -21,6 +21,8 @@ import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProc;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.recom.RecomProcInter;
+import dev.mvc.recom.RecomVO;
 import dev.mvc.reply.ReplyDAOInter;
 import dev.mvc.reply.ReplyProcInter;
 import dev.mvc.reply.ReplyVO;
@@ -42,6 +44,10 @@ public class RecipeCont {
   @Autowired
   @Qualifier("dev.mvc.recipe.RecipeProc") 
   private RecipeProcInter recipeProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.recom.RecomProc")
+  private RecomProcInter recomProc;
   
   @Autowired
   @Qualifier("dev.mvc.reply.ReplyProc")
@@ -213,7 +219,7 @@ public class RecipeCont {
    * @return
    */
   @RequestMapping(value="/recipe/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int recipeno, ReplyVO replyVO) {
+  public ModelAndView read(int recipeno, ReplyVO replyVO, RecomVO recomVO, HttpSession session) {
     ModelAndView mav = new ModelAndView();
 
     RecipeVO recipeVO = this.recipeProc.read(recipeno);
@@ -254,6 +260,22 @@ public class RecipeCont {
     
     int cnt = this.recipeProc.cnt_add(recipeno);
     mav.addObject("cnt", cnt);
+    
+    // 좋아요 관련 시작
+    
+    //좋아요 갯수 확인
+    int recom_cnt = this.recomProc.cnt(recipeno);
+    mav.addObject("recom_cnt", recom_cnt);
+    
+    // 좋아요 확인
+    if (memberProc.isMember(session)) {
+      int memberno = (int) (session.getAttribute("memberno"));
+      recomVO.setMemberno(memberno);
+      
+      int check_cnt = this.recomProc.check(recomVO);
+      mav.addObject("check", check_cnt);
+      
+    }
 
 
     return mav;

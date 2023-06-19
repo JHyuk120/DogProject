@@ -15,9 +15,6 @@
 <c:set var="word" value="${goodsVO.word }" />
 <c:set var="size1_label" value="${goodsVO.size1_label }" />
 <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
-
-
-
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -357,7 +354,7 @@ function reviewcnt(){
  <%-- 댓글 조회 --%>
 
 <fieldset class="fieldset_basic">
- <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
+ <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  enctype='multipart/form-data' onsubmit="return checkLoginStatus();" >
     <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
     
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
@@ -380,13 +377,21 @@ function reviewcnt(){
     </div>
     <td>
            <div id="rating-display" >(0)</div>
+           <div>리뷰수: ${reviewcnt } </div>
            <div>평점: ${ratingAVG } </div>
-           
     <textarea name='reviewcont' required="required" rows="7" cols="63"></textarea>
+    
+    <button  id="submitBtn" type='submit' class='btn btn-outline-dark btn-sm' style="margin-bottom: 20px;" >리뷰 등록</button>
+    
+         <div>
+       <label>리뷰 사진 업로드</label>
+       <input type='file' class="form-control" name='file2MF' id='file2MF' 
+                 value='' placeholder="파일 선택"><br>
+    </div>
+    
     </td>
   </tr>
-
-<button  id="submitBtn" type='submit' class='btn btn-outline-dark btn-sm' style="margin-bottom: 20px;" >리뷰 등록</button>
+  
 <script>
     document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
 </script>
@@ -401,7 +406,8 @@ function reviewcnt(){
           <c:when test="${sessionScope.admin_id != null}">
               <col style="width: 10%;"></col>
               <col style="width: 10%;"></col>
-              <col style="width: 60%;"></col>
+              <col style="width: 20%;"></col>
+              <col style="width: 40%;"></col>
               <col style="width: 10%;"></col>
               <col style="width: 10%;"></col>
           </c:when>
@@ -414,6 +420,7 @@ function reviewcnt(){
       <tr>
         <th style='text-align: center;'>id</th>
         <th style='text-align: center;'>평점</th>
+        <th style='text-align: center;'>이미지</th>
         <th style='text-align: center;'>리뷰</th>
         <th style='text-align: center;'>작성일</th>
         <th style='text-align: center;'>수정/삭제</th>
@@ -425,6 +432,9 @@ function reviewcnt(){
         <c:set var="rdate" value="${reviewVO.rdate}" />
         <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
          <c:set var="mid" value="${memberVO.id}" />
+        <c:set var="file2" value="${reviewVO.file2 }" />
+        <c:set var="file2saved" value="${reviewVO.file2saved }" />
+        <c:set var="thumb2" value="${reviewVO.thumb2 }" />
          
         <tr style="height: 112px;"  class='hover'>
           
@@ -461,12 +471,29 @@ function reviewcnt(){
           </td>
           
           <td style='vertical-align: middle; text-align: center;'>
+            <div>
+             <c:choose>
+              <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
+                <%-- /static/contents/storage/ --%>
+                <img src="/dogproject/images/${file2saved }" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
+              </c:when>
+              
+              <c:otherwise> <!-- 기본 이미지 출력 -->
+                <img src="/goods/images/ee.png" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
+              </c:otherwise>
+             </c:choose>
+            
+            </div>
+          </td> 
+          
+          <td style='vertical-align: middle; text-align: center;'>
             <div>${reviewcont}</div>
           </td> 
           
           <td style='vertical-align: middle; text-align: center;'>
             <div>${rdate}</div>
           </td>
+          
           <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.goods.GoodsVO;
 import dev.mvc.reply.Reply;
 import dev.mvc.reply.ReplyDAOInter;
 import dev.mvc.reply.ReplyVO;
@@ -141,16 +142,11 @@ public class ReviewProc implements ReviewProcInter{
         return cnt;
     }
 
-    @Override
-    public int ratingAVG_cal(int goodsno) {
-        int cnt = this.reviewDAO.ratingAVG_cal(goodsno);
-        return cnt;
-    }
 
     @Override
-    public float ratingAVG(int goodsno) {
-        float cnt = this.reviewDAO.ratingAVG(goodsno);
-        return cnt;
+    public Float ratingAVG(int goodsno) {
+        Float cnt = this.reviewDAO.ratingAVG(goodsno);
+        return cnt != null ? cnt : 0.0f;
     }
 
     @Override
@@ -170,6 +166,12 @@ public class ReviewProc implements ReviewProcInter{
        int cnt = this.reviewDAO.review_delete(reviewno);
         return cnt;
     }
-    
+
+    @Override
+    public int update_file(ReviewVO reviewVO) {
+       int cnt = this.reviewDAO.update_file(reviewVO);
+        return cnt;
+    }
+
 
 }

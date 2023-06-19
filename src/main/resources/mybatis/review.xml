@@ -4,22 +4,12 @@
 <mapper namespace="dev.mvc.review.ReviewDAOInter">
 <!-- 리뷰 생성-->
 <insert id="review_create" parameterType="dev.mvc.review.ReviewVO">
-INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue) 
-VALUES(review_seq.nextval,${memberno},${goodsno},'${reviewcont}',sysdate,${ratingValue})
+INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue,file2, file2saved, thumb2, size2) 
+VALUES(review_seq.nextval,#{memberno},#{goodsno},#{reviewcont},sysdate,#{ratingValue},#{file2},#{file2saved},#{thumb2},#{size2})
 </insert>
-<!-- 별점 평균 계산 -->
-<update id="ratingAVG_cal" parameterType="int">
-  UPDATE review
-  SET ratingAvg = (
-      SELECT ROUND(AVG(ratingValue), 2)
-      FROM reply
-      WHERE goodsno = #{goodsno}
-      )
-  WHERE goodsno = #{goodsno}
-</update>
 <!-- 별점 평균 조회 -->
 <select id="ratingAVG" parameterType="int" resultType="float" >
-  SELECT AVG(ratingValue)
+  SELECT ROUND(AVG(ratingValue), 1) AS ratingAvg
   FROM review
   WHERE goodsno = #{goodsno}
 </select>
@@ -34,23 +24,24 @@ ORDER BY rdate ASC
 -->
   <!-- 댓글 개별 조회 (수정시 조회)-->
   <select id="review_read" parameterType="int" resultType="dev.mvc.review.ReviewVO">
-  SELECT r.reviewcont,r.memberno,m.id AS mid,r.reviewno
+  SELECT r.reviewcont,r.memberno,m.id AS mid,r.reviewno,r.file2, r.file2saved, r.thumb2, r.size2
   FROM review r JOIN member m ON r.memberno = m.memberno
   WHERE reviewno=#{reviewno}
   </select>
 
  <!-- 댓글 조회 + 페이징-->
  <select id="list_by_review_paging" resultType="dev.mvc.review.ReviewVO" parameterType="HashMap">
-SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, r
+SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,file2, file2saved, thumb2, size2,ratingAVG, r
    FROM (
-              SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, rownum as r
+              SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG,file2, file2saved, thumb2, size2, rownum as r
               FROM (
-                         SELECT r.reviewno, r.memberno, m.id AS mid, r.goodsno, r.reviewcont, r.rdate, r.ratingValue,r.ratingAVG
+                         SELECT r.reviewno, r.memberno, m.id AS mid, r.goodsno, r.reviewcont, r.rdate,r.file2,r.file2saved,          
+                                      r.thumb2, r.size2, r.ratingValue,r.ratingAVG
                         FROM review r 
                         JOIN member m 
                         ON r.memberno = m.memberno
                         WHERE r.goodsno = #{goodsno}
-                        ORDER BY rdate ASC
+                        ORDER BY rdate DESC
                )
     )
     WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
@@ -76,5 +67,10 @@ SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,ratingAVG, r
   DELETE FROM review
   WHERE reviewno = #{review}
 </delete>
-
+<!-- 이미지 수정 -->
+  <update id="update_file" parameterType="dev.mvc.review.ReviewVO">
+    UPDATE reply
+    SET file2=#{file2}, file2saved=#{file2saved}, thumb2=#{thumb2}, size2=#{size2}
+    WHERE replyno = #{replyno}
+  </update>
 </mapper>
