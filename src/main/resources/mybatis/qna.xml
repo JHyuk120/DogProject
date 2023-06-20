@@ -3,10 +3,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.qna.QnaDAOInter">
-   <!-- QnA 등록 -->
+   <!-- QnA 등록후 QnaVO class의 qnano 컬럼에 PK return  -->
   <insert id="create" parameterType="dev.mvc.qna.QnaVO">
+    <selectKey keyProperty="qnano" resultType="int" order="BEFORE">
+      SELECT qna_seq.nextval FROM dual
+    </selectKey>
     INSERT INTO qna(qnano, memberno, title, content, passwd, word, rdate)
-    VALUES(qna_seq.nextval, #{memberno}, #{title}, #{content}, #{passwd}, #{word}, sysdate)
+    VALUES(#{qnano}, #{memberno}, #{title}, #{content}, #{passwd}, #{word}, sysdate)
   </insert>
   
   <!-- 모든 카테고리의 등록된 글목록 -->
