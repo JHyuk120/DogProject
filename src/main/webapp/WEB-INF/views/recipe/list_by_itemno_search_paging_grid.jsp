@@ -21,9 +21,9 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-<img src="/recipe/images/bone3.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }<img src="/recipe/images/arrow.png" class="icon" style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
-    
-    
+    <img src="/menu/images/menu2.png" class="icon" style='margin-left:30px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }
+    <img src="/recipe/images/arrow.png" class="icon1" style='margin-left:7px; margin-bottom: 4px;'>
+    <span style='font-size: larger; '>${search_count}</span> 개의 레시피
 </DIV>
 
 <DIV class='content_body'>
@@ -71,7 +71,7 @@
   <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
     <c:forEach var="recipeVO" items="${list }" varStatus="status">
       <c:set var="title" value="${recipeVO.title }" />
-      <c:set var="article" value="${recipeVO.article }" />
+      <c:set var="ingredient" value="${recipeVO.article }" />
       <c:set var="itemno" value="${recipeVO.itemno }" />
       <c:set var="recipeno" value="${recipeVO.recipeno }" />
       <c:set var="thumb1" value="${recipeVO.thumb1 }" />
@@ -79,7 +79,7 @@
       <c:set var="cnt" value="${recipeVO.cnt }" />
       <c:set var="recom" value="${recipeVO.recom }" />
         
-      <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
+      <%-- 하나의 행에 이미지를 4개씩 출력후 행 변경, index는 0부터 시작 --%>
       <c:if test="${status.index % 4 == 0 && status.index != 0 }"> 
 
       </c:if>
@@ -115,6 +115,7 @@
           </strong>
           
           <div style='font-size:0.8em;  word-break: break-all;'>
+          <img src="/menu/images/pcircle.svg" class="icon" style="margin-bottom:7px; margin-top:4px;"> ${mname } <br>
              조회수 : ${cnt } | 좋아요 : ${recom }
           </div>
           

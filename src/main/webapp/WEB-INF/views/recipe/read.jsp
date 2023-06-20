@@ -115,13 +115,10 @@ function checkLoginStatus() {
       <li class="li_none">
         <DIV style="width:100%;">
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-          <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+          <div style="font-size: 0.7em;">${mname } ${rdate }</div><br>
                 ${ingredient } <br>    
           
-          <div>
-              <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
-              <%-- 좋아요 <span id="recom_add">${recom}</span>개 --%>
-          </div>
+
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
