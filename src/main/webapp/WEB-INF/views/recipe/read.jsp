@@ -115,13 +115,10 @@ function checkLoginStatus() {
       <li class="li_none">
         <DIV style="width:100%;">
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-          <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+          <div style="font-size: 0.7em;">${mname } ${rdate }</div><br>
                 ${ingredient } <br>    
           
-          <div>
-              <button id="recom" style="background-color: none; border: none; font-size: 1em;">🤍</button><br>
-              <%-- 좋아요 <span id="recom_add">${recom}</span>개 --%>
-          </div>
+
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
@@ -165,17 +162,19 @@ function checkLoginStatus() {
 <!-- 좋아요 -->
 <form name= 'frm' action="/recom/create.do" method='POST'>
   <input type="hidden" name="recipeno" value="${recipeno}"/>
-  <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
   <input type="hidden" name="check" value="${check}"/>
   <c:choose>
+    <c:when test="${sessionScope.adminno != null}">
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+    </c:when>  
     <c:when test="${sessionScope.memberno == null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom_cnt }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
     </c:when>    
     <c:when test="${check == 1 }">
-      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom_cnt }</button>
+      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
     </c:when>
     <c:otherwise>
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom_cnt }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
     </c:otherwise>
   </c:choose>
 

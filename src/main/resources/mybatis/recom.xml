@@ -3,19 +3,13 @@
 
 <mapper namespace="dev.mvc.recom.RecomDAOInter">
   
+  <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.recom.RecomVO" >
     INSERT INTO recom(recomno, memberno, recipeno, rdate)
     VALUES(recom_seq.nextval, #{memberno}, #{recipeno}, sysdate)
   
   </insert>
-  
-  <!-- 카운트 -->
-  <select id="cnt" resultType="int" parameterType="int">
-    SELECT COUNT(recomno) FROM recom
-    WHERE recipeno = #{recipeno}
-  
-  </select>
-    
+      
   <!-- 체크 -->
   <select id="check"  resultType="int" parameterType="dev.mvc.recom.RecomVO">
   SELECT COUNT(recipeno) FROM recom
@@ -29,6 +23,7 @@
     WHERE memberno = #{memberno}
   
   </delete>
+  
   
   
 </mapper>

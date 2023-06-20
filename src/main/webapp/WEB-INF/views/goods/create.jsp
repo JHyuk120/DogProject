@@ -60,38 +60,49 @@
     <div>
        <label>제목</label>
        <input type='text' name='gname' value='서울 우수 야경' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 50%;'>
+                 autofocus="autofocus" class="form-control" style='width: 30%;'><br>
     </div>
-    <div>
-       <label>가격</label>
-       <input type='number' name='price' value='10000' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 10%;'> 
-       <label>DC</label>
-       <input type='number' name='dc' value='1' min=0 max=100 required="required" 
-                                         autofocus="autofocus" class="form-control" style='width: 10%;'>
+     
+    <div class="row" style='width:35%'>
+      <div class="col-sm-4">
+        <label for="price">가격</label>
+        <input type="number" class="form-control" id="price" name="price" value="10000" >
+      </div>
+      <div class="col-sm-4">
+        <label for="dc">DC</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="dc" name="dc" min="0" max="100" value="10">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <label for="cnt">수량</label>
+          <input type="number" class="form-control" id="cnt" name="cnt" value="1" min="0" style='width:80%'>
+        </div>
     </div>
+    <br>
+    
     <div>
        <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>가을 단풍보며 멍때리기</textarea>
+       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>가을 단풍보며 멍때리기</textarea><br>
     </div>
+    
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='서울, 야경, 힐링, 산책, 데이트, 친구, 연인, 운동, 생각, 스릴러' required="required" 
-                 class="form-control" style='width: 100%;'>
+                 class="form-control" style='width: 100%;'><br>
     </div>   
     <div>
        <label>이미지</label>
        <input type='file' class="form-control" name='file1MF' id='file1MF' 
-                 value='' placeholder="파일 선택">
-    </div>   
-    <div>
-       <label>패스워드</label>
-       <input type='password' name='passwd' value='1234' required="required" 
-                 class="form-control" style='width: 50%;'>
-    </div>   
-    <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-primary">목록</button>
+                 value='' placeholder="파일 선택"><br>
+    </div>  
+     
+    <div >
+      <button type="submit" class="btn btn-dark">등록</button>
+      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark">목록</button>
     </div>
   
   </FORM>

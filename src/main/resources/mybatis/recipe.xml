@@ -8,19 +8,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!--  등록한 레코드 갯수 1 리턴 -->
   <insert id="create" parameterType="dev.mvc.recipe.RecipeVO">
     INSERT INTO recipe(recipeno, memberno, itemno, title, article, 
-                      passwd, word, file2, file2saved,
-                      thumb2, size2, ingredient, rdate)
+                      passwd, word, file1, file1saved,
+                      thumb1, size1, ingredient, rdate)
     VALUES(recipe_seq.nextval, #{memberno}, #{itemno}, #{title}, #{article}, 
-          #{passwd}, #{word}, #{file2}, #{file2saved}, 
-          #{thumb2}, #{size2}, #{ingredient}, sysdate)
+          #{passwd}, #{word}, #{file1}, #{file1saved}, 
+          #{thumb1}, #{size1}, #{ingredient}, sysdate)
   </insert>
   
   
  <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.recipe.RecipeVO">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
-                      passwd, word, rdate, file2,file2saved,
-                      thumb2, size2, youtube, ingredient, review, star
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star
     FROM recipe 
     ORDER BY recipeno DESC
   </select> 
@@ -168,17 +168,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   </update>
   
-  <!-- 좋아요 yes or no -->
-   <update id='recom_y' parameterType="int">
+  <!-- 좋아요 add or sub -->
+   <update id='recom_add' parameterType="int">
     UPDATE recipe 
-    SET recom='Y' 
-    WHERE memberno=#{memberno}
+    SET recom = recom + 1 
+    WHERE recipeno=#{recipeno}
   </update>
   
-  <update id='recom_n' parameterType="int">
+  <update id='recom_sub' parameterType="int">
  UPDATE recipe 
-  SET recom='n' 
-  WHERE memberno=#{memberno}
+  SET recom = recom - 1 
+  WHERE recipeno=#{recipeno}
   </update>
+  
+  <!-- 관리자가 확인하는 추천 많은 레시피 -->
+  <select id="adminList" resultType="dev.mvc.recipe.RecipeVO">
+    SELECT recipeno, title, recom, rdate 
+    FROM recipe 
+    ORDER BY recom DESC, rdate DESC
+  
+  </select>
   
 </mapper> 
