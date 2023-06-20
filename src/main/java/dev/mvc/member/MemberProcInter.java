@@ -62,6 +62,15 @@ public interface MemberProcInter {
   public int update(MemberVO memberVO);
   
   /**
+   * 아이디찾기 처리
+   * @param memberVO
+   * @return
+   */
+  public MemberVO idFind(MemberVO memberVO);
+  
+  
+  
+  /**
    * 회원 삭제 처리
    * @param memberno
    * @return

@@ -42,6 +42,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE memberno=#{memberno}
   </update>
   
+   <!-- id찾기 -->
+  <select id="idFind" resultType="dev.mvc.member.MemberVO" parameterType="dev.mvc.member.MemberVO">
+  SELECT id, mdate, mname, tel
+  FROM member
+  WHERE mname=#{mname} AND tel=#{tel}
+  </select>
+    
   <delete id="delete" parameterType="int">
     DELETE FROM member
     WHERE memberno=#{memberno}
@@ -66,7 +73,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT COUNT(memberno) as cnt
     FROM member
     WHERE id=#{id} AND passwd=#{passwd}
+    
+ 
   </select>
      
+
 </mapper> 
  

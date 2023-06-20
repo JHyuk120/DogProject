@@ -82,7 +82,11 @@
                     </c:choose>
 
                     <c:choose>
-                        <c:when test="${sessionScope.admin_id == null }">
+                        <c:when test="${sessionScope.id != null  && sessionScope.admin_id == null}">
+                          <li></li>
+                        </c:when>
+                        
+                        <c:when test="${sessionScope.admin_id == null && sessionScope.id == null }">
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/login.do">
                                     <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>

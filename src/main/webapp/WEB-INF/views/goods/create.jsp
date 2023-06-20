@@ -100,9 +100,9 @@
                  value='' placeholder="파일 선택"><br>
     </div>  
      
-    <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-primary">목록</button>
+    <div >
+      <button type="submit" class="btn btn-dark">등록</button>
+      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark">목록</button>
     </div>
   
   </FORM>

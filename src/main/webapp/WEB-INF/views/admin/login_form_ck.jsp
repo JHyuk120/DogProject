@@ -45,22 +45,23 @@
         <div class="form_input">
           <input type='text' class="form-control" name='id' id='id' 
                     value="${cookie.ck_admin_id.value }" required="required" 
-                    style='width: 80%;' placeholder="아이디" autofocus="autofocus">
-          <Label>   
+                    style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;"
+                     placeholder="아이디" autofocus="autofocus">
+          <Label  style='margin-bottom:13px; margin-left:170px;'>   
             <input type='checkbox' name='id_save' value='Y' ${cookie.ck_admin_id_save.value == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>    
         </div>   
      
         <div class="form_input">
           <input type='password' class="form-control" name='passwd' id='passwd' 
-                    value='${cookie.ck_admin_passwd.value }' required="required" style='width: 80%;' placeholder="패스워드">
-          <Label>
+                    value='${cookie.ck_admin_passwd.value }' required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;" placeholder="패스워드">
+          <Label style='margin-bottom:40px; margin-left:170px;'>
             <input type='checkbox' name='passwd_save' value='Y' ${cookie.ck_admin_passwd_save.value == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
         </div>   
      
         <div class="form_input">
-          <button type="submit" class="btn btn-info">로그인</button>
+          <button type="submit"  style="width:340px; height:45px;  margin-left:170px; "class="btn btn-dark" >로그인</button>
         </div>   
         
       </FORM>
