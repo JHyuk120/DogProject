@@ -43,7 +43,7 @@
                            <img src="/menu/images/cart4.svg" class="icon"  style='margin-left:5px'>&nbsp;  장바구니</a>
                           <a class="dropdown-item" href="/pay/pay_list.do">
                            <img src="/menu/images/receipt.svg" class="icon"  style='margin-left:5px'>&nbsp;결제 리스트</a>
-                          <a class="dropdown-item" href="#">
+                          <a class="dropdown-item" href="/member/idFind.do">
                            <img src="/menu/images/sheart.svg" class="icon"  style='margin-left:5px'>&nbsp; 아이디 찾기</a>
                           <a class="dropdown-item" href="#">
                            <img src="/menu/images/sh2.svg" class="icon"  style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
@@ -57,6 +57,31 @@
                       <c:when test="${sessionScope.id == null}">
                         <a class="nav-link" href="/member/login.do">
                          <img src="/menu/images/lock.png" class="icon"  style='margin-left:5px'>&nbsp;login</a>
+                          <c:choose>
+				                    <c:when test="${empty sessionScope.admin_id }">
+				                      <li class="nav-item">
+				                        <a class="nav-link" href="/admin/login.do">
+				                         <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
+				                      </li>
+				                    </c:when>
+				                    <c:otherwise>
+				                      <li class="nav-item dropdown" > <%-- 관리자 서브 메뉴 --%>
+				                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+				                         <img src="/menu/images/user.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
+				                        <div class="dropdown-menu dropdown-menu-right">
+				                          <a class="dropdown-item" href='/item/list_all.do'>
+				                            <img src="/menu/images/list.png" class="icon"  style='margin-left:5px'>&nbsp;카테고리 전체 목록</a>       
+				                          <a class="dropdown-item" href='/member/list.do'>
+				                           <img src="/menu/images/team.png" class="icon"  style='margin-left:5px'>&nbsp; 회원 목록</a>  
+				                          <a class="dropdown-item" href='/detail/order_list.do'>
+				                           <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 고객 주문 사항</a>
+				                          <a class="dropdown-item" href='/admin/logout.do'>
+				                           <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp; 관리자 [${sessionScope.admin_id }] 로그아웃</a>
+				
+				                        </div>
+				                      </li>
+				                    </c:otherwise>
+                          </c:choose>
                       </c:when>
                       <c:otherwise>
                         <a class="nav-link" href='/member/logout.do'>
@@ -65,31 +90,7 @@
                     </c:choose>   
                   </li>
                   
-                  <c:choose>
-                    <c:when test="${sessionScope.admin_id == null }">
-                      <li class="nav-item">
-                        <a class="nav-link" href="/admin/login.do">
-                         <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
-                      </li>
-                    </c:when>
-                    <c:otherwise>
-                      <li class="nav-item dropdown" > <%-- 관리자 서브 메뉴 --%>
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                         <img src="/menu/images/user.png" class="icon"  style='margin-left:5px'>&nbsp;관리자</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href='/item/list_all.do'>
-                            <img src="/menu/images/list.png" class="icon"  style='margin-left:5px'>&nbsp;카테고리 전체 목록</a>       
-                          <a class="dropdown-item" href='/member/list.do'>
-                           <img src="/menu/images/team.png" class="icon"  style='margin-left:5px'>&nbsp; 회원 목록</a>  
-                          <a class="dropdown-item" href='/detail/order_list.do'>
-                           <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 고객 주문 사항</a>
-                          <a class="dropdown-item" href='/admin/logout.do'>
-                           <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp; 관리자 [${sessionScope.admin_id }] 로그아웃</a>
-
-                        </div>
-                      </li>
-                    </c:otherwise>
-                  </c:choose>
+                  
                 </ul>
             </div>    
             

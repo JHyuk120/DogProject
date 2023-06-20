@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +33,7 @@ public class MemberCont {
   @Qualifier("dev.mvc.admin.AdminProc") 
   private AdminProcInter adminProc;
   
+
   public MemberCont(){
     System.out.println("-> MemberCont created.");
   }
@@ -233,6 +235,68 @@ public class MemberCont {
      return mav;
    }
    
+   /**
+    * 아이디찾기 폼
+    * @param memberno
+    * @return
+    */
+    //http://localhost:9093/member/idFind.do
+   @RequestMapping(value="/member/idFind.do", method=RequestMethod.GET )
+   public ModelAndView idFind() {
+     ModelAndView mav = new ModelAndView();
+     mav.setViewName("/member/idFind"); // /WEB-INF/views/member/create.jsp
+    
+     return mav; // forward
+   }
+   
+
+   /**
+    * 아이디찾기 처리
+    * @param memberVO
+    * @return
+    */
+   //localhost:9093/member/idFind.do?mname=길동무&tel=010-1111-2223
+   @RequestMapping(value="/member/idFind.do", method=RequestMethod.POST)
+   public ModelAndView idFind(@ModelAttribute("memberVO") MemberVO memberVO) {
+     ModelAndView mav = new ModelAndView();
+     
+
+        
+     MemberVO memberVO_find= this.memberProc.idFind(memberVO);
+     System.out.println("이름: "+memberVO.getMname());
+     System.out.println("전화번호: " + memberVO.getTel());
+     System.out.println("이름: "+memberVO_find.getMname());
+     System.out.println("전화번호: " + memberVO_find.getTel());
+     
+     if (memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
+       mav.setViewName("/member/id_view"); // 아이디를 보여줄 뷰 페이지
+     } else {
+       // mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
+       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
+     }
+     
+     
+     return mav;
+   }
+//   @RequestMapping(value="/member/idFind.do", method=RequestMethod.GET)
+//   public ModelAndView idFind(HttpServletRequest request){
+//     ModelAndView mav = new ModelAndView();
+//     MemberVO memberVO = new MemberVO();
+//     
+//     if(memberVO.getMname() != null && memberVO.getTel() != null) {
+//     memberVO = this.memberProc.idFind(memberVO);
+//     
+//       mav.setViewName("id_view"); // 아이디를 보여줄 뷰 페이지
+//     } else {
+//    //   mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
+//       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
+//     }
+//   
+//   return mav;
+//   }
+
+    
+       
    /**
     * 회원 삭제
     * @param memberno
