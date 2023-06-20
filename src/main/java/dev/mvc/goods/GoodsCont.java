@@ -224,7 +224,7 @@ public class GoodsCont {
  * @return
  */
   @RequestMapping(value="/goods/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int goodsno, ReviewVO reviewVO) {
+  public ModelAndView read(HttpServletRequest request, HttpSession session,int goodsno, ReviewVO reviewVO) {
     ModelAndView mav = new ModelAndView();
 
     GoodsVO goodsVO = this.goodsProc.read(goodsno);
@@ -254,15 +254,18 @@ public class GoodsCont {
 
     mav.setViewName("/goods/read"); // /WEB-INF/views/goods/read.jsp
     
-    
-
-    
     ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
     String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
     mav.addObject("list", list);
  
-
+    // 게시물 별 리뷰 평점
+    float ratingAVG = this.reviewProc.ratingAVG(goodsno);
+    mav.addObject("ratingAVG", ratingAVG);
+    // 게시물 별 리뷰 수
+   int reviewcnt =  this.reviewProc.review_count(goodsno);
+   mav.addObject("reviewcnt", reviewcnt);
+   
     return mav;
 }
 
@@ -356,7 +359,7 @@ public class GoodsCont {
   * @return
   */
  @RequestMapping(value = "/goods/list_by_itemno_grid.do", method = RequestMethod.GET)
- public ModelAndView list_by_itemno_search_paging_grid(GoodsVO goodsVO) {
+ public ModelAndView list_by_itemno_search_paging_grid(GoodsVO goodsVO,ReviewVO reviewVO) {
 
    ModelAndView mav = new ModelAndView();
 
@@ -386,6 +389,19 @@ public class GoodsCont {
    // mav.addObject("now_page", now_page);
    
    mav.setViewName("/goods/list_by_itemno_search_paging_grid");  // /goods/list_by_itemno_search_paging_grid.jsp
+   
+   for (GoodsVO goods : list) {
+       int goodsno = goods.getGoodsno();
+       System.out.println(goodsno); // 또는 다른 로직에서 사용하면 됩니다.
+       
+       int reviewcnt = this.reviewProc.review_count(goods.getGoodsno());
+       mav.addObject("reviewcnt", reviewcnt);
+       System.out.println(reviewcnt); 
+       
+      Float ratingAVG = this.reviewProc.ratingAVG(goods.getGoodsno());
+      mav.addObject("ratingAVG", ratingAVG);
+      System.out.println(ratingAVG); 
+   }
 
    return mav;
  }

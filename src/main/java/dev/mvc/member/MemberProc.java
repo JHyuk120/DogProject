@@ -24,6 +24,11 @@ public class MemberProc implements MemberProcInter {
     int cnt = this.memberDAO.checkID(id);
     return cnt;
   }
+  
+
+
+  
+
 
   @Override
   public int create(MemberVO memberVO) {
@@ -94,6 +99,9 @@ public class MemberProc implements MemberProcInter {
     int cnt = this.memberDAO.login(map);
     return cnt;
   }
+
+ 
+  
 
 }
  

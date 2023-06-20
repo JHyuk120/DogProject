@@ -17,11 +17,14 @@ public interface MemberProcInter {
    */
   public int checkID(String id);
   
+
+  
   /**
    * 회원 가입
    * @param memberVO
    * @return
    */
+ 
   public int create(MemberVO memberVO);
   
   /**

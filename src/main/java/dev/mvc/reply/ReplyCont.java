@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.recipe.RecipeVO;
 import dev.mvc.admin.AdminProcInter;
@@ -64,6 +66,14 @@ public class ReplyCont {
        
      if(memberProc.isMember(session)) {
          
+         if (cnt == 1) {
+             mav.addObject("recipe", recipeVO);
+             mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
+         } else {
+           mav.addObject("code", "reply_create_fail");
+         }
+     }
+     else if(adminProc.isAdmin(session)) {
          if (cnt == 1) {
              mav.addObject("recipe", recipeVO);
              mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
@@ -124,7 +134,16 @@ public class ReplyCont {
       //현재 로그인된 id
       String currentUserId = (String) session.getAttribute("id");
       ReplyVO replyVOmid = this.replyProc.reply_read(replyVO.getReplyno());
+      System.out.println("-> id: "+ currentUserId);
+      
+      //로그인 확인 출력
+      if(currentUserId != null) {
+          System.out.println("User logged in with id: " + currentUserId);
+      } else {
+          System.out.println("No user is currently logged in");
+      }
 
+      
       // 아이디 확인
       if (replyVOmid != null && replyVOmid.getMid().equals(currentUserId)) {
           this.replyProc.reply_update(replyVO);
@@ -170,5 +189,6 @@ public class ReplyCont {
          mav.setViewName("./reply/login_need");
      }
      return mav;
- }
+ }  
+ 
 }

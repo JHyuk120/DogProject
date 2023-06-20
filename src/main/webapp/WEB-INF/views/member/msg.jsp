@@ -27,49 +27,47 @@
       <c:choose>
         <c:when test="${param.code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 회원 가입을 축하합니다.</span>
+            <span class="span_success" style="margin-right:80px;">${param.mname }님(${param.id }) 회원 가입을 축하합니다.</span>
           </LI>  
           <LI class='li_none'>
             <button type='button' 
                          onclick="location.href='./login.do?id=${param.id}'"
-                         class="btn btn-primary">로그인</button>
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:80px; height:47px;">로그인</button>
           </LI> 
         </c:when>
         
         <c:when test="${param.code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">회원 가입에 실패했습니다. 다시 시도해주세요.</span>
+            <span class="span_fail" style="margin-right:80px;">회원 가입에 실패했습니다. 다시 시도해주세요.</span>
           </LI>                                                                      
         </c:when>
 
         <c:when test="${param.code == 'update_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">${param.mname }님(아이디: ${param.id }) 회원 정보를 변경했습니다.</span>
+            <span class="span_success" style="margin-right:80px;">${param.mname }님(아이디: ${param.id }) 회원 정보를 변경했습니다.</span>
           </LI>
-          <LI class='li_none'>
+          <LI class='li_none' style="margin-right:80px;">
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>
             <button type='button' 
-                         onclick="location.href='/'"
-                         class="btn btn-primary">시작 화면</button>
-            <button type='button' 
-                         onclick="location.href='/member/list.do'"
-                         class="btn btn-primary">회원 목록</button>                   
+                         onclick="location.href='/member/read.do'"
+                         class="btn btn-dark" style='width:200px; height:50px;'>수정 페이지로 돌아가기</button>                   
           </LI>                                                                       
         </c:when>
                 
         <c:when test="${param.code == 'update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">${param.mname }님(${param.id }) 회원 정보 수정에 실패했습니다.</span>
+            <span class="span_fail" style="margin-right:80px;">${param.mname }님(${param.id }) 회원 정보 수정에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${param.code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 회원 정보 삭제에 성공했습니다.</span>
+            <span class="span_success"  style="margin-right:80px;">${param.mname }님(${param.id }) 회원 정보 삭제에 성공했습니다.</span>
           </LI>   
           <LI class='li_none'>
             <button type='button' 
                          onclick="location.href='/member/list.do'"
-                         class="btn btn-primary">회원 목록</button>
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:80px; height:47px;">회원 목록</button>
           </LI>                                                                     
         </c:when>    
             
@@ -81,20 +79,26 @@
         
         <c:when test="${param.code == 'passwd_update_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 패스워드를 변경했습니다.</span>
+            <span class="span_success" style="margin-right:80px;">${param.mname }님(${param.id }) 패스워드를 변경했습니다.</span>
           </LI>   
           <LI class='li_none'>
             <button type='button' 
-                         onclick="location.href='/'"
-                         class="btn btn-primary">확인</button>
+                         onclick="location.href='/member/login.do'"
+                         class="btn btn-dark"  style="margin-right:80px; margin-top:30px; width:80px; height:47px;">확인</button>
           </LI>                                                                     
         </c:when>   
         
-        <c:when test="${code == 'passwd_update_fail'}"> <%-- Java if --%>
+        <c:when test="${param.code == 'passwd_update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
             <span class="span_fail">${param.mname }님(${param.id }) 패스워드 변경에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>  
+        
+         <c:when test="${param.code == 'passwd_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">${param.mname }님(${param.id }) 현재 패스워드를 올바르게 입력해주세요.</span>
+          </LI>                                                                      
+        </c:when> 
         
         <c:otherwise>
           <LI class='li_none_left'>
@@ -110,7 +114,7 @@
         <br>
         <c:choose>
             <c:when test="${param.cnt == 0 }">
-                <button type='button' onclick="history.back()" class="btn btn-info">다시 시도</button>    
+                <button type='button' onclick="history.back()" class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:80px; height:47px;">다시 시도</button>    
             </c:when>
         </c:choose>
         

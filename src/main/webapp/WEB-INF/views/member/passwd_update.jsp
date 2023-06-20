@@ -89,26 +89,26 @@
    
     <div class='menu_line'></div>
     
-    <div style='width: 40%; margin: 0px auto;'>  
+    <div style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top:40px;">  
     <FORM name='frm' id='frm' method='POST' action='./passwd_update.do'>
       <input type='hidden' name='memberno' id='memberno' value='${param.memberno }'>       
   
       <div class="form_input">
         <label>현재 패스워드</label>    
         <input type='password' class="form-control" name='current_passwd' 
-                    id='current_passwd' value='' required="required" style='width: 70%;' placeholder="현재 패스워드">
+                    id='current_passwd' value='' required="required" style='width: 300px; height:50px; ' placeholder="현재 패스워드">
       </div>   
                       
       <div class="form_input">
         <label>새로운 패스워드</label>    
         <input type='password' class="form-control" name='new_passwd' 
-                  id='new_passwd' value='' required="required" style='width: 70%;' placeholder="새로운 패스워드">
+                  id='new_passwd' value='' required="required"  style='width: 300px; height:50px; ' placeholder="새로운 패스워드">
       </div>   
    
       <div class="form_input">
         <label>새로운 패스워드 확인</label>    
         <input type='password' class="form-control" name='new_passwd2' 
-                  id='new_passwd2' value='' required="required" style='width: 70%;' placeholder="패스워드">
+                  id='new_passwd2' value='' required="required"  style='width: 300px; height:50px; ' placeholder="패스워드">
       </div>   
       
       <div class="form_input">

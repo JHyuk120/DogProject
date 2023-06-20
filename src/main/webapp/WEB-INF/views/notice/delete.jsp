@@ -29,7 +29,25 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢공지사항 삭제</DIV>
+<DIV class='title_line'><A href="./list_by_search_paging.do?" class='title_link'></A> > ${title } 삭제</DIV>
+
+<DIV class='content_body'>
+  <ASIDE class="aside_right">
+    <A href="./create.do?">등록</A>
+    <span class='menu_divide' >│</span>
+    <A href="javascript:location.reload();">새로고침</A>
+    <span class='menu_divide' >│</span>
+    <A href="./list_all.do">목록</A>    
+  </ASIDE> 
+  
+  <%-- 검색 폼 --%>
+  <DIV style="text-align: right; clear: both;">  
+    <form name='frm' id='frm' method='get' action='./list_all.do'>
+      <input type='hidden'>  <%-- 게시판의 구분 --%>
+      
+
+    </form>
+  </DIV>
   
   <DIV class='menu_line'></DIV>
 
@@ -43,7 +61,10 @@
               <img src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 -->
-              상품 관련 이미지가 없습니다.
+              <div style="text-align: center;">
+                <br><br><br><br>
+                🖼️상품 관련 이미지가 없습니다.
+              </div>
             </c:otherwise>
           </c:choose>
         </DIV>
@@ -56,13 +77,12 @@
           <br>
           <FORM name='frm' method='POST' action='./delete.do'>
               <input type='hidden' name='noticeno' value='${noticeno}'>
-              <input type='hidden' name='now_page' value='${param.now_page}'>
               <br><br>
-              <div style='text-align: center; margin: 10px auto;'>
-                <span style="color: #FF0000; font-weight: bold;">삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
+              <div style='text-align: left; margin: 10px auto;'>
+                <span style="color: #FF0000; font-weight: bold;">⚠️삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                 <br><br>
-                <button type = "submit" class="btn btn-primary">삭제 진행</button>
-                <button type = "button" onclick = "history.back()" class="btn btn-primary">취소</button>
+                <button type = "submit" class="btn btn-danger">삭제 진행</button>
+                <button type = "button" onclick = "history.back()" class="btn btn-dark">취소</button>
               </div>   
           </FORM>
         </DIV>

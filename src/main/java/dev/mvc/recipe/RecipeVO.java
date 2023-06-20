@@ -19,7 +19,7 @@ public class RecipeVO {
     /** 글 내용 */
     private String article = "";
     /** 추천수 */
-    private String recom;
+    private int recom = 0;
     /** 조회수 */
     private int cnt = 0;
     /** 댓글수 */

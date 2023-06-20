@@ -18,7 +18,8 @@
 
 </head> 
  
-<body>
+
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
   <DIV class='title_line'>관리자 로그인</DIV>

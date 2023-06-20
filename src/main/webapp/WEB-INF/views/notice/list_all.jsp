@@ -51,7 +51,7 @@
       </c:choose>
       <button type="submit" class="btn btn-custom btn-sm">검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_all'">검색 취소</button>
+        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_search.do'">검색 취소</button>
       </c:if>
           <style>
           .btn-custom {

@@ -36,22 +36,19 @@
 <script type="text/javascript">
 
 <!--댓글 등록시 로그인 여부 확인 -->
-    function checkLoginStatus() {
-        var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
-        if (!isLoggedIn) {
-            // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
-            alert('로그인이 필요합니다.');
-            window.location.href = "../member/login.do";
-            return false; // 폼 제출 중단
-        }
-        return true; // 폼 제출 진행
-    }
-
-    <!--댓글 추천 클릭시 on/off -->
-    function recom() {
+function checkLoginStatus() {
+    var isMemberLoggedIn = ${sessionScope.id != null};
+    
+    // 일반 사용자가 로그인한 경우 댓글을 작성할 수 있음
+    if (!isMemberLoggedIn) {
+        // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
         
+        alert('로그인이 필요합니다.');
+        window.location.href = "../member/login.do";
+        return false; // 폼 제출 중단
     }
-
+    return true; // 폼 제출 진행
+}
 </script>
 
 </head> 
@@ -72,13 +69,13 @@
       --%>
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-	    <A href="./update_text.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
-	    <span class='menu_divide' >│</span>
-	    <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }">파일 수정</A>  
-	    <span class='menu_divide' >│</span>
+      <A href="./update_text.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
+      <span class='menu_divide' >│</span>
+      <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }">파일 수정</A>  
+      <span class='menu_divide' >│</span>
       <A href="./youtube.do?recipeno=${recipeno}">유튜브</A> 
       <span class='menu_divide' >│</span>
-	    <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
+      <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
     <span class='menu_divide' >│</span>
     </c:if>
 
@@ -164,32 +161,49 @@
     </ul>
   </fieldset>
 </DIV>
+
+<!-- 좋아요 -->
+<form name= 'frm' action="/recom/create.do" method='POST'>
+  <input type="hidden" name="recipeno" value="${recipeno}"/>
+  <input type="hidden" name="check" value="${check}"/>
+  <c:choose>
+    <c:when test="${sessionScope.adminno != null}">
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+    </c:when>  
+    <c:when test="${sessionScope.memberno == null}">
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+    </c:when>    
+    <c:when test="${check == 1 }">
+      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+    </c:when>
+    <c:otherwise>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+    </c:otherwise>
+  </c:choose>
+
+</form>
+
 <%-- 댓글 조회 --%>
 
  <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
-    
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
-    <input type="hidden" name="adminno" value="${sessionScope.adminno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
     <div>🗨️댓글 ${replycnt.replycnt }개</div>      
     <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
-    </td>
-  </tr>
+    
   <br>
    <button type='submit' class='btn btn-info btn-sm'>댓글 등록</button>
  </FORM>    
  <br>
  
  <!-- 댓글 목록 -->
- 전체 댓글:
  <br>
    <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
     <colgroup>
               <col style="width: 10%;"></col>
-              <col style="width: 60%;"></col>
-              <col style="width: 10%;"></col>
+              <col style="width: 70%;"></col>
               <col style="width: 10%;"></col>
               <col style="width: 10%;"></col>
     </colgroup>
@@ -199,7 +213,6 @@
         <th style='text-align: center;'>id</th>
         <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
-        <th style='text-align: center;'>추천</th>
         <th style='text-align: center;'>수정/삭제</th>
       </tr>
      <tbody>
@@ -207,7 +220,6 @@
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
          <c:set var="mid" value="${memberVO.id}" />
-         <c:set var="recom" value="${replyVO.recom}" />
             
         <tr style="height: 112px;"  class='hover'>
           
@@ -223,16 +235,11 @@
             <div>${rdate}</div>
           </td>
           
-          <td style='vertical-align: middle; text-align: center;'>
-            <div><a onclick="recom();">👍</a>${recom}</div>
-            
-          </td>
+  
           
           <td style='vertical-align: middle; text-align: center;'>
             <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
           </td>
-          
-
         </tr>
       </c:forEach>
 

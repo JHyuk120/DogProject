@@ -84,7 +84,7 @@
   <DIV class='title_line'>로그인</DIV>
 
   <DIV class='content_body'> 
-    <DIV style='width: 40%; margin: 0px auto;'>
+    <DIV style='width: 40%;  margin: 0px auto;'>
 
       <FORM name='frm_login' id='frm_login' method='POST'>
         <input type='hidden' name='goodsno' id='goodsno' value=''>
@@ -94,19 +94,19 @@
         <%-- 로그인 후 자동으로 이동할 페이지 전달 ★ --%>
         <input type="hidden" name="return_url" value="${return_url}">
       
-        <div class="form_input">
+        <div class="form_input"  >
           <input type='text' class="form-control" name='id' id='id' 
-                    value="${ck_id }" required="required" 
-                    style='width: 100%;' placeholder="아이디" autofocus="autofocus">
-          <Label>   
+                    value="${ck_id }" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;"
+                     placeholder="아이디" autofocus="autofocus">
+          <Label style='margin-bottom:13px; margin-left:170px;'>   
             <input type='checkbox' name='id_save' value='Y' ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>    
         </div>   
      
-        <div class="form_input">
+        <div class="form_input" >
           <input type='password' class="form-control" name='passwd' id='passwd' 
-                    value='${ck_passwd }' required="required" style='width: 100%;' placeholder="패스워드">
-          <Label>
+                    value='${ck_passwd }' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;" placeholder="패스워드">
+          <Label style='margin-bottom:40px; margin-left:170px;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
         </div>   
@@ -114,9 +114,9 @@
       </FORM>
     </div>
    
-    <div style='text-align: center; margin: 10px auto;'>
-      <button type="button" id='btn_login' class="btn btn-outline-info btn-sm" onclick="login_ajax()">로그인</button>
-      <button type='button' onclick="location.href='./create.do'" class="btn btn-outline-info btn-sm">회원가입</button>
+    <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column;  '>
+      <button type="button"  id='btn_login' style="width:160px; height:45px; "class="btn btn-dark" onclick="login_ajax()">로그인</button>
+      <button type='button'  style="width:160px; height:45px; onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
     </div>
     
  

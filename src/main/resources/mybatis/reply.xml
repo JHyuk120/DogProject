@@ -67,5 +67,4 @@ SELECT replyno,memberno,mid,recipeno,replycont,rdate,r
   WHERE recipeno = #{recipeno}
   </select> 
 
-  
  </mapper>

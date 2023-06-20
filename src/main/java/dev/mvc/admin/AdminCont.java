@@ -29,6 +29,7 @@ public class AdminCont {
   }
   
   
+  
 //  /**
 //   * 로그인 폼
 //   * http://localhost:9091/admin/login.do
@@ -164,13 +165,10 @@ public class AdminCont {
    * @return
    */
   // http://localhost:9091/admin/login.do 
-  @RequestMapping(value = "/admin/login.do", 
-                             method = RequestMethod.GET)
+  @RequestMapping(value = "/admin/login.do", method = RequestMethod.GET)
   public ModelAndView login_cookie(HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-   
     mav.setViewName("/admin/login_form_ck");
-    
     return mav;
   }
    
@@ -194,6 +192,8 @@ public class AdminCont {
                             HttpSession session,
                             AdminVO adminVO) {
     ModelAndView mav = new ModelAndView();
+    
+
    
     int cnt = adminProc.login(adminVO);
     if (cnt == 1) { // 로그인 성공
