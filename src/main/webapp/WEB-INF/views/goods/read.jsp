@@ -7,6 +7,7 @@
 <c:set var="gname" value="${goodsVO.gname }" />    
 <c:set var="price" value="${goodsVO.price }" />  
 <c:set var="dc" value="${goodsVO.dc }" />
+<c:set var="cnt" value="${goodsVO.cnt }"/>
 <c:set var="saleprice" value="${goodsVO.saleprice}" />  
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
@@ -228,10 +229,6 @@ function reviewcnt(){
       <span class='menu_divide' >│</span>
       <A href="./update_file.do?goodsno=${goodsno}&now_page=${param.now_page}">파일 수정</A>  
       <span class='menu_divide' >│</span>
-      <A href="./map.do?itemno=${itemno }&goodsno=${goodsno}">지도</A>   <!-- 카테고리 그룹: itemno -->
-      <span class='menu_divide' >│</span>
-      <A href="./youtube.do?itemno=${itemno }&goodsno=${goodsno}">YouTube</A>   <!-- 카테고리 그룹: itemno -->
-      <span class='menu_divide' >│</span>
       <A href="./delete.do?goodsno=${goodsno}&now_page=${param.now_page}&itemno=${itemno}">삭제</A> 
       <span class='menu_divide' >│</span> 
     </c:if>
@@ -331,6 +328,8 @@ function reviewcnt(){
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
                 <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
                 <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
+                
+                <strong>남은 수량: <span>${cnt }</span></strong><br><br>
              <div style="width: 90%; height: 310px; ">${content }</DIV>
         </DIV>
       </li>
