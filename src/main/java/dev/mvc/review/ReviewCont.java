@@ -1,6 +1,7 @@
 package dev.mvc.review;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +18,8 @@ import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.pay.PayProcInter;
+import dev.mvc.pay.PayVO;
 import dev.mvc.recipe.RecipeVO;
 import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
@@ -34,6 +37,9 @@ public class ReviewCont {
     @Autowired
     @Qualifier("dev.mvc.goods.GoodsProc")
     private GoodsProcInter goodsProc;
+    @Autowired
+    @Qualifier("dev.mvc.pay.PayProc")
+    private PayProcInter payProc;
     
     public ReviewCont() {
         System.out.println("-> ReviewCont created");
@@ -51,6 +57,11 @@ public class ReviewCont {
            
            
          if(memberProc.isMember(session)) {
+             int memberN = (int) session.getAttribute("memberno"); // session에서 memberno 정보 가져오기
+
+             List<PayVO> payList = payProc.pay_list(memberN); // 구매 내역 조회
+             
+             if (!payList.isEmpty()) {
             // if (cnt == 1) {
                  // 업데이트된 별점 평균 조회
                  float ratingAVG = this.reviewProc.ratingAVG(goodsVO.getGoodsno());
@@ -117,8 +128,14 @@ public class ReviewCont {
            /**  } else {
                mav.addObject("code", "review_create_fail");
              }*/
+             }else {
+                 mav.addObject("code", "pay_need");
+                 mav.addObject("url", "/member/msg");
+                 mav.setViewName("redirect:/member/msg.do");
+             }
          }else {
              mav.addObject("url", "/member/login_need"); 
+             mav.addObject("url", "/member/msg");
              mav.setViewName("redirect:/review/msg.do"); 
          }
          return mav;

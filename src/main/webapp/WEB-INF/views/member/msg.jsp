@@ -100,6 +100,16 @@
           </LI>                                                                      
         </c:when> 
         
+         <c:when test="${param.code == 'pay_need'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">구매 내역이 없습니다. 상품을 구매한 후 리뷰를 작성해주세요.</span>
+            <br>
+             <button type='button' 
+                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">구매하기</button>
+          </LI>                                                                      
+        </c:when> 
+        
         <c:otherwise>
           <LI class='li_none_left'>
             <span class="span_fail">알 수 없는 에러로 작업에 실패했습니다.</span>
