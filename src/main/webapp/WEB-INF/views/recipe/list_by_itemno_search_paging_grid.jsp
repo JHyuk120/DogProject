@@ -8,32 +8,60 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>댕키트</title>
- <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
+<link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
+    
+    
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+</style>
 </head> 
  
-<body style="background-color: #FEFCE6;">
+<body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>
-    <img src="/menu/images/menu2.png" class="icon" style='margin-left:30px; width: 2%; margin-bottom: 7px;'> ${itemVO.item }
-    <img src="/recipe/images/arrow.png" class="icon1" style='margin-left:7px; margin-bottom: 4px;'>
-    <span style='font-size: larger; '>${search_count}</span> 개의 레시피
+
+<DIV class='content_body' style='background-color:#FEFCF0;'>
+<DIV>
+    <img src="/menu/images/menu2.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${itemVO.item}</span>
+</DIV>   
+
+<DIV>
+    <div style='display: flex; align-items: flex-start;'>
+        <img src="/recipe/images/arrow.png" class="icon0" style='margin-right: 10px;'>
+        <span style='font-size: 20px;'><span style='font-size: larger; '>${search_count}</span> 개의 레시피</span>
+    </div>
 </DIV>
 
-<DIV class='content_body'>
+
   <ASIDE class="aside_right">
-  
-
-      <A href="./create.do?itemno=${itemVO.itemno }">레시피 등록</A>
-      <span class='menu_divide' >│</span>
-
-    <A href="javascript:location.reload();">새로고침</A>
+    <A href="./create.do?itemno=${itemVO.itemno }">📝레시피 등록</A>
+    <span class='menu_divide' >│</span>
+    <A href="javascript:location.reload();">🔃새로고침</A>
     <span class='menu_divide' >│</span>    
     <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
@@ -52,23 +80,23 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-            <button type="submit" class="btn btn-custom btn-sm">검색</button>
+      <button type="submit" class="btn btn-custom btn-sm">검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
       </c:if>
-          <style>
-          .btn-custom {
-            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
-            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
-          }
-          </style>
+      <style>
+      .btn-custom {
+        background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+        color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+      }
+      </style>
     </form>
   </DIV>
    
 
   <DIV class='menu_line'></DIV>
   
-  <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
+  <div style='width: 100%; display: flex; flex-wrap: wrap; ;'> <%-- 갤러리 Layout 시작 --%>
     <c:forEach var="recipeVO" items="${list }" varStatus="status">
       <c:set var="title" value="${recipeVO.title }" />
       <c:set var="ingredient" value="${recipeVO.article }" />
@@ -78,19 +106,12 @@
       <c:set var="size1" value="${recipeVO.size1 }" />
       <c:set var="cnt" value="${recipeVO.cnt }" />
       <c:set var="recom" value="${recipeVO.recom }" />
+      <c:set var="mname" value="${recipeVO.mname }" />
       
-      <%-- 하나의 행에 이미지를 4개씩 출력후 행 변경, index는 0부터 시작 --%>
-      <c:if test="${status.index % 4 == 0 && status.index != 0 }"> 
-
-      </c:if>
-        
-      <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
-      <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
-      
-        <!-- 나머지 연산자를 사용하여 홀수와 짝수를 판별하여 배경색 설정 -->
-      <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class="hover"
-      style="width: 22%; height: 300px; float: left; margin: 1.5%; padding: 0.5%;
-      background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;">
+      <!-- 나머지 연산자를 사용하여 홀수와 짝수를 판별하여 배경색 설정 -->
+      <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'"
+        class="gallery_item"
+        style="background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'};">
   
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
@@ -101,24 +122,23 @@
             <IMG src="/recipe/images/ee.png" style="width: 80%; height: 180px; margin-bottom:20px; margin-top:8px; "><br>
           </c:otherwise>
         </c:choose>
-          <strong>
-	          <div style='height: 25px;  word-break: break-all;'>
-	            <c:choose> 
-                <c:when test="${title.length() > 45 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                  ${title.substring(0, 45)}.....
-                </c:when>
-	              <c:when test="${title.length() <= 45 }">
-	                ${title}
-	              </c:when>
-	            </c:choose>
-	          </div>
-          </strong>
-          
-          <div style='font-size:0.8em;  word-break: break-all;'>
-          <img src="/menu/images/pcircle.svg" class="icon" style="margin-bottom:8px; margin-top:4px;"> ${mname } <br>
-             조회수 : ${cnt } | 좋아요 : ${recom } 
-
+        <strong>
+          <div style='height: 25px; word-break: break-all;'>
+            <c:choose> 
+              <c:when test="${title.length() > 45 }"> <%-- 160자 이상이면 160자만 출력 --%>
+                ${title.substring(0, 45)}.....
+              </c:when>
+              <c:when test="${title.length() <= 45 }">
+                ${title}
+              </c:when>
+            </c:choose>
           </div>
+        </strong>
+          
+        <div style='font-size:0.8em; word-break: break-all;'>
+          <img src="/menu/images/pcircle.svg" class="icon" style="margin-bottom:8px; margin-top:4px;"> ${mname } <br>
+          조회수: ${cnt }  | 좋아요: ${recom } 
+        </div>
 
       </div>
       
@@ -129,10 +149,7 @@
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->
   
-</DIV>
 
- 
-<jsp:include page="../menu/bottom.jsp" />
-</body>
+
  
 </html>

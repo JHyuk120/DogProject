@@ -91,6 +91,8 @@ public class RecipeCont {
 
     if (memberProc.isMember(session)) { // 회원으로 로그인 한 경우
       int memberno = (int)session.getAttribute("memberno");
+      String mname = (String)session.getAttribute("mname");
+      recipeVO.setMname(mname);
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
