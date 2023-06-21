@@ -51,16 +51,6 @@ function checkLoginStatus() {
 }
 </script>
 
-<style>
-  .input-group {
-    display: flex;
-    justify-content: space-between;
-  }
-  .input-cell {
-    padding: 5px;
-  }
-</style>
-  
 </head> 
  
 <body>
