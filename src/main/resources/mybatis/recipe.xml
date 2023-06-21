@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <insert id="create" parameterType="dev.mvc.recipe.RecipeVO">
     INSERT INTO recipe(recipeno, memberno, itemno, title, article, 
                       passwd, word, file1, file1saved,
-                      thumb1, size1, ingredient, rdate)
+                      thumb1, size1, ingredient, rdate, mname)
     VALUES(recipe_seq.nextval, #{memberno}, #{itemno}, #{title}, #{article}, 
           #{passwd}, #{word}, #{file1}, #{file1saved}, 
           #{thumb1}, #{size1}, #{ingredient}, sysdate)
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_all" resultType="dev.mvc.recipe.RecipeVO">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star
+                      thumb1, size1, youtube, ingredient, review, star, mname
     FROM recipe 
     ORDER BY recipeno DESC
   </select> 
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_by_itemno" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star
+                      thumb1, size1, youtube, ingredient, review, star, mname
     FROM recipe
     WHERE itemno=#{itemno}
     ORDER BY recipeno DESC
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="read" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star
+                      thumb1, size1, youtube, ingredient, review, star, mname
     FROM recipe
     WHERE recipeno = #{recipeno}
   </select>
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_by_itemno_search" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star
+                      thumb1, size1, youtube, ingredient, review, star, mname
     FROM recipe
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
@@ -90,13 +90,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
-                file1, file1saved, thumb1, size1,   youtube, r
+                file1, file1saved, thumb1, size1,   youtube, mname,  r
      FROM (
                 SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
-                           file1, file1saved, thumb1, size1,   youtube, rownum as r
+                           file1, file1saved, thumb1, size1,   youtube, mname, rownum as r
                 FROM (
                           SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
-                                     file1, file1saved, thumb1, size1,   youtube
+                                     file1, file1saved, thumb1, size1,   youtube, mname
                           FROM recipe
                           <choose>
                             <when test="word == null or word == ''"> 

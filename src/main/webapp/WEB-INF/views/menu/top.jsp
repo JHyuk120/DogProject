@@ -136,7 +136,7 @@
                     <li class="nav-item">
                         <c:choose>
 
-                            <c:when test="${itemno != 2}">
+                            <c:when test="${itemno != 6}">
                                 <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 15px;">                           
                                     <img src="/menu/images/menu2.png" class="icon0"  style='margin-left:9px'>&nbsp;${item}</a>
                             </c:when>

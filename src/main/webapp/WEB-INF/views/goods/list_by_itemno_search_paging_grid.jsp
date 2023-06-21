@@ -74,7 +74,7 @@
       <DIV class='menu_line'></DIV>
   
       <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
-        <c:forEach var="goodsVO" items="${list }" varStatus="status">
+        <c:forEach var="goodsVO" items="${list }" varStatus="status">        
           <c:set var="gname" value="${goodsVO.gname }" />
           <c:set var="price" value="${goodsVO.price }" />  
           <c:set var="dc" value="${goodsVO.dc }" />
@@ -130,32 +130,39 @@
            <del style="font-size: 0.8em; color: #949494">￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
           <img src="/cart/images/point.jpg" class="icon">
           <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
+          <br>
+          
+          
+          <c:forEach var="reviewVO" varStatus="reviewStatus" items="${reviewList}">
+          <c:if test="${reviewStatus.index eq status.index}">
           <span>
+          
                   <c:choose>
-          <c:when test="${ratingValue >= 5}">
-            <center><img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
+          <c:when test="${reviewVO.ratingAvg >= 5}">
+            <img src="/review/images/star_5.png" style="width: 100px; text-align: center;">
           </c:when>
-          <c:when test="${ratingValue >= 4 && ratingValue < 5}">
-            <center><img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
+          <c:when test="${reviewVO.ratingAvg >= 4 && reviewVO.ratingAvg < 5}">
+            <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;">
           </c:when>
-          <c:when test="${ratingValue >= 3 && ratingValue < 4}">
-            <center><img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
+          <c:when test="${reviewVO.ratingAvg >= 3 && reviewVO.ratingAvg < 4}">
+            <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;">
           </c:when>
-          <c:when test="${ratingValue >= 2 && ratingValue < 3}">
-            <center><img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
+          <c:when test="${reviewVO.ratingAvg >= 2 && reviewVO.ratingAvg < 3}">
+            <img src="/review/images/star_2.png" style="width: 100px; text-align: center;">
           </c:when>
-          <c:when test="${ratingValue >= 1 && ratingValue < 2}">
-            <center><img src="/review/images/star_1.png" style="width: 100px; text-align: center;"></center>
+          <c:when test="${reviewVO.ratingAvg >= 1 && reviewVO.ratingAvg < 2}">
+            <img src="/review/images/star_1.png" style="width: 100px; text-align: center;">
           </c:when>
              <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/review/images/star_0.png" style="width: 100px; text-align: center;"> 
               </c:otherwise>
         </c:choose>
-          (${reviewcnt }) <!-- 리뷰 수 -->
-          
-          </span>
+
+   (${reviewVO.reviewcnt })   
+          </c:if>
+         </c:forEach>
       </div>
-      
+    
     </c:forEach>
   </div>
   

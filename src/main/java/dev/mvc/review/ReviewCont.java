@@ -55,6 +55,7 @@ public class ReviewCont {
                  // 업데이트된 별점 평균 조회
                  float ratingAVG = this.reviewProc.ratingAVG(goodsVO.getGoodsno());
                  
+
                  mav.addObject("ratingAVG", ratingAVG);
                  mav.addObject("goods", goodsVO);
                  mav.setViewName("redirect:/goods/read.do?goodsno=" + goodsVO.getGoodsno());

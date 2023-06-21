@@ -261,6 +261,7 @@ public class GoodsCont {
     // 게시물 별 리뷰 평점
     float ratingAVG = this.reviewProc.ratingAVG(goodsno);
     mav.addObject("ratingAVG", ratingAVG);
+
     // 게시물 별 리뷰 수
    int reviewcnt =  this.reviewProc.review_count(goodsno);
    mav.addObject("reviewcnt", reviewcnt);
@@ -388,23 +389,47 @@ public class GoodsCont {
    // mav.addObject("now_page", now_page);
    
    mav.setViewName("/goods/list_by_itemno_search_paging_grid");  // /goods/list_by_itemno_search_paging_grid.jsp
-   
+ /**
    for (GoodsVO goods : list) {
        int goodsno = goods.getGoodsno();
-       System.out.println(goodsno); // 또는 다른 로직에서 사용하면 됩니다.
+       System.out.println(goodsno); 
        
        int reviewcnt = this.reviewProc.review_count(goods.getGoodsno());
-       mav.addObject("reviewcnt", reviewcnt);
+       reviewVO.setReviewcnt(reviewcnt);
+       //mav.addObject("reviewcnt", reviewcnt);
        System.out.println(reviewcnt); 
        
-      Float ratingAVG = this.reviewProc.ratingAVG(goods.getGoodsno());
-      mav.addObject("ratingAVG", ratingAVG);
-      System.out.println(ratingAVG); 
-   }
+      Float ratingValue = this.reviewProc.ratingAVG(goods.getGoodsno());
+      reviewVO.setRatingAvg(ratingValue);
+     //mav.addObject("ratingValue", ratingValue);
+      System.out.println(ratingValue); 
 
-   return mav;
- }
- 
+   }
+*/
+    ArrayList<ReviewVO> reviewList = new ArrayList<>();
+    
+    for (GoodsVO goods : list) {
+        int goodsno = goods.getGoodsno();
+        System.out.println(goodsno);
+    
+        ReviewVO review = new ReviewVO(); // 리뷰 정보를 담을 ReviewVO 객체 생성
+    
+        int reviewcnt = this.reviewProc.review_count(goods.getGoodsno());
+        review.setReviewcnt(reviewcnt);
+        System.out.println(reviewcnt);
+    
+        Float ratingValue = this.reviewProc.ratingAVG(goods.getGoodsno());
+        review.setRatingAvg(ratingValue);
+        System.out.println(ratingValue);
+    
+        reviewList.add(review); // 리뷰 정보를 리스트에 추가
+    }
+    
+    mav.addObject("reviewList", reviewList); 
+    
+       return mav;
+     }
+     
  
  /**
   * 수정 폼
