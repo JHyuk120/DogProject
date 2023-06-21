@@ -63,6 +63,12 @@ public interface ReviewProcInter {
      */
     public int review_update(ReviewVO reviewVO);
     /**
+     * 리뷰 이미지 파일 수정
+     * @param reviewVO
+     * @return
+     */
+    public ReviewVO review_update_file(ReviewVO reviewVO);
+    /**
      * 리뷰 삭제
      * @param reviewno
      * @return
