@@ -66,7 +66,6 @@ public class ReviewCont {
                  // 업데이트된 별점 평균 조회
                  float ratingAVG = this.reviewProc.ratingAVG(goodsVO.getGoodsno());
                  
-
                  mav.addObject("ratingAVG", ratingAVG);
                  mav.addObject("goods", goodsVO);
                  mav.setViewName("redirect:/goods/read.do?goodsno=" + goodsVO.getGoodsno());
@@ -78,7 +77,6 @@ public class ReviewCont {
                  String file2saved = "";   // 저장된 파일명, image
                  String thumb2 = "";     // preview image
                  String upDir =  Review.getUploadDir();
-                 System.out.println("-> upDir: " + upDir);
                  
                  // 전송 파일이 없어도 file1MF 객체가 생성됨.
                  // <input type='file' class="form-control" name='file1MF' id='file1MF' 
@@ -87,7 +85,6 @@ public class ReviewCont {
                  
 
                  file2 = Tool.getFname(mf.getOriginalFilename()); // 원본 순수 파일명 산출
-                 System.out.println("-> file2: " + file2);
                  
                  long size2 = mf.getSize();  // 파일 크기
                  
@@ -188,10 +185,70 @@ public class ReviewCont {
           
            // 아이디 확인
           if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
-              this.reviewProc.review_update(reviewVO);
+              
               mav.addObject("reviewno", reviewVO.getReviewno());
               mav.addObject("goodsno", goodsno);
               mav.setViewName("redirect:/goods/read.do");
+              
+           // 삭제할 파일 정보를 읽어옴, 기존에 등록된 레코드 저장용
+          
+              ReviewVO reviewVO_old = this.reviewProc.review_read(reviewVO.getReviewno());
+              // -------------------------------------------------------------------
+              // 파일 삭제 코드 시작
+              // -------------------------------------------------------------------
+              String file2saved = reviewVO_old.getFile2saved();  // 실제 저장된 파일명
+              String thumb2 = reviewVO_old.getThumb2();       // 실제 저장된 preview 이미지 파일명
+              long size2 = 0;
+
+              String upDir = Goods.getUploadDir(); // ★ C:/kd/deploy/resort_v2sbm3c/goods/storage/
+              
+              Tool.deleteFile(upDir, file2saved);  // 실제 저장된 파일삭제
+              Tool.deleteFile(upDir, thumb2);     // preview 이미지 삭제
+              // -------------------------------------------------------------------
+              // 파일 삭제 종료 시작
+              // -------------------------------------------------------------------
+                  
+              // -------------------------------------------------------------------
+              // 파일 전송 코드 시작
+              // -------------------------------------------------------------------
+              String file2 = "";          // 원본 파일명 image
+
+              // 완성된 경로 C:/kd/ws_java/resort_v1sbm3c/src/main/resources/static/goods/storage/
+              // String upDir =  System.getProperty("user.dir") + "/src/main/resources/static/goods/storage/"; // 절대 경로
+                  
+              // 전송 파일이 없어도 file1MF 객체가 생성됨.
+              // <input type='file' class="form-control" name='file1MF' id='file1MF' 
+              //           value='' placeholder="파일 선택">
+              MultipartFile mf = reviewVO.getFile2MF(); 
+                  
+              file2 = mf.getOriginalFilename(); // 원본 파일명
+              size2 = mf.getSize();  // 파일 크기
+                  
+              if (size2 > 0) { // 폼에서 새롭게 올리는 파일이 있는지 파일 크기로 체크 !!
+                // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
+                file2saved = Upload.saveFileSpring(mf, upDir); 
+                
+                if (Tool.isImage(file2saved)) { // 이미지인지 검사
+                  // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
+                  thumb2 = Tool.preview(upDir, file2saved, 250, 200); 
+                }
+                
+              } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
+                file2="";
+                file2saved="";
+                thumb2="";
+                size2=0;
+              }
+              
+              reviewVO.setFile2(file2);
+              reviewVO.setFile2saved(file2saved);
+              reviewVO.setThumb2(thumb2);
+              reviewVO.setSize2(size2);
+
+              // -------------------------------------------------------------------
+              // 파일 전송 코드 종료
+              // -------------------------------------------------------------------
+              this.reviewProc.review_update(reviewVO); 
           } else {
               mav.setViewName("./reply/login_need");
           }

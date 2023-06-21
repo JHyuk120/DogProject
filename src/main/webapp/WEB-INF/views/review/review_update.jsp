@@ -393,6 +393,11 @@ function checkRatingValue() {
     </td>
   </tr>
    <button type='submit' class='btn btn-info btn-sm'  onclick="checkRatingValue(event)">리뷰 수정</button>
+      <div>
+       <label>리뷰 사진 업로드</label>
+       <input type='file' class="form-control" name='file2MF' id='file2MF' 
+                 value='' placeholder="파일 선택"><br>
+    </div>
  </FORM>    
  
  <!-- 댓글 목록 -->
@@ -426,7 +431,10 @@ function checkRatingValue() {
         <c:set var="rdate" value="${reviewVO.rdate}" />
         <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
          <c:set var="mid" value="${memberVO.id}" />
-         
+        <c:set var="file2" value="${reviewVO.file2 }" />
+        <c:set var="file2saved" value="${reviewVO.file2saved }" />
+        <c:set var="thumb2" value="${reviewVO.thumb2 }" />
+        
         <tr style="height: 112px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
@@ -460,6 +468,22 @@ function checkRatingValue() {
                 
             </div>
           </td>
+          
+          <td style='vertical-align: middle; text-align: center;'>
+            <div>
+             <c:choose>
+              <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
+                <%-- /static/contents/storage/ --%>
+                <img src="/dogproject/images/${file2saved }" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
+              </c:when>
+              
+              <c:otherwise> <!-- 기본 이미지 출력 -->
+                <img src="/goods/images/ee.png" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
+              </c:otherwise>
+             </c:choose>
+            
+            </div>
+          </td> 
           
           <td style='vertical-align: middle; text-align: center;'>
             <div>${reviewcont}</div>

@@ -389,39 +389,19 @@ public class GoodsCont {
    // mav.addObject("now_page", now_page);
    
    mav.setViewName("/goods/list_by_itemno_search_paging_grid");  // /goods/list_by_itemno_search_paging_grid.jsp
- /**
-   for (GoodsVO goods : list) {
-       int goodsno = goods.getGoodsno();
-       System.out.println(goodsno); 
-       
-       int reviewcnt = this.reviewProc.review_count(goods.getGoodsno());
-       reviewVO.setReviewcnt(reviewcnt);
-       //mav.addObject("reviewcnt", reviewcnt);
-       System.out.println(reviewcnt); 
-       
-      Float ratingValue = this.reviewProc.ratingAVG(goods.getGoodsno());
-      reviewVO.setRatingAvg(ratingValue);
-     //mav.addObject("ratingValue", ratingValue);
-      System.out.println(ratingValue); 
-
-   }
-*/
     ArrayList<ReviewVO> reviewList = new ArrayList<>();
     
     for (GoodsVO goods : list) {
         int goodsno = goods.getGoodsno();
-        System.out.println(goodsno);
-    
+  
         ReviewVO review = new ReviewVO(); // 리뷰 정보를 담을 ReviewVO 객체 생성
     
         int reviewcnt = this.reviewProc.review_count(goods.getGoodsno());
         review.setReviewcnt(reviewcnt);
-        System.out.println(reviewcnt);
-    
+  
         Float ratingValue = this.reviewProc.ratingAVG(goods.getGoodsno());
         review.setRatingAvg(ratingValue);
-        System.out.println(ratingValue);
-    
+  
         reviewList.add(review); // 리뷰 정보를 리스트에 추가
     }
     
