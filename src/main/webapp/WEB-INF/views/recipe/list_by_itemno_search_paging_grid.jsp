@@ -78,7 +78,7 @@
       <c:set var="size1" value="${recipeVO.size1 }" />
       <c:set var="cnt" value="${recipeVO.cnt }" />
       <c:set var="recom" value="${recipeVO.recom }" />
-        
+      
       <%-- 하나의 행에 이미지를 4개씩 출력후 행 변경, index는 0부터 시작 --%>
       <c:if test="${status.index % 4 == 0 && status.index != 0 }"> 
 
@@ -117,6 +117,7 @@
           <div style='font-size:0.8em;  word-break: break-all;'>
           <img src="/menu/images/pcircle.svg" class="icon" style="margin-bottom:8px; margin-top:4px;"> ${mname } <br>
              조회수 : ${cnt } | 좋아요 : ${recom } 
+
           </div>
 
       </div>
