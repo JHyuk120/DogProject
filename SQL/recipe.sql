@@ -22,8 +22,9 @@ CREATE TABLE recipe(
         ingredient         CLOB            NOT NULL,
         review              CLOB            NULL,
         star                NUMBER(5)       DEFAULT 0         NOT NULL,
-  FOREIGN KEY (memberno) REFERENCES member (memberno),
-  FOREIGN KEY (itemno) REFERENCES item (itemno)
+        mname           VARCHAR(30)   NOT NULL,
+    FOREIGN KEY (memberno) REFERENCES member (memberno) ON DELETE CASCADE,
+    FOREIGN KEY (itemno) REFERENCES item (itemno)
 );
 
 COMMENT ON TABLE recipe is '레시피';
@@ -43,9 +44,11 @@ COMMENT ON COLUMN recipe.file1saved is '실제 저장된 레시피 이미지';
 COMMENT ON COLUMN recipe.thumb1 is '메인 이미지 Preview';
 COMMENT ON COLUMN recipe.size1 is '메인 이미지 크기';
 COMMENT ON COLUMN recipe.youtube is '유튜브';
-COMMENT ON COLUMN recipe.ingredients is '재료';
+COMMENT ON COLUMN recipe.ingredient is '재료';
 COMMENT ON COLUMN recipe.review is '리뷰';
 COMMENT ON COLUMN recipe.star is '별점';
+COMMENT ON COLUMN recipe.mname is '작성자이름';
+
 
 COMMIT;
 

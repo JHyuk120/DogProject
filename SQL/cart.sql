@@ -8,7 +8,7 @@ CREATE TABLE cart(
         goodsno  NUMBER(10)   NOT NULL,
         cnt      NUMBER(10)    DEFAULT 0		 NOT NULL, 
         rdate    DATE NOT NULL,
-    FOREIGN KEY(memberno)  REFERENCES member(memberno),
+    FOREIGN KEY (memberno) REFERENCES member (memberno) ON DELETE CASCADE,
     FOREIGN KEY(goodsno)    REFERENCES goods(goodsno)
 );
 

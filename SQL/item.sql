@@ -70,3 +70,6 @@ ORDER BY seqno ASC;
 update item
 set cnt = cnt + 1    -- cnt = cnt - 1
 where itemno = 1;
+
+SELECT * FROM item;
+
