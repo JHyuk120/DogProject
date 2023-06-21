@@ -26,10 +26,6 @@ public class MemberProc implements MemberProcInter {
   }
   
 
-
-  
-
-
   @Override
   public int create(MemberVO memberVO) {
     int cnt = this.memberDAO.create(memberVO);
@@ -75,6 +71,14 @@ public class MemberProc implements MemberProcInter {
     int cnt = this.memberDAO.update(memberVO);
     return cnt;
   }
+  
+  @Override
+  public MemberVO idFind(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.idFind(memberVO);
+    return vo;
+  }
+  
+ 
 
   @Override
   public int delete(int memberno) {
@@ -99,6 +103,10 @@ public class MemberProc implements MemberProcInter {
     int cnt = this.memberDAO.login(map);
     return cnt;
   }
+
+
+
+
 
  
   

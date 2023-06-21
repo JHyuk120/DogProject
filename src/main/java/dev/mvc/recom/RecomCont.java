@@ -1,5 +1,7 @@
 package dev.mvc.recom;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.admin.AdminProcInter;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.recipe.RecipeProcInter;
 import dev.mvc.recipe.RecipeVO;
@@ -27,6 +30,10 @@ public class RecomCont {
   @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
+
+  @Autowired
+  @Qualifier("dev.mvc.admin.AdminProc")
+  private AdminProcInter adminProc;
 
   public RecomCont() {
     System.out.println("-> RecomCont created");
@@ -54,6 +61,7 @@ public class RecomCont {
 
         if (cnt == 1) {
           mav.addObject("recipeVO", recipeVO);
+          this.recipeProc.recom_add(recipeVO.getRecipeno());
           mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
 
         } else {
@@ -64,9 +72,14 @@ public class RecomCont {
         int delete_recom = this.recomProc.delete(memberno);
         
         mav.addObject("recipeVO", recipeVO);
+        this.recipeProc.recom_sub(recipeVO.getRecipeno());
         mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
         
       }
+    } else if (adminProc.isAdmin(session)) {
+      mav.addObject("code", "admin_fail");
+      mav.setViewName("redirect:/recom/msg.do");
+      
     } else {
       mav.addObject("url", "/member/login_need");
       mav.setViewName("redirect:/recom/msg.do");
@@ -89,5 +102,28 @@ public class RecomCont {
 
     return mav; // forward
   }
+  
+  /**
+   * 관리자가 보는 좋아요가 많은 목록
+   * @param session
+   * @return
+   */
+  @RequestMapping(value = "/recom/adminList.do", method = RequestMethod.GET)
+  public ModelAndView adminList(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    if (adminProc.isAdmin(session)) {
+      ArrayList<RecipeVO> list_a = this.recipeProc.adminList();
+      mav.addObject("list_a", list_a);
+      
+    } else {
+      mav.addObject("code", "admin_fail");
+      mav.setViewName("redirect:/recom/msg.do");
+      
+    }
+
+    return mav; 
+  }
+  
 
 }

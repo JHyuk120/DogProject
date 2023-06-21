@@ -7,6 +7,10 @@
 <c:set var="gname" value="${goodsVO.gname }" />
 <c:set var="content" value="${goodsVO.content }" />
 <c:set var="word" value="${goodsVO.word }" />
+<c:set var="price" value="${goodsVO.price }" />
+<c:set var="dc" value="${goodsVO.dc }" />
+<c:set var="cnt" value="${goodsVO.cnt }" />
+
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -67,32 +71,43 @@
     <input type="hidden" name="goodsno" value="${goodsno }">
     <input type="hidden" name="now_page" value="${param.now_page }">
     
-    <div>
+     <div>
        <label>제목</label>
        <input type='text' name='gname' value='${gname }' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 100%;'>
+                 autofocus="autofocus" class="form-control" style='width: 30%;'><br>
     </div>
+     
+    <div class="row" style='width:35%'>
+      <div class="col-sm-4">
+        <label for="price">가격</label>
+        <input type="number" class="form-control" id="price" name="price" value="${price }" >
+      </div>
+      <div class="col-sm-4">
+        <label for="dc">DC</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="dc" name="dc" min="0" max="100" value="${dc }">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <label for="cnt">수량</label>
+          <input type="number" class="form-control" id="cnt" name="cnt" value="${cnt }" min="0" style='width:80%'>
+        </div>
+    </div>
+    <br>
+    
     <div>
        <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>${content }</textarea>
+       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>${content }</textarea><br>
     </div>
+    
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value="${word }" required="required" 
-                 class="form-control" style='width: 100%;'>
-    </div>   
-    
-    <c:choose>
-      <c:when test="${sessionScope.admin_id == null }">
-        <div>
-          <label>패스워드</label>
-          <input type='password' name='passwd' value='' required="required" 
-                    class="form-control" style='width: 50%;'>
-        </div>
-      </c:when>
-      <c:otherwise>
-      </c:otherwise>
-    </c:choose>
+       <input type='text' name='word' value='${word }' required="required" 
+                 class="form-control" style='width: 100%;'><br>
+    </div>  
        
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-primary">저장</button>

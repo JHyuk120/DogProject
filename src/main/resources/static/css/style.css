@@ -191,7 +191,7 @@
   
   .title_line {
     text-align: left;
-    border-bottom: solid 3px #555555;
+    border-bottom: solid 4px #555555;
     width: 100%;
     margin: 20px auto;
     font-size: 20px;    
@@ -455,6 +455,16 @@
   .icon2{
     width: 24px;
   }
+  
+    .icon0{
+    width: 21px;
+  }
+  
+    .icon1{
+    width: 18px;
+  }
+  
+
   
   .input_word{
     width: 20%;

@@ -119,7 +119,6 @@ public class GoodsCont {
         }
         
       }    
-      goodsVO.setSaleprice(saleprice); // 할인된 가격
       goodsVO.setFile1(file1);   // 순수 원본 파일명
       goodsVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       goodsVO.setThumb1(thumb1);      // 원본이미지 축소판
@@ -464,26 +463,28 @@ public class GoodsCont {
    ModelAndView mav = new ModelAndView();
    
    if (this.adminProc.isAdmin(session)) { //관리자 로그인
+     int price = goodsVO.getPrice();  // 정가
+     int dc = goodsVO.getDc();
+     int saleprice = (int)(price - (price * (dc / 100.0)));// 할인된 금액//saleprice = price - price * (dc / 100)
+     int point = (int)( saleprice * (2 / 100.0)); //포인트
+     
+     System.out.println("가격: "+saleprice);
+     goodsVO.setSaleprice(saleprice);
+     goodsVO.setPoint(point);
+     
      this.goodsProc.update_text(goodsVO);
+     
      
      mav.addObject("goodsno", goodsVO.getGoodsno());
      mav.addObject("itemno", goodsVO.getItemno());
-     mav.setViewName("redirect:/goods/read.do");
+     mav.addObject("saleprice", goodsVO.getSaleprice());
+     mav.addObject("point", goodsVO.getPoint());
      
-   } 
-   else { // 정상적인 로그인이 아닌 경우
-     if (this.goodsProc.password_check(goodsVO) == 1 ) {
-       this.goodsProc.update_text(goodsVO);
-       // mav 객체 이용
-       mav.addObject("goodsno", goodsVO.getGoodsno());
-       mav.addObject("itemno", goodsVO.getItemno());
-       mav.setViewName("redirect:/goods/read.do");
+     mav.setViewName("redirect:/goods/read.do");
      } else {
-         mav.addObject("url", "/goods/passwd_check");
+         mav.addObject("url", "/admin/login_need");
          mav.setViewName("redirect:/goods/msg.do");  //POST ->  GET -> JSP 출력
      }
-     
-   }
    
    mav.addObject("now_page", goodsVO.getNow_page());  // POST -> GET: 데이터 분실이 발생함으로 다시 한 번 데이터 저장해줌.
 

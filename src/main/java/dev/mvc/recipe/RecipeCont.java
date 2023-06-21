@@ -262,11 +262,7 @@ public class RecipeCont {
     mav.addObject("cnt", cnt);
     
     // 좋아요 관련 시작
-    
-    //좋아요 갯수 확인
-    int recom_cnt = this.recomProc.cnt(recipeno);
-    mav.addObject("recom_cnt", recom_cnt);
-    
+        
     // 좋아요 확인
     if (memberProc.isMember(session)) {
       int memberno = (int) (session.getAttribute("memberno"));
@@ -738,50 +734,6 @@ public class RecipeCont {
      return mav;
  }
    
-    //좋아요Y(추천수, 따봉)
-   
-   @RequestMapping(value = "/recipe/recom_y.do", method = RequestMethod.GET)
-   public ModelAndView recom_y(int memberno) {
-       ModelAndView mav = new ModelAndView();
-
-       int cnt = this.recipeProc.recom_y(memberno);
-
-       if (cnt == 1) {
-         
-           mav.setViewName("redirect:/recipe/read.do");
-
-       } else {
-           mav.addObject("code", "recom_add_fail");
-           mav.setViewName("/recipe/msg");
-       }
-
-       mav.addObject("cnt", cnt);
-
-       return mav;
-   }
-   
- //좋아요N(추천수, 따봉)
-   
-   @RequestMapping(value = "/recipe/recom_n.do", method = RequestMethod.GET)
-   public ModelAndView recom_n(int memberno) {
-       ModelAndView mav = new ModelAndView();
-
-       int cnt = this.recipeProc.recom_y(memberno);
-
-       if (cnt == 1) {
-         
-           mav.setViewName("redirect:/recipe/read.do");
-
-       } else {
-           mav.addObject("code", "recom_add_fail");
-           mav.setViewName("/recipe/msg");
-       }
-
-       mav.addObject("cnt", cnt);
-
-       return mav;
-   }
-  
    
 }
   

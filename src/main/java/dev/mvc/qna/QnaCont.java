@@ -1,6 +1,7 @@
 package dev.mvc.qna;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.attachfile.AttachfileProcInter;
+import dev.mvc.attachfile.AttachfileVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
@@ -39,6 +42,10 @@ public class QnaCont {
   @Qualifier("dev.mvc.qna.QnaProc") 
   private QnaProcInter qnaProc;
   
+  @Autowired
+  @Qualifier("dev.mvc.attachfile.AttachfileProc") 
+  private AttachfileProcInter attachfileProc;
+  
   public QnaCont () {
     System.out.println("-> QnaCont created.");
   }
@@ -61,23 +68,74 @@ public class QnaCont {
  
   //등록 처리
   @RequestMapping(value = "/qna/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, HttpSession session, QnaVO qnaVO) {
+  public ModelAndView create(HttpServletRequest request, HttpSession session, QnaVO qnaVO, AttachfileVO attachfileVO) {
     ModelAndView mav = new ModelAndView();
 
-    if (memberProc.isMember(session)) { // 관리자로 로그인한경우
+    if (memberProc.isMember(session)) { // 회원으로 로그인한경우
       int memberno = (int)(session.getAttribute("memberno"));
       qnaVO.setMemberno(memberno);
-     
       
-      // Call By Reference: 메모리 공유, Hashcode 전달
-      int cnt = this.qnaProc.create(qnaVO); 
+      int cnt = this.qnaProc.create(qnaVO); // Call By Reference로 메모리 공유가 일어나 pk값이 저장되어 공유됨.
      
+      int qnano = qnaVO.getQnano();
+     
+    // ---------------------------------------------------------------
+    // 파일 전송 코드 시작
+    // ---------------------------------------------------------------
+    String fname = ""; // 원본 파일명
+    String fupname = ""; // 업로드된 파일명
+    long fsize = 0;  // 파일 사이즈
+    String thumb = ""; // Preview 이미지
+    int upload_count = 0; // 정상처리된 레코드 갯수
+    
+    String upDir = Qna.getUploadDir(); // 경로설정
+    System.out.println("-> 파일 업로드: " + upDir);
+    
+    // 전송 파일이 없어서도 fnamesMF 객체가 생성됨.
+    List<MultipartFile> fnamesMF = attachfileVO.getFnamesMF();
+    
+    int count = fnamesMF.size(); // 전송 파일 갯수
+    if (count > 0) {
+      for (MultipartFile multipartFile:fnamesMF) { // 파일 추출, 1개이상 파일 처리
+        fsize = multipartFile.getSize();  // 파일 크기
+        if (fsize > 0) { // 파일 크기 체크
+          fname = multipartFile.getOriginalFilename(); // 원본 파일명
+          fupname = Upload.saveFileSpring(multipartFile, upDir); // 파일 저장, 업로드된 파일명
+          
+          if (Tool.isImage(fname)) { // 이미지인지 검사
+            thumb = Tool.preview(upDir, fupname, 200, 150); // thumb 이미지 생성
+          }
+        }
+        
+        AttachfileVO vo = new AttachfileVO();
+        vo.setQnano(qnano);
+        vo.setFname(fname);
+        vo.setFupname(fupname);
+        vo.setThumb(thumb);
+        vo.setFsize(fsize);
+        
+        // 파일 1건 등록 정보 dbms 저장, 파일이 20개이면 20개의 record insert.
+        upload_count = upload_count + attachfileProc.create(vo); 
+        System.out.println("경로: " + upDir);
+        
+      }
+    }    
+    // -----------------------------------------------------
+    // 파일 전송 코드 종료
+    // -----------------------------------------------------
+           
+      // Call By Reference: 메모리 공유, Hashcode 전달
+      qnaVO.setMemberno(memberno);      
+      
+      
       if (cnt == 1) {
         mav.addObject("code", "create_success");
           // itemProc.increaseCnt(goodsVO.getItemno()); // 글수 증가
       } else {
           mav.addObject("code", "create_fail");
       }
+      
+      mav.addObject("upload_count", upload_count); // redirect parameter 적용
       
       mav.addObject("url", "/qna/msg"); // msg.jsp, redirect parameter 적용
       mav.setViewName("redirect:/qna/msg.do"); 

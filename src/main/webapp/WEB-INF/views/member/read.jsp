@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -146,9 +147,21 @@
         $('#modal_panel').modal();               // 다이얼로그 출력
         return false;
         } 
-      
-      
-      
+
+      $.ajax({
+          url: '/member/getMemberVO',  // MemberVO 데이터를 제공하는 경로로 수정해야 함
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+              var memberVO = data.memberVO;
+              var passwd = memberVO.passwd;
+              // 위에서 가져온 passwd 값과 비교하는 로직을 여기에 추가하면 됩니다.
+          },
+          error: function(request, status, error) { // callback 함수
+                 console.log(error);
+          }
+      });
+     
       if ($('#new_passwd').val() != $('#new_passwd2').val()) {  // 새로 입력되는 2개의 패스워드 비교
           $('#modal_title').html('패스워드 일치 여부  확인'); // 제목 
 
@@ -163,6 +176,22 @@
           return false; // submit 중지
         }
 
+   // 패스워드 유효성 검사
+     let new_passwd = $('#new_passwd').val();
+     if (new_passwd.length > 0) {
+      let passwordRegex = /^(?=.*?[A-Z].*?[a-z]|.*?[A-Z].*?\d|.*?[A-Z].*?[!@#$%^&*()\-_=+[\]{};:'"\\|,.<>/?]|.*?[a-z].*?\d|.*?[a-z].*?[!@#$%^&*()\-_=+[\]{};:'"\\|,.<>/?]|.*?\d.*?[!@#$%^&*()\-_=+[\]{};:'"\\|,.<>/?]).{10,16}$/;
+      if (!passwordRegex.test(new_passwd)) { 
+        msg = '영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자<br>';
+        msg += "패스워드를 다시 입력해주세요.<br>"; 
+        
+        $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+        $('#modal_title').html('패스워드 조건 성립 확인'); // 제목 
+        $('#modal_content').html(msg);  // 내용
+        $('#btn_close').attr('data-focus', 'passwd');
+        $('#modal_panel').modal();  
+        return false; // submit 중지
+      }
+     }
 
 
     $('#frm').submit(); // required="required" 작동 안됨.

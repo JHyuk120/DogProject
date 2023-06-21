@@ -1,5 +1,7 @@
 package dev.mvc.recom;
 
+import java.util.ArrayList;
+
 public interface RecomProcInter {
 
   /**
@@ -8,13 +10,6 @@ public interface RecomProcInter {
    * @return
    */
   public int create(RecomVO recomVO);
-
-  /**
-   * 좋아요 갯수
-   * @param recipeno
-   * @return
-   */
-  public int cnt(int recipeno);
 
     /**
    * 좋아요 확인
@@ -29,4 +24,5 @@ public interface RecomProcInter {
    * @return
    */
   public int delete(int memberno);
+
 }

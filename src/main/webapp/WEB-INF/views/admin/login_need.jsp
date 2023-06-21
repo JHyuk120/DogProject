@@ -19,7 +19,8 @@
  
 </head> 
  
-<body>
+
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
   <DIV class='message'>
