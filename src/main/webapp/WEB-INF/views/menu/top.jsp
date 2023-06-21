@@ -70,7 +70,7 @@
                                         <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  장바구니</a>
                                     <a class="dropdown-item" href="/pay/pay_list.do">
                                         <img src="/menu/images/receipt.svg" class="icon" style='margin-left:5px'>&nbsp;결제 리스트</a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/member/idFind.do">
                                         <img src="/menu/images/sheart.svg" class="icon" style='margin-left:5px'>&nbsp; 아이디 찾기</a>
                                     <a class="dropdown-item" href="#">
                                         <img src="/menu/images/sh2.svg" class="icon" style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>

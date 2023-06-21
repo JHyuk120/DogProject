@@ -271,7 +271,7 @@ public class MemberCont {
      if (memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
        mav.setViewName("/member/id_view"); // 아이디를 보여줄 뷰 페이지
      } else {
-       // mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
+       mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
        mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
      }
      
