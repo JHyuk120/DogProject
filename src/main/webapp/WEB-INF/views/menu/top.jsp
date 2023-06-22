@@ -43,7 +43,7 @@
                         <c:choose>
                             <c:when test="${sessionScope.admin_id == null}">
                                 <a class="nav-link" href='/member/logout.do'>
-                                    <img src="/menu/images/unlock.png" class="icon" style='margin-left:10px'>&nbsp; logout
+                                    <img src="/menu/images/unlock.png" class="icon" style='margin-left:10px'>&nbsp;logout
                                 </a>
                             </c:when>
                         <c:otherwise>
@@ -125,10 +125,10 @@
     <nav class="navbar navbar-expand-md navbar-main border-bottom">
     
 
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#dropdown6" aria-expanded="false"> <span class="navbar-toggler-icon"></span> </button>
+        <button class="navbar-toggler collapsed " type="button" data-toggle="collapse" data-target="#dropdown6" aria-expanded="false"> <span class="navbar-toggler-icon"></span> </button>
         <div class="navbar-collapse collapse d-flex align-items-center" id="dropdown6" style="margin-top:70px" >
 
-            <ul class="navbar-nav float-center mr-auto">
+            <ul class="navbar-nav float-center mr-auto ">
                 <c:forEach var="itemVO" items="${list_y}">
                     <c:set var="itemno" value="${itemVO.itemno }" />
                     <c:set var="item" value="${itemVO.item }" />
@@ -141,7 +141,7 @@
                                     <img src="/menu/images/menu2.png" class="icon0"  style='margin-left:9px'>&nbsp;${item}</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 15px;">🥗${item}🥗</a>
+                                <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 17px; margin-top: 6px">🥗${item}🥗</a>
                             </c:otherwise>
                         </c:choose>
                     </li>

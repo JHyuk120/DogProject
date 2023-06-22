@@ -13,7 +13,6 @@
  
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
     
     
@@ -50,13 +49,11 @@
     <img src="/menu/images/menu2.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${itemVO.item}</span>
 </DIV>   
 
-<DIV>
+  <DIV>
     <div style='display: flex; align-items: flex-start;'>
         <img src="/recipe/images/arrow.png" class="icon0" style='margin-right: 10px;'>
         <span style='font-size: 20px;'><span style='font-size: larger; '>${search_count}</span> 개의 레시피</span>
     </div>
-</DIV>
-
 
   <ASIDE class="aside_right">
     <A href="./create.do?itemno=${itemVO.itemno }">📝레시피 등록</A>
@@ -144,6 +141,41 @@
       
     </c:forEach>
   </div>
+       </DIV>
+   </body>
+   
+   <!-- 플로팅 메뉴 -->
+<style>
+    .float {
+        position: fixed;
+        bottom: 50px;
+        right: 20px;
+        z-index: 999;
+    }
+</style>
+
+<div class="float">
+    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
+    data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">장바구니</button>
+    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
+    data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">주문내역</button>
+    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
+    data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">회원가입</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
+
+
+
+  
+
   
   <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
