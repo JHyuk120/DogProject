@@ -147,13 +147,25 @@ public class ReviewCont {
        * @return
        */
       @RequestMapping(value="/review/update.do", method=RequestMethod.GET)
-      public ModelAndView review_update (int reviewno, int goodsno, ReviewVO reviewVO ){ 
+      public ModelAndView review_update (HttpSession session, int reviewno, int goodsno, ReviewVO reviewVO ){ 
           ModelAndView mav = new ModelAndView();
+          //현재 로그인된 id
+          String currentUserId = (String) session.getAttribute("id");
+          ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
+          
+           // 아이디 확인
+          if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
           GoodsVO goodsVO = this.goodsProc.read(goodsno);
           mav.addObject("goodsVO", goodsVO);
           
           ReviewVO review2VO = this.reviewProc.review_read(reviewno);
           mav.addObject("reviewVO", review2VO);
+          mav.setViewName("/review/review_update");
+          } else {
+
+              mav.addObject("code", "review_update_fail");
+              mav.setViewName("redirect:/member/msg.do");
+          }
           // 댓글 조회
           ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
           mav.addObject("list", list);
@@ -161,7 +173,7 @@ public class ReviewCont {
           mav.addObject("paging", paging);
 
           
-        mav.setViewName("/review/review_update");
+        
         return mav;
       }
       /**
