@@ -51,14 +51,34 @@ function checkLoginStatus() {
 }
 </script>
 
-</head> 
+</head>
+
+<style>
+
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  .fieldset_basic {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+</style>
+</head>  
  
-<body>
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A></DIV>
+<br>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 280px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
 
-<DIV class='content_body'>
+<DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
     <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
     <c:if test="${sessionScope.id != null }">
@@ -110,7 +130,7 @@ function checkLoginStatus() {
   
   <DIV class='menu_line'></DIV>
 
-  <fieldset class="fieldset_basic">
+  <fieldset class="fieldset_basic" style='background-color:#FEFCF0;'>
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
@@ -159,22 +179,22 @@ function checkLoginStatus() {
   </fieldset>
 </DIV>
 
-<!-- 좋아요 -->
-<form name= 'frm' action="/recom/create.do" method='POST'>
+    <!-- 좋아요 -->
+  <form name= 'frm' action="/recom/create.do" method='POST'>
   <input type="hidden" name="recipeno" value="${recipeno}"/>
   <input type="hidden" name="check" value="${check}"/>
   <c:choose>
     <c:when test="${sessionScope.adminno != null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
     </c:when>  
     <c:when test="${sessionScope.memberno == null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
     </c:when>    
     <c:when test="${check == 1 }">
-      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em; margin-left: 280px;' >♡ ${recom }</button>
     </c:when>
     <c:otherwise>
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
     </c:otherwise>
   </c:choose>
 
@@ -187,11 +207,12 @@ function checkLoginStatus() {
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
     
-    <div>🗨️댓글 ${replycnt.replycnt }개</div>      
-    <textarea name='replycont' required="required" rows="7" cols="63"></textarea>
+    <div  style='background-color:#FEFCF0; margin-left: 280px;'>🗨️댓글 ${replycnt.replycnt }개 
+</div>   <br>   
+    <textarea name='replycont' required="required" rows="7" cols="63"  style='background-color:#FEFCF0; margin-left: 280px;'></textarea>
     
   <br>
-   <button type='submit' class='btn btn-info btn-sm'>댓글 등록</button>
+   <button type='submit' class='btn btn-info btn-sm'  style='margin-left: 280px;'>댓글 등록</button>
  </FORM>    
  <br>
  

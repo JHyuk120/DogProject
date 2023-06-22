@@ -53,6 +53,9 @@ public class RecipeVO {
     /** 별점 */
     private int star;
     
+    /** 글작성자이름 */
+    private String mname;
+    
     /**
      이미지 파일
      <input type='file' class="form-control" name='file1MF' id='file1MF' 
