@@ -98,7 +98,7 @@
     <!-- 글 수정 -->
   <update id="update_text" parameterType="dev.mvc.qna.QnaVO">
     UPDATE qna
-    SET title=#{title}, content=#{content}, word=#{word}
+    SET title=#{title}, content=#{content}, word=#{word}, passwd = #{passwd}
     WHERE qnano = #{qnano}
   </update>
   

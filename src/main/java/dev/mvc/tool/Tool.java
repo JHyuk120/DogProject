@@ -369,7 +369,7 @@ public class Tool {
           // path="C:\\kd\\ws_java\\resort_v2sbm3c_blog\\src\\main\\resources\\static";
           
           // Windows 배포, 폴더 생성
-          path = "C:\\kd\\deploy\\dogproject\\storage\\";
+          path = "C:\\kd\\deploy\\dogproject";
 
       } else {
           // Linux 배포

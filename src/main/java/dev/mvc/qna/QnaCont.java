@@ -22,6 +22,8 @@ import dev.mvc.attachfile.AttachfileVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
+import dev.mvc.notice.Notice;
+import dev.mvc.notice.NoticeVO;
 import dev.mvc.qna.QnaVO;
 import dev.mvc.qna.Qna;
 import dev.mvc.tool.Tool;
@@ -179,6 +181,9 @@ public class QnaCont {
       ModelAndView mav = new ModelAndView();
 
       QnaVO qnaVO = this.qnaProc.read(qnano);
+      
+      ArrayList<AttachfileVO> list = this.attachfileProc.read(qnano);
+      mav.addObject("list", list);
      
       String title = qnaVO.getTitle();
       String content = qnaVO.getContent();
@@ -246,38 +251,83 @@ public class QnaCont {
       mav.addObject("qnaVO", qnaVO);
 
       
-      mav.setViewName("/qna/update_text"); // /WEB-INF/views/qna/update_text.jsp
-      // String article = "장소:\n인원:\n준비물:\n비용:\n기타:\n";
-      // mav.addObject("article", article);
+      mav.setViewName("/qna/update_text"); 
 
       return mav; // forward
     }
     
     //수정처리
     @RequestMapping(value = "/qna/update_text.do", method = RequestMethod.POST)
-    public ModelAndView update_text(HttpSession session, QnaVO qnaVO) {
+    public ModelAndView update_text(HttpSession session, QnaVO qnaVO, AttachfileVO attachfileVO) {
       ModelAndView mav = new ModelAndView();
       
-      if(this.adminProc.isAdmin(session)) {
+      if(this.qnaProc.password_check(qnaVO) == 1) {
+        QnaVO qnaVO_old = qnaProc.read(qnaVO.getQnano());
+        ArrayList<AttachfileVO> attachfileVO_old = attachfileProc.read(attachfileVO.getQnano());
+
+        // -------------------------------------------------------------------
+        // 파일 삭제 코드 시작
+        // -------------------------------------------------------------------
+        // 삭제할 파일 정보를 읽어옴.
+         ArrayList<AttachfileVO> list = this.attachfileProc.read(attachfileVO.getQnano()); 
+         for (int i=0; i < list.size(); i++) {
+          attachfileVO = list.get(i);
+            
+          String fupname = attachfileVO.getFupname();
+          String thumb = attachfileVO.getThumb();
+           
+          String upDir = Qna.getUploadDir(); // 경로설정
+     
+          Tool.deleteFile(upDir, attachfileVO.getFupname()); // Folder에서 1건의 파일 삭제
+          Tool.deleteFile(upDir, attachfileVO.getThumb()); // 1건의 Thumb 파일 삭제
+         }
+          // -------------------------------------------------------------------
+          // 파일 삭제 종료 
+          // -------------------------------------------------------------------
+         
+         String fname = ""; // 원본 파일명
+         String fupname = ""; // 업로드된 파일명
+         long fsize = 0;  // 파일 사이즈
+         String thumb = ""; // Preview 이미지
+         int upload_count = 0; // 정상처리된 레코드 갯수
+         
+         String upDir = Qna.getUploadDir(); // 경로설정
+         
+         List<MultipartFile> fnamesMF = attachfileVO.getFnamesMF();
+         
+         int count = fnamesMF.size(); // 전송 파일 갯수
+         if (count > 0) {
+           for (MultipartFile multipartFile:fnamesMF) { // 파일 추출, 1개이상 파일 처리
+             fsize = multipartFile.getSize();  // 파일 크기
+             if (fsize > 0) { // 파일 크기 체크
+               fname = multipartFile.getOriginalFilename(); // 원본 파일명
+               fupname = Upload.saveFileSpring(multipartFile, upDir); // 파일 저장, 업로드된 파일명
+             }
+           }
+         }
+         
+         attachfileVO.setFname(fname);
+         attachfileVO.setFupname(fupname);
+         attachfileVO.setThumb(thumb);
+         attachfileVO.setFsize(fsize);
+        
+         // -------------------------------------------------------------------
+         // 파일 전송 코드 종료
+         // -------------------------------------------------------------------
+        
         this.qnaProc.update_text(qnaVO);
+        this.attachfileProc.update_file(attachfileVO.getQnano());
         
         mav.addObject("qnano", qnaVO.getQnano());
+        
         mav.setViewName("redirect:/qna/read.do");
-      }else {
-        if(this.qnaProc.password_check(qnaVO) == 1) {
-          this.qnaProc.update_text(qnaVO);
-
-        // mav 객체 이용
-        mav.addObject("qnano", qnaVO.getQnano());
-        mav.setViewName("redirect:/qna/read.do");
-        } else {
-          mav.addObject("url", "qna/passwd_check"); 
-          mav.setViewName("redirect:/qna/msg.do"); 
-        }
+        
+      } else {
+        mav.addObject("url", "qna/passwd_check"); 
+        mav.setViewName("redirect:/qna/msg.do"); 
       }
-      
-      mav.addObject("now_page", qnaVO.getNow_page());
-      
+        mav.addObject("now_page", qnaVO.getNow_page());
+        
       return mav; // forward
     }
     
@@ -321,10 +371,35 @@ public class QnaCont {
      * @return
      */
     @RequestMapping(value = "/qna/delete.do", method = RequestMethod.POST)
-    public ModelAndView delete(QnaVO qnaVO) {
+    public ModelAndView delete(HttpServletRequest request, int qnano, AttachfileVO attachfileVO) {
       ModelAndView mav = new ModelAndView();
+      // -------------------------------------------------------------------
+      // 파일 삭제 코드 시작
+      // -------------------------------------------------------------------
+      // 삭제할 파일 정보를 읽어옴.
+       QnaVO qnaVO = this.qnaProc.read(qnano);
+       ArrayList<AttachfileVO> list = this.attachfileProc.read(qnano); 
+       for (int i=0; i < list.size(); i++) {
+        attachfileVO = list.get(i);
           
-      this.qnaProc.delete(qnaVO.getQnano()); // DBMS 삭제
+      String fupname = attachfileVO.getFupname();
+      String thumb = attachfileVO.getThumb();
+         
+      String upDir = Qna.getUploadDir(); // 경로설정
+ 
+      Tool.deleteFile(upDir, attachfileVO.getFupname()); // Folder에서 1건의 파일 삭제
+      Tool.deleteFile(upDir, attachfileVO.getThumb()); // 1건의 Thumb 파일 삭제
+      
+       }
+      // -------------------------------------------------------------------
+      // 파일 삭제 종료 
+      // -------------------------------------------------------------------
+          
+      this.qnaProc.delete(qnaVO.getQnano()); // DBMS Q&A삭제
+      
+
+      mav.setViewName("redirect:/qna/list_all.do"); 
+      
       
       return mav;
     }   
