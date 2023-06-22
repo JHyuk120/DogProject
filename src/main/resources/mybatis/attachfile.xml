@@ -9,5 +9,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     INSERT INTO attachfile(attachfileno, qnano, fname, fupname, thumb, fsize, rdate)
     VALUES(attachfile_seq.nextval, #{qnano}, #{fname}, #{fupname}, #{thumb}, #{fsize}, sysdate)
   </insert>
+  
+  <!-- FK 기준 qnano가 동일한 레코드 조회, fname 오름 차순 -->
+  <select id="read" resultType="dev.mvc.attachfile.AttachfileVO" parameterType="int">
+    SELECT attachfileno, qnano, fname, fupname, thumb, fsize, rdate
+    FROM attachfile
+    WHERE qnano=#{qnano}
+  </select>
+  
+  <update id="update_file" parameterType="int">
+    UPDATE attachfile
+    SET fname = #{fname}, fupname=#{fupname}, thumb = #{thumb}, fsize = #{fsize}
+    WHERE qnano = #{qnano}
+  </update>
+  
+  <!-- 파일 삭제 -->
+  <select id="delete" parameterType="int" >
+    DELETE FROM attachfile
+    WHERE qnano = #{qnano}
+  </select>
 
 </mapper> 

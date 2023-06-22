@@ -56,13 +56,25 @@
        <label>내용</label>
        <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>${content }</textarea>
     </div>
-
     
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='${word }' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
+    
+    <br> 
+    <div>
+     <label>첨부 파일</label>
+    </div>
+    <DIV style='width: 100%;'>
+      
+        <div class="form-group">   
+          <div class="col-md-12">
+            <input type='file' class="form-control" name='fnamesMF' id='fileInput' 
+                         value='' placeholder="파일 선택" multiple="multiple">
+          </div>
+        </div>
     
     <c:choose>
         <c:when test ='${sessionScope.admin_id == null }'>

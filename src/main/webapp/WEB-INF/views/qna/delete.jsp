@@ -33,20 +33,6 @@
   <fieldset class="fieldset_basic">
     <ul>
       <li class="li_none">
-        <DIV style='text-align: center; width: 50%; float: left;'>
-
-          <c:choose>
-            <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <img src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
-            </c:when>
-            <c:otherwise> <!-- 이미지가 없는 경우 -->
-              <div style="text-align: center;">
-                <br><br><br><br>
-                🖼️상품 관련 이미지가 없습니다.
-              </div>
-            </c:otherwise>
-          </c:choose>
-        </DIV>
 
         <DIV style='text-align: left; width: 47%; float: left;'>
           <span style='font-size: 1.5em;'>${title}</span>
@@ -55,7 +41,7 @@
           </c:if>
           <br>
           <FORM name='frm' method='POST' action='./delete.do'>
-              <input type='hidden' name='noticeno' value='${noticeno}'>
+              <input type='hidden' name='qnano' value='${qnano}'>
               <input type='hidden' name='now_page' value='${param.now_page}'>
               <br><br>
               <div style='text-align: left; margin: 10px auto;'>

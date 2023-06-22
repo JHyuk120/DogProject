@@ -34,24 +34,3 @@ VALUES(RECOMMEND_SEQ.nextval, 1,1,1,sysdate);
 -- 1번 회원은 9번 카테고리를 추천필요.
 SELECT recommendno, memberno, itemno, seq, rdate FROM recommend ORDER BY recommendno ASC;
 
--- 1) 1번 회원 로그인시 관심분야를 가져오는 SQL
-   SELECT cateno FROM recommend WHERE memberno=1
-
---2) 가장 추천을 많이 받은 상품 10건 출력, 가장 평점이 높은 상품 10건 출력
---   - 관심분야의 카테고리 1번 상품중에 recom(추천수) 컬럼의 내림차순 정렬후 상품 목록 10건을 출력 
-
-SELECT contentsno, adminno, cateno, title, content, recom, cnt, replycnt, rdate,
-           file1, file1saved, thumb1, size1, map, youtube, r
-FROM (
-           SELECT contentsno, adminno, cateno, title, content, recom, cnt, replycnt, rdate,
-                      file1, file1saved, thumb1, size1, map, youtube, rownum as r
-           FROM (
-                     SELECT contentsno, adminno, cateno, title, content, recom, cnt, replycnt, rdate,
-                                file1, file1saved, thumb1, size1, map, youtube
-                     FROM contents
-                     WHERE cateno=1 AND (title LIKE '%단풍%' OR content LIKE '%단풍%' OR word LIKE '%단풍%')
-                     ORDER BY jumsu DESC
-           )          
-)
-WHERE r >= 1 AND r <= 10;
-

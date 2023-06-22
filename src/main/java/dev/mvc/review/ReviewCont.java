@@ -149,14 +149,11 @@ public class ReviewCont {
       @RequestMapping(value="/review/update.do", method=RequestMethod.GET)
       public ModelAndView review_update (int reviewno, int goodsno, ReviewVO reviewVO ){ 
           ModelAndView mav = new ModelAndView();
-          
           GoodsVO goodsVO = this.goodsProc.read(goodsno);
           mav.addObject("goodsVO", goodsVO);
           
           ReviewVO review2VO = this.reviewProc.review_read(reviewno);
           mav.addObject("reviewVO", review2VO);
-          
-          
           // 댓글 조회
           ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
           mav.addObject("list", list);
@@ -191,7 +188,7 @@ public class ReviewCont {
               mav.setViewName("redirect:/goods/read.do");
               
            // 삭제할 파일 정보를 읽어옴, 기존에 등록된 레코드 저장용
-          
+              
               ReviewVO reviewVO_old = this.reviewProc.review_read(reviewVO.getReviewno());
               // -------------------------------------------------------------------
               // 파일 삭제 코드 시작
@@ -200,7 +197,7 @@ public class ReviewCont {
               String thumb2 = reviewVO_old.getThumb2();       // 실제 저장된 preview 이미지 파일명
               long size2 = 0;
 
-              String upDir = Goods.getUploadDir(); // ★ C:/kd/deploy/resort_v2sbm3c/goods/storage/
+              String upDir = Goods.getUploadDir(); // ★
               
               Tool.deleteFile(upDir, file2saved);  // 실제 저장된 파일삭제
               Tool.deleteFile(upDir, thumb2);     // preview 이미지 삭제
@@ -231,6 +228,8 @@ public class ReviewCont {
                 if (Tool.isImage(file2saved)) { // 이미지인지 검사
                   // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
                   thumb2 = Tool.preview(upDir, file2saved, 250, 200); 
+                  
+                  
                 }
                 
               } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
@@ -248,41 +247,41 @@ public class ReviewCont {
               // -------------------------------------------------------------------
               // 파일 전송 코드 종료
               // -------------------------------------------------------------------
+              
+
               this.reviewProc.review_update(reviewVO); 
+
           } else {
               mav.setViewName("./reply/login_need");
           }
           return mav;
       }
-      /**
-       * 리뷰 삭제
-       * @param session
-       * @param reviewVO
-       * @param goodsno
-       * @param reviewno
-       * @return
-       */
-      @RequestMapping(value = "/review/delete.do", method = RequestMethod.GET)
-      public ModelAndView review_delete(HttpSession session, ReviewVO reviewVO, int goodsno, int reviewno) {
-          ModelAndView mav = new ModelAndView();
-          //현재 로그인된 id
-          String currentUserId = (String) session.getAttribute("id");
-          ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
-          
-           // 아이디 확인
-          if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
-              this.reviewProc.review_delete(reviewno);
-              mav.addObject("reviewno", reviewVO.getReviewno());
-              mav.addObject("goodsno", goodsno);
-              mav.setViewName("redirect:/goods/read.do?goodno="+goodsno);
-          } else {
-              mav.setViewName("./reply/login_need");
-          }
-          return mav;
-      }
-      
-             
-       
+       /**
+      * 리뷰 삭제
+      * @param session
+      * @param reviewVO
+      * @param goodsno
+      * @param reviewno
+      * @return
+      */
+     @RequestMapping(value = "/review/delete.do", method = RequestMethod.GET)
+     public ModelAndView review_delete(HttpSession session, ReviewVO reviewVO, int goodsno, int reviewno) {
+         ModelAndView mav = new ModelAndView();
+         //현재 로그인된 id
+         String currentUserId = (String) session.getAttribute("id");
+         ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
+         
+          // 아이디 확인
+         if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
+             this.reviewProc.review_delete(reviewno);
+             mav.addObject("reviewno", reviewVO.getReviewno());
+             mav.addObject("goodsno", goodsno);
+             mav.setViewName("redirect:/goods/read.do?goodno="+goodsno);
+         } else {
+             mav.setViewName("./reply/login_need");
+         }
+         return mav;
+     }
         
     }
 

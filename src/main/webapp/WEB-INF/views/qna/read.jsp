@@ -41,7 +41,7 @@
           <span class='menu_divide' >│</span>
     	    <A href="./update_text.do?qnano=${qnano}&now_page=${param.now_page}&word=${param.word}">글 수정</A>
     	    <span class='menu_divide' >│</span>
-    	    <A href="./delete.do?qnano=${qnano}&now_page=${param.now_page}&cateno=${param.cateno}">삭제</A>  
+    	    <A href="./delete.do?qnano=${qnano}&now_page=${param.now_page}">삭제</A>  
       </c:if>
     </c:if>
     <span class='menu_divide' >│</span>
@@ -67,6 +67,22 @@
           검색어(키워드): ${word }
         </DIV>
       </li>
+      
+      <li class="li_none">
+        <DIV>
+            <c:forEach var="attachfileVO" items="${list}">
+              <c:set var="fname" value="${attachfileVO.fname }"/>
+              <c:set var="fupname" value="${attachfileVO.fupname }"/>
+              <c:set var="fsize" value="${attachfileVO.fsize }"/>
+                <li>
+                  <c:if test="${fname.trim().length() > 0 }">
+                    첨부 파일: <A href='/download?dir=/attachfile/storage&filename=${fupname}&downname=${fname}'>${fname}</A> (${fsize})  
+                  </c:if> 
+              </li>
+            </c:forEach>
+        </DIV>
+      </li>   
+      
     </ul>
   </fieldset>
 
