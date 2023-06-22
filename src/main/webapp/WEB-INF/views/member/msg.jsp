@@ -119,6 +119,18 @@
           </LI>                                                                      
         </c:when> 
         
+        <c:when test="${param.code == 'idFind_success'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_success" style="margin-right:80px;">${param.mname }님의 아이디는 ${param.id }입니다.</span>
+          </LI>
+          <LI class='li_none' style="margin-right:80px;">
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>
+            <button type='button' 
+                         onclick="location.href='/member/read.do'"
+                         class="btn btn-dark" style='width:200px; height:50px;'>비밀번호 찾기</button>                   
+          </LI>                                                                       
+        </c:when>
+        
         <c:otherwise>
           <LI class='li_none_left'>
             <span class="span_fail">알 수 없는 에러로 작업에 실패했습니다.</span>
