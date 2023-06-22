@@ -259,42 +259,23 @@ public class MemberCont {
    @RequestMapping(value="/member/idFind.do", method=RequestMethod.POST)
    public ModelAndView idFind(@ModelAttribute("memberVO") MemberVO memberVO) {
      ModelAndView mav = new ModelAndView();
-     
-
-        
+    
      MemberVO memberVO_find= this.memberProc.idFind(memberVO);
-     System.out.println("이름: "+memberVO.getMname());
-     System.out.println("전화번호: " + memberVO.getTel());
-     System.out.println("이름: "+memberVO_find.getMname());
-     System.out.println("전화번호: " + memberVO_find.getTel());
-     
+         System.out.println("이름: " + memberVO.getMname());
+         System.out.println("전화번호: " + memberVO.getTel());
+   
      if (memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
-       mav.setViewName("/member/id_view"); // 아이디를 보여줄 뷰 페이지
-     } else {
-       mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
-       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
-     }
-     
-     
+         
+         mav.addObject("code", "idFind_success"); 
+         mav.addObject("mname", memberVO_find.getMname());
+         mav.addObject("id", memberVO_find.getId()); 
+         mav.setViewName("redirect:/member/msg.do");
+       } else {
+         mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
+         mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
+       }        
      return mav;
    }
-//   @RequestMapping(value="/member/idFind.do", method=RequestMethod.GET)
-//   public ModelAndView idFind(HttpServletRequest request){
-//     ModelAndView mav = new ModelAndView();
-//     MemberVO memberVO = new MemberVO();
-//     
-//     if(memberVO.getMname() != null && memberVO.getTel() != null) {
-//     memberVO = this.memberProc.idFind(memberVO);
-//     
-//       mav.setViewName("id_view"); // 아이디를 보여줄 뷰 페이지
-//     } else {
-//    //   mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
-//       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
-//     }
-//   
-//   return mav;
-//   }
-
     
        
    /**
