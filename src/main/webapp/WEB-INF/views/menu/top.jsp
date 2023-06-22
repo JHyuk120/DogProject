@@ -74,7 +74,7 @@
                                         <img src="/menu/images/sheart.svg" class="icon" style='margin-left:5px'>&nbsp; 아이디 찾기</a>
                                     <a class="dropdown-item" href="#">
                                         <img src="/menu/images/sh2.svg" class="icon" style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
-                                    <a class="dropdown-item" href="/member/delete.do">
+                                    <a class="dropdown-item" href="/member/delete_mem.do?memberno=${sessionScope.memberno}">
                                         <img src="/menu/images/px.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                                 </div>
                             </li>
