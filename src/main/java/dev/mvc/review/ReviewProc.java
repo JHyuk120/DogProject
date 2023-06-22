@@ -172,6 +172,14 @@ public class ReviewProc implements ReviewProcInter{
        int cnt = this.reviewDAO.update_file(reviewVO);
         return cnt;
     }
+/**
+ * 리뷰 이미지 수정
+ */
+    @Override
+    public ReviewVO review_update_file(ReviewVO reviewVO) {
+        ReviewVO reivewVO = this.reviewDAO.review_update_file(reviewVO);
+        return reivewVO;
+    }
 
 
 }

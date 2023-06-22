@@ -66,10 +66,12 @@
     margin: 10px auto;
   }
   
-  .content_body {
-    width: 99%;
+.content_body {
+    width: 100%;
     margin: 10px auto;
-  }
+    padding: 20px;
+}
+
   
   /* 화면 내용 하단 메뉴 우측 배치 */
   .content_body_bottom {
@@ -457,11 +459,11 @@
   }
   
     .icon0{
-    width: 21px;
+    width: 40px;
   }
   
     .icon1{
-    width: 18px;
+    width: 50px;
   }
   
 
@@ -480,5 +482,4 @@
    background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
    color: white; /* 버튼 텍스트 색상 설정 (선택적) */
  }
-
 

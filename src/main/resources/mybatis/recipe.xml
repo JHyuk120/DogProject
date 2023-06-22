@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                       thumb1, size1, ingredient, rdate, mname)
     VALUES(recipe_seq.nextval, #{memberno}, #{itemno}, #{title}, #{article}, 
           #{passwd}, #{word}, #{file1}, #{file1saved}, 
-          #{thumb1}, #{size1}, #{ingredient}, sysdate)
+          #{thumb1}, #{size1}, #{ingredient}, sysdate, #{mname})
   </insert>
   
   

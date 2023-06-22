@@ -59,7 +59,7 @@
     
     <div>
        <label>제목</label>
-       <input type='text' name='title' value='♥레시피 이름을 입력해주세요♥' required="required" 
+       <input type='text' name='title' value='▸레시피 이름을 입력해주세요◂' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     
@@ -67,7 +67,7 @@
        <label>재료</label>
        <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>
 🍚재료🍚
-
+↪
     
        </textarea>
     </div>
@@ -76,14 +76,14 @@
        <label>글</label>
        <textarea name='article' required="required" class="form-control" rows="12" style='width: 100%;'>
 🍚조리순서🍚
-
+↪
 
 </textarea>
     </div>  
       
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='해시태그' required="required" 
+       <input type='text' name='word' value='# ' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
     <div>
