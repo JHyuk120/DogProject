@@ -58,8 +58,15 @@ SELECT reviewno,memberno,mid,goodsno,reviewcont,rdate,ratingValue,file2, file2sa
 <!-- 리뷰 수정 -->
   <update id="review_update" parameterType="dev.mvc.review.ReviewVO" >
   UPDATE review
-  SET reviewcont = #{reviewcont}
+  SET reviewcont = #{reviewcont}, file2=#{file2}, file2saved=#{file2saved}, thumb2=#{thumb2}, size2=#{size2}
   WHERE reviewno = #{reviewno}
+  </update>
+  
+      <!-- 리뷰 이미지  -->
+  <update id="review_update_file" parameterType="dev.mvc.review.ReviewVO">
+    UPDATE review
+    SET file2=#{file2}, file2saved=#{file2saved}, thumb2=#{thumb2}, size2=#{size2}
+    WHERE reviewno = #{reviewno}
   </update>
   
   <!-- 댓글 삭제 -->

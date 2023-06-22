@@ -271,7 +271,7 @@ public class MemberCont {
      if (memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
        mav.setViewName("/member/id_view"); // 아이디를 보여줄 뷰 페이지
      } else {
-       // mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
+       mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
        mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
      }
      
@@ -298,7 +298,7 @@ public class MemberCont {
     
        
    /**
-    * 회원 삭제
+    * 회원 삭제(관리자용)
     * @param memberno
     * @return
     */
@@ -306,7 +306,7 @@ public class MemberCont {
    public ModelAndView delete(HttpSession session, int memberno){
      ModelAndView mav = new ModelAndView();
      
-     if (this.adminProc.isAdmin(session) == true || this.memberProc.isMember(session) == true) {
+     if (this.adminProc.isAdmin(session) == true ) {//this.memberProc.isMember(session) == true
        MemberVO memberVO = this.memberProc.read(memberno); // 삭제할 레코드를 사용자에게 출력하기위해 읽음.
        mav.addObject("memberVO", memberVO);
        mav.setViewName("/member/delete"); // /member/delete.jsp
@@ -317,7 +317,6 @@ public class MemberCont {
      
      return mav; // forward
    }
-  
    /**
     * 회원 삭제 처리
     * @param memberVO
@@ -349,6 +348,90 @@ public class MemberCont {
      return mav;
    }
    
+   
+// /**
+//  * 회원 삭제(회원전용)
+//  * @param memberno
+//  * @return
+//  */
+// @RequestMapping(value="/member/delete_mem.do", method=RequestMethod.GET)
+// public ModelAndView delete_mem(HttpSession session, int memberno, HttpServletRequest request){
+//   ModelAndView mav = new ModelAndView();
+//   
+//   if (session.getAttribute("memberno") != null) {
+//     memberno = (int)session.getAttribute("memberno");
+//     
+//     MemberVO memberVO = this.memberProc.read(memberno); // 삭제할 레코드를 사용자에게 출력하기위해 읽음.
+//     mav.addObject("memberVO", memberVO);
+//     mav.setViewName("/member/delete"); // /member/delete.jsp
+//     
+//   }else {
+//     mav.setViewName("/member/login_need");
+//   }
+//   
+//   return mav; // forward
+// }
+ 
+ /**
+//* 회원 삭제(회원전용)
+//* @param memberno
+//* @return
+//*/
+ @RequestMapping(value="/member/delete_mem.do", method=RequestMethod.GET)
+ public ModelAndView delete_mem(HttpSession session, HttpServletRequest request){
+   ModelAndView mav = new ModelAndView();
+   
+   int memberno = 0;
+   if (this.memberProc.isMember(session)) { 
+     // 로그인한 경우
+
+     if (this.memberProc.isMember(session)) { // 회원으로 로그인
+       memberno = (int)session.getAttribute("memberno");
+       
+     } 
+     MemberVO memberVO = this.memberProc.read(memberno);
+     mav.addObject("memberVO", memberVO);
+     mav.setViewName("/member/delete2"); // /member/delete.jsp
+     
+   } else {
+     // 회원으로 로그인을 하지 않은 경우
+     mav.setViewName("/member/login_need2"); // /webapp/WEB-INF/views/member/login_need.jsp
+   }
+   
+   return mav; // forward
+ }
+ 
+ /**
+  * 회원 삭제 처리
+  * @param memberVO
+  * @return
+  */
+ @RequestMapping(value="/member/delete_mem.do", method=RequestMethod.POST)
+ public ModelAndView delete_mem(int memberno){
+   ModelAndView mav = new ModelAndView();
+   
+   // System.out.println("id: " + memberVO.getId());
+   MemberVO memberVO = this.memberProc.read(memberno); // 삭제된 정보를 msg.jsp에 출력하기 위해, 삭제전에 회원 정보를 읽음.
+   
+   
+   int cnt= memberProc.delete(memberno);  // 회원 삭제
+
+   if (cnt == 1) {
+     mav.addObject("code", "delete_success_mem");
+     mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+     mav.addObject("id", memberVO.getId());
+   } else {
+     mav.addObject("code", "delete_fail");
+   }
+
+   mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+   mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
+   
+   mav.setViewName("redirect:/member/msg.do");
+   
+   return mav;
+ }
+
    /**
     * 패스워드를 변경합니다.
     * @param memberno

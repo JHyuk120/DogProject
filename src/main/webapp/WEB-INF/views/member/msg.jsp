@@ -67,10 +67,19 @@
           <LI class='li_none'>
             <button type='button' 
                          onclick="location.href='/member/list.do'"
-                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:80px; height:47px;">회원 목록</button>
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:130px; height:50px;">회원 목록</button>
           </LI>                                                                     
         </c:when>    
             
+        <c:when test="${param.code == 'delete_success_mem'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_success"  style="margin-right:80px;">${param.mname }님(${param.id }) 회원 정보 삭제에 성공했습니다.</span>
+          </LI>   
+          <LI class='li_none'>
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px; margin-right:90px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>
+          </LI>                                                                     
+        </c:when>
+        
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
             <span class="span_fail">${param.mname }님(${param.id }) 회원 정보 삭제에 실패했습니다.</span>
@@ -97,6 +106,16 @@
          <c:when test="${param.code == 'passwd_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
             <span class="span_fail">${param.mname }님(${param.id }) 현재 패스워드를 올바르게 입력해주세요.</span>
+          </LI>                                                                      
+        </c:when> 
+        
+         <c:when test="${param.code == 'pay_need'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">구매 내역이 없습니다. 상품을 구매한 후 리뷰를 작성해주세요.</span>
+            <br>
+             <button type='button' 
+                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">구매하기</button>
           </LI>                                                                      
         </c:when> 
         

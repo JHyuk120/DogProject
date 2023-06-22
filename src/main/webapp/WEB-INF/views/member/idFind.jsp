@@ -53,21 +53,23 @@ function setFocus() {  // focus 이동
         $('#modal_panel').modal();               // 다이얼로그 출력
         return false;
         } 
-
+      let postData = {'mname' : mname , 'tel' : tel};
       $.ajax({
         url: '/member/idFind.do',
         type: 'POST',
         cache: false,
         async: true,
         dataType: 'json',
-        data: {
-          mname: mname,
-          tel: tel
-        },
+        data: postData,
         success: function(data) {
           // 성공적으로 응답을 받았을 때의 처리 로직
           var memberVO = data.memberVO;
-          // ...
+          console.log(memberVO);
+
+          // 추가적인 작업 수행 가능
+          // 예시: 입력한 값을 화면에 출력
+          $('#result').text('이름: ' + memberVO.mname + ', 전화번호: ' + memberVO.tel);
+
           $('#frm').submit(); // required="required" 작동 안됨.
         },
         error: function(request, status, error) {
@@ -121,10 +123,7 @@ function setFocus() {  // focus 이동
 
   <DIV class='content_body'> 
     <DIV style='width: 40%;  margin: 0px auto; '>
-
-
-      
-      
+     <FORM name='frm' id='frm' method='POST' action='/member/idFind.do' class="">
         <div class="form_input"  >
           <input type='text' class="form-control" name='mname' id='mname'  
                     value="" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;  margin-bottom:30px;"

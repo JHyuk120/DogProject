@@ -34,7 +34,7 @@
  <%-- 별점 스크립트 --%>
 <script type="text/javascript">
 
-function setStarRating(ratingValue) {
+  function setStarRating(ratingValue) {
 
     const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
     
@@ -56,9 +56,9 @@ function setStarRating(ratingValue) {
 
     // rating-display의 내용을 ratingValue로 업데이트
     document.getElementById('rating-display').textContent = "("+ratingValue+")";
-}
-<!--리뷰 등록시 별점 체크-->
-function checkRatingValue() {
+  }
+  <!--리뷰 등록시 별점 체크-->
+  function checkRatingValue() {
     var ratingValue = document.getElementById('star-rating').value;
     if (ratingValue == null || ratingValue == 0) {
         alert("별점을 선택하세요.");
@@ -67,29 +67,27 @@ function checkRatingValue() {
     } else {
         return true;  // 폼 제출을 허용
     }
-}
+  }
 
 
-<!-- 리뷰 갯수 -->
-function reviewcnt(){
-      var cnt = document.getElementById('reviewcnt').value;
-	    
-}
-<!--댓글 등록시 로그인 여부 확인 -->
-    function checkLoginStatus() {
-        var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
-        if (!isLoggedIn) {
-            // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
-            alert('로그인이 필요합니다.');
-            window.location.href = "../member/login.do";
-            return false; // 폼 제출 중단
+  <!-- 리뷰 갯수 -->
+  function reviewcnt(){
+    var cnt = document.getElementById('reviewcnt').value;
+       
+  }
+  <!--댓글 등록시 로그인 여부 확인 -->
+  function checkLoginStatus() {
+    var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
+      if (!isLoggedIn) {
+        // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
+        alert('로그인이 필요합니다.');
+        window.location.href = "../member/login.do";
+        return false; // 폼 제출 중단
         }
         return true; // 폼 제출 진행
-    }
+  }
 
-</script>
 
-    <script type="text/javascript">
   $(function() {
     // var contentsno = 0;
     // $('#btn_cart').on('click', function() { cart_ajax(contentsno)});
@@ -269,7 +267,7 @@ function reviewcnt(){
   
     <%-- ******************** Ajax 기반 로그인 폼 시작 ******************** --%>
   
-   <DIV id='div_login' style='display: none;'>
+  <DIV id='div_login' style='display: none;'>
     <div style='width: 30%; margin: 0px auto;'>
       <FORM name='frm_login' id='frm_login' method='POST'>
         <input type='hidden' name='goodsno' id='goodsno' value=''>
@@ -310,11 +308,11 @@ function reviewcnt(){
   
   <DIV class='menu_line'></DIV>
 
-<fieldset class="fieldset_basic">
+    <fieldset class="fieldset_basic">
  
-    <ul>
-      <li class="li_none">
-        <DIV style="width: 100%;">
+      <ul>
+        <li class="li_none">
+          <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <IMG src="/dogproject/storage/${file1saved }" style="width: 30%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
@@ -324,190 +322,183 @@ function reviewcnt(){
               </c:otherwise>
             </c:choose>
        
-          <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-                <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
-                <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
+            <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
+            <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+            <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
+            <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
                 
-                <strong>남은 수량: <span>${cnt }</span></strong><br><br>
-             <div style="width: 90%; height: 310px; ">${content }</DIV>
-        </DIV>
-      </li>
+            <strong>남은 수량: <span>${cnt }</span></strong><br><br>
+            <div style="width: 90%; height: 310px; ">${content }</DIV>
+          </DIV>
+        </li>
       
      
-      <li class="li_none">
-        <DIV style='text-decoration: none;'>
+        <li class="li_none">
+          <DIV style='text-decoration: none;'>
         
-        <br>
-        <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
-          <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
-       </button>
+            <br>
+            <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
+              <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+            </button>
 
-        <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg " onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>  
-      </li>   
-    </ul>
-  </fieldset>
-  
-
-</DIV>
- <%-- 댓글 조회 --%>
-
-<fieldset class="fieldset_basic">
- <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  enctype='multipart/form-data' onsubmit="return checkLoginStatus();" >
-    <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
-    
-    <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
-    <input type="hidden" name="id" value="${sessionScope.id}"/>
-    <input type="hidden" id="star-rating" name="ratingValue" value=""/>
-    
-
-    <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
- <!-- 댓글 평점 별  -->
-    <tr>
-        <div class="stars">
-         <td  width="100" rowspan="2">${sessionScope.id } </td>
-      <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
-       <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
-      <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
-      <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
-      <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
-      <input type="hidden" id="star-rating" value="0"/>
-       <td width="100" rowspan="2" id="star-output"> </td>
-    </div>
-    <td>
-           <div id="rating-display" >(0)</div>
-           <div>리뷰수: ${reviewcnt } </div>
-           <div>평점: ${ratingAVG } </div>
-    <textarea name='reviewcont' required="required" rows="7" cols="63"></textarea>
-    
-    <button  id="submitBtn" type='submit' class='btn btn-outline-dark btn-sm' style="margin-bottom: 20px;" >리뷰 등록</button>
-    
-         <div>
-       <label>리뷰 사진 업로드</label>
-       <input type='file' class="form-control" name='file2MF' id='file2MF' 
-                 value='' placeholder="파일 선택"><br>
-    </div>
-    
-    </td>
-  </tr>
-  
-<script>
-    document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
-</script>
+            <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg " onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>
+          </DIV>  
+        </li>   
+      </ul>
     </fieldset>
-   
- </FORM>    
- 
- <!-- 댓글 목록 -->
-   <table class="table table-striped" style='width: 100%;'>
-    <colgroup>
-      <c:choose>
-          <c:when test="${sessionScope.admin_id != null}">
-              <col style="width: 10%;"></col>
-              <col style="width: 10%;"></col>
-              <col style="width: 20%;"></col>
-              <col style="width: 40%;"></col>
-              <col style="width: 10%;"></col>
-              <col style="width: 10%;"></col>
-          </c:when>
+  </DIV>
+  <%-- 댓글 조회 --%>
 
-      </c:choose>
-
-    </colgroup>
-
-    <thead>
+  <fieldset class="fieldset_basic">
+    <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  enctype='multipart/form-data' onsubmit="return checkLoginStatus();" >
+      <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
+    
+      <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
+      <input type="hidden" name="id" value="${sessionScope.id}"/>
+      <input type="hidden" id="star-rating" name="ratingValue" value=""/>
+    
+      <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
+      <!-- 댓글 평점 별  -->
       <tr>
-        <th style='text-align: center;'>id</th>
-        <th style='text-align: center;'>평점</th>
-        <th style='text-align: center;'>이미지</th>
-        <th style='text-align: center;'>리뷰</th>
-        <th style='text-align: center;'>작성일</th>
-        <th style='text-align: center;'>수정/삭제</th>
+        <div class="stars">
+          <td  width="100" rowspan="2">${sessionScope.id } </td>
+          <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
+          <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
+          <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
+          <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
+          <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
+          <input type="hidden" id="star-rating" value="0"/>
+
+          <td width="100" rowspan="2" id="star-output"> </td>
+        </div>
+        <td>
+          <div id="rating-display" >(0)</div>
+          <div>리뷰수: ${reviewcnt } </div>
+          <div>평점: ${ratingAVG } </div>
+          <textarea name='reviewcont' required="required" rows="7" cols="63"></textarea>
+    
+          <button  id="submitBtn" type='submit' class='btn btn-outline-dark btn-sm' style="margin-bottom: 20px;" >리뷰 등록</button>
+    
+          <div>
+            <label>리뷰 사진 업로드</label>
+            <input type='file' class="form-control" name='file2MF' id='file2MF' 
+                     value='' placeholder="파일 선택"><br>
+          </div>
+        </td>
       </tr>
-     <tbody>
-      <c:forEach var="reviewVO" items="${list}">
-        <c:set var="ratingValue" value=" ${reviewVO.ratingValue}" />
-        <c:set var="reviewcont" value="${reviewVO.reviewcont}" />
-        <c:set var="rdate" value="${reviewVO.rdate}" />
-        <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
-         <c:set var="mid" value="${memberVO.id}" />
-        <c:set var="file2" value="${reviewVO.file2 }" />
-        <c:set var="file2saved" value="${reviewVO.file2saved }" />
-        <c:set var="thumb2" value="${reviewVO.thumb2 }" />
-         
-        <tr style="height: 112px;"  class='hover'>
-          
-          <td style='vertical-align: middle; text-align: center;'>
-           <div> ${reviewVO.mid }</div>
-          </td>  
-          
-          <td style='vertical-align: middle;'>
-            <!-- <div>${ratingValue }</div>  -->
-            <!-- 별점 이미지  -->
-            <div> 
-                <c:choose>
-                  <c:when test="${ratingValue.toString() == ' 5'}"><center>
-                    <img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 4' }"><center>
-                     <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 3'}"><center>
-                    <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 2'}"><center>
-                    <img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
-                  </c:when>
-                  <c:when test="${ratingValue.toString() == ' 1'}"><center>
-                    <img src="/review/images/star_1.png" style="width: 100px; text-align: center;"></center>
-                  </c:when>
-                   <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/review/images/star_0.png" style="width: 100px; text-align: center;"> 
-              </c:otherwise>
-                </c:choose>
-                
-            </div>
-          </td>
-          
-          <td style='vertical-align: middle; text-align: center;'>
-            <div>
-             <c:choose>
-              <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
-                <%-- /static/contents/storage/ --%>
-                <img src="/dogproject/images/${file2saved }" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
-              </c:when>
-              
-              <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/goods/images/ee.png" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
-              </c:otherwise>
-             </c:choose>
-            
-            </div>
-          </td> 
-          
-          <td style='vertical-align: middle; text-align: center;'>
-            <div>${reviewcont}</div>
-          </td> 
-          
-          <td style='vertical-align: middle; text-align: center;'>
-            <div>${rdate}</div>
-          </td>
-          
-          <td style='vertical-align: middle; text-align: center;'>
-            <div><a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/<a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
-          </td>
-          
-
-        </tr>
-      </c:forEach>
-
-    </tbody>
-  </table>
-    <!-- 페이지 목록 출력 부분 시작 -->
-  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
-  <!-- 페이지 목록 출력 부분 종료 -->
   
-<jsp:include page="../menu/bottom.jsp" flush='false' />
-</body>
+      <script>
+        document.getElementById('submitBtn').addEventListener('click', checkRatingValue);
+      </script>
+    </FORM>
+  </fieldset>
+   
  
-</html>
+  <!-- 댓글 목록 -->
+    <table class="table table-striped " style='width: 100%; '>
+      <colgroup>
+        <c:choose>
+          <c:when test="${sessionScope.admin_id != null}">
+            <col style="width: 10%;">
+            <col style="width: 10%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+            <col style="width: 10%;">
+            <col style="width: 10%;">
+          </c:when>
+        </c:choose>
+      </colgroup>
+      <thead>
+        <tr>
+          <th style='text-align: center; width: 10%;'>id</th>
+          <th style='text-align: center; width: 5%;'>평점</th>
+          <th style='text-align: center; width: 20%;'>이미지</th>
+          <th style='text-align: center; width: 45%;'>리뷰</th>
+          <th style='text-align: center; width: 10%;'>작성일</th>
+          <th style='text-align: center; width: 10%;'>수정/삭제</th>
+        </tr>
+        <tbody>
+          <c:forEach var="reviewVO" items="${list}">
+            <c:set var="ratingValue" value=" ${reviewVO.ratingValue}" />
+            <c:set var="reviewcont" value="${reviewVO.reviewcont}" />
+            <c:set var="rdate" value="${reviewVO.rdate}" />
+            <c:set var="ratingAvg" value="${reviewVO.ratingAvg}" />
+            <c:set var="mid" value="${memberVO.id}" />
+            <c:set var="file2" value="${reviewVO.file2 }" />
+            <c:set var="file2saved" value="${reviewVO.file2saved }" />
+            <c:set var="thumb2" value="${reviewVO.thumb2 }" />
+         
+            <tr style="height: 112px;"  class='hover'>
+          
+              <td style='vertical-align: middle; text-align: center;'>
+                <div> ${reviewVO.mid }</div>
+              </td>  
+          
+              <td style='vertical-align: middle; '>
+                <!-- <div>${ratingValue }</div>  -->
+                <!-- 별점 이미지  -->
+                <div> 
+                  <c:choose>
+                    <c:when test="${ratingValue.toString() == ' 5'}"><center>
+                      <img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
+                    </c:when>
+                    <c:when test="${ratingValue.toString() == ' 4' }"><center>
+                      <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
+                    </c:when>
+                    <c:when test="${ratingValue.toString() == ' 3'}"><center>
+                      <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
+                    </c:when>
+                    <c:when test="${ratingValue.toString() == ' 2'}"><center>
+                      <img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
+                    </c:when>
+                    <c:when test="${ratingValue.toString() == ' 1'}"><center>
+                      <img src="/review/images/star_1.png" style="width: 100px; text-align: center;"></center>
+                    </c:when>
+                    <c:otherwise> <!-- 기본 이미지 출력 -->
+                      <img src="/review/images/star_0.png" style="width: 100px; text-align: center;"> 
+                    </c:otherwise>
+                  </c:choose>
+                </div>
+              </td>
+          
+              <td style='vertical-align: middle; text-align: center; '>
+                <div>
+                  <c:choose>
+                    <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
+                      <%-- /static/contents/storage/ --%>
+                      <img src="/dogproject/images/${file2saved }" style= "width: 50%; margin: 1px;"> 
+                    </c:when>
+              
+                    <c:otherwise> <!-- 기본 이미지 출력 -->
+                      <img src="/goods/images/ee.png" style= "width: 50%; margin: 1px;">
+                    </c:otherwise>
+                  </c:choose>
+                </div>
+              </td> 
+          
+              <td  style='vertical-align: middle; text-align: center;'>
+                <div >${reviewcont}</div>
+              </td> 
+          
+              <td style='vertical-align: middle; text-align: center;'>
+                <div>${rdate}</div>
+              </td>
+          
+              <td style='vertical-align: middle; text-align: center; '>
+                <div>
+                  <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/
+                  <a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a>
+                </div>
+              </td>
+            </tr>
+          </c:forEach>
+        </tbody>
+      </table>
+      <!-- 페이지 목록 출력 부분 시작 -->
+      <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
+      <!-- 페이지 목록 출력 부분 종료 -->
+  
+      <jsp:include page="../menu/bottom.jsp" flush='false' />
+    </body>
+ 
+  </html>

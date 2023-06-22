@@ -100,6 +100,9 @@
         <c:set var="recipeno" value="${recipeVO.recipeno }" />
         <c:set var="thumb1" value="${recipeVO.thumb1 }" />
         <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
+        <c:set var="cnt" value="${recipeVO.cnt }" />
+         <c:set var="recom" value="${recipeVO.recom }" />
+        <c:set var="mname" value="${recipeVO.mname }" />
         
          <tr style="height: 102px; onclick="location.href='./read.do?recipeno=${recipeno }' "class='hover'>
         <td style='vertical-align: middle;   background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'}; text-align: center;'>
@@ -119,17 +122,17 @@
         
             <a href="./read.do?recipeno=${recipeno }" style="display: block; width: 100%; height: 100%;">
               <div style='font-weight:bold;'>${title } </div>
-                <c:choose>
-                  <c:when test="${article.length() > 160 }"> <!-- 160자 이상이면 160자만 출력 -->
-                    ${article.substring(0, 160)}.....
-                  </c:when>
-                  <c:when test="${article.length() <= 160 }">
-                    ${article}
-                 </c:when>
-               </c:choose>
+
+          <div style='font-size:0.8em;  word-break: break-all;'>
+          작성자 : <img src="/menu/images/pcircle.svg" class="icon" style="margin-bottom:15px; margin-top:8px;"> ${mname } <br>
+             조회수 : ${cnt } | 좋아요 : ${recom } 
+
+          </div>
 
             </a> 
           </td> 
+          
+          
           
     <c:choose>
         <c:when test="${sessionScope.admin_id != null }">
