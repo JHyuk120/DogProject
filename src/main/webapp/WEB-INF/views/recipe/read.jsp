@@ -69,6 +69,8 @@ function checkLoginStatus() {
     padding: 0.5%;
     text-align: center;
   }
+  
+
 </style>
 </head>  
  
@@ -120,11 +122,16 @@ function checkLoginStatus() {
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'class='btn btn-info'>검색</button>
+      <button type="submit" class="btn btn-custom btn-sm">검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='"class='btn btn-info'>검색 취소</button>  
-      </c:if>    
+        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
+      </c:if>
+      <style>
+      .btn-custom {
+        background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+        color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+      }
+      </style>
     </form>
   </DIV>
   
@@ -134,7 +141,9 @@ function checkLoginStatus() {
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
-          <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
+        
+          <span style="font-size: 1.5em; font-weight: bold;">${title }</span>
+          
           <div style="font-size: 0.7em;">${mname } ${rdate }</div><br>
                 ${ingredient } <br>    
           
@@ -179,26 +188,49 @@ function checkLoginStatus() {
   </fieldset>
 </DIV>
 
-    <!-- 좋아요 -->
-  <form name= 'frm' action="/recom/create.do" method='POST'>
-  <input type="hidden" name="recipeno" value="${recipeno}"/>
-  <input type="hidden" name="check" value="${check}"/>
+  <!-- 좋아요 -->
+
+  <form name='frm' action="/recom/create.do" method='POST'>
+  <input type="hidden" name="recipeno" value="${recipeno}" />
+  <input type="hidden" name="check" value="${check}" />
+  
   <c:choose>
     <c:when test="${sessionScope.adminno != null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em; margin-left: 760px;'>🤍 ${recom }</button>
     </c:when>  
     <c:when test="${sessionScope.memberno == null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em; margin-left: 760px;'>🤍 ${recom }</button>
     </c:when>    
-    <c:when test="${check == 1 }">
-      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em; margin-left: 280px;' >♡ ${recom }</button>
+    <c:when test="${check == 1}">
+      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em; margin-left: 760px;' >❤️ ${recom }</button>
     </c:when>
     <c:otherwise>
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
+      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em; margin-left: 760px;'>🤍 ${recom }</button>
     </c:otherwise>
+    
+    
   </c:choose>
-
+  
+    <!-- 주소 공유 버튼 -->
+  
+  <button onclick="sharePage()" class='btn btn-outline-secondary btn-sm' style='font-size: 0.8em; margin-left: 10px;'>공유하기</button>
+  
+  <script>
+    function sharePage() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          alert('현재 보고 있는 페이지 주소가 복사되었습니다.');
+        })
+        .catch((error) => {
+          console.error('페이지 주소 복사 실패:', error);
+        });
+    }
+  </script>
 </form>
+<br>
+
+        
 
 <%-- 댓글 조회 --%>
 
@@ -206,19 +238,24 @@ function checkLoginStatus() {
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
+   <div style='width: 70%; table-layout: fixed; margin: 0 auto;'> 
+      <img src="/recipe/images/comm.png" class="icon3" > 댓글 ${replycnt.replycnt } 
+
+    </div>   <br>
+  <div style='width: 70%; max-width: 70%; margin:0 auto; '>
+    <textarea name='replycont' required="required" rows="2" cols="145"  style='background-color:#FEFCF0;'></textarea>
     
-    <div  style='background-color:#FEFCF0; margin-left: 280px;'>🗨️댓글 ${replycnt.replycnt }개 
-</div>   <br>   
-    <textarea name='replycont' required="required" rows="7" cols="63"  style='background-color:#FEFCF0; margin-left: 280px;'></textarea>
-    
-  <br>
-   <button type='submit' class='btn btn-info btn-sm'  style='margin-left: 280px;'>댓글 등록</button>
+    <br>
+   <button type='submit' class='btn btn-outline-dark btn-sm' style='margin-left: 1100px;'>댓글 등록</button>
+  </div>
  </FORM>    
- <br>
+    <br>
+
  
  <!-- 댓글 목록 -->
  <br>
-   <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
+<table class="table table-striped" style='width: 70%; table-layout: fixed; margin: 0 auto; background-color: #FEFCF0;'>
+
     <colgroup>
               <col style="width: 10%;"></col>
               <col style="width: 70%;"></col>
@@ -228,10 +265,10 @@ function checkLoginStatus() {
 
     <thead>
       <tr>
-        <th style='text-align: center;'>id</th>
+        <th style='text-align: center;'>작성자</th>
         <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
-        <th style='text-align: center;'>수정/삭제</th>
+        <th style='text-align: center;'>수정 / 삭제</th>
       </tr>
      <tbody>
       <c:forEach var="replyVO" items="${list}">
@@ -256,7 +293,7 @@ function checkLoginStatus() {
   
           
           <td style='vertical-align: middle; text-align: center;'>
-            <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
+            <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정 </a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')"> 삭제</a></div>
           </td>
         </tr>
       </c:forEach>
