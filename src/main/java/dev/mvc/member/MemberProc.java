@@ -78,6 +78,13 @@ public class MemberProc implements MemberProcInter {
     return vo;
   }
   
+  @Override
+  public MemberVO pwFind(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.pwFind(memberVO);
+    return vo;
+  }
+
+
  
 
   @Override
