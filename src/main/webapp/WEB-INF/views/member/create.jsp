@@ -270,7 +270,7 @@
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">휴대폰</label><span style="color: red;  margin-right: 124px;" >*</span>
       <input type='text' class="form-control " name='tel' id='tel' 
-                value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="010********"> 
+                value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="숫자만 입력해주세요."> 
     </div>   
     
     <div class="form_input" style = "margin-bottom:20px;">

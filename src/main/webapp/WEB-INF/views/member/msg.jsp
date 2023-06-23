@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -27,7 +27,8 @@
       <c:choose>
         <c:when test="${param.code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success" style="margin-right:80px;">${param.mname }님(${param.id }) 회원 가입을 축하합니다.</span>
+          <img src="/member/images/mem.png" class="icon" style="width:30px">
+            <span  style="margin-right:80px;">${param.mname }님(${param.id }) 회원 가입을 축하합니다.</span>
           </LI>  
           <LI class='li_none'>
             <button type='button' 
@@ -62,7 +63,8 @@
         
         <c:when test="${param.code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success"  style="margin-right:80px;">${param.mname }님(${param.id }) 회원 정보 삭제에 성공했습니다.</span>
+            <img src="/member/images/memout.png" class="icon" style="width:30px">
+            <span   style="margin-right:80px;">${param.mname }님(${param.id }) 회원 정보 삭제에 성공했습니다.</span>
           </LI>   
           <LI class='li_none'>
             <button type='button' 
@@ -131,15 +133,61 @@
         
         <c:when test="${param.code == 'idFind_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success" style="margin-right:80px;">${param.mname }님의 아이디는 ${param.id }입니다.</span>
+             <img src="/member/images/mem.png" class="icon" style="width:30px">
+            <span>${param.mname }님의 아이디는</span><span style="font-weight: bold; font-size:25px;"> ${param.id }</span><span style="margin-right:80px; margin-left:3px;">입니다.</span><br>
+            <span  style="margin-right:190px; font-size:15px;color:gray;">가입일  ${fn:substring(param.mdate, 0, 10)}</span>
+          </LI>
+          <LI class='li_none' style="margin-right:80px;">
+           <button type='button' 
+                         onclick="location.href='/member/login.do'"
+                         class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>로그인</button>  
+            <button type='button' 
+                         onclick="location.href='/member/pwFind.do'"
+                         class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>비밀번호 찾기</button>                   
+          </LI>                                                                       
+        </c:when>
+
+         <c:when test="${param.code == 'nonFind_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail" style="margin-right:80px;">일치하는 정보가 없습니다. 다시 시도해주세요</span>
           </LI>
           <LI class='li_none' style="margin-right:80px;">
             <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>
             <button type='button' 
-                         onclick="location.href='/member/read.do'"
+                         onclick="location.href='/member/idFind.do'"
+                         class="btn btn-dark" style='width:200px; height:50px;'>아이디 찾기</button>                   
+          </LI>                                                                       
+        </c:when>
+        
+               
+        <c:when test="${param.code == 'pwFind_success'}"> <%-- Java if --%>
+          <LI class='li_none'>
+             <img src="/member/images/mem.png" class="icon" style="width:30px">
+            <span>${param.mname }님의 패스워드는</span><span style="font-weight: bold; font-size:25px;">${param.pw}</span><span style="margin-right:80px; margin-left:3px;">입니다.</span><br>
+            <span  style="margin-right:190px; font-size:15px;color:gray;">가입일  ${fn:substring(param.mdate, 0, 10)}</span>
+          </LI>
+          <LI class='li_none' style="margin-right:80px;">
+           
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px;  margin-top:70px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>     
+            <button type='button' 
+                         onclick="location.href='/member/login.do'"
+                         class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>로그인</button>                
+          </LI>                                                                       
+        </c:when>
+        
+              <c:when test="${param.code == 'nonpwFind_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail" style="margin-right:80px;">일치하는 정보가 없습니다. 다시 시도해주세요</span>
+          </LI>
+          <LI class='li_none' style="margin-right:80px;">
+            <button type="button" onclick="location.href='/'" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/home.png" class="icon" style="width:30px"></button>
+            <button type='button' 
+                         onclick="location.href='/member/pwFind.do'"
                          class="btn btn-dark" style='width:200px; height:50px;'>비밀번호 찾기</button>                   
           </LI>                                                                       
         </c:when>
+        
+        
         
         <c:otherwise>
           <LI class='li_none_left'>

@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list" resultType="dev.mvc.member.MemberVO">
     SELECT memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate
     FROM member
-    ORDER BY memberno ASC, id ASC
+    ORDER BY memberno desc, id ASC
   </select>
   
   <!-- memberno로 회원 정보 조회 -->
@@ -47,6 +47,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   SELECT id, mdate, mname, tel
   FROM member
   WHERE mname=#{mname} AND tel=#{tel}
+  </select>
+  
+  <!-- pw찾기 -->
+  <select id="pwFind" resultType="dev.mvc.member.MemberVO" parameterType="dev.mvc.member.MemberVO">
+  SELECT memberno, id, passwd, mname, tel, mdate
+  FROM member
+  WHERE id=#{id} AND tel=#{tel}
   </select>
     
   <delete id="delete" parameterType="int">
