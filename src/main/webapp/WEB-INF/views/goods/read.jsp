@@ -513,6 +513,31 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           </c:forEach>
         </tbody>
       </table>
+   <!-- 작성된 리뷰 없을 시  -->
+   <c:choose>
+     <c:when test="${reviewcnt == 0 }">
+        <tr style="height: 112px;" class='hover'>
+           <td style='vertical-align: middle; text-align: center;' colspan='6'>
+               <div class="empty-review-message">
+                   <p>작성된 리뷰가 없습니다.</p>
+               </div>
+           </td>
+        </tr>
+        <style>
+           .empty-review-message {        
+               padding: 20px;
+               text-align: center;
+           }
+           
+           .empty-review-message p {
+               color: #888;
+               font-size: 18px;
+               font-weight: bold;
+               margin: 0;
+           }
+        </style>
+   </c:when>
+   </c:choose>
       <!-- 페이지 목록 출력 부분 시작 -->
       <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
       <!-- 페이지 목록 출력 부분 종료 -->
