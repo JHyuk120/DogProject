@@ -4,6 +4,7 @@
 <c:set var="recipeno" value="${recipeVO.recipeno }" />
 <c:set var="itemno" value="${recipeVO.itemno }" />
 <c:set var="title" value="${recipeVO.title }" />
+<c:set var="ingredient" value="${recipeVO.ingredient }" />
 <c:set var="article" value="${recipeVO.article }" />
 <c:set var="word" value="${recipeVO.word }" />
 
@@ -78,10 +79,14 @@
     </div>
     
     <div>
-       <label>내용</label>
+       <label>재료</label>
+       <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>${ingredient }</textarea>
+    </div>
+    
+    <div>
+       <label>글</label>
        <textarea name='article' required="required" class="form-control" rows="12" style='width: 100%;'>${article }</textarea>
     </div>
-
     
     <div>
        <label>검색어</label>

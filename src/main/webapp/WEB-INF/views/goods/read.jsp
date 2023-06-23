@@ -31,62 +31,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
     
 
- <%-- 별점 스크립트 --%>
+ <%-- 별점 로그인 스크립트 --%>
 <script type="text/javascript">
-
-  function setStarRating(ratingValue) {
-
-    const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
-    
-    for (let i = 0; i < starIds.length; i++) {
-        let starElement = document.getElementById(starIds[i]);
-
-        // 정수 부분만 처리하고 소수 부분은 제외
-        let intPart = Math.floor(ratingValue);
-
-        // 별의 색을 설정: 전체 별, 빈 별
-        if (i < intPart) {
-            starElement.style.color = "orange";
-        } else {
-            starElement.style.color = "lightgray";
-        }
-    }
-
-    document.getElementById('star-rating').value = ratingValue;
-
-    // rating-display의 내용을 ratingValue로 업데이트
-    document.getElementById('rating-display').textContent = "("+ratingValue+")";
-  }
-  <!--리뷰 등록시 별점 체크-->
-  function checkRatingValue() {
-    var ratingValue = document.getElementById('star-rating').value;
-    if (ratingValue == null || ratingValue == 0) {
-        alert("별점을 선택하세요.");
-        event.preventDefault();  // 폼 제출을 막음
-        return false;  // 폼 제출을 막음
-    } else {
-        return true;  // 폼 제출을 허용
-    }
-  }
-
-
-  <!-- 리뷰 갯수 -->
-  function reviewcnt(){
-    var cnt = document.getElementById('reviewcnt').value;
-       
-  }
-  <!--댓글 등록시 로그인 여부 확인 -->
-  function checkLoginStatus() {
-    var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
-      if (!isLoggedIn) {
-        // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
-        alert('로그인이 필요합니다.');
-        window.location.href = "../member/login.do";
-        return false; // 폼 제출 중단
-        }
-        return true; // 폼 제출 진행
-  }
-
 
   $(function() {
     // var contentsno = 0;
@@ -201,18 +147,89 @@
         }
       );  //  $.ajax END
 
-    }      
+    }    
+    function setStarRating(ratingValue) {
+
+const starIds = ["star_1", "star_2", "star_3", "star_4", "star_5"];
+
+for (let i = 0; i < starIds.length; i++) {
+    let starElement = document.getElementById(starIds[i]);
+
+    // 정수 부분만 처리하고 소수 부분은 제외
+    let intPart = Math.floor(ratingValue);
+
+    // 별의 색을 설정: 전체 별, 빈 별
+    if (i < intPart) {
+        starElement.style.color = "orange";
+    } else {
+        starElement.style.color = "lightgray";
+    }
+}
+
+document.getElementById('star-rating').value = ratingValue;
+
+// rating-display의 내용을 ratingValue로 업데이트
+document.getElementById('rating-display').textContent = "("+ratingValue+")";
+}
+<!--리뷰 등록시 별점 체크-->
+function checkRatingValue() {
+var ratingValue = document.getElementById('star-rating').value;
+if (ratingValue == null || ratingValue == 0) {
+    alert("별점을 선택하세요.");
+    event.preventDefault();  // 폼 제출을 막음
+    return false;  // 폼 제출을 막음
+} else {
+    return true;  // 폼 제출을 허용
+}
+}
+
+
+<!-- 리뷰 갯수 -->
+function reviewcnt(){
+var cnt = document.getElementById('reviewcnt').value;
+   
+}
+<!--댓글 등록시 로그인 여부 확인 -->
+function checkLoginStatus() {
+var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
+  if (!isLoggedIn) {
+    // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
+    alert('로그인이 필요합니다.');
+    window.location.href = "../member/login.do";
+    return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 진행
+}  
 </script>  
  
+<style>
 
-</head> 
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  .fieldset_basic {
+    width: 100%;
+    height: 100%;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+  
+
+</style>
+</head>  
  
-<body>
+ 
+<body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
 
-<DIV class='content_body'>
+<DIV class='content_body' style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
      <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
     <c:if test="${sessionScope.admin_id != null }">
@@ -315,10 +332,10 @@
           <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <IMG src="/dogproject/storage/${file1saved }" style="width: 30%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
+                <IMG src="/dogproject/storage/${file1saved }" style="width: 40%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/goods/images/ee.png" style="width: 25%; height:480px; float: left; margin-top: 0.5%; margin-right:5%;"> 
+                <IMG src="/goods/images/ee.png" style="width: 40%; height:300px; float: left; margin-top: 0.5%; margin-right:5%;"> 
               </c:otherwise>
             </c:choose>
        
@@ -375,16 +392,18 @@
           <div id="rating-display" >(0)</div>
           <div>리뷰수: ${reviewcnt } </div>
           <div>평점: ${ratingAVG } </div>
-          <textarea class="form-control col-sm-10" rows="5" name='reviewcont' required="required"  cols="63"></textarea>
+        <div style='width: 70%; max-width: 70%; margin:0 auto; '>
+  <div style="display: flex; align-items: center; font-size:20px;"> 
+     <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 </div></div>   
     
-          <button  id="submitBtn" type='submit' class='btn btn-outline-dark btn-sm' style="margin-bottom: 20px;" >리뷰 등록</button>
+    <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0;'></textarea>
     
-          <div>
-            <label>리뷰 사진 업로드</label>
-            <input type='file' class="form-control" name='file2MF' id='file2MF' 
-                     value='' placeholder="파일 선택"><br>
-          </div>
-        </td>
+    <div style="display: flex; align-items: center; margin-left: 990px;">
+  <input type="file" name="file2MF" id="file2MF" value="" placeholder="첨부파일" >
+  <button id="submitBtn" type="submit" class="btn btn-outline-dark btn-sm" style="margin-left: 10px;">리뷰 등록</button>
+</div>
+
+</td>
       </tr>
   
       <script>
@@ -395,14 +414,14 @@
    
  
   <!-- 댓글 목록 -->
-    <table class="table table-striped " style='width: 100%; '>
+    <table class="table table-striped " style='width: 70%; table-layout: fixed; margin-left: 280px; background-color: #FEFCF0; '>
       <colgroup>
         <c:choose>
           <c:when test="${sessionScope.admin_id != null}">
             <col style="width: 10%;">
             <col style="width: 10%;">
-            <col style="width: 20%;">
-            <col style="width: 20%;">
+            <col style="width: 30%;">
+            <col style="width: 30%;">
             <col style="width: 10%;">
             <col style="width: 10%;">
           </c:when>
@@ -411,9 +430,9 @@
       <thead>
         <tr>
           <th style='text-align: center; width: 10%;'>id</th>
-          <th style='text-align: center; width: 5%;'>평점</th>
+          <th style='text-align: center; width: 10%;'>평점</th>
           <th style='text-align: center; width: 20%;'>이미지</th>
-          <th style='text-align: center; width: 45%;'>리뷰</th>
+          <th style='text-align: center; width: 40%;'>리뷰</th>
           <th style='text-align: center; width: 10%;'>작성일</th>
           <th style='text-align: center; width: 10%;'>수정/삭제</th>
         </tr>

@@ -93,7 +93,7 @@
 
   <DIV class='menu_line'></DIV>
   
-  <div style='width: 100%; display: flex; flex-wrap: wrap; ;'> <%-- 갤러리 Layout 시작 --%>
+  <div style='width: 100%; display: flex; flex-wrap: wrap; '> <%-- 갤러리 Layout 시작 --%>
     <c:forEach var="recipeVO" items="${list }" varStatus="status">
       <c:set var="title" value="${recipeVO.title }" />
       <c:set var="ingredient" value="${recipeVO.article }" />
@@ -155,12 +155,14 @@
 </style>
 
 <div class="float">
-    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
-    data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">장바구니</button>
-    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
-    data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">주문내역</button>
-    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
-    data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">회원가입</button>
+    <div class="btn-group-vertical">
+        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
+        data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">장바구니</button>
+        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
+        data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">주문내역</button>
+        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
+        data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">회원가입</button>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -181,7 +183,8 @@
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->
   
-
+<jsp:include page="../menu/bottom.jsp" />
+</body>
 
  
 </html>
