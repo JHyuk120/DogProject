@@ -22,6 +22,7 @@ import dev.mvc.attachfile.AttachfileVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 import dev.mvc.notice.Notice;
 import dev.mvc.notice.NoticeVO;
 import dev.mvc.qna.QnaVO;
@@ -75,6 +76,8 @@ public class QnaCont {
 
     if (memberProc.isMember(session)) { // 회원으로 로그인한경우
       int memberno = (int)(session.getAttribute("memberno"));
+      String mname = (String)session.getAttribute("mname");
+      qnaVO.setMname(mname);
       qnaVO.setMemberno(memberno);
       
       int cnt = this.qnaProc.create(qnaVO); // Call By Reference로 메모리 공유가 일어나 pk값이 저장되어 공유됨.
@@ -164,10 +167,23 @@ public class QnaCont {
   
     // QnA 목록
     @RequestMapping(value="/qna/list_all.do", method=RequestMethod.GET)
-    public ModelAndView list_all(QnaVO qnaVO) {
+    public ModelAndView list_all(QnaVO qnaVO, MemberVO memberVO) {
       ModelAndView mav = new ModelAndView();
-      
+
+      ArrayList<MemberVO> members = this.memberProc.list();
       ArrayList<QnaVO> list = this.qnaProc.list_all();
+
+      for (QnaVO qna : list) {
+          for (MemberVO member : members) {
+              if (member.getMemberno() == qna.getMemberno()) {
+                  String mname = member.getMname();
+                  System.out.println(member.getMemberno());
+                  System.out.println(qna.getMemberno());
+                  break;
+              }
+          }
+      }
+      
       mav.addObject("list", list);
       
       
@@ -221,6 +237,7 @@ public class QnaCont {
       // 검색 목록
       ArrayList<QnaVO> list = qnaProc.list_by_search_paging(qnaVO);
       mav.addObject("list", list);
+      
       
       mav.addObject("qnaVO", qnaVO);
 

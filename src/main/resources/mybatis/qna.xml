@@ -8,27 +8,27 @@
     <selectKey keyProperty="qnano" resultType="int" order="BEFORE">
       SELECT qna_seq.nextval FROM dual
     </selectKey>
-    INSERT INTO qna(qnano, memberno, title, content, passwd, word, rdate)
-    VALUES(#{qnano}, #{memberno}, #{title}, #{content}, #{passwd}, #{word}, sysdate)
+    INSERT INTO qna(qnano, memberno, title, content, passwd, word, mname, rdate)
+    VALUES(#{qnano}, #{memberno}, #{title}, #{content}, #{passwd}, #{word}, #{mname}, sysdate)
   </insert>
   
   <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.qna.QnaVO">
-    SELECT qnano, memberno, title, content, passwd, rdate, word
+    SELECT qnano, memberno, title, content, passwd, word, mname, rdate
     FROM qna 
     ORDER BY qnano DESC
   </select> 
 
     <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.qna.QnaVO" parameterType="int">
-    SELECT qnano, memberno, title, content, passwd, rdate, word
+    SELECT qnano, memberno, title, content, passwd, word, mname, rdate
     FROM qna
     WHERE qnano = #{qnano}
   </select>
   
    <!-- 카테고리별 검색 목록 -->
   <select id="list_by_search" resultType="dev.mvc.qna.QnaVO" parameterType="dev.mvc.qna.QnaVO">
-    SELECT qnano, memberno, title, content, rdate
+    SELECT qnano, memberno, title, content, word, mname, rdate
     FROM qna
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
@@ -37,7 +37,8 @@
       <otherwise> <!-- 검색하는 경우 -->
         WHERE (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%'
+                                                  OR UPPER(mname) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
     </choose>
     ORDER BY qnano DESC   
@@ -54,18 +55,19 @@
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
         WHERE (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%'
+                                                  OR UPPER(mname) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
     </choose>
   </select>   
   
   <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
   <select id="list_by_search_paging" resultType="dev.mvc.qna.QnaVO" parameterType="dev.mvc.qna.QnaVO">
-   SELECT qnano, memberno, title, content, rdate, r
+   SELECT qnano, memberno, title, content, word, mname, rdate, r
    FROM (
-              SELECT qnano, memberno, title, content, rdate, rownum as r
+              SELECT qnano, memberno, title, content, word, mname, rdate, rownum as r
               FROM (
-                        SELECT qnano, memberno, title, content, rdate
+                        SELECT qnano, memberno, title, content, word, mname, rdate
                         FROM qna
                         <choose>
                           <when test="word == null or word == ''">
@@ -74,7 +76,8 @@
                           <otherwise>
                             WHERE (UPPER(title) LIKE '%' || #{word} || '%' 
                                                               OR UPPER(content) LIKE '%' || #{word} || '%' 
-                                                              OR UPPER(word) LIKE '%' || #{word} || '%')
+                                                              OR UPPER(word) LIKE '%' || #{word} || '%'
+                                                              OR UPPER(mname) LIKE '%' || UPPER(#{word}) || '%')
                           </otherwise>
                         </choose>
                         ORDER BY qnano DESC

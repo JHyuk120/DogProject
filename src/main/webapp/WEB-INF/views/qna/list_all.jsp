@@ -71,45 +71,52 @@
         <c:when test="${sessionScope.id != null }">
       <col style="width: 10%; "></col>
       <col style="width: 60%;"></col>
-      <col style="width: 30%;"></col>
+      <col style="width: 10%;"></col>
+      <col style="width: 20%;"></col>
         </c:when>
     </c:choose>
     
     </colgroup>
 
-<thead>
-  <tr>
-    <th style="text-align: center;">번호</th>
-    <th style="text-align: center;">제목</th>
-    <th style="text-align: center;">날짜</th>
-  </tr>
-</thead>
+    <thead>
+      <tr>
+        <th style="text-align: center;">번호</th>
+        <th style="text-align: center;">제목</th>
+        <th style="text-align: center;">작성자</th>
+        <th style="text-align: center;">날짜</th>
+      </tr>
+    </thead>
 
  
- <tbody>
-<c:forEach var="qnaVO" items="${list}" varStatus="loop">
+    <tbody>
+      <c:forEach var="qnaVO" items="${list}" varStatus="loop">
         <c:set var="title" value="${qnaVO.title }" />
         <c:set var="content" value="${qnaVO.content }" />
         <c:set var="qnano" value="${qnaVO.qnano }" />
         <c:set var="rdate" value="${qnaVO.rdate.substring(0, 10)}" />
+        <c:set var="mname" value="${qnaVO.mname }"/>
+        
+        
          
-  <tr style="height: 50px;">
-    <td style='vertical-align: middle; text-align: center;'>
-        ${list.size() - loop.index}
-      </a>
-    </td>
-      <td style='vertical-align: middle; text-align: center;'>
-        <a href="./read.do?qnano=${qnano}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
-          <div style='font-weight:bold;'>${title}</div>
-        </a>
-      </td>
-      <td style='vertical-align: middle; text-align: center;'>
-        <div>${rdate}</div>
-      </td>
-    </tr>
-  </c:forEach>
-</tbody>
-  </table>
+        <tr style="height: 50px;">
+          <td style='vertical-align: middle; text-align: center;'>
+            ${list.size() - loop.index}
+          </td>
+          <td style='vertical-align: middle; text-align: center;'>
+            <a href="./read.do?qnano=${qnano}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
+              <div style='font-weight:bold;'>${title}</div>
+            </a>
+          </td>
+            <td style='vertical-align: middle; text-align: center;'>
+            ${mname }
+            </td>
+            <td style='vertical-align: middle; text-align: center;'>
+              <div>${rdate}</div>
+            </td>
+        </tr>
+    </c:forEach>
+  </tbody>
+</table>
      <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->

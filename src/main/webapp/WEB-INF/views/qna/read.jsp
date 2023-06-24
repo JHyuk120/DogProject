@@ -8,7 +8,8 @@
 <c:set var="content" value="${qnaVO.content }" />
 <c:set var="word" value="${qnaVO.word }" />
 <c:set var="rdate" value="${qnaVO.rdate.substring(0,10) }" />
-<c:set var="mname" value="${qnaVO.mname}"/>
+<c:set var="mname" value="${qnaVO.mname }"/>
+
 
  
 <!DOCTYPE html> 
@@ -57,7 +58,7 @@
       <li class="li_none">
         <DIV style="width:100%;">          
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-          <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+          <div style="font-size: 0.7em;">${mname} ${rdate }</div><br>
           ${content }
         </DIV>
       </li>
