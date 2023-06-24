@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 글 수정 -->
   <update id="update_text" parameterType="dev.mvc.recipe.RecipeVO">
     UPDATE recipe
-    SET title=#{title}, article=#{article}, word=#{word}
+    SET title=#{title}, article=#{article}, ingredient=#{ingredient}, word=#{word}
     WHERE recipeno = #{recipeno}
   </update>
   

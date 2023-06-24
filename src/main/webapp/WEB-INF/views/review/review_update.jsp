@@ -419,11 +419,12 @@ function checkRatingValue() {
 
     <thead>
       <tr>
-        <th style='text-align: center;'>id</th>
-        <th style='text-align: center;'>평점</th>
-        <th style='text-align: center;'>리뷰</th>
-        <th style='text-align: center;'>작성일</th>
-        <th style='text-align: center;'>수정/삭제</th>
+          <th style='text-align: center; width: 10%;'>id</th>
+          <th style='text-align: center; width: 5%;'>평점</th>
+          <th style='text-align: center; width: 20%;'>이미지</th>
+          <th style='text-align: center; width: 45%;'>리뷰</th>
+          <th style='text-align: center; width: 10%;'>작성일</th>
+          <th style='text-align: center; width: 10%;'>수정/삭제</th>
       </tr>
      <tbody>
       <c:forEach var="reviewVO" items="${list}">
@@ -475,11 +476,11 @@ function checkRatingValue() {
              <c:choose>
               <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
                 <%-- /static/contents/storage/ --%>
-                <img src="/dogproject/images/${file2saved }" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
+                <img src="/dogproject/images/${file2saved }" style= "width: 50%; margin: 1px;"> 
               </c:when>
               
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/goods/images/ee.png" style= "width: 20%; float: left; margin-right: 1px; margin-top: 0.5px;"> 
+                <img src="/goods/images/ee.png" style= "width: 50%; margin: 1px;"> 
               </c:otherwise>
              </c:choose>
             

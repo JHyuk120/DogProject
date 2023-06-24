@@ -20,7 +20,7 @@
 <c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
-    회원 삭제(관리자 전용)
+    회원 삭제(회원전용)
   </DIV>
 
   <DIV class='content_body'>
@@ -42,7 +42,7 @@
         <input type='hidden' name='memberno' value='${memberVO.memberno}'>     
             
         <button type="submit" class="btn btn-outline-danger btn-sm">삭제</button>
-        <button type="button" onclick="location.href='./list.do'" class="btn btn-outline-secondary btn-sm">취소(목록)</button>
+        <button type="button" onclick="location.href='/'" class="btn btn-outline-secondary btn-sm">취소(목록)</button>
      
       </FORM>
     </DIV>

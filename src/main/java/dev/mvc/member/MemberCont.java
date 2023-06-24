@@ -1,5 +1,7 @@
 package dev.mvc.member;
  
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,15 +126,12 @@ public class MemberCont {
    public ModelAndView list(HttpSession session) {
      ModelAndView mav = new ModelAndView();
      
-     if (this.adminProc.isAdmin(session) == true) {
+   
        ArrayList<MemberVO> list = this.memberProc.list();
        mav.addObject("list", list);
 
        mav.setViewName("/member/list"); // /webapp/WEB-INF/views/member/list.jsp
-     } else {
-       mav.setViewName("/admin/login_need");
-     }
-     
+  
      return mav;
    }  
    
@@ -165,6 +164,8 @@ public class MemberCont {
      
      return mav; // forward
    }
+   
+  
    
    /**
     * 회원 정보 수정 처리(비밀번호변경처리 포함)
@@ -257,46 +258,86 @@ public class MemberCont {
     */
    //localhost:9093/member/idFind.do?mname=길동무&tel=010-1111-2223
    @RequestMapping(value="/member/idFind.do", method=RequestMethod.POST)
-   public ModelAndView idFind(@ModelAttribute("memberVO") MemberVO memberVO) {
+   public ModelAndView idFind( MemberVO memberVO) {
      ModelAndView mav = new ModelAndView();
      
+     MemberVO memberVO_find = this.memberProc.idFind(memberVO);
+     //System.out.println("이름: " + memberVO.getMname());
+     //System.out.println("전화번호: " + memberVO.getTel());
+     
+     
+     if (memberVO_find != null && memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
+       mav.addObject("code", "idFind_success"); // 이름과 전화번호가 모두 일치하는 경우
+       mav.addObject("mname", memberVO_find.getMname());
+       mav.addObject("id", memberVO_find.getId());
+       mav.addObject("mdate", memberVO_find.getMdate());
+       mav.setViewName("redirect:/member/msg.do");
 
-        
-     MemberVO memberVO_find= this.memberProc.idFind(memberVO);
-     System.out.println("이름: "+memberVO.getMname());
-     System.out.println("전화번호: " + memberVO.getTel());
-     System.out.println("이름: "+memberVO_find.getMname());
-     System.out.println("전화번호: " + memberVO_find.getTel());
-     
-     if (memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
-       mav.setViewName("/member/id_view"); // 아이디를 보여줄 뷰 페이지
+   
      } else {
-       mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
-       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
+       mav.addObject("code", "nonFind_fail"); // 이름과 전화번호가 모두 일치하지 않는 경우
+       mav.setViewName("redirect:/member/msg.do");
      }
-     
      
      return mav;
    }
-//   @RequestMapping(value="/member/idFind.do", method=RequestMethod.GET)
-//   public ModelAndView idFind(HttpServletRequest request){
-//     ModelAndView mav = new ModelAndView();
-//     MemberVO memberVO = new MemberVO();
-//     
-//     if(memberVO.getMname() != null && memberVO.getTel() != null) {
-//     memberVO = this.memberProc.idFind(memberVO);
-//     
-//       mav.setViewName("id_view"); // 아이디를 보여줄 뷰 페이지
-//     } else {
-//    //   mav.setViewName("id_not_found_view"); // 아이디를 찾지 못했을 때 보여줄 뷰 페이지
-//       mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
-//     }
-//   
-//   return mav;
-//   }
-
-    
        
+   
+   
+   /**
+    * 비밀번호찾기 폼
+    * @param memberno
+    * @return
+    */
+    //http://localhost:9093/member/idFind.do
+   @RequestMapping(value="/member/pwFind.do", method=RequestMethod.GET )
+   public ModelAndView pwFind() {
+     ModelAndView mav = new ModelAndView();
+     mav.setViewName("/member/pwFind"); // /WEB-INF/views/member/pwFind.jsp
+    
+     return mav; // forward
+   }
+   
+   
+   /**
+    * 비밀번호찾기 처리
+    * @param memberVO
+    * @return
+    */
+   //localhost:9093/member/idFind.do?mname=길동무&tel=010-1111-2223
+   @RequestMapping(value="/member/pwFind.do", method=RequestMethod.POST)
+   public ModelAndView pwFind(MemberVO memberVO) {
+     ModelAndView mav = new ModelAndView();
+     
+     MemberVO memberVO_find = this.memberProc.pwFind(memberVO);
+     System.out.println("아이디: " + memberVO.getId());
+     System.out.println("전화번호: " + memberVO.getTel());
+     
+     
+     if (memberVO_find != null && memberVO_find.getId().equals(memberVO.getId()) && memberVO_find.getTel().equals(memberVO.getTel())) {
+       mav.addObject("code", "pwFind_success"); // 아이디와 전화번호가 모두 일치하는 경우
+       mav.addObject("mname", memberVO_find.getMname());
+       // 비밀번호 마스킹 로직
+       String password = memberVO_find.getPasswd();
+       int length = password.length();
+       StringBuilder hiddenPw = new StringBuilder();
+       for (int i = length / 2; i < length; i++) {
+           hiddenPw.append('*');
+       }
+       String maskedPw = password.substring(0, length / 2) + hiddenPw.toString();
+       mav.addObject("pw", maskedPw);
+       mav.addObject("mdate", memberVO_find.getMdate());
+       mav.setViewName("redirect:/member/msg.do");
+
+   
+     } else {
+       mav.addObject("code", "nonpwFind_fail"); // 이름과 전화번호가 모두 일치하지 않는 경우
+       mav.setViewName("redirect:/member/msg.do");
+     }
+     
+     return mav;
+   }
+   
    /**
     * 회원 삭제(관리자용)
     * @param memberno

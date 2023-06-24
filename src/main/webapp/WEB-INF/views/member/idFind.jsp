@@ -80,6 +80,32 @@ function setFocus() {  // focus 이동
         
  
   }  
+
+  function findId() {
+	    var mname = "이름을 입력하세요";  // 이름 입력란에서 사용자로부터 이름을 가져옴
+	    var tel = "전화번호를 입력하세요";  // 전화번호 입력란에서 사용자로부터 전화번호를 가져옴
+
+	    // AJAX 요청 보내기
+	    $.ajax({
+	      url: "아이디를_찾을_URL",
+	      type: "POST",
+	      data: { mname: mname, tel: tel },
+	      success: function(response) {
+	        // 응답 처리
+	        if (response.code === "idFind_success") {
+	          var id = response.id;
+	          var message = response.mname + "님의 아이디는 " + id + "입니다.";
+	          // 결과 메시지를 어떻게 보여줄지 처리
+	        } else {
+	          var errorMessage = "아이디를 찾을 수 없습니다.";
+	          // 오류 메시지를 어떻게 보여줄지 처리
+	        }
+	      },
+	      error: function() {
+	        // 오류 처리
+	      }
+	    });
+	  }
     
     
 	
@@ -123,26 +149,22 @@ function setFocus() {  // focus 이동
 
   <DIV class='content_body'> 
     <DIV style='width: 40%;  margin: 0px auto; '>
-     <FORM name='frm' id='frm' method='POST' action='/member/idFind.do' class="">
-        <div class="form_input"  >
-          <input type='text' class="form-control" name='mname' id='mname'  
-                    value="" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;  margin-bottom:30px;"
-                     placeholder="이름" autofocus="autofocus"> 
-        </div>   
+<FORM name='memberVO' id='frm' method='POST' action='/member/idFind.do' class="">
+  <div class="form_input">
+    <input type='text' class="form-control" name='mname' id='mname'  
+      value="" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;  margin-bottom:30px;"
+      placeholder="이름" autofocus="autofocus"> 
+  </div>   
 
-        <div class="form_input" >
-          <input type='text' class="form-control" name='tel' id='tel'
-                    value='' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-bottom:50px;" placeholder="휴대폰 번호">            
-        </div> 
-        
-      
-      </FORM>
-    </div>
-   
-    <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>
-      <button type="button"  id='id_code' onclick="id_show()" style="width:340px; height:55px; margin-bottom:50px;"class="btn btn-dark">아이디 찾기</button>
-
-      
+  <div class="form_input">
+    <input type='text' class="form-control" name='tel' id='tel'
+      value='' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-bottom:50px;" placeholder="휴대폰 번호">            
+  </div> 
+  <div style='text-align: center;'>
+    <button type="submit" id='id_code' style="width:340px; height:55px; margin-bottom:50px;" class="btn btn-dark">아이디 찾기</button>
+  </div> 
+</FORM>
+ 
     </div>
     
 

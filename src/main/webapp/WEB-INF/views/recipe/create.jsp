@@ -67,7 +67,7 @@
        <label>재료</label>
        <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>
 🍚재료🍚
-↪
+
     
        </textarea>
     </div>
@@ -76,7 +76,7 @@
        <label>글</label>
        <textarea name='article' required="required" class="form-control" rows="12" style='width: 100%;'>
 🍚조리순서🍚
-↪
+
 
 </textarea>
     </div>  

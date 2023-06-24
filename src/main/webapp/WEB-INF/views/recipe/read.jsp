@@ -63,12 +63,14 @@ function checkLoginStatus() {
   }
 
   .fieldset_basic {
-    width: 22%;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     margin: 1.5%;
     padding: 0.5%;
     text-align: center;
   }
+  
+
 </style>
 </head>  
  
@@ -120,36 +122,129 @@ function checkLoginStatus() {
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'class='btn btn-info'>검색</button>
+      <button type="submit" class="btn btn-custom btn-sm">검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='"class='btn btn-info'>검색 취소</button>  
-      </c:if>    
+        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
+      </c:if>
+      <style>
+      .btn-custom {
+        background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+        color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+      }
+      </style>
     </form>
   </DIV>
   
-  <DIV class='menu_line'></DIV>
+  <DIV class='menu_line'></DIV><br>
+  
+            <span style="font-size: 1.7em; font-weight: bold;">${title }</span>
+                      <div style="font-size: 0.7em;">${mname } ${rdate }</div> <br>
+                      
+                      <!-- 좋아요 -->
 
-  <fieldset class="fieldset_basic" style='background-color:#FEFCF0;'>
+
+<div style="display: flex; justify-content: flex-end; align-items: center; margin-right: 50px;">
+  <form name="frm" action="/recom/create.do" method="POST">
+    <input type="hidden" name="recipeno" value="${recipeno}" />
+    <input type="hidden" name="check" value="${check}" />
+
+    <c:choose>
+      <c:when test="${sessionScope.adminno != null}">
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;">🤍 ${recom}</button>
+      </c:when>
+      <c:when test="${sessionScope.memberno == null}">
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;">🤍 ${recom}</button>
+      </c:when>
+      <c:when test="${check == 1}">
+        <button type="submit" id="recom" class="btn btn-danger btn-sm" style="font-size: 0.8em;">❤️ ${recom}</button>
+      </c:when>
+      <c:otherwise>
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;">🤍 ${recom}</button>
+      </c:otherwise>
+    </c:choose>
+  </form>
+
+  <button onclick="sharePage()" class="btn btn-outline-secondary btn-sm" style="font-size: 0.8em; margin-left: 10px;">공유하기</button>
+
+
+  <script>
+    function sharePage() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          alert('현재 보고 있는 페이지 주소가 복사되었습니다.');
+        })
+        .catch((error) => {
+          console.error('페이지 주소 복사 실패:', error);
+        });
+    }
+  </script>
+</div>
+<br>
+
+        
+                      
+  
+
+<fieldset class="fieldset_basic" style='background-color:#FEFCF0;'>
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
-          <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-          <div style="font-size: 0.7em;">${mname } ${rdate }</div><br>
-                ${ingredient } <br>    
-          
-
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
-                <img src="/dogproject/storage/${file1saved }" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
+                <IMG src="/dogproject/storage/${file1saved }" 
+                style="width: 25%; height: 250px; float:left; margin-top: 0.5%; margin-right: 20px; margin-left: 20px; margin-bottom: 5px;'"> 
             </c:when>
             <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/recipe/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
+                <img src="/goods/images/ee.png" 
+                style="width: 25%; height: 250px; float: left; margin-top: 0.5%; margin-right:5%; margin-left: 20px; margin-bottom: 5px;"> 
             </c:otherwise>
-            </c:choose>
-            <br>
-            ${article }
+            </c:choose>     
+
+<div style='float: left; margin-left: 110px'>재료</div><br>          
+<style>
+.table {
+  width: 50%; /* 테이블 너비 */
+  margin: 0 auto; /* 가운데 정렬 */
+  font-size: 1px; /* 테이블 폰트 크기 */
+}
+
+.table caption {
+  font-weight: bold; /* 표 제목 굵게 */
+  margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
+}
+
+</style>
+
+<table class="table table custom">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>Doe</td>
+      <td>john@example.com</td>
+    </tr>
+    <tr>
+      <td>Mary</td>
+      <td>Moe</td>
+      <td>mary@example.com</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td>Dooley</td>
+      <td>july@example.com</td>
+    </tr>
+  </tbody>
+</table>
+
+
         </DIV>
       </li>
       
@@ -163,6 +258,11 @@ function checkLoginStatus() {
         
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
+        
+        
+            <br><br>
+            ${article }
+        
         <br>
           검색어(키워드): ${word }
         </DIV>
@@ -179,46 +279,31 @@ function checkLoginStatus() {
   </fieldset>
 </DIV>
 
-    <!-- 좋아요 -->
-  <form name= 'frm' action="/recom/create.do" method='POST'>
-  <input type="hidden" name="recipeno" value="${recipeno}"/>
-  <input type="hidden" name="check" value="${check}"/>
-  <c:choose>
-    <c:when test="${sessionScope.adminno != null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
-    </c:when>  
-    <c:when test="${sessionScope.memberno == null}">
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
-    </c:when>    
-    <c:when test="${check == 1 }">
-      <button type='submit' id='recom' class='btn btn-danger btn-sm' style='font-size: 0.8em; margin-left: 280px;' >♡ ${recom }</button>
-    </c:when>
-    <c:otherwise>
-      <button type='submit' id='recom' class='btn btn-outline-danger btn-sm' style='font-size: 0.8em;margin-left: 280px;'>♡ ${recom }</button>
-    </c:otherwise>
-  </c:choose>
-
-</form>
-
+ 
 <%-- 댓글 조회 --%>
 
  <FORM name='frm' method='POST' action='../reply/reply_create.do' enctype="multipart/form-data"  onsubmit="return checkLoginStatus();">
     <input type="hidden" name="recipeno" value="${recipeno}"/><!-- 현재 recipe의 recipeno -->
     <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
     <input type="hidden" name="id" value="${sessionScope.id}"/>
+   <div style='width: 70%; table-layout: fixed; margin: 0 auto;'> 
+      <img src="/recipe/images/comm.png" class="icon3" > 댓글 ${replycnt.replycnt } 
+
+    </div>   <br>
+  <div style='width: 70%; max-width: 70%; margin:0 auto; '>
+    <textarea name='replycont' required="required" rows="2" cols="145"  style='background-color:#FEFCF0;'></textarea>
     
-    <div  style='background-color:#FEFCF0; margin-left: 280px;'>🗨️댓글 ${replycnt.replycnt }개 
-</div>   <br>   
-    <textarea name='replycont' required="required" rows="7" cols="63"  style='background-color:#FEFCF0; margin-left: 280px;'></textarea>
-    
-  <br>
-   <button type='submit' class='btn btn-info btn-sm'  style='margin-left: 280px;'>댓글 등록</button>
+    <br>
+   <button type='submit' class='btn btn-outline-dark btn-sm' style='margin-left: 1110px;'>댓글 등록</button>
+  </div>
  </FORM>    
- <br>
+    <br>
+
  
  <!-- 댓글 목록 -->
  <br>
-   <table class="table table-striped" style='width: 100%; table-layout: fixed;'>
+<table class="table table-striped" style='width: 70%; table-layout: fixed; margin: 0 auto; background-color: #FEFCF0;'>
+
     <colgroup>
               <col style="width: 10%;"></col>
               <col style="width: 70%;"></col>
@@ -228,10 +313,10 @@ function checkLoginStatus() {
 
     <thead>
       <tr>
-        <th style='text-align: center;'>id</th>
+        <th style='text-align: center;'>작성자</th>
         <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
-        <th style='text-align: center;'>수정/삭제</th>
+        <th style='text-align: center;'>수정 / 삭제</th>
       </tr>
      <tbody>
       <c:forEach var="replyVO" items="${list}">
@@ -256,13 +341,37 @@ function checkLoginStatus() {
   
           
           <td style='vertical-align: middle; text-align: center;'>
-            <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정</a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a></div>
+            <div><a href="/reply/update.do?recipeno=${recipeno }&replyno=${replyVO.replyno}">수정 </a>/<a href="/reply/delete.do?recipeno=${recipeno }&replyno=${replyVO.replyno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')"> 삭제</a></div>
           </td>
         </tr>
       </c:forEach>
 
     </tbody>
   </table>
+     <c:choose>
+     <c:when test="${replycnt.replycnt == 0 }">
+        <tr style="height: 112px;" class='hover'>
+           <td style='vertical-align: middle; text-align: center;' colspan='6'>
+               <div class="empty-review-message">
+                   <p>작성된 댓글이 없습니다.</p>
+               </div>
+           </td>
+        </tr>
+        <style>
+           .empty-review-message {        
+               padding: 20px;
+               text-align: center;
+           }
+           
+           .empty-review-message p {
+               color: #888;
+               font-size: 18px;
+               font-weight: bold;
+               margin: 0;
+           }
+        </style>
+   </c:when>
+   </c:choose>
     <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->
