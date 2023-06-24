@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace = "dev.mvc.attachfile.AttachfileDAOInter">
 
   <insert id="create" parameterType="dev.mvc.attachfile.AttachfileVO">
-    INSERT INTO attachfile(attachfileno, qnano, fname, fupname, thumb, fsize, rdate)
-    VALUES(attachfile_seq.nextval, #{qnano}, #{fname}, #{fupname}, #{thumb}, #{fsize}, sysdate)
+    INSERT INTO attachfile(attachfileno, qnano, fname, fupname, fsize, rdate)
+    VALUES(attachfile_seq.nextval, #{qnano}, #{fname}, #{fupname}, #{fsize}, sysdate)
   </insert>
   
   <!-- FK 기준 qnano가 동일한 레코드 조회, fname 오름 차순 -->
@@ -17,16 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE qnano=#{qnano}
   </select>
   
-  <update id="update_file" parameterType="int">
+  <update id="update_file" parameterType="dev.mvc.attachfile.AttachfileVO">
     UPDATE attachfile
-    SET fname = #{fname}, fupname=#{fupname}, thumb = #{thumb}, fsize = #{fsize}
+    SET fname = #{fname}, fupname=#{fupname}, fsize = #{fsize}
     WHERE qnano = #{qnano}
   </update>
   
   <!-- 파일 삭제 -->
-  <select id="delete" parameterType="int" >
+  <delete id="delete" parameterType="int" >
     DELETE FROM attachfile
     WHERE qnano = #{qnano}
-  </select>
+  </delete>
 
 </mapper> 

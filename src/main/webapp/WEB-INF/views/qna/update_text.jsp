@@ -6,6 +6,8 @@
 <c:set var="content" value="${qnaVO.content }" />
 <c:set var="word" value="${qnaVO.word }" />
 
+
+
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -21,6 +23,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<script>
+function clearFileInput(fnamesMF) {
+	fnamesMF.value = "";
+  }
+</script>
     
 </head> 
  
@@ -39,13 +46,14 @@
   
   <DIV class='menu_line'></DIV>
   <%--수정 폼 --%>
-  <FORM name='frm' method='POST' action='./update_text.do'>
+  <FORM name='frm' method='POST' action='./update.do'
+                   enctype="multipart/form-data" class="form-horizontal"> 
+                    
     <input type="hidden" name="qnano" value="${qnano }">
     <input type="hidden" name="now_page" value="${param.now_page }">
 
-
     
-        
+
     <div>
        <label>제목</label>
        <input type='text' name='title' value='${title }' required="required" 
@@ -68,13 +76,16 @@
      <label>첨부 파일</label>
     </div>
     <DIV style='width: 100%;'>
-      
         <div class="form-group">   
           <div class="col-md-12">
-            <input type='file' class="form-control" name='fnamesMF' id='fileInput' 
+            <input type='file' class="form-control" name='fnamesMF' id='fnamesMF' 
                          value='' placeholder="파일 선택" multiple="multiple">
           </div>
         </div>
+        <DIV class='content_bottom_menu'>
+         <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-info">첨부파일 초기화</button>
+       </DIV>
+     </DIV>
     
     <c:choose>
         <c:when test ='${sessionScope.admin_id == null }'>

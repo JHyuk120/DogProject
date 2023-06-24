@@ -93,7 +93,8 @@ public class QnaCont {
     String upDir = Qna.getUploadDir(); // 경로설정
     System.out.println("-> 파일 업로드: " + upDir);
     
-    // 전송 파일이 없어서도 fnamesMF 객체가 생성됨.
+    System.out.println( "멀티파일: "+ qnaVO.getFnamesMF());
+    // 전송 파일이 없어서도 fnamesMF 객체가 생성됨. 
     List<MultipartFile> fnamesMF = attachfileVO.getFnamesMF();
     
     int count = fnamesMF.size(); // 전송 파일 갯수
@@ -248,7 +249,9 @@ public class QnaCont {
       ModelAndView mav = new ModelAndView();
       
       QnaVO qnaVO = this.qnaProc.read(qnano);
+      ArrayList<AttachfileVO> attachfileVO = this.attachfileProc.read(qnano);
       mav.addObject("qnaVO", qnaVO);
+      mav.addObject("attachfileVO", attachfileVO);
 
       
       mav.setViewName("/qna/update_text"); 
@@ -257,75 +260,91 @@ public class QnaCont {
     }
     
     //수정처리
-    @RequestMapping(value = "/qna/update_text.do", method = RequestMethod.POST)
-    public ModelAndView update_text(HttpSession session, QnaVO qnaVO, AttachfileVO attachfileVO) {
+    @RequestMapping(value = "/qna/update.do", method = RequestMethod.POST)
+    public ModelAndView update(HttpServletRequest request, HttpSession session, QnaVO qnaVO, AttachfileVO attachfileVO) {
       ModelAndView mav = new ModelAndView();
       
-      if(this.qnaProc.password_check(qnaVO) == 1) {
-        QnaVO qnaVO_old = qnaProc.read(qnaVO.getQnano());
-        ArrayList<AttachfileVO> attachfileVO_old = attachfileProc.read(attachfileVO.getQnano());
+      long fsize = 0;
+      String fupname = "";
+      String fname = "";
+      String thumb = "";
+      int upload_count = 0; // 정상처리된 레코드 갯수
+       
+      QnaVO qnaVO_old = qnaProc.read(qnaVO.getQnano());
+      ArrayList<AttachfileVO> list_old = attachfileProc.read(qnaVO.getQnano());
+      
+      this.attachfileProc.delete(qnaVO.getQnano()); // DBMS Q&A삭제
+      // -------------------------------------------------------------------
+      // 파일 삭제 코드 시작
+      // -------------------------------------------------------------------
 
-        // -------------------------------------------------------------------
-        // 파일 삭제 코드 시작
-        // -------------------------------------------------------------------
-        // 삭제할 파일 정보를 읽어옴.
-         ArrayList<AttachfileVO> list = this.attachfileProc.read(attachfileVO.getQnano()); 
-         for (int i=0; i < list.size(); i++) {
-          attachfileVO = list.get(i);
-            
-          String fupname = attachfileVO.getFupname();
-          String thumb = attachfileVO.getThumb();
-           
-          String upDir = Qna.getUploadDir(); // 경로설정
+      for (int i=0; i < list_old.size(); i++) {
+        attachfileVO = list_old.get(i);
+         
+        fupname = attachfileVO.getFupname();
+        thumb = attachfileVO.getThumb();
+          
+        String upDir = Qna.getUploadDir(); // 경로설정
      
-          Tool.deleteFile(upDir, attachfileVO.getFupname()); // Folder에서 1건의 파일 삭제
-          Tool.deleteFile(upDir, attachfileVO.getThumb()); // 1건의 Thumb 파일 삭제
-         }
-          // -------------------------------------------------------------------
-          // 파일 삭제 종료 
-          // -------------------------------------------------------------------
+        Tool.deleteFile(upDir, fupname); // Folder에서 1건의 파일 삭제
+        Tool.deleteFile(upDir, thumb); // 1건의 Thumb 파일 삭제
+      }
+      
+
+      // -------------------------------------------------------------------
+      // 파일 삭제 종료 
+      // -------------------------------------------------------------------
+     
+     // -------------------------------------------------------------------
+     // 파일 전송 코드 시작
+     // -------------------------------------------------------------------
+
+      fname = ""; // 원본 파일명
+     
+     String upDir = Qna.getUploadDir(); // 경로설정
+     
+     List<MultipartFile>fnamesMF = qnaVO.getFnamesMF();
+     System.out.println( "멀티파일: "+ fnamesMF.size());
+     
+     int count = fnamesMF.size(); // 전송 파일 갯수
+     if (count > 0) {
          
-         String fname = ""; // 원본 파일명
-         String fupname = ""; // 업로드된 파일명
-         long fsize = 0;  // 파일 사이즈
-         String thumb = ""; // Preview 이미지
-         int upload_count = 0; // 정상처리된 레코드 갯수
-         
-         String upDir = Qna.getUploadDir(); // 경로설정
-         
-         List<MultipartFile> fnamesMF = attachfileVO.getFnamesMF();
-         
-         int count = fnamesMF.size(); // 전송 파일 갯수
-         if (count > 0) {
-           for (MultipartFile multipartFile:fnamesMF) { // 파일 추출, 1개이상 파일 처리
+       for (MultipartFile multipartFile:fnamesMF) { // 파일 추출, 1개이상 파일 처리
              fsize = multipartFile.getSize();  // 파일 크기
+              
              if (fsize > 0) { // 파일 크기 체크
-               fname = multipartFile.getOriginalFilename(); // 원본 파일명
-               fupname = Upload.saveFileSpring(multipartFile, upDir); // 파일 저장, 업로드된 파일명
-             }
-           }
+                fname = multipartFile.getOriginalFilename(); // 원본 파일명
+                fupname = Upload.saveFileSpring(multipartFile, upDir); // 파일 저장, 업로드된 파일명
+                
+                if (Tool.isImage(fname)) { // 이미지인지 검사
+                  thumb = Tool.preview(upDir, fupname, 200, 150); // thumb 이미지 생성
+                }
+              }
+               AttachfileVO vo = new AttachfileVO();
+               vo.setQnano(attachfileVO.getQnano());
+               System.out.println("fname: " + fname);
+               vo.setFname(fname);
+               vo.setFupname(fupname);
+               vo.setFsize(fsize);
+             
+              upload_count = upload_count + attachfileProc.create(vo); 
+
          }
+     }
+       
          
-         attachfileVO.setFname(fname);
-         attachfileVO.setFupname(fupname);
-         attachfileVO.setThumb(thumb);
-         attachfileVO.setFsize(fsize);
         
          // -------------------------------------------------------------------
          // 파일 전송 코드 종료
          // -------------------------------------------------------------------
         
         this.qnaProc.update_text(qnaVO);
-        this.attachfileProc.update_file(attachfileVO.getQnano());
         
         mav.addObject("qnano", qnaVO.getQnano());
+        mav.addObject("upload_count", upload_count);
         
         mav.setViewName("redirect:/qna/read.do");
         
-      } else {
-        mav.addObject("url", "qna/passwd_check"); 
-        mav.setViewName("redirect:/qna/msg.do"); 
-      }
         mav.addObject("now_page", qnaVO.getNow_page());
         
       return mav; // forward

@@ -8,6 +8,7 @@
 <c:set var="content" value="${qnaVO.content }" />
 <c:set var="word" value="${qnaVO.word }" />
 <c:set var="rdate" value="${qnaVO.rdate.substring(0,10) }" />
+<c:set var="mname" value="${qnaVO.mname}"/>
 
  
 <!DOCTYPE html> 

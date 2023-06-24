@@ -25,7 +25,7 @@ public interface AttachfileProcInter {
    * @param qnano
    * @return
    */
-  public int update_file(int qnano);
+  public int update_file(AttachfileVO attachfileVO);
   
   /**
    * 삭제
