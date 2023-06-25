@@ -112,5 +112,12 @@ public interface RecipeDAOInter {
    * @return
    */
   public ArrayList<RecipeVO> adminList();
+  
+  /**
+  멤버가 좋아요 누른 레시피
+  @param memberno
+  @return
+  */
+  public ArrayList<RecipeVO> memberList(int memberno);
 
 }
