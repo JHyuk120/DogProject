@@ -345,22 +345,64 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
             <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
                 
             <strong>남은 수량: <span>${cnt }</span></strong><br><br>
-            <div style="width: 90%; height: 310px; ">${content }</DIV>
+            
+            <style>
+						.table {
+						  width: 50%; /* 테이블 너비 */
+						  margin: 0 auto; /* 가운데 정렬 */
+						  font-size: 1px; /* 테이블 폰트 크기 */
+						}
+						
+						.table caption {
+						  font-weight: bold; /* 표 제목 굵게 */
+						  margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
+						}
+						
+						</style>
+						
+						<table class="table table custom">
+						  <thead>
+						    <tr>
+						      <th>Firstname</th>
+						      <th>Lastname</th>
+						      <th>Email</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>John</td>
+						      <td>Doe</td>
+						      <td>john@example.com</td>
+						    </tr>
+						    <tr>
+						      <td>Mary</td>
+						      <td>Moe</td>
+						      <td>mary@example.com</td>
+						    </tr>
+						    <tr>
+						      <td>July</td>
+						      <td>Dooley</td>
+						      <td>july@example.com</td>
+						    </tr>
+						  </tbody>
+						</table>
           </DIV>
         </li>
       
      
-        <li class="li_none">
-          <DIV style='text-decoration: none;'>
-        
-            <br>
-            <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
-              <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
-            </button>
+<li class="li_none">
+  <div style='text-decoration: none; display: flex; flex-direction: row; margin-right: 100px;'>
+    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
+      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+    </button>
 
-            <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg " onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>
-          </DIV>  
-        </li>   
+    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>
+
+    <button type='button' id='btn_ordering' class="btn btn-outline-dark btn-lg" onclick="cart_ajax(${goodsno })">&emsp;☆ wish&emsp;</button>
+  </div>
+</li>
+
+
       </ul>
     </fieldset>
   </DIV>
