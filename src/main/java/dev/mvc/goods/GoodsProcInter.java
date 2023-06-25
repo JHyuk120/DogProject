@@ -103,4 +103,18 @@ public interface GoodsProcInter {
    * @return 삭제된 레코드 갯수
    */
   public int delete_by_itemno(int itemno);
+  
+  /**
+   * 찜하기 ++
+   * @param itemno
+   * @return
+   */
+  public int wish_add (int goodsno);
+  
+  /**
+   * 찜하기 --
+   * @param itemno
+   * @return
+   */
+  public int wish_sub (int goodsno);
 }

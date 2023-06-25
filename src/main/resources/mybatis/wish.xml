@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.wish.WishDAOInter">
+
+<!-- 생성 -->
+<insert id = "create" parameterType="dev.mvc.wish.WishVO">
+INSERT INTO wish(wishno, memberno, goodsno, rdate)
+VALUES (wish_seq.nextval, #{memberno}, #{goodsno}, sysdate)
+
+</insert>
+
+<!-- 체크 -->
+<select id="check" resultType="int" parameterType="dev.mvc.wish.WishVO">
+SELECT COUNT(goodsno) 
+FROM wish 
+WHERE goodsno = #{goodsno} AND memberno = #{memberno}
+
+</select>
+
+<!-- 삭제 -->
+<delete id = "delete" parameterType="dev.mvc.wish.WishVO">
+DELETE FROM wish WHERE memberno = #{memberno}
+
+</delete>
+
+</mapper>

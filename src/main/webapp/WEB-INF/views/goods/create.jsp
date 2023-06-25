@@ -13,6 +13,24 @@
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/i18n/datepicker-ko.js"></script>
+
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        closeText: "닫기",
+        prevText: "이전달",
+        nextText: "다음달",
+        currentText: "오늘",
+        monthNames: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+        dayNamesMin: ["일","월","화","수","목","금","토"]
+    });
+  } );
+</script>
 
 </head> 
  
@@ -63,7 +81,7 @@
                  autofocus="autofocus" class="form-control" style='width: 30%;'><br>
     </div>
      
-    <div class="row" style='width:35%'>
+    <div class="row" style='width:40%'>
       <div class="col-sm-4">
         <label for="price">가격</label>
         <input type="number" class="form-control" id="price" name="price" value="10000" >
@@ -80,6 +98,25 @@
         <div class="col-sm-4">
           <label for="cnt">수량</label>
           <input type="number" class="form-control" id="cnt" name="cnt" value="1" min="0" style='width:80%'>
+        </div>
+        <div class="col-sm-4">
+          <label for="cnt">원산지</label>
+          <input type="text" class="form-control" id="origin" name="origin" value="국산" style='width:80%'>
+        </div>
+        <div class="col-sm-4">
+          <label for="cnt">유통기한</label>
+          <input type="date" class="form-control" id="exdate" name="exdate" id="datepicker" style='width:80%'>
+        </div>
+        <div class="col-sm-4">
+          <label for="cnt">보관방법</label>
+          <input type="text" class="form-control" id="storage" name="storage" value="냉장/냉동/실온" style='width:80%'>
+        </div>
+        <div class="col-sm-4">
+          <label for="cnt">그램 수</label>
+          <input type="number" class="form-control" id="grams" name="grams" value="100" min="1" style='width:80%'>
+           <div class="input-group-append">
+              <span class="input-group-text">g</span>
+           </div>
         </div>
     </div>
     <br>

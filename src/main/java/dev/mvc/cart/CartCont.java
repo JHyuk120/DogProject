@@ -56,7 +56,7 @@ public class CartCont {
     int memberno = (Integer)session.getAttribute("memberno");
     cartVO.setMemberno(memberno); //회원번호
     
-    cartVO.setCnt(1); //최초 구매 수량을 1개로 지정
+    //cartVO.setCnt(1); //최초 구매 수량을 1개로 지정
     
     int cnt = this.cartProc.create(cartVO);
     
@@ -91,6 +91,8 @@ public class CartCont {
     
     if (session.getAttribute("memberno") != null) { // 회원으로 로그인을 했다면 쇼핑카트로 이동
       int memberno = (int)session.getAttribute("memberno");
+      
+      System.out.println(goodsVO.getCntc());
       
       // 목록
       ArrayList<CartVO> list = this.cartProc.list_by_memberno(memberno);

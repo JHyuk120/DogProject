@@ -8,7 +8,12 @@
 <c:set var="price" value="${goodsVO.price }" />  
 <c:set var="dc" value="${goodsVO.dc }" />
 <c:set var="cnt" value="${goodsVO.cnt }"/>
-<c:set var="saleprice" value="${goodsVO.saleprice}" />  
+<c:set var="origin" value="${goodsVO.origin }"/>
+<c:set var="exdate" value="${goodsVO.exdate }"/>
+<c:set var="storage" value="${goodsVO.storage }"/>
+<c:set var="grams" value="${goodsVO.grams }"/>
+<c:set var="saleprice" value="${goodsVO.saleprice}" /> 
+<c:set var="point" value="${goodsVO.point }"/> 
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -118,6 +123,14 @@
       // alert('-> cart_ajax_post: ' + params);
       // return;
       
+      var cntc = $('#cntc', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
+      
+      var params2 = "";
+      // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+      params2 += 'cnt=' + cntc;
+      // alert('-> cart_ajax_post: ' + params);
+      // return;
+      
       $.ajax(
         {
           url: '/cart/create.do',
@@ -125,7 +138,7 @@
           cache: false, // 응답 결과 임시 저장 취소
           async: true,  // true: 비동기 통신
           dataType: 'json', // 응답 형식: json, html, xml...
-          data: params,      // 데이터
+          data: params, params2,      // 데이터
           success: function(rdata) { // 응답이 온경우
             var str = '';
             // console.log('-> cart_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
@@ -227,7 +240,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 <body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 15%; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
 
 <DIV class='content_body' style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
@@ -260,19 +273,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
       <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word}' class='input_word'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm'
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
-      </c:if>    
+   
     </form>
            <style>
           .btn-custom {
@@ -332,73 +333,116 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <IMG src="/dogproject/storage/${file1saved }" style="width: 40%; float:left; margin-top: 0.5%; margin-right: 20px; margin-bottom: 5px;'"> 
+                <IMG src="/dogproject/storage/${file1saved }" style="width: 40%; height:380px; float:left; margin-top: 5%; margin-right: 20px; margin-bottom: 5px;'"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/goods/images/ee.png" style="width: 40%; height:300px; float: left; margin-top: 0.5%; margin-right:5%;"> 
+                <IMG src="/goods/images/ee.png" style="width: 40%; height:380px; float: left; margin-top: 5%; margin-right:5%;"> 
               </c:otherwise>
             </c:choose>
-       
-            <span style="font-size: 1.5em; font-weight: bold;">${gname }</span><br> 
-            <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-            <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
-            <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
-                
-            <strong>남은 수량: <span>${cnt }</span></strong><br><br>
+            <div style="text-align: left; margin-left: 50%; margin-bottom: 1%;">
+            <span style="font-size: 1.5em; font-weight: bold;">🥗${gname }🥗</span><br> 
+            <span style="color: #59D9B2; font-size: 1.2em; margin-right: 0.3em;">${dc}% 🠗 </span>
+            <strong style="font-size: 1.2em; margin-right: 0.2em;"><fmt:formatNumber value="${saleprice}" pattern="#,###" />원</strong>   
+             <del style= "color: #949494; font-size: 1em;" ><fmt:formatNumber value="${price}" pattern="#,###" />원</del>
+            </div>
+           
+               
             
-            <style>
-						.table {
-						  width: 50%; /* 테이블 너비 */
-						  margin: 0 auto; /* 가운데 정렬 */
-						  font-size: 1px; /* 테이블 폰트 크기 */
-						}
-						
-						.table caption {
-						  font-weight: bold; /* 표 제목 굵게 */
-						  margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
-						}
-						
+						<style>
+						  .table {
+						    width: 45%; /* 테이블 너비 */
+						    margin: 0 auto; /* 가운데 정렬 */
+						  }
+						  
+						  .table caption {
+						    font-weight: bold; /* 표 제목 굵게 */
+						    margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
+						  }
+						  
+						  .table td,
+						  .table th {
+						    color: #989993; /* 폰트 색상 변경 */
+						    text-align: left; /* 텍스트 왼쪽 정렬 */
+						    font-size: 0.9em; /* 폰트 크기 작게 설정 */
+						  }
+						  
+						  .table td.bold,
+						  .table th.bold {
+						    font-weight: bold; /* 해당 셀에 폰트 굵게 적용 */
+						    color: #7C7D78; 
+						  }
 						</style>
 						
-						<table class="table table custom">
+						<table class="table table-sm ">
 						  <thead>
 						    <tr>
-						      <th>Firstname</th>
-						      <th>Lastname</th>
-						      <th>Email</th>
+						      <th>상세옵션</th>
+						      <th>/ 상품 기본정보 입니다.</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						    <tr>
-						      <td>John</td>
-						      <td>Doe</td>
-						      <td>john@example.com</td>
+						      <td>원산지</td>
+						      <td>${origin }</td>
 						    </tr>
 						    <tr>
-						      <td>Mary</td>
-						      <td>Moe</td>
-						      <td>mary@example.com</td>
+						      <td>유통기한</td>
+						      <td>${exdate }</td>
 						    </tr>
 						    <tr>
-						      <td>July</td>
-						      <td>Dooley</td>
-						      <td>july@example.com</td>
+						      <td>보관방법</td>
+						      <td>${storage } 보관</td>
 						    </tr>
+						    <tr>
+						      <td>그램 수</td>
+						      <td>${grams } g</td>
+						    </tr>
+                  <td>적립금</td>
+                  <td>${point }원 (2%)</td>
+                </tr>
+						    <tr>
+						      <td>배송비</td>
+						      <td class="bold">3000원 (30,000원 이상 구매 시 무료)</td>
+						    </tr>
+						    <tr>
+						      <td>남은 수량</td>
+						      <td class="bold">${cnt }</td>
+						    </tr>
+						    <tr>
+						      <td>수량 선택</td>
+							    <td class="bold">
+                    <input type="number" class="form-control" id="cntc" name="cntc" value="1" max="${cnt }" min="1" style='width:15%; height: 25px;'>
+
+							    </td>
+						    </tr>  
+						                                      
 						  </tbody>
+						 
+						  
 						</table>
+						<div style="text-align: left; margin-left: 50%; margin-top: 0.8%; ">
+						  <span style="font-size: 0.8em;">ღ 주문 수량안내 : 최소 주문수량 1개 이상<br>
+						  ღ 위 수량선택 박스를 선택하시면 아래에 상품이 추가됩니다.</span>
+						</div>
+
           </DIV>
         </li>
+        
+
       
      
 <li class="li_none">
-  <div style='text-decoration: none; display: flex; flex-direction: row; margin-right: 100px;'>
-    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
-      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+  <div style='margin-left: 500px; margin-top: 50px;'>
+
+    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">
+      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">&emsp;CART&emsp;
     </button>
 
-    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>
-
-    <button type='button' id='btn_ordering' class="btn btn-outline-dark btn-lg" onclick="cart_ajax(${goodsno })">&emsp;☆ wish&emsp;</button>
+    <button type='button' id='btn_ordering' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">&emsp;WISH&emsp;</button>
+    
+      
+    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 230px;' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
+  
   </div>
 </li>
 
@@ -418,7 +462,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     
       <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
       <!-- 댓글 평점 별  -->
-      <tr>
+      
         <div class="stars">
           <td  width="100" rowspan="2">${sessionScope.id } </td>
           <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
@@ -438,11 +482,11 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
   <div style="display: flex; align-items: center; font-size:20px;"> 
      <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 </div></div>   
     
-    <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0;'></textarea>
+    <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
     
-    <div style="display: flex; align-items: center; margin-left: 990px;">
+    <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
   <input type="file" name="file2MF" id="file2MF" value="" placeholder="첨부파일" >
-  <button id="submitBtn" type="submit" class="btn btn-outline-dark btn-sm" style="margin-left: 10px;">리뷰 등록</button>
+  <button id="submitBtn" type="submit" class="btn btn-outline-dark btn-sm" style="table-layout: fixed;">리뷰 등록</button>
 </div>
 
 </td>
@@ -456,7 +500,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
    
  
   <!-- 댓글 목록 -->
-    <table class="table table-striped " style='width: 70%; table-layout: fixed; margin-left: 280px; background-color: #FEFCF0; '>
+    <table class="table table-striped " style='width: 70%; table-layout: fixed; margin-left: 16.5%; background-color: #FEFCF0; '>
       <colgroup>
         <c:choose>
           <c:when test="${sessionScope.admin_id != null}">
