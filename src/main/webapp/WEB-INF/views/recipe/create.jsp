@@ -14,13 +14,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
 <script>
-  function addSelectedCheckboxValues() {
-    var checkedValues = $('input[name="fruit"]:checked').map(function() {
-      return this.value;
-    }).get().join(', ');
-    var textareaVal = $('#'ingredient'').val(); // 기존 textarea의 값
-    $('#'ingredient'').val(ingredient + checkedValues); // textarea에 선택된 checkbox value 추가
-  }
+    $(function() {
+        $("#addBtn").on("click", function(event) {
+            event.preventDefault(); // 전송 방지
+
+            // 체크박스 데이터를 textarea에 추가
+            var checkedItems = "";
+            $("input[type=checkbox]:checked").each(function() {
+                checkedItems += $(this).val() + ", ";
+            });
+
+            $("#ingredient").val($("#ingredient").val() + checkedItems);
+        });
+    });
 </script>
 </head> 
  
@@ -74,29 +80,29 @@
     <br>
     <div>
        <label>재료</label>
-       <div>
-        <input type="checkbox" name="fruit" value="apple">
-        <label for="fruit1">Apple</label>
-        <br>
-        <input type="checkbox" name="fruit" value="banana">
-        <label for="fruit2">Banana</label>
-        <br>
-        <input type="checkbox" name="fruit" value="grape">
-        <label for="fruit3">Grape</label>
+        <div>
+          <tbody>
+            <c:forEach var="goodsVO" items="${list}">
+
+              <c:set var="gname" value="${goodsVO.gname}"/>
+
+                <input type="checkbox" id="gname" name="gname" value="${gname }">
+                <label for="gname">${gname }</label>
+            </c:forEach>
+          </tbody>
         </div>
-        <button onclick="addSelectedCheckboxValues()"> 추가하기 </button>
-        <textarea name='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'>
+        <button id="addBtn">선택된 항목 추가</button><br><br>
+        <textarea name='ingredient' id='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'>
 🍚재료🍚
-        </textarea>
+</textarea>
     </div>
     <br>
-    
-    
+  
     <div>
        <label>글</label>
        <textarea name='article' required="required" class="form-control" rows="12" style="overflow-y: scroll"; 'width: 100%;'>
 🍚조리순서🍚
-       </textarea>
+</textarea>
     </div>  
       
     <div>

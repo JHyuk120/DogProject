@@ -1,6 +1,7 @@
 package dev.mvc.recipe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.goods.GoodsProcInter;
+import dev.mvc.goods.GoodsVO;
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProc;
@@ -57,6 +60,10 @@ public class RecipeCont {
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
   
+  @Autowired
+  @Qualifier("dev.mvc.goods.GoodsProc")
+  private GoodsProcInter goodsProc;
+  
   public RecipeCont () {
     System.out.println("-> RecipeCont created.");
   }
@@ -74,6 +81,8 @@ public class RecipeCont {
     ItemVO itemVO = this.itemProc.read(itemno); // create.jsp에 카테고리 정보를 출력하기위한 목적
     mav.addObject("itemVO", itemVO);
 //    request.setAttribute("itemVO", itemVO);
+    ArrayList<GoodsVO> list = goodsProc.list_all();
+    mav.addObject("list", list);
     
     mav.setViewName("/recipe/create"); // /webapp/WEB-INF/views/recipe/create.jsp
     
@@ -93,6 +102,7 @@ public class RecipeCont {
       int memberno = (int)session.getAttribute("memberno");
       String mname = (String)session.getAttribute("mname");
       recipeVO.setMname(mname);
+      
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
@@ -194,46 +204,49 @@ public class RecipeCont {
     
     return mav;
   }
-//  /**
-//   * 특정 카테고리 글 목록, http://localhost:9091/recipe/list_by_itemno_search_paging.do
-//   * @return
-//   */
-//  @RequestMapping(value="/recipe/list_by_itemno.do", method=RequestMethod.GET)
-//  public ModelAndView list_by_itemno(int itemno) {
-//    ModelAndView mav = new ModelAndView();
-//    
-//    ItemVO itemvo = this.itemProc.read(itemno);
-//    mav.addObject("itemVO", itemvo);
-//    
-//    
-//    
-//    ArrayList<recipeVO> list = this.recipeProc.list_by_itemno(itemno);
-//    mav.addObject("list", list);
-//    
-//    mav.setViewName("/recipe/list_by_itemno"); // /webapp/WEB-INF/views/recipe/list_all_itemno.jsp
-//    
-//    return mav;
-//  }
-  
-  // http://localhost:9091/recipe/read.do
+
   /**
    * 조회
    * @return
    */
   @RequestMapping(value="/recipe/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int recipeno, ReplyVO replyVO, RecomVO recomVO, HttpSession session) {
+  public ModelAndView read(int recipeno, ReplyVO replyVO, RecomVO recomVO, HttpSession session, GoodsVO goodsVO) {
     ModelAndView mav = new ModelAndView();
 
     RecipeVO recipeVO = this.recipeProc.read(recipeno);
    
     String title = recipeVO.getTitle();
     String article = recipeVO.getArticle();
+    String ingredient = recipeVO.getIngredient();
+    
+    int goodsNo = -1; // -1은 goodsNo를 찾지 못하였음을 의미합니다.
     
     title = Tool.convertChar(title);  // 특수 문자 처리
     article = Tool.convertChar(article); 
     
     recipeVO.setTitle(title);
     recipeVO.setArticle(article);  
+    
+    // 재료 연결시작 //
+    // 재료 키,값으로 저장(키: 재료명, 값: 주소)
+    String[] keyValue = ingredient.split(",");
+    HashMap<String, String> hashMap = new HashMap<>();
+
+    for (int i = 0; i < keyValue.length; i++) {
+      System.out.println("List: " + goodsVO.getGname());
+        if (keyValue[i].equals(this.goodsProc.list_all())) {
+            
+            goodsNo = goodsVO.getGoodsno(); // goodsNo 값을 가져오기
+            break; // 루프를 종료하고 goodsNo를 얻습니다.
+        }
+    }
+
+    if (goodsNo == -1) {
+        System.out.println("동일한 gname을 가진 goodsVO를 찾지 못하였습니다.");
+    } else {
+        System.out.println("동일한 gname을 가진 goodsVO의 goodsNo: " + goodsNo);
+    }
+    // 재료와 연결 끝 //
     
     long size1 = recipeVO.getSize1();
     recipeVO.setSize1_label(Tool.unit(size1));    

@@ -4,6 +4,7 @@
 
 <c:set var="recipeno" value="${recipeVO.recipeno }" />
 <c:set var="itemno" value="${recipeVO.itemno }" />
+<c:set var="ingredient" value="${recipeVO.ingredient }" />
 <c:set var="title" value="${recipeVO.title }" />        
 <c:set var="file1" value="${recipeVO.file1 }" />
 <c:set var="file1saved" value="${recipeVO.file1saved }" />
@@ -17,7 +18,6 @@
 <c:set var="recom" value="${recipeVO.recom }" />
  <c:set var="replycont" value="${replyVO.replycont}" />
 <c:set var="replyno" value="${replyVO.replyno}" />
-
 
  
 <!DOCTYPE html> 
@@ -54,8 +54,6 @@ function checkLoginStatus() {
 </head>
 
 <style>
-
-
   .content_body {
     width: 100%;
     max-width: 1200px;
@@ -166,7 +164,6 @@ function checkLoginStatus() {
 
   <button onclick="sharePage()" class="btn btn-outline-secondary btn-sm" style="font-size: 0.8em; margin-left: 10px;">공유하기</button>
 
-
   <script>
     function sharePage() {
       const url = window.location.href;
@@ -182,10 +179,6 @@ function checkLoginStatus() {
 </div>
 <br>
 
-        
-                      
-  
-
 <fieldset class="fieldset_basic" style='background-color:#FEFCF0;'>
     <ul>
       <li class="li_none">
@@ -200,12 +193,8 @@ function checkLoginStatus() {
                 <img src="/goods/images/ee.png" 
                 style="width: 25%; height: 250px; float: left; margin-top: 0.5%; margin-right:5%; margin-left: 20px; margin-bottom: 5px;"> 
             </c:otherwise>
-            </c:choose>     
-
-<div style='float: left; margin-left: 110px'>재료</div><br>          
-
-
-
+            </c:choose>
+            <div style='float: left; margin-left: 110px'>${ingredient}</div><br>          
         </DIV>
       </li>
       
@@ -219,11 +208,8 @@ function checkLoginStatus() {
         
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
-        
-        
             <br><br>
             ${article }
-        
         <br>
           검색어(키워드): ${word }
         </DIV>
