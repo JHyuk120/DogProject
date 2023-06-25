@@ -91,9 +91,7 @@ public class CartCont {
     
     if (session.getAttribute("memberno") != null) { // 회원으로 로그인을 했다면 쇼핑카트로 이동
       int memberno = (int)session.getAttribute("memberno");
-      
-      System.out.println(goodsVO.getCntc());
-      
+
       // 목록
       ArrayList<CartVO> list = this.cartProc.list_by_memberno(memberno);
 
@@ -101,13 +99,17 @@ public class CartCont {
 
         tot = cartVO.getSaleprice() * cartVO.getCnt();  // 판매 금액 합계 = 판매 금액(단가) * 수량
         cartVO.setTot(tot);
-        
+
         // 판매 금액 총 합계 = 판매 금액 총 합계 + 판매 금액 합계
         tot_sum = tot_sum + cartVO.getTot();
-        
+
         // 포인트 합계 = 포인트 합계 + (포인트 * 수량)
         point_tot = point_tot + (cartVO.getPoint() * cartVO.getCnt());
-        
+
+        int goodsno = cartVO.getGoodsno();
+        int g_cnt = this.goodsProc.g_cnt(goodsno);
+        mav.addObject("g_cnt", g_cnt);
+
       }
       
       if (tot_sum < 30000) { // 상품 주문 금액이 30,000 원 이하이면 배송비 3,000 원 부여

@@ -144,4 +144,25 @@
       WHERE goodsno=#{goodsno}
   </delete>
 
+<!-- 재료 수량 감소 -->
+  <update id="cnt_sub" parameterType="int">
+    UPDATE goods 
+    SET cnt = cnt - 1
+    WHERE goodsno = #{goodsno }
+  </update>
+
+  <!-- 재료 수량 확인 -->
+  <select id="g_cnt" resultType="int" parameterType="int">
+  SELECT cnt 
+  FROM goods
+  WHERE goodsno = #{goodsno}
+  </select>
+  
+  <!-- 회원이 찜한 재료 목록 --> 
+ <select id="memberList" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
+SELECT g.gname, g.content, g.goodsno,w.memberno
+FROM goods g inner join wish w on g.goodsno = w.goodsno 
+WHERE w.memberno =#{memberno }
+ORDER BY w.rdate DESC
+</select>
 </mapper>

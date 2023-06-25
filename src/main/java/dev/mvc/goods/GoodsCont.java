@@ -31,6 +31,8 @@ import dev.mvc.review.ReviewProcInter;
 import dev.mvc.review.ReviewVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
+import dev.mvc.wish.WishProcInter;
+import dev.mvc.wish.WishVO;
 @Controller
 public class GoodsCont {
   @Autowired
@@ -52,6 +54,10 @@ public class GoodsCont {
   @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.wish.WishProc")
+  private WishProcInter wishProc;
   
   public GoodsCont () {
     System.out.println("-> GoodsCont created.");
@@ -223,7 +229,7 @@ public class GoodsCont {
  * @return
  */
   @RequestMapping(value="/goods/read.do", method=RequestMethod.GET )
-  public ModelAndView read(HttpServletRequest request, HttpSession session,int goodsno, ReviewVO reviewVO) {
+  public ModelAndView read(HttpServletRequest request, HttpSession session,int goodsno, ReviewVO reviewVO, WishVO wishVO) {
     ModelAndView mav = new ModelAndView();
 
     GoodsVO goodsVO = this.goodsProc.read(goodsno);
@@ -265,6 +271,17 @@ public class GoodsCont {
     // 게시물 별 리뷰 수
    int reviewcnt =  this.reviewProc.review_count(goodsno);
    mav.addObject("reviewcnt", reviewcnt);
+   
+   // 찜 관련 시작 ------------------------------------------------
+   
+   // 좋아요 확인
+   if (memberProc.isMember(session)) {
+     int memberno = (int) (session.getAttribute("memberno"));
+     wishVO.setMemberno(memberno);
+     
+     int check_cnt = this.wishProc.check(wishVO);
+     mav.addObject("check", check_cnt);
+   }
    
     return mav;
 }
@@ -689,5 +706,26 @@ public class GoodsCont {
    System.out.println("-> count: " + this.goodsProc.delete_by_itemno(itemno));
    return "";
  }
+ 
+/**
+ 
+ 회원이 찜한 재료 항목
+ @param session
+ @return
+ */
+ @RequestMapping(value = "/wish/memberList.do", method = RequestMethod.GET)
+ public ModelAndView memberList(int memberno, HttpSession session) {
+   ModelAndView mav = new ModelAndView();
+   if (memberProc.isMember(session)) {
+     ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
+     mav.addObject("list_m", list_m);
+   } else {
+     mav.addObject("code", "member_fail");
+     mav.setViewName("redirect:/wish/msg.do");
+   }
+
+     return mav; 
+   }
+ 
  
 }

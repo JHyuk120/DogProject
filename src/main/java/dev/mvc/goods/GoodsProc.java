@@ -265,7 +265,30 @@ import dev.mvc.tool.Tool;
         int cnt = this.goodsDAO.wish_sub(goodsno);
         return cnt;
       }
+      
+      @Override
+      public int cnt_sub(int goodsno) {
+        int cnt = this.goodsDAO.cnt_sub(goodsno);
+        return cnt;
+      }
 
+      @Override
+      public int g_cnt(int goodsno) {
+        int cnt = this.goodsDAO.g_cnt(goodsno);
+        return cnt;
+      }
+
+      @Override
+      public ArrayList<GoodsVO> memberList(int memberno) {
+        ArrayList<GoodsVO> list_m = this.goodsDAO.memberList(memberno);
+        return list_m;
+      }
+
+      @Override
+      public int mycnt(int goodsno) {
+        // TODO Auto-generated method stub
+        return 0;
+      }
 
 
 }

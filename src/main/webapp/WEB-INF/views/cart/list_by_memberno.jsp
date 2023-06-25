@@ -192,6 +192,9 @@
               <br>
                <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품을 선택하고 다시 와주십시오.</div>
               </c:when>
+              <c:when test="${g_cnt - cnt < 0 }">
+               <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품이 선택하신 수량보다 적습니다.</div>
+              </c:when>
               <c:otherwise>
                 <button type='submit' id='btn_order' class='btn btn-dark btn-sm' style='font-size: 1.5em; right;'>주문하기</button>
               </c:otherwise>

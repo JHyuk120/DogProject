@@ -155,6 +155,13 @@ public class PayCont {
        detailVO.setStateno(1); // 신규 주문 등록임으로 1 
        
        this.detailProc.create(detailVO); // 주문 상세 등록
+       
+    // 결제 한 재료의 양 만큼 남은 재료의 양 줄이기
+       int goods_cnt = detailVO.getCnt();
+
+       for (int i = 1; i <= goods_cnt; i ++) {
+         this.goodsProc.cnt_sub(goodsno);
+       }
 
        // 3. 주문된 상품 cart에서 DELETE
        int delete_cnt = this.cartProc.delete(cartno);

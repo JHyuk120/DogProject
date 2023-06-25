@@ -24,4 +24,10 @@ public interface WishDAOInter {
    */
   public int delete(int memberno);
   
+  
+  /**
+   * 내가 찜한 항목 수
+   */
+  public int mycnt(int goodsno);
+  
 }

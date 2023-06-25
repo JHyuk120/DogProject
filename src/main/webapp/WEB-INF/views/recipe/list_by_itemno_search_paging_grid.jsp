@@ -56,11 +56,17 @@
     </div>
 
   <ASIDE class="aside_right">
-    <A href="./create.do?itemno=${itemVO.itemno }">📝레시피 등록</A>
-    <span class='menu_divide' >│</span>
+    <c:choose>
+      <c:when test="${sessionScope.isMember == null }">
+      </c:when>
+      <c:otherwise>
+            <A href="./create.do?itemno=${itemVO.itemno }">📝레시피 등록</A>
+            <span class='menu_divide' >│</span>
+      </c:otherwise>
+    </c:choose>
     <A href="javascript:location.reload();">🔃새로고침</A>
-    <span class='menu_divide' >│</span>    
-    <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">기본 목록형</A>    
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_itemno.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">기본 목록형</A>
     <span class='menu_divide' >│</span>
     <A href="./list_by_itemno_grid.do?itemno=${param.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">갤러리형</A>
   </ASIDE>

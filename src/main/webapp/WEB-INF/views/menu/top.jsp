@@ -68,6 +68,10 @@
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                                     <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
                                         <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  ❤️ 목록</a>
+                                    <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
+                                        <img src="/menu/images/save.png" class="icon" style='margin-left:5px'>&nbsp; 레시피 저장 목록</a>
+                                    <a class="dropdown-item" href="/wish/memberList.do?memberno=${sessionScope.memberno }">
+                                     <img src="/menu/images/wish.png" class="icon" style='margin-left:5px'>&nbsp; 재료 찜 목록</a>
                                     <a class="dropdown-item" href="/cart/list_by_memberno.do">
                                         <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  장바구니</a>
                                     <a class="dropdown-item" href="/pay/pay_list.do">

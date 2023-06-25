@@ -65,10 +65,8 @@
       <c:set var="mname" value="${recipeVO.mname }" />
       
       <!-- 나머지 연산자를 사용하여 홀수와 짝수를 판별하여 배경색 설정 -->
-      <div onclick="location.href='./read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'"
-        class="gallery_item"
-        style="background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'};">
-  
+      <div onclick="location.href='../recipe/read.do?recipeno=${recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'"
+                class="gallery_item" style="background-color: ${recipeno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'};">
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
             <%-- registry.addResourceHandler("/recipe/storage/**").addResourceLocations("file:///" +  Recipe.getUploadDir()); --%>

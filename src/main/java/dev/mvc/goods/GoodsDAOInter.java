@@ -105,4 +105,30 @@ public interface GoodsDAOInter {
    * @return
    */
   public int wish_sub (int goodsno);
+  
+  /**
+   *재료 수량 감소
+   * @param goodsno
+   * @return
+  */
+  public int cnt_sub (int goodsno);
+
+  /**
+  * 재료 수량 확인
+  * @param goodsno
+  * @return
+  */
+  public int g_cnt(int goodsno);
+  
+  /**
+   * 내가 찜한 항목 수
+   */
+  public int mycnt(int goodsno);
+  
+  /**
+  회원이 찜한 재료 목록
+  @param memberno
+  @return
+  */
+  public ArrayList<GoodsVO> memberList(int memberno);
 }
