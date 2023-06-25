@@ -434,10 +434,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       
      
 <li class="li_none">
-  <div style='margin-left: 550px; margin-top: 50px; display: flex;'>
+  <div style='margin-left: 570px; margin-top: 50px; display: flex;'>
 
-    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">
-      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">&emsp;CART&emsp;
+    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
+      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
     </button>
     <form name="frm" action="/wish/create.do" method="POST">
   <input type="hidden" name="goodsno" value="${goodsno}" />
@@ -445,26 +445,25 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
   
   <c:choose>
       <c:when test="${sessionScope.adminno != null}">
-        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' >
+        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
       <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
       </c:when>
       <c:when test="${sessionScope.memberno == null}">
-        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' >
+        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
       <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
       </c:when>
       <c:when test="${check == 1}">
-        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' >
+        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
       <img src="/goods/images/pullhrt.png" class="icon" style="width:30px; margin-bottom:3px;"></button>
       </c:when>
       <c:otherwise>
-        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' >
+        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
       <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
       </c:otherwise>
     </c:choose>
 
      </form> 
-    <button type='button' id='btn_ordering' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">&emsp;WISH&emsp;</button>
-    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 230px;' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
+    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 370px;' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
     
   
   </div>
