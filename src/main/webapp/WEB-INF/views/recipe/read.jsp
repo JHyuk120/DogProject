@@ -203,46 +203,7 @@ function checkLoginStatus() {
             </c:choose>     
 
 <div style='float: left; margin-left: 110px'>재료</div><br>          
-<style>
-.table {
-  width: 50%; /* 테이블 너비 */
-  margin: 0 auto; /* 가운데 정렬 */
-  font-size: 1px; /* 테이블 폰트 크기 */
-}
 
-.table caption {
-  font-weight: bold; /* 표 제목 굵게 */
-  margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
-}
-
-</style>
-
-<table class="table table custom">
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>john@example.com</td>
-    </tr>
-    <tr>
-      <td>Mary</td>
-      <td>Moe</td>
-      <td>mary@example.com</td>
-    </tr>
-    <tr>
-      <td>July</td>
-      <td>Dooley</td>
-      <td>july@example.com</td>
-    </tr>
-  </tbody>
-</table>
 
 
         </DIV>
