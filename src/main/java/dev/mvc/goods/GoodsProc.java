@@ -254,6 +254,18 @@ import dev.mvc.tool.Tool;
         return cnt;
       }
 
+      @Override
+      public int wish_add(int goodsno) {
+        int cnt = this.goodsDAO.wish_add(goodsno);
+        return cnt;
+      }
+
+      @Override
+      public int wish_sub(int goodsno) {
+        int cnt = this.goodsDAO.wish_sub(goodsno);
+        return cnt;
+      }
+
 
 
 }
