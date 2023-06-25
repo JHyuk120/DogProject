@@ -164,6 +164,9 @@ public class NoticeCont {
       long size1 = noticeVO.getSize1();
       noticeVO.setSize1_label(Tool.unit(size1));      
       
+      String mname = this.adminProc.read(noticeVO.getAdminno()).getMname();
+      mav.addObject("mname", mname);
+      
       mav.addObject("noticeVO", noticeVO); // request.setAttribute("noticeVO", noticeVO);
     
       int cnt = this.noticeProc.cnt_add(noticeno);

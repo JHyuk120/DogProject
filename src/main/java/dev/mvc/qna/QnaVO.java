@@ -22,6 +22,8 @@ public class QnaVO {
     private String passwd = "";
     /** 검색어 */
     private String word = "";
+    /** 작성자 */
+    private String mname="";
     /** 등록 날짜 */
     private String rdate = "";
    
@@ -51,6 +53,7 @@ public class QnaVO {
     // private MultipartFile fnamesMF;  // 하나의 파일 처리
     /** 파일 단위 출력 */
     private String flabel;   
+    
     
 
 

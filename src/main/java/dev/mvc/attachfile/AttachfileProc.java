@@ -28,8 +28,8 @@ public class AttachfileProc implements AttachfileProcInter{
   }
   
   @Override
-  public int update_file(int qnano) {
-    int cnt = this.attachfileDAO.update_file(qnano);
+  public int update_file(AttachfileVO attachfileVO) {
+    int cnt = this.attachfileDAO.update_file(attachfileVO);
     return cnt;
   }
 

@@ -70,8 +70,8 @@ VALUES (member_seq.nextval, 'user', '1234', '고객관리자', '000-0000-0000', 
              '서울시 종로구', '관철동', sysdate);
  
 -- 개인 회원 테스트 계정
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'user1@gmail.com', '1234', '왕눈이', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
+INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate)
+VALUES (member_seq.nextval, 'james', '0000', '삭제하면 나 안할거야', '000-0000-0000', '1234', '서울시 종로구', '관철동', sysdate);
  
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
 VALUES (member_seq.nextval, 'user2@gmail.com', '1234', '아로미', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
@@ -123,7 +123,7 @@ COMMIT;
  
 5. 특정 회원 삭제
 DELETE FROM member
-WHERE memberno=1;
+WHERE memberno=85;
 
 COMMIT;
 
