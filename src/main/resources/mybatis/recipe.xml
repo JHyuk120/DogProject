@@ -189,4 +189,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   </select>
   
+  <!-- 멤버가 좋아요 누른 레시피 -->
+  <select id="memberList" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
+    SELECT p.recipeno, p.memberno, p.itemno, p.title, p.article, p.recom, p.cnt, p.replycnt,
+                      p.passwd, p.word, p.rdate, p.file1,p.file1saved,
+                      p.thumb1, p.size1, p.youtube, p.ingredient, p.review, p.star, p.mname
+    FROM recipe p inner join recom c on p.recipeno = c.recipeno
+    WHERE c.memberno = #{memberno }
+    ORDER BY c.rdate DESC
+  </select>
+  
 </mapper> 

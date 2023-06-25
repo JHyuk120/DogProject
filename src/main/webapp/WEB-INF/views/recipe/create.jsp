@@ -13,6 +13,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
+<script>
+  function addSelectedCheckboxValues() {
+    var checkedValues = $('input[name="fruit"]:checked').map(function() {
+      return this.value;
+    }).get().join(', ');
+    var textareaVal = $('#'ingredient'').val(); // 기존 textarea의 값
+    $('#'ingredient'').val(ingredient + checkedValues); // textarea에 선택된 checkbox value 추가
+  }
+</script>
 </head> 
  
 <body>
@@ -62,23 +71,32 @@
        <input type='text' name='title' value='▸레시피 이름을 입력해주세요◂' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
-    
+    <br>
     <div>
        <label>재료</label>
-       <textarea name='ingredient' required="required" class="form-control" rows="12" style='width: 100%;'>
+       <div>
+        <input type="checkbox" name="fruit" value="apple">
+        <label for="fruit1">Apple</label>
+        <br>
+        <input type="checkbox" name="fruit" value="banana">
+        <label for="fruit2">Banana</label>
+        <br>
+        <input type="checkbox" name="fruit" value="grape">
+        <label for="fruit3">Grape</label>
+        </div>
+        <button onclick="addSelectedCheckboxValues()"> 추가하기 </button>
+        <textarea name='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'>
 🍚재료🍚
-
-    
-       </textarea>
+        </textarea>
     </div>
+    <br>
+    
     
     <div>
        <label>글</label>
-       <textarea name='article' required="required" class="form-control" rows="12" style='width: 100%;'>
+       <textarea name='article' required="required" class="form-control" rows="12" style="overflow-y: scroll"; 'width: 100%;'>
 🍚조리순서🍚
-
-
-</textarea>
+       </textarea>
     </div>  
       
     <div>

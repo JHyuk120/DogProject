@@ -95,8 +95,6 @@
         <c:set var="qnano" value="${qnaVO.qnano }" />
         <c:set var="rdate" value="${qnaVO.rdate.substring(0, 10)}" />
         <c:set var="mname" value="${qnaVO.mname }"/>
-        
-        
          
         <tr style="height: 50px;">
           <td style='vertical-align: middle; text-align: center;'>

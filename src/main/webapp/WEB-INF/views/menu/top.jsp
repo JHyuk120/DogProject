@@ -43,7 +43,7 @@
                         <c:choose>
                             <c:when test="${sessionScope.admin_id == null}">
                                 <a class="nav-link" href='/member/logout.do'>
-                                    <img src="/menu/images/unlock.png" class="icon" style='margin-left:10px'>&nbsp;logout
+                                    <img src="/menu/images/unlock.png" class="icon" style='margin-left:10px'>&nbsp;${sessionScope.mname }&nbsp;(logout)
                                 </a>
                             </c:when>
                         <c:otherwise>
@@ -66,6 +66,8 @@
                                         <img src="/menu/images/pheart.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 가입</a>
                                     <a class="dropdown-item" href="/member/read.do">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
+                                    <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
+                                        <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  ❤️ 목록</a>
                                     <a class="dropdown-item" href="/cart/list_by_memberno.do">
                                         <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  장바구니</a>
                                     <a class="dropdown-item" href="/pay/pay_list.do">

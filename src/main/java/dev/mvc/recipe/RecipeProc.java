@@ -291,6 +291,11 @@ import dev.mvc.tool.Tool;
         return list_a;
       }
 
+      @Override
+      public ArrayList<RecipeVO> memberList(int memberno) {
+        ArrayList<RecipeVO> list_m = this.recipeDAO.memberList(memberno);
+        return list_m;
+      }
  
 
 }
