@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dev.mvc.recommend.RecommendVO" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -20,10 +22,37 @@
 </head>
 <body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
-  <c:choose>
-    <c:when test="${sessionScope.id != null}">    
-    
-             <!-- 추천시스템 캐러셀 효과  넣기 -->
+
+<p>추천 레시피</p>
+<%--
+         <tbody>
+        <%
+          ArrayList<RecommendVO> list = (ArrayList<RecommendVO>) request.getAttribute("list");
+          if (list != null) {
+            for (int i=0; i < list.size(); i++) {
+                RecommendVO recommendVO = list.get(i);
+              String thumb1 = recommendVO.getThumb1();
+        %>
+        
+        <tr style="height: 112px;" class="hover">
+          <td style="vertical-align: middle; text-align: center;">
+            <% if (thumb1.endsWith("jpg") || thumb1.endsWith("png") || thumb1.endsWith("gif")) { %>
+              <img src="/dogproject/images/storage/<%= thumb1 %>" style="width: 130px; height: 90px;">
+            <% } else { %>
+              <img src="/images/ee.png" style="width: 130px; height: 90px;">
+            <% } %>
+          </td>
+        </tr>
+        
+        <%
+            }
+          }else{
+              %><p>NULL NULL NULL NULL NULL NULL NULL NULL NULL NULL NULL NULL NULL NULL </p><%
+          }
+        %>
+        </tbody>
+ --%>
+         <!-- 캐러셀 효과 배너 넣기 -->
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel"  style="width: 300px; height: 200px;">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -61,28 +90,13 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-    
-    </c:when>
-    <c:otherwise>
-          <p>로그인 안한 화면</p>
-          <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
-            <%-- /static/images/resort01.jpg --%>
-            <IMG src='/images/dog1.png' style='width: 60%;'>
-          </DIV>
-          
-          <DIV style='margin: 0px auto; width: 90%;'>
-            <DIV style='float: left; width: 50%;'>
-             </DIV>
-             <DIV style='float: left; width: 50%;'>
-            </DIV>  
-          </DIV>
-         
-          <DIV style='width: 94.8%; margin: 0px auto;'>
-          </DIV>  
-      </c:otherwise>
-  </c:choose>
+   
+
  
-<jsp:include page="./menu/bottom.jsp" flush='false' />
+  <DIV style='width: 94.8%; margin: 0px auto;'>
+  </DIV>  
+<jsp:include page="../menu/bottom.jsp" flush='false' />
  
 </body>
 </html>
+
