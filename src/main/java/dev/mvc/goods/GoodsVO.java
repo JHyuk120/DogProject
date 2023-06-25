@@ -34,6 +34,9 @@ public class GoodsVO {
   /** 그램수*/
   private int grams;
   
+  /** 수량 선택*/
+  private int cntc;
+  
   
   /** 검색어*/
 

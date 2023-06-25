@@ -150,7 +150,7 @@
           </strong>
          
          <DIV class='goods_line'></DIV>
-          <span style="color: #94E5CD; font-size: 0.8em;">${dc} %</span>
+          <span style="color: #42CFAB; font-size: 0.8em;">${dc} %</span>
            <del style="font-size: 0.4em; color: #D1D1D1"><fmt:formatNumber value="${price}" pattern="#,###" />원</del>
           <strong style="font-size: 0.99em;"><fmt:formatNumber value="${saleprice}" pattern="#,###" />원</strong><br>
           <img src="/cart/images/point.png" class="icon">
