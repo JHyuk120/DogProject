@@ -227,7 +227,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 <body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 15%; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
 
 <DIV class='content_body' style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
@@ -260,19 +260,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
       <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
       
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word}' class='input_word'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm'
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
-      </c:if>    
+   
     </form>
            <style>
           .btn-custom {
@@ -343,12 +331,11 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
             <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
             <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>   
             <del style= "color: #949494;" >￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br><br>
-                
-            <strong>남은 수량: <span>${cnt }</span></strong><br><br>
+               
             
             <style>
 						.table {
-						  width: 50%; /* 테이블 너비 */
+						  width: 40%; /* 테이블 너비 */
 						  margin: 0 auto; /* 가운데 정렬 */
 						  font-size: 1px; /* 테이블 폰트 크기 */
 						}
@@ -360,45 +347,61 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 						
 						</style>
 						
-						<table class="table table custom">
+						<table class="table table-sm">
 						  <thead>
 						    <tr>
-						      <th>Firstname</th>
-						      <th>Lastname</th>
-						      <th>Email</th>
+						      <th>상세옵션</th>
+						      <th>상품 기본정보 입니다.</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						    <tr>
-						      <td>John</td>
-						      <td>Doe</td>
-						      <td>john@example.com</td>
+						      <td>원산지</td>
+						      <td>${origin }</td>
 						    </tr>
 						    <tr>
-						      <td>Mary</td>
-						      <td>Moe</td>
-						      <td>mary@example.com</td>
+						      <td>유통기한</td>
+						      <td>${exdate }</td>
 						    </tr>
 						    <tr>
-						      <td>July</td>
-						      <td>Dooley</td>
-						      <td>july@example.com</td>
+						      <td>보관방법</td>
+						      <td>${storage }</td>
 						    </tr>
+                  <tr>
+                  <td>그램 수</td>
+                  <td>${grams }</td>
+                </tr>
+                <tr>
+                  <td>배송비</td>
+                  <td>3000원</td>
+                </tr>
+                <tr>
+                  <td>남은 수량</td>
+                  <td>${cnt }</td>
+                </tr> 
+                <tr>
+                  <td>수량 선택</td>
+                  <td>드롭메뉴</td>
+                </tr>                               						    
 						  </tbody>
 						</table>
           </DIV>
         </li>
+        
       
      
 <li class="li_none">
-  <div style='text-decoration: none; display: flex; flex-direction: row; margin-right: 100px;'>
-    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">
-      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+  <div style='margin-left: 500px; margin-top: 50px;'>
+
+    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">
+      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">&emsp;CART&emsp;
     </button>
 
-    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">&emsp;바로 구매&emsp;</button>
-
-    <button type='button' id='btn_ordering' class="btn btn-outline-dark btn-lg" onclick="cart_ajax(${goodsno })">&emsp;☆ wish&emsp;</button>
+    <button type='button' id='btn_ordering' class="btn btn-outline-dark btn-lg" style='margin-right: 5px;' onclick="cart_ajax(${goodsno })">&emsp;WISH&emsp;</button>
+    
+      
+    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 230px;' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
+  
   </div>
 </li>
 

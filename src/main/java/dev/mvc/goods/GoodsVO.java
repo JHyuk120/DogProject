@@ -21,6 +21,20 @@ public class GoodsVO {
   private String content;
   /** 품목 갯수 */
   private int cnt;
+  
+  /** 원산지 */
+  private String origin;
+  
+  /** 유통기한*/
+  private String exdate;
+  
+  /** 보관 방법*/
+  private String storage;
+  
+  /** 그램수*/
+  private int grams;
+  
+  
   /** 검색어*/
 
   private String word="";
