@@ -75,13 +75,13 @@ if (list.size() > 0){
         <TR>
         <TD class='td_bs'><%= itemVO.getSeqno() %></TD>
         <%
-        if (itemVO.getItemno() == 2){
+        if (itemVO.getItemno() == 6){
           %>
           <TD><A href="/goods/list_by_itemno_grid.do?itemno=<%=itemVO.getItemno() %>&now_page=1" ><%=itemVO.getItem() %></A></TD>  
           <%
         } else {
           %>
-          <TD><A href="/recipe/list_by_itemno.do?itemno=<%=itemVO.getItemno() %>&now_page=1" ><%=itemVO.getItem() %></A></TD>
+          <TD><A href="/recipe/list_by_itemno_grid.do?itemno=<%=itemVO.getItemno() %>&now_page=1" ><%=itemVO.getItem() %></A></TD>
           <%
         }
         %>
