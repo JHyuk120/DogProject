@@ -120,10 +120,8 @@ public interface GoodsDAOInter {
   */
   public int g_cnt(int goodsno);
   
-  /**
-   * 내가 찜한 항목 수
-   */
-  public int mycnt(int goodsno);
+
+  
   
   /**
   회원이 찜한 재료 목록
@@ -131,4 +129,10 @@ public interface GoodsDAOInter {
   @return
   */
   public ArrayList<GoodsVO> memberList(int memberno);
+  
+  /**
+   * goodsno 출력
+   */
+  public int select_goodsno(String gname);
+
 }

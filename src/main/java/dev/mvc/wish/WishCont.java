@@ -63,8 +63,8 @@ public class WishCont {
        if(cnt == 1) {
          mav.addObject("goodsVO",goodsVO);
         // this.goodsProc.wish_add(goodsVO.getGoodsno());// 수 늘려
-         int mycnt = this.wishProc.mycnt(goodsVO.getGoodsno());
-         mav.addObject("mycnt",mycnt);
+         //int mycnt = this.wishProc.mycnt(goodsVO.getGoodsno());
+        // mav.addObject("mycnt",mycnt);
          mav.setViewName("redirect:/goods/read.do?goodsno=" + goodsVO.getGoodsno());//새로고침
     
        }else {
@@ -91,6 +91,22 @@ public class WishCont {
   }
   
   /**
+   * 삭제
+   */
+  @RequestMapping(value = "/wish/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(HttpSession session, GoodsVO goodsVO) {
+    ModelAndView mav = new ModelAndView();
+    int memberno = (int)(session.getAttribute("memberno"));//회원번호 가져옴
+    int delete_wisih = this.wishProc.delete(memberno);
+    
+    mav.addObject("goodsVO", goodsVO);
+    //this.goodsProc.wish_sub(goodsVO.getGoodsno());
+    mav.setViewName("redirect:/wish/memberList.do?memberno=" + memberno); 
+
+    return mav; // forward
+  }
+  
+  /**
    * 오류 메시지
    * @param url
    * @return
@@ -105,5 +121,25 @@ public class WishCont {
   }
  
 
+  /**
+  
+  회원이 찜한 재료 항목
+  @param session
+  @return
+  */
+  @RequestMapping(value = "/wish/memberList.do", method = RequestMethod.GET)
+  public ModelAndView memberList(int memberno, HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    if (memberProc.isMember(session)) {
+      ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
+      mav.addObject("list_m", list_m);
+    } else {
+      mav.addObject("code", "member_fail");
+      mav.setViewName("redirect:/wish/msg.do");
+    }
 
+      return mav; 
+    }
+
+  
 }

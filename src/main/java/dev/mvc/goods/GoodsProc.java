@@ -284,10 +284,12 @@ import dev.mvc.tool.Tool;
         return list_m;
       }
 
+  
+
       @Override
-      public int mycnt(int goodsno) {
-        // TODO Auto-generated method stub
-        return 0;
+      public int select_goodsno(String gname) {
+         int cnt = this.goodsDAO.select_goodsno(gname);
+      return cnt;
       }
 
 

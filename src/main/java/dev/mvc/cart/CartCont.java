@@ -47,11 +47,13 @@ public class CartCont {
    */
   @RequestMapping(value="/cart/create.do",method=RequestMethod.POST)
   @ResponseBody
-  public String create(HttpSession session, int goodsno) {
+  public String create(HttpSession session, GoodsVO goodsVO) {
     //System.out.println("->CateCont insert()");
+    int cntc = goodsVO.getCntc();
     
     CartVO cartVO = new CartVO();
-    cartVO.setGoodsno(goodsno); //상품번호
+    cartVO.setGoodsno(goodsVO.getGoodsno()); //상품번호
+    cartVO.setCnt(cntc);
 
     int memberno = (Integer)session.getAttribute("memberno");
     cartVO.setMemberno(memberno); //회원번호
@@ -59,11 +61,13 @@ public class CartCont {
     //cartVO.setCnt(1); //최초 구매 수량을 1개로 지정
     
     int cnt = this.cartProc.create(cartVO);
+ 
+    System.out.println("cntc: "+ cntc);
     
     JSONObject json = new JSONObject();
     json.put("cnt", cnt);
     
- return json.toString();
+    return json.toString();
   }
   
   /**

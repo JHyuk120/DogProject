@@ -98,8 +98,8 @@
 
     <%-- 쇼핑 카트에 상품 추가 --%>
     function cart_ajax(goodsno) {
-      var f = $('#frm_login');
-      $('#goodsno', f).val(goodsno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장.
+/*       var f = $('#frm_login');
+      $('#goodsno', f).val(goodsno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장. */
       
       // console.log('-> goodsno: ' + $('#goodsno', f).val()); 
       
@@ -107,29 +107,25 @@
         $('#div_login').show();   // 로그인 폼 
       } else {  // 로그인 한 경우
        // alert('쇼핑카트에 insert 처리 Ajax 호출');
-         cart_ajax_post(); // 쇼핑카트에 상품 담기
+         cart_ajax_post(goodsno); // 쇼핑카트에 상품 담기
       }
   
     }
 
     <%-- 쇼핑카트 상품 등록 --%>
-    function cart_ajax_post() {
-      var f = $('#frm_login');
-      var goodsno = $('#goodsno', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
+    function cart_ajax_post(goodsno) {
+      //var f = $('#frm_order');
+      //var cntc = $('#cntc', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
+      let cntc = $('#cntc').val(); //form 태그를 무시하고 값을 추출, 페이지 안에서 같은 id가 사용되고 있지않은 경우 사용가능
       
       var params = "";
       // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-      params += 'goodsno=' + goodsno;
+      params += 'goodsno=' + goodsno + '&cntc=' + cntc;
       // alert('-> cart_ajax_post: ' + params);
       // return;
+      // 쇼핑카트 등록시 사용할 상품 번호.
       
-      var cntc = $('#cntc', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
-      
-      var params2 = "";
-      // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-      params2 += 'cnt=' + cntc;
-      // alert('-> cart_ajax_post: ' + params);
-      // return;
+
       
       $.ajax(
         {
@@ -138,7 +134,7 @@
           cache: false, // 응답 결과 임시 저장 취소
           async: true,  // true: 비동기 통신
           dataType: 'json', // 응답 형식: json, html, xml...
-          data: params, params2,      // 데이터
+          data: params,     // 데이터
           success: function(rdata) { // 응답이 온경우
             var str = '';
             // console.log('-> cart_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
@@ -435,17 +431,18 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
      
 <li class="li_none">
   <div style='margin-left: 570px; margin-top: 50px; display: flex;'>
+    <form name="frm_order" id="frm_order">
+      <input type="hidden" name="goodsno" value="${goodsno}" />
+      <input type="hidden" name="check" value="${check}" />
+      
+	    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
+	      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+	    </button>
 
-    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
-      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
-    </button>
-    <form name="frm" action="/wish/create.do" method="POST">
-  <input type="hidden" name="goodsno" value="${goodsno}" />
-  <input type="hidden" name="check" value="${check}" />
   
-  <c:choose>
+    <c:choose>
       <c:when test="${sessionScope.adminno != null}">
-        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+        <button type='button'onclick="favorite_ajax(${goodsno}) id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
       <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
       </c:when>
       <c:when test="${sessionScope.memberno == null}">
@@ -485,26 +482,50 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     
       <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
       <!-- 댓글 평점 별  -->
-      
-        <div class="stars">
-          <td  width="100" rowspan="2">${sessionScope.id } </td>
-          <span class="star" id="star_1" onclick="setStarRating(1)">&#9733;</span>
-          <span class="star" id="star_2" onclick="setStarRating(2)">&#9733;</span>
-          <span class="star" id="star_3" onclick="setStarRating(3)">&#9733;</span>
-          <span class="star" id="star_4" onclick="setStarRating(4)">&#9733;</span>
-          <span class="star" id="star_5" onclick="setStarRating(5)">&#9733;</span>
-          <input type="hidden" id="star-rating" value="0"/>
 
-          <td width="100" rowspan="2" id="star-output"> </td>
-        </div>
-        <td>
-          <div id="rating-display" >(0)</div>
-          <div>리뷰수: ${reviewcnt } </div>
-          <div>평점: ${ratingAVG } </div>
+        <div style='width: 70%; max-width: 70%; margin:0 auto; display: flex; align-items: center; font-size:20px; margin-bottom: 0.2%;'>
+        <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 
+
+
+				<div style='margin-left: 1%; color: #8E9187;'>리뷰수 ${reviewcnt}</div>
+				<div style='margin-left: 1%; color: #8E9187;'>평점 ${ratingAVG}</div>
+				
+				
+
         <div style='width: 70%; max-width: 70%; margin:0 auto; '>
-  <div style="display: flex; align-items: center; font-size:20px;"> 
-     <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 </div></div>   
-    
+        <div style="display: flex; align-items: center; font-size:20px;"> 
+
+     </div>  </div></div>
+     
+			<div class="stars" style="margin-right: 53%; margin-bottom: 0.5%;">
+			  <img src="/menu/images/pcircle.svg">
+			  <td width="100" rowspan="2">${sessionScope.id} : </td>
+			  <span class="star" id="star_1" onclick="setStarRating(1)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_2" onclick="setStarRating(2)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_3" onclick="setStarRating(3)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_4" onclick="setStarRating(4)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_5" onclick="setStarRating(5)" style="opacity: 0.2;">⭐</span>
+			  <div id="rating-display" style="display: inline; color: #838580;">(0) </div>
+			  <input type="hidden" id="star-rating" value="0" />
+			</div>
+			
+			<script>
+			  function setStarRating(rating) {
+			    var stars = document.getElementsByClassName('star');
+			    var ratingDisplay = document.getElementById('rating-display');
+			    var starRatingInput = document.getElementById('star-rating');
+			    for (var i = 0; i < stars.length; i++) {
+			      if (i < rating) {
+			        stars[i].style.opacity = '1';
+			      } else {
+			        stars[i].style.opacity = '0.2';
+			      }
+			    }
+			    ratingDisplay.textContent = '(' + rating + ')';
+			    starRatingInput.value = rating;
+			  }
+			</script>
+
     <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
     
     <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
