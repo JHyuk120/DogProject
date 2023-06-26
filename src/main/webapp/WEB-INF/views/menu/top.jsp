@@ -55,7 +55,10 @@
                     </li>
 
                     <c:choose>
-                        <c:when test="${sessionScope.admin_id == null}">
+                        <c:when test="${sessionScope.admin_id != null }">
+                        </c:when>
+                        
+                        <c:when test="${sessionScope.id == null}">
                             <li class="nav-item dropdown">
                                 <%-- 회원 서브 메뉴 --%>
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
@@ -64,10 +67,24 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/member/create.do">
                                         <img src="/menu/images/pheart.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 가입</a>
+                                   
+                                    <a class="dropdown-item" href="/member/idFind.do">
+                                        <img src="/menu/images/sheart.svg" class="icon" style='margin-left:5px'>&nbsp; 아이디 찾기</a>
+                                    <a class="dropdown-item" href="member/pwFind.do">
+                                        <img src="/menu/images/sh2.svg" class="icon" style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
+                                </div>
+                            </li>
+                        </c:when>
+                        
+                        <c:when test="${sessionScope.id != null }">
+                          <li class="nav-item dropdown">
+                                <%-- 회원 서브 메뉴 --%>
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <img src="/menu/images/pcircle.svg" class="icon" style='margin-left:20px'>&nbsp;마이페이지
+                                </a>
+                                <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/member/read.do">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
-                                    <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
-                                        <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  ❤️ 목록</a>
                                     <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
                                         <img src="/menu/images/save.png" class="icon" style='margin-left:5px'>&nbsp; 레시피 저장 목록</a>
                                     <a class="dropdown-item" href="/wish/memberList.do?memberno=${sessionScope.memberno }">
@@ -76,16 +93,31 @@
                                         <img src="/menu/images/cart4.svg" class="icon" style='margin-left:5px'>&nbsp;  장바구니</a>
                                     <a class="dropdown-item" href="/pay/pay_list.do">
                                         <img src="/menu/images/receipt.svg" class="icon" style='margin-left:5px'>&nbsp;결제 리스트</a>
-                                    <a class="dropdown-item" href="/member/idFind.do">
-                                        <img src="/menu/images/sheart.svg" class="icon" style='margin-left:5px'>&nbsp; 아이디 찾기</a>
-                                    <a class="dropdown-item" href="/member/pwFind.do">
-                                        <img src="/menu/images/sh2.svg" class="icon" style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
                                     <a class="dropdown-item" href="/member/delete_mem.do?memberno=${sessionScope.memberno}">
                                         <img src="/menu/images/px.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                                 </div>
                             </li>
                         </c:when>
+                                                
+                        <c:otherwise>
+                          
+                        </c:otherwise>
                     </c:choose>
+
+                      <ul class="navbar-nav float-right" style='margin-right: 10px'>
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                  <img src="/menu/images/call.png" class="icon"  style='margin-left:5px'>‍&nbsp;고객센터</a>
+          
+                              <div class="dropdown-menu">                       
+                                  <a class="dropdown-item" href="/notice/list_all.do">
+                                      <img src="/menu/images/a.png" class="icon"  style='margin-left:5px'>&nbsp; 공지사항</a>                         
+                                  <a class="dropdown-item" href="/qna/list_by_search.do">
+                                      <img src="/menu/images/qa.png" class="icon"  style='margin-left:5px'>&nbsp; Q&A</a>
+                              </div>
+                          </li>
+          
+                      </ul>
 
                     <c:choose>
                         <c:when test="${sessionScope.id != null  && sessionScope.admin_id == null}">
@@ -155,20 +187,7 @@
             </ul>
 
 
-            <ul class="navbar-nav float-right" style='margin-right: 10px'>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                        <img src="/menu/images/call.png" class="icon"  style='margin-left:5px'>‍&nbsp;고객센터</a>
-
-                    <div class="dropdown-menu">                       
-                        <a class="dropdown-item" href="/notice/list_all.do">
-                            <img src="/menu/images/a.png" class="icon"  style='margin-left:5px'>&nbsp; 공지사항</a>                         
-                        <a class="dropdown-item" href="/qna/list_by_search.do">
-                            <img src="/menu/images/qa.png" class="icon"  style='margin-left:5px'>&nbsp; Q&A</a>
-                    </div>
-                </li>
-
-            </ul>
+            
         </div>
     </nav>
 </DIV>

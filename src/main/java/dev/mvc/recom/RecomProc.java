@@ -27,8 +27,8 @@ public class RecomProc implements RecomProcInter{
   }
 
   @Override
-  public int delete(int memberno) {
-    int cnt = this.recomDAO.delete(memberno);
+  public int delete(RecomVO recomVO) {
+    int cnt = this.recomDAO.delete(recomVO);
     
     return cnt;
   }
