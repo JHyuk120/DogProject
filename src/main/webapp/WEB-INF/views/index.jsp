@@ -18,39 +18,38 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
 </head>
+<style>
+.gallery_container_rc {
+    display: flex;
+    flex-wrap: wrap;
+}
+.gallery_item_rc {
+    flex: 1 0 auto;
+}
+</style>
 <body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
-  <c:choose>
-    <c:when test="${sessionScope.id != null}">    
-    
-             <!-- 추천시스템 캐러셀 효과  넣기 -->
-      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel"  style="width: 300px; height: 200px;">
+   
+<!-- 광고 캐러셀 효과 -->
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-              <c:forEach var="recommendVO" items="${list}" varStatus="status">
-              <li data-target="#carouselExampleCaptions" data-slide-to="${status.index + 1}"></li>
-             </c:forEach>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/dogproject/images/b1.jfif" class="d-block w-100" alt="..."  style="width: 260px; height: 180px;">
+                <img src="/dogproject/images/b6.jpg" class="d-block w-100" alt="..."  >
+                 <div class="carousel-caption d-none d-md-block"></div>
               </div>
-              <c:forEach var="recommendVO" items="${list}" varStatus="status">
-              <c:set var="thumb1" value="${recommendVO.thumb1}" /> 
-              <div class="carousel-item">
-                    <c:choose>
-                      <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                        <center><IMG src="/recipe/storage/${thumb1}"  style="width: 260px; height: 180px;"></center>
-                      </c:when>
-                      <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: static/contents/images/none1.png  -->
-                        <center><IMG src="/images/dog1.png" style="width: 260px; height: 180px;"></center>
-                      </c:otherwise>
-                    </c:choose>
-                <div class="carousel-caption d-none d-md-block">
-                <p> ${recommendVO.title } </p>
-                </div>
+              <div class="carousel-item">              
+                    <IMG src="/dogproject/images/b4.jpg"  class="d-block w-100" >
+                     <div class="carousel-caption d-none d-md-block"></div>
               </div>
-              </c:forEach>
+              <div class="carousel-item">              
+                    <IMG src="/dogproject/images/b5.jpg"   class="d-block w-100">     
+              </div>
+                                                 
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -61,25 +60,97 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-    
+ <!-- 로그인 시 추천시스템  -->         
+  <c:choose>
+    <c:when test="${sessionScope.id != null}">  
+    <br>
+     <p style="font-size: 24px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">추천 레시피</p>
+        <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
+             <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
+              <c:set var="title" value="${recommendVO.title }" />
+              <c:set var="thumb1" value="${recommendVO.thumb1 }" />                
+              <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
+              <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
+              <div  onclick="location.href='./read.do?contentsno=${contentsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'
+               style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
+                
+                <c:choose> 
+                  <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
+                    <img src="/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                  </c:when>
+                  <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
+                    <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
+                  </c:otherwise>
+                </c:choose>
+                <strong>
+                    <c:choose>
+                      <c:when test="${title.length() > 20 }">
+                          ${title.substring(0, 20)}.....
+                      </c:when>
+                      <c:when test="${title.length() <= 20 }">
+                          ${title}
+                      </c:when>
+                    </c:choose>
+                </strong>
+              </div>           
+            </c:forEach>
+        </div>
+  <!-- 추천시스템 캐러셀 효과 -->      
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row">
+                    <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
+                        <div class="col">
+                        
+                            <c:choose> 
+                              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
+                                <img src="/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                              </c:when>
+                              <c:otherwise>
+                                <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
+                              </c:otherwise>
+                            </c:choose>
+                                         
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row">
+                    <c:forEach var="recommendVO" items="${list}" begin="5" end="9" varStatus="status">
+                        <div class="col">
+                             <c:choose> 
+                              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
+                                <img src="/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                              </c:when>
+                              <c:otherwise>
+                                <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
+                              </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
     </c:when>
     <c:otherwise>
-          <p>로그인 안한 화면</p>
-          <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
-            <%-- /static/images/resort01.jpg --%>
-            <IMG src='/images/dog1.png' style='width: 60%;'>
-          </DIV>
-          
-          <DIV style='margin: 0px auto; width: 90%;'>
-            <DIV style='float: left; width: 50%;'>
-             </DIV>
-             <DIV style='float: left; width: 50%;'>
-            </DIV>  
-          </DIV>
-         
-          <DIV style='width: 94.8%; margin: 0px auto;'>
-          </DIV>  
-      </c:otherwise>
+ 
+    </c:otherwise>
   </c:choose>
  
 <jsp:include page="./menu/bottom.jsp" flush='false' />
