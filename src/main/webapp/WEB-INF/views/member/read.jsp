@@ -196,6 +196,12 @@
 
     $('#frm').submit(); // required="required" 작동 안됨.
   }  
+
+  function RecommendForm(memberno) {
+      var url = "http://localhost:8001/ais/recommend_form/?memberno=" + memberno;
+      window.location.href = url;
+  }
+  
 </script>
 
 <style>
@@ -390,8 +396,9 @@
     </div>
     
     <div class="form_input" >
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="width: 100px; height:50px; margin-left:255px;">수정</button>
-      <button type="button" onclick="history.back()" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/back.png" class="icon" style="width:30px"></button>
+     <button type="button" id="btn_send" onclick="RecommendForm(${memberVO.memberno})" class="btn btn-dark" style="width: 115px; height: 60px;  margin-left:255px;">관심 분야 변경하기</button>
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="width: 100px; height:60px; ">수정</button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark" style='width:70px; height:60px;'><img src="/member/images/back.png" class="icon" style="width:30px"></button>
     </div>   
   </FORM>
   </DIV>
