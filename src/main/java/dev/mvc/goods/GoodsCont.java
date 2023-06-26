@@ -258,12 +258,12 @@ public class GoodsCont {
     mav.addObject("mname", mname);
 
     mav.setViewName("/goods/read"); // /WEB-INF/views/goods/read.jsp
-    
+    //댓글 read
     ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
     String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
     mav.addObject("list", list);
- 
+    
     // 게시물 별 리뷰 평점
     float ratingAVG = this.reviewProc.ratingAVG(goodsno);
     mav.addObject("ratingAVG", ratingAVG);

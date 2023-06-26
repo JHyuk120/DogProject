@@ -639,8 +639,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           
               <td style='vertical-align: middle; text-align: center; '>
                 <div>
-                  <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/
-                  <a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a>
+
+                        <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/
+                        <a href="/review/delete.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제 ${reviewVO.memberno }</a>
+
                 </div>
               </td>
             </tr>
