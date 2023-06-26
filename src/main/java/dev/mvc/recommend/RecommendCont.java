@@ -36,10 +36,14 @@ public class RecommendCont {
         ModelAndView mav = new ModelAndView();
         int memberno = (int) session.getAttribute("memberno");
         int itemno = this.recommendProc.recommend_read(memberno);
-        mav.addObject("itemno", itemno);
-        ArrayList<RecommendVO> list = this.recommendProc.recommend(itemno);
-        mav.addObject("list", list);
-        mav.setViewName("/recommend/list_recommend"); // JSP 페이지 설정
+        if( itemno != 0) {          
+            mav.addObject("itemno", itemno);
+            ArrayList<RecommendVO> list = this.recommendProc.recommend(itemno);
+            mav.addObject("list", list);
+            mav.setViewName("/index"); // JSP 페이지 설정
+        } else {
+            mav.setViewName("/index");
+        }
         return mav;
     }
 
