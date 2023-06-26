@@ -136,7 +136,7 @@
                                     <a class="dropdown-item" href='/detail/order_list.do'>
                                         <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 고객 주문 사항</a>
                                     <a class="dropdown-item" href='/recom/adminList.do'>
-                                        <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 좋아요 많은 글</a>
+                                        <img src="/menu/images/save.png" class="icon"  style='margin-left:5px'>&nbsp; 저장 많은 글</a>
                                     <a class="dropdown-item" href='/admin/logout.do'>
                                         <img src="/menu/images/user2.png" class="icon"  style='margin-left:5px'>&nbsp; 관리자 [${sessionScope.admin_id }] 로그아웃</a>
 

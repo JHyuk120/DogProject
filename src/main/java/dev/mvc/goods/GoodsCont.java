@@ -274,7 +274,7 @@ public class GoodsCont {
    
    // 찜 관련 시작 ------------------------------------------------
    
-   // 좋아요 확인
+   // 찜 확인
    if (memberProc.isMember(session)) {
      int memberno = (int) (session.getAttribute("memberno"));
      wishVO.setMemberno(memberno);
