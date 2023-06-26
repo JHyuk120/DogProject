@@ -59,7 +59,7 @@
                  // $('#div_login').hide(); // 로그인폼 감추기
                   //alert('로그인 성공');
                   $('#login_yn').val('Y');
-                  window.location.href = "/";
+                  window.location.href = "/recommend.do";
                   
                 } else {
                   alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
@@ -106,11 +106,18 @@
         <div class="form_input" >
           <input type='password' class="form-control" name='passwd' id='passwd' 
                     value='${ck_passwd }' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;" placeholder="패스워드">
-          <Label style='margin-bottom:40px; margin-left:170px;'>
+          <Label style=' margin-left:170px;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
-          </Label>                    
-        </div>   
-      
+          </Label>                
+        </div>  
+        <div style="margin-left:310px; margin-bottom:55px; ">
+           <A href="./idFind.do" style="font-size:14px; font-weight: bold;">아이디 찾기</A>
+              <span class='menu_divide' >│</span>
+              <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
+        </div>
+
+ 
+
       </FORM>
     </div>
    
