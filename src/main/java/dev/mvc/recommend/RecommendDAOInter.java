@@ -15,6 +15,7 @@ public interface RecommendDAOInter {
      * @return
      */
     public ArrayList<RecommendVO> recommend(int itemno);
+    
    
         
 }

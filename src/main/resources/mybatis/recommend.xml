@@ -29,7 +29,7 @@
   )
   WHERE r >= 1 AND 10 >= r
 </select>
-<select id="">
-</select>
+
+
 </mapper>
 

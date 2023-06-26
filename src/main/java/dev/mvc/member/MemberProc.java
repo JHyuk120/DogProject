@@ -111,6 +111,12 @@ public class MemberProc implements MemberProcInter {
     return cnt;
   }
 
+@Override
+public int recommend_memberno(MemberVO memberVO) {
+    int memberno = this.memberDAO.recommend_memberno(memberVO);
+    return memberno;
+}
+
 
 
 
