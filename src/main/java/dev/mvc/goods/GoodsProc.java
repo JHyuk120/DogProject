@@ -290,6 +290,7 @@ import dev.mvc.tool.Tool;
         return 0;
       }
 
+      
       @Override
       public int select_goodsno(String gname) {
          int cnt = this.goodsDAO.select_goodsno(gname);

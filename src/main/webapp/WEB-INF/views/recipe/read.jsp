@@ -194,7 +194,24 @@ function checkLoginStatus() {
                 style="width: 25%; height: 250px; float: left; margin-top: 0.5%; margin-right:5%; margin-left: 20px; margin-bottom: 5px;"> 
             </c:otherwise>
             </c:choose>
-            <div style='float: left; margin-left: 110px'>${ingredient}</div><br>          
+            
+            
+            <div style='float: left; margin-left: 110px'>🍚재료🍚<br><br>
+              <form name="frm" action="/cart/create.do" method="POST">
+                  <input type="hidden" name="recipeno" value="${recipeno}" />
+                  
+                <table class="table table">
+                  <c:forEach var="map" items="${map}">
+                    <tbody>
+                      <tr>
+                        <th>${(map.key)}</th>
+                        <th><button type=submit id=${(map.value)} style='border-radius: 10px;'>구매</button></th>
+                      </tr>
+                    </tbody>
+                  </c:forEach>
+                </table>
+              </form>
+            </div><br>          
         </DIV>
       </li>
       
@@ -207,8 +224,8 @@ function checkLoginStatus() {
       </c:if>
         
      <li class="li_none" style="clear: both;">
-        <DIV style='text-decoration: none;'>
-            <br><br>
+        <DIV style='text-decoration: none;'>🍚조리순서🍚
+            <br>
             ${article }
         <br>
           검색어(키워드): ${word }
