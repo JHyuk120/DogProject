@@ -111,9 +111,35 @@ function setFocus() {  // focus 이동
 	
 </script> 
 
-</head>  
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
+</head> 
+ 
   <body>
 <c:import url="/menu/top.do" />
+
 <!-- ******************** Modal 알림창 시작 ******************** -->
   <div id="modal_panel" class="modal fade"  role="dialog">
     <div class="modal-dialog">
@@ -134,20 +160,17 @@ function setFocus() {  // focus 이동
     </div>
   </div>
   <!-- ******************** Modal 알림창 종료 ******************** -->
-    
 
-  <ASIDE class="aside_right" style="margin-right:20px;">
+   <DIV class='content_body'> 
+  <DIV style='text-align: center; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; font-size:30px; font-weight: bold;'>아이디 찾기</DIV>
+    <ASIDE class="aside_right" style="float: right;">
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./list.do'>목록</A>
-  </ASIDE> 
-  <br>
- 
-  <DIV style='text-align: center; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; font-size:30px; font-weight: bold;'>아이디 찾기</DIV>
 
-  <DIV class='content_body'> 
+  </ASIDE> 
+
+
     <DIV style='width: 40%;  margin: 0px auto; '>
 <FORM name='memberVO' id='frm' method='POST' action='/member/idFind.do' class="">
   <div class="form_input">
