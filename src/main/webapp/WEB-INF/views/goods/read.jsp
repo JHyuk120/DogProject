@@ -431,7 +431,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
      
 <li class="li_none">
   <div style='margin-left: 570px; margin-top: 50px; display: flex;'>
-    <form name="frm_order" id="frm_order">
+    <form name="frm_order" id="frm_order" action="/wish/create.do" method="POST">
       <input type="hidden" name="goodsno" value="${goodsno}" />
       <input type="hidden" name="check" value="${check}" />
       
@@ -451,7 +451,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       </c:when>
       <c:when test="${check == 1}">
         <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
-      <img src="/goods/images/pullhrt.png" class="icon" style="width:30px; margin-bottom:3px;"></button>
+      <img src="/goods/images/pullhrt.png" class="icon" style="width:25px; margin-bottom:3px;"></button>
       </c:when>
       <c:otherwise>
         <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
