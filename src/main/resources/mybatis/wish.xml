@@ -23,5 +23,11 @@ WHERE goodsno = #{goodsno} AND memberno = #{memberno}
 DELETE FROM wish WHERE memberno = #{memberno}
 
 </delete>
-
+  <!--찜한 재료 수량 확인 -->
+<!--   <select id="mycnt" resultType="int" parameterType="int">
+  SELECT count(goodsno) as cnt 
+  FROM wish
+  WHERE memberno = #{memberno}
+  </select>
+ -->
 </mapper>

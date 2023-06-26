@@ -707,25 +707,7 @@ public class GoodsCont {
    return "";
  }
  
-/**
- 
- 회원이 찜한 재료 항목
- @param session
- @return
- */
- @RequestMapping(value = "/wish/memberList.do", method = RequestMethod.GET)
- public ModelAndView memberList(int memberno, HttpSession session) {
-   ModelAndView mav = new ModelAndView();
-   if (memberProc.isMember(session)) {
-     ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
-     mav.addObject("list_m", list_m);
-   } else {
-     mav.addObject("code", "member_fail");
-     mav.setViewName("redirect:/wish/msg.do");
-   }
 
-     return mav; 
-   }
  
  
 }
