@@ -28,25 +28,52 @@ if (list.size() > 0){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+   <style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
-<%-- <jsp:include page="../menu/top.jsp" flush='false' />   -- 구형 --%> 
- 
-<DIV class='title_line'>전체 품목</DIV>
 
 <DIV class='content_body'>
-  <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
+
+<%-- <jsp:include page="../menu/top.jsp" flush='false' />   -- 구형 --%> 
+<DIV> 
+    <img src="/menu/images/list.png" class="icon0" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px; '>전체 카테고리 목록</span>
+</DIV> 
+
+  <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #FFFCDB; width: 100%; text-align: center;'>
     <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'>
       <label>품목명</label>
-      <input type='text' name='item' value='' required="required" style='width: 35%;' margin-right= 10px; autofocus="autofocus">
+      <input type='text' name='item' value='' required="required"  autofocus="autofocus" style='width: 25%; margin-right: 1%; margin-left: 0.5%;'>
       
       <label>순서 지정</label>
-      <input type='number' name='seqno' min="1" value=<%=seqno + 1%> required="required" style='width: 5%;'>
+      <input type='number' name='seqno' min="1" value=<%=seqno + 1%> required="required" style='width: 5%; margin-right: 1%; argin-left: 0.5%;'>
   
-      <button type="submit" id='submit' class='btn btn-success btn-sm'>등록</button>
-      <button type="button" onclick="cancel();" class='btn btn-info btn-sm'>취소</button>
+      <button type="submit" id='submit' class='btn btn-dark btn-sm'>등록</button>
+      <button type="button" onclick="cancel();" class='btn btn-outline-dark btn-sm'>취소</button>
     </FORM>
   </DIV>
 
@@ -87,19 +114,19 @@ if (list.size() > 0){
         %>
         <TD class='td_bs'><%=itemVO.getCnt() %></TD>
          <TD class='td_bs'>
-         <a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/item/images/update.png" class=icon></a>
-         <a href="./update_seqno_decrease.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 높이기"><IMG src="/item/images/increase.png" class=icon></a>
-         <a href="./update_seqno_increase.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 낮추기"><IMG src="/item/images/decrease.png" class=icon></a>
-         <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/item/images/delete.png" class=icon></a>
+         <a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/item/images/update.png" class=icon>/</a>
+         <a href="./update_seqno_decrease.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 높이기"><IMG src="/item/images/increase.png" class=icon>/</a>
+         <a href="./update_seqno_increase.do?itemno=<%=itemVO.getItemno() %>" title="우선순위 낮추기"><IMG src="/item/images/decrease.png" class=icon>/</a>
+         <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/item/images/dele.png" class=icon>/</a>
         
         <%
         if(itemVO.getVisible().equals("Y")) {
           %>
-        <a href="./update_visible_n.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/item/images/show.png" class=icon></a>  
+        <a href="./update_visible_n.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/item/images/show1.png" class=icon></a>  
           <%
         } else {// N
           %>
-          <a href="./update_visible_y.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/item/images/hide.png" class=icon></a>
+          <a href="./update_visible_y.do?itemno=<%=itemVO.getItemno()%>"><IMG src="/item/images/hide1.png" class=icon></a>
           <%
         }
         

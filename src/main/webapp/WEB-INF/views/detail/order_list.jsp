@@ -23,14 +23,44 @@ $(function(){
 });
 </script>
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
+ 
  
 <body>
 <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>
-    고객님의 주문 사항
-  </DIV>
+   <DIV class='content_body'>
+  <DIV>
+    <img src="/menu/images/commu.png" class="icon0" style='margin-left:10px; margin-right:10px;'> <span style='font-size: 30px;'>고객 주문사항</span>
+</DIV>
+
+  <DIV class='bottom_menu'>
+    <button type='button' onclick="location.reload();" class="btn btn-outline-secondary" style='float: right; margin-bottom: 1%;'>새로 고침</button>
+  </DIV><br>
    
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
@@ -91,9 +121,6 @@ $(function(){
     
   </TABLE>
    
-  <DIV class='bottom_menu'>
-    <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
-  </DIV>
 </DIV>
  
 <jsp:include page="../menu/bottom.jsp" flush='false' />

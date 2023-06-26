@@ -28,12 +28,39 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
     
     
-</head> 
+</head>
+
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color: #FEFCF0;
+  }
+
+  .fieldset_basic {
+    width: 100%;
+    height: 100%;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+  
+
+</style>
+</head>
  
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢공지사항</DIV>
+<DIV style='background-color:#FEFCF0; margin-right: 60%; font-size: 30px;'><img src="/menu/images/notice.png" class="icon1"> 공지사항</DIV>
+
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -59,7 +86,9 @@
   <fieldset class="fieldset_basic">
     <ul>
       <li class="li_none">
-        <DIV style="width:100%;">
+      <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
+      <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+      
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/notice/storage/ --%>
@@ -68,18 +97,15 @@
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/dogproject/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
               </c:otherwise>
-            </c:choose>
-          
-         <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-         <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
-        ${content }
-        </DIV>
+            </c:choose><br>
+         
+        <div style="float: left;">${content }</div>
       </li>
   
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
         <br>
-          검색어(키워드): ${word }
+          <img src="/menu/images/words.png" class="icon0"> :  ${word }
         </DIV>
       </li>
       <li class="li_none">

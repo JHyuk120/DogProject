@@ -23,16 +23,41 @@
 	
   });
 </script>
+
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
- 
-  <DIV class='title_line'>
-    회원(관리자 전용)
-  </DIV>
+
 
   <DIV class='content_body'>
+  <DIV>
+    <img src="/menu/images/team.png" class="icon0" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 회원목록</span>
+</DIV> 
 
     <ASIDE class="aside_right">
       <A href="javascript:location.reload();">새로고침</A>
@@ -91,8 +116,8 @@
       <TD class='td_basic'>${mdate.substring(0, 10)}</TD> <%-- 년월일 --%>
       <TD class='td_basic'>
       
-        <A href="./passwd_update.do?memberno=${memberno}"><IMG src='/member/images/update.png' title='수정' class="icon"></A>
-        <A href="./delete.do?memberno=${memberno}"><IMG src='/member/images/delete.png' title='삭제' class="icon"></A>
+        <A href="./passwd_update.do?memberno=${memberno}"><IMG src='/item/images/update.png' title='수정' class="icon"> /</A>
+        <A href="./delete.do?memberno=${memberno}"><IMG src='/item/images/dele.png' title='삭제' class="icon"></A>
       </TD>
       
     </TR>
@@ -101,8 +126,8 @@
   </TABLE>
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.href='./create.do'" class="btn btn-info">등록</button>
-    <button type='button' onclick="location.reload();" class="btn btn-info">새로 고침</button>
+   <button type='button' onclick="location.reload();" class="btn btn-outline-dark">새로고침</button>
+    <button type='button' onclick="location.href='./create.do'" class="btn btn-dark">회원 추가 등록</button>
   </DIV>
 </DIV>
  
