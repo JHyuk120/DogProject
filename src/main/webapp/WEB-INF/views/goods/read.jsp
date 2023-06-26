@@ -483,29 +483,49 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
       <!-- 댓글 평점 별  -->
 
-        <div class="stars">
-          <td  width="100" rowspan="2">${sessionScope.id } </td>
-          <span class="star" id="star_1" onclick="setStarRating(1)">⭐</span>
-          <span class="star" id="star_2" onclick="setStarRating(2)">⭐</span>
-          <span class="star" id="star_3" onclick="setStarRating(3)">⭐</span>
-          <span class="star" id="star_4" onclick="setStarRating(4)">⭐</span>
-          <span class="star" id="star_5" onclick="setStarRating(5)">⭐</span>
-          <input type="hidden" id="star-rating" value="0"/>
-          <div id="rating-display" >(0)</div>
-       </div>
-          
         <div style='width: 70%; max-width: 70%; margin:0 auto; display: flex; align-items: center; font-size:20px; margin-bottom: 0.2%;'>
         <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 
 
 
 				<div style='margin-left: 1%; color: #8E9187;'>리뷰수 ${reviewcnt}</div>
 				<div style='margin-left: 1%; color: #8E9187;'>평점 ${ratingAVG}</div>
+				
+				
 
         <div style='width: 70%; max-width: 70%; margin:0 auto; '>
         <div style="display: flex; align-items: center; font-size:20px;"> 
 
      </div>  </div></div>
-    
+     
+			<div class="stars" style="margin-right: 53%; margin-bottom: 0.5%;">
+			  <img src="/menu/images/pcircle.svg">
+			  <td width="100" rowspan="2">${sessionScope.id} : </td>
+			  <span class="star" id="star_1" onclick="setStarRating(1)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_2" onclick="setStarRating(2)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_3" onclick="setStarRating(3)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_4" onclick="setStarRating(4)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_5" onclick="setStarRating(5)" style="opacity: 0.2;">⭐</span>
+			  <div id="rating-display" style="display: inline; color: #838580;">(0) </div>
+			  <input type="hidden" id="star-rating" value="0" />
+			</div>
+			
+			<script>
+			  function setStarRating(rating) {
+			    var stars = document.getElementsByClassName('star');
+			    var ratingDisplay = document.getElementById('rating-display');
+			    var starRatingInput = document.getElementById('star-rating');
+			    for (var i = 0; i < stars.length; i++) {
+			      if (i < rating) {
+			        stars[i].style.opacity = '1';
+			      } else {
+			        stars[i].style.opacity = '0.2';
+			      }
+			    }
+			    ratingDisplay.textContent = '(' + rating + ')';
+			    starRatingInput.value = rating;
+			  }
+			</script>
+
     <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
     
     <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
