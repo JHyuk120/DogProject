@@ -165,4 +165,11 @@ FROM goods g inner join wish w on g.goodsno = w.goodsno
 WHERE w.memberno =#{memberno }
 ORDER BY w.rdate DESC
 </select>
+
+  <!--  재료명으로 재료번호 추출하기 -->
+  <select id="select_goodsno" resultType="int" parameterType="string">
+    SELECT goodsno 
+    FROM goods
+    WHERE gname = #{gname}
+  </select>
 </mapper>

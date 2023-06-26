@@ -57,7 +57,7 @@
 
   <ASIDE class="aside_right">
     <c:choose>
-      <c:when test="${sessionScope.isMember == null }">
+      <c:when test="${sessionScope.id == null }">
       </c:when>
       <c:otherwise>
             <A href="./create.do?itemno=${itemVO.itemno }">📝레시피 등록</A>

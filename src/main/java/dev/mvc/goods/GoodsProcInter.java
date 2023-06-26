@@ -140,4 +140,9 @@ public interface GoodsProcInter {
   @return
   */
   public ArrayList<GoodsVO> memberList(int memberno);
+  
+  /**
+   * goodsno 출력
+   */
+  public int select_goodsno(String gname);
 }
