@@ -83,11 +83,9 @@
         <div>
           <tbody>
             <c:forEach var="goodsVO" items="${list}">
-
               <c:set var="gname" value="${goodsVO.gname}"/>
-
                 <input type="checkbox" id="gname" name="gname" value="${gname }">
-                <label for="gname">${gname }</label>
+                  <label>${gname }</label>
             </c:forEach>
           </tbody>
         </div>
