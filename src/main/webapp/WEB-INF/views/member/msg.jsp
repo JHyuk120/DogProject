@@ -15,6 +15,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
 </head> 
 <body>
 <c:import url="/menu/top.do" />
@@ -123,41 +130,33 @@
         
         <c:when test="${param.code == 'review_update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">리뷰 수정은 작성자에게만 허용된 작업입니다. 자신이 작성한 리뷰만 수정할 수 있습니다.</span>
+            <span class="span_fail">리뷰 수정은 작성자에게만 허용된 작업입니다. <br>자신이 작성한 리뷰만 수정할 수 있습니다.</span>
             <br>
-             <button type='button' 
-                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
-                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+             <button onclick="goBack()"  class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>이전 페이지로 돌아가기</button>
           </LI>                                                                      
         </c:when> 
         
         <c:when test="${param.code == 'review_delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">리뷰 삭제는 작성자에게만 허용된 작업입니다. 자신이 작성한 리뷰만 삭제할 수 있습니다.</span>
+            <span class="span_fail">리뷰 삭제는 작성자에게만 허용된 작업입니다. <br>자신이 작성한 리뷰만 삭제할 수 있습니다.</span>
             <br>
-             <button type='button' 
-                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
-                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+             <button onclick="goBack()"  class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>이전 페이지로 돌아가기</button>
           </LI>                                                                      
         </c:when> 
         
          <c:when test="${param.code == 'reply_update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">댓글 수정은 작성자에게만 허용된 작업입니다. 자신이 작성한 댓글만 수정할 수 있습니다.</span>
+            <span class="span_fail">댓글 수정은 작성자에게만 허용된 작업입니다.<br> 자신이 작성한 댓글만 수정할 수 있습니다.</span>
             <br>
-             <button type='button' 
-                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
-                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+            <button onclick="goBack()"  class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>이전 페이지로 돌아가기</button>
           </LI>                                                                      
         </c:when> 
         
          <c:when test="${param.code == 'reply_delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">댓글 삭제는 작성자에게만 허용된 작업입니다. 자신이 작성한 댓글만 삭제할 수 있습니다.</span>
+            <span class="span_fail">댓글 삭제는 작성자에게만 허용된 작업입니다.<br> 자신이 작성한 댓글만 삭제할 수 있습니다.</span>
             <br>
-             <button type='button' 
-                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
-                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+             <button onclick="goBack()"  class="btn btn-dark" style='width:200px; height:50px; margin-top:70px;'>이전 페이지로 돌아가기</button>
           </LI>                                                                      
         </c:when>                       
         

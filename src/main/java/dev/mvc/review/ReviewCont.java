@@ -163,7 +163,8 @@ public class ReviewCont {
                   mav.setViewName("/review/review_update");
               } else {
                   mav.addObject("code", "review_update_fail");
-                  mav.setViewName("/member/msg.do");
+                  mav.addObject("url", "/member/msg");
+                  mav.setViewName("redirect:/member/msg.do");            
                   }
           } else {
               mav.setViewName("/member/login_need.do");
@@ -295,7 +296,8 @@ public class ReviewCont {
              }
              else {
                  mav.addObject("code", "review_delete_fail");
-                 mav.setViewName("/member/msg.do");                 
+                 mav.addObject("url", "/member/msg");
+                 mav.setViewName("redirect:/member/msg.do");                         
              }
          } else {
              mav.setViewName("/member/login_need");
