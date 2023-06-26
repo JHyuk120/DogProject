@@ -73,14 +73,6 @@ public class ReplyCont {
            mav.addObject("code", "reply_create_fail");
          }
      }
-     else if(adminProc.isAdmin(session)) {
-         if (cnt == 1) {
-             mav.addObject("recipe", recipeVO);
-             mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno());
-         } else {
-           mav.addObject("code", "reply_create_fail");
-         }
-     }
       else {
          mav.addObject("url", "/member/login_need"); 
          mav.setViewName("redirect:/reply/msg.do"); 
@@ -99,24 +91,35 @@ public class ReplyCont {
    * @return
    */
   @RequestMapping(value="/reply/update.do", method=RequestMethod.GET)
-  public ModelAndView reply_update (int replyno, int recipeno, ReplyVO replyVO ){ 
+  public ModelAndView reply_update (HttpSession session, int replyno, int recipeno, ReplyVO replyVO ){ 
       ModelAndView mav = new ModelAndView();
-      RecipeVO recipeVO = this.recipeProc.read(recipeno);
-      mav.addObject("recipeVO", recipeVO);
+      //현재 로그인된 id
+      String currentUserId = (String) session.getAttribute("id");
+      ReplyVO replyVOmid = this.replyProc.reply_read(replyVO.getReplyno());
       
-      ReplyVO reply2VO = this.replyProc.reply_read(replyno);
-      mav.addObject("replyVO", reply2VO);
-      
-      
-      // 댓글 조회
-      
-      ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
-      mav.addObject("list", list);
-      String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
-      mav.addObject("paging", paging);
-      
+      if (replyVOmid != null) {
+          if(replyVOmid.getMid().equals(currentUserId)) {
+              RecipeVO recipeVO = this.recipeProc.read(recipeno);
+              mav.addObject("recipeVO", recipeVO);
+              ReplyVO reply2VO = this.replyProc.reply_read(replyno);
+              mav.addObject("replyVO", reply2VO);        
+              mav.setViewName("/reply/read_update");
+              // 댓글 조회  
+              ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
+              mav.addObject("list", list);
+              String paging = replyProc.pagingBox(replyVO.getRecipeno(), replyVO.getNow_page(),"read.do");
+              mav.addObject("paging", paging);
+          }else {
+              mav.addObject("code", "reply_update_fail");
+              mav.addObject("url", "/member/msg");
+              mav.setViewName("redirect:/member/msg.do");              
+          }
+      }
+      else {
+          mav.setViewName("./reply/login_need");
+      }
 
-    mav.setViewName("/reply/read_update");
+
     return mav;
   }
   /**
@@ -129,30 +132,12 @@ public class ReplyCont {
   * @return
   */
   @RequestMapping(value = "/reply/update.do", method = RequestMethod.POST)
-  public ModelAndView reply_update(HttpSession session, ReplyVO replyVO,int recipeno) {
+  public ModelAndView reply_update(ReplyVO replyVO,int recipeno) {
       ModelAndView mav = new ModelAndView();
-      //현재 로그인된 id
-      String currentUserId = (String) session.getAttribute("id");
-      ReplyVO replyVOmid = this.replyProc.reply_read(replyVO.getReplyno());
-      System.out.println("-> id: "+ currentUserId);
-      
-      //로그인 확인 출력
-      if(currentUserId != null) {
-          System.out.println("User logged in with id: " + currentUserId);
-      } else {
-          System.out.println("No user is currently logged in");
-      }
-
-      
-      // 아이디 확인
-      if (replyVOmid != null && replyVOmid.getMid().equals(currentUserId)) {
           this.replyProc.reply_update(replyVO);
           mav.addObject("replyno", replyVO.getReplyno());
           mav.addObject("recipeno", recipeno);
           mav.setViewName("redirect:/recipe/read.do");
-      } else {
-          mav.setViewName("./reply/login_need");
-      }
       return mav;
   }
   
@@ -174,16 +159,18 @@ public class ReplyCont {
      ReplyVO replyVOmid = this.replyProc.reply_read(replyno);
 
      // 아이디 확인
-     if (replyVOmid != null && replyVOmid.getMid().equals(currentUserId)) {
-         this.replyProc.reply_delete(replyno);
-         mav.addObject("replyno", replyVO.getReplyno());
-         mav.addObject("recipeno", recipeno);
-         mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
-     } else if(adminProc.isAdmin(session)) {
-         this.replyProc.reply_delete(replyno);
-         mav.addObject("replyno", replyVO.getReplyno());
-         mav.addObject("recipeno", recipeno);
-         mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
+     if (replyVOmid != null) {
+         if(replyVOmid.getMid().equals(currentUserId)) {
+             this.replyProc.reply_delete(replyno);
+             mav.addObject("replyno", replyVO.getReplyno());
+             mav.addObject("recipeno", recipeno);
+             mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeno);
+         }
+         else {
+             mav.addObject("code", "reply_delete_fail");
+             mav.addObject("url", "/member/msg");
+             mav.setViewName("redirect:/member/msg.do");           
+         }
      }
      else {
          mav.setViewName("./reply/login_need");

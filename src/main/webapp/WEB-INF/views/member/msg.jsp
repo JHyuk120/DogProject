@@ -121,7 +121,7 @@
           </LI>                                                                      
         </c:when> 
         
-                 <c:when test="${param.code == 'review_update_fail'}"> <%-- Java if --%>
+        <c:when test="${param.code == 'review_update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
             <span class="span_fail">리뷰 수정은 작성자에게만 허용된 작업입니다. 자신이 작성한 리뷰만 수정할 수 있습니다.</span>
             <br>
@@ -130,6 +130,36 @@
                          class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
           </LI>                                                                      
         </c:when> 
+        
+        <c:when test="${param.code == 'review_delete_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">리뷰 삭제는 작성자에게만 허용된 작업입니다. 자신이 작성한 리뷰만 삭제할 수 있습니다.</span>
+            <br>
+             <button type='button' 
+                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+          </LI>                                                                      
+        </c:when> 
+        
+         <c:when test="${param.code == 'reply_update_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">댓글 수정은 작성자에게만 허용된 작업입니다. 자신이 작성한 댓글만 수정할 수 있습니다.</span>
+            <br>
+             <button type='button' 
+                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+          </LI>                                                                      
+        </c:when> 
+        
+         <c:when test="${param.code == 'reply_delete_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">댓글 삭제는 작성자에게만 허용된 작업입니다. 자신이 작성한 댓글만 삭제할 수 있습니다.</span>
+            <br>
+             <button type='button' 
+                         onclick="location.href='/goods/list_by_itemno_grid.do?itemno=6&now_page=1'"
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:100px; height:47px;">리뷰 작성하기</button>
+          </LI>                                                                      
+        </c:when>                       
         
         <c:when test="${param.code == 'idFind_success'}"> <%-- Java if --%>
           <LI class='li_none'>

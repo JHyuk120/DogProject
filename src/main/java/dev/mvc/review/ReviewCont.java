@@ -58,9 +58,8 @@ public class ReviewCont {
            
          if(memberProc.isMember(session)) {
              int memberN = (int) session.getAttribute("memberno"); // session에서 memberno 정보 가져오기
-
              List<PayVO> payList = payProc.pay_list(memberN); // 구매 내역 조회
-             
+
              if (!payList.isEmpty()) {
             // if (cnt == 1) {
                  // 업데이트된 별점 평균 조회
@@ -154,17 +153,22 @@ public class ReviewCont {
           ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
           
            // 아이디 확인
-          if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
-          GoodsVO goodsVO = this.goodsProc.read(goodsno);
-          mav.addObject("goodsVO", goodsVO);
-          
-          ReviewVO review2VO = this.reviewProc.review_read(reviewno);
-          mav.addObject("reviewVO", review2VO);
-          mav.setViewName("/review/review_update");
+          if (reviewVOmid != null) {
+              if(reviewVOmid.getMid().equals(currentUserId)) {
+                  GoodsVO goodsVO = this.goodsProc.read(goodsno);
+                  mav.addObject("goodsVO", goodsVO);
+                  
+                  ReviewVO review2VO = this.reviewProc.review_read(reviewno);
+                  mav.addObject("reviewVO", review2VO);
+                  mav.setViewName("/review/review_update");
+              } else {
+                  mav.addObject("code", "review_update_fail");
+                  mav.setViewName("/member/msg.do");
+                  }
           } else {
 
-              mav.addObject("code", "review_update_fail");
-              mav.setViewName("redirect:/member/msg.do");
+              
+              mav.setViewName("/member/login_need.do");
           }
           // 댓글 조회
           ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
@@ -284,13 +288,19 @@ public class ReviewCont {
          ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
          
           // 아이디 확인
-         if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
-             this.reviewProc.review_delete(reviewno);
-             mav.addObject("reviewno", reviewVO.getReviewno());
-             mav.addObject("goodsno", goodsno);
-             mav.setViewName("redirect:/goods/read.do?goodno="+goodsno);
+         if (reviewVOmid != null) {
+             if(reviewVOmid.getMid().equals(currentUserId)) {
+                 this.reviewProc.review_delete(reviewno);
+                 mav.addObject("reviewno", reviewVO.getReviewno());
+                 mav.addObject("goodsno", goodsno);
+                 mav.setViewName("redirect:/goods/read.do?goodno="+goodsno);
+             }
+             else {
+                 mav.addObject("code", "review_delete_fail");
+                 mav.setViewName("/member/msg.do");                 
+             }
          } else {
-             mav.setViewName("./reply/login_need");
+             mav.setViewName("/member/login_need");
          }
          return mav;
      }

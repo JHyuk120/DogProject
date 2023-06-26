@@ -69,9 +69,7 @@
              <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
               <c:set var="title" value="${recommendVO.title }" />
               <c:set var="thumb1" value="${recommendVO.thumb1 }" />                
-              <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
-              <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
-              <div  onclick="location.href='./read.do?contentsno=${contentsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'
+              <div  onclick="" class='hover'
                style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
                 
                 <c:choose> 

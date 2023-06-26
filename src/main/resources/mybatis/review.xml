@@ -4,8 +4,8 @@
 <mapper namespace="dev.mvc.review.ReviewDAOInter">
 <!-- 리뷰 생성-->
 <insert id="review_create" parameterType="dev.mvc.review.ReviewVO">
-INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue,file2, file2saved, thumb2, size2) 
-VALUES(review_seq.nextval,#{memberno},#{goodsno},#{reviewcont},sysdate,#{ratingValue},#{file2},#{file2saved},#{thumb2},#{size2})
+  INSERT INTO review(reviewno,memberno,goodsno,reviewcont,rdate,ratingValue,file2, file2saved, thumb2, size2) 
+  VALUES(review_seq.nextval,#{memberno},#{goodsno},#{reviewcont, jdbcType=CLOB},sysdate,#{ratingValue},#{file2},#{file2saved},#{thumb2},#{size2})
 </insert>
 <!-- 별점 평균 조회 -->
 <select id="ratingAVG" parameterType="int" resultType="float" >

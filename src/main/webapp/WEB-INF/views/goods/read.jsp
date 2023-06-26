@@ -474,8 +474,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 
   <fieldset class="fieldset_basic">
     <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  enctype='multipart/form-data' onsubmit="return checkLoginStatus();" >
-      <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
-    
+      <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->   
       <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
       <input type="hidden" name="id" value="${sessionScope.id}"/>
       <input type="hidden" id="star-rating" name="ratingValue" value=""/>
@@ -511,22 +510,27 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 			
 			<script>
 			  function setStarRating(rating) {
-			    var stars = document.getElementsByClassName('star');
-			    var ratingDisplay = document.getElementById('rating-display');
-			    var starRatingInput = document.getElementById('star-rating');
-			    for (var i = 0; i < stars.length; i++) {
-			      if (i < rating) {
-			        stars[i].style.opacity = '1';
-			      } else {
-			        stars[i].style.opacity = '0.2';
-			      }
-			    }
-			    ratingDisplay.textContent = '(' + rating + ')';
-			    starRatingInput.value = rating;
-			  }
+				    var stars = document.getElementsByClassName('star');
+				    var ratingDisplay = document.getElementById('rating-display');
+				    var starRatingInput = document.getElementById('star-rating');
+				    for (var i = 0; i < stars.length; i++) {
+				      if (i < rating) {
+				        stars[i].style.opacity = '1';
+				      } else {
+				        stars[i].style.opacity = '0.2';
+				      }
+				    }
+				    ratingDisplay.textContent = '(' + rating + ')';
+				    starRatingInput.value = rating;
+				  }
+
+				  // 초기 값 설정
+				  window.addEventListener('DOMContentLoaded', function() {
+				    setStarRating(5); // 초기 값으로 5 설정
+				  });
 			</script>
 
-    <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
+    <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
     
     <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
   <input type="file" name="file2MF" id="file2MF" value="" placeholder="첨부파일" >
