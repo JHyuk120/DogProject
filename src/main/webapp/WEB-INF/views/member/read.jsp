@@ -197,6 +197,31 @@
     $('#frm').submit(); // required="required" 작동 안됨.
   }  
 </script>
+
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: left;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
 
 
@@ -224,18 +249,10 @@
   </div>
   <!-- ******************** Modal 알림창 종료 ******************** -->
 
-  <DIV class='title_line'>회원 정보 조회 및 수정</DIV>
-
   <DIV class='content_body'>
-  
-
-  <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./list.do'>목록</A>
-  </ASIDE> 
+  <DIV>
+    <img src="/menu/images/pg.svg" class="icon0" style='margin-left:40%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>회원 정보 수정</span>
+</DIV> 
 
   <div class='menu_line'></div>
   
@@ -245,7 +262,7 @@
     <div class="form_input"  style = "margin-bottom:20px; margin-top:40px;">
       <label style="  margin-right: 124px; font-size: 18px;" >아이디</label>
       <input type='text' class="form-control " name='id' id='id' value="${memberVO.id }" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark "  style='width:150px; height:50px; margin-bottom:2px; margin-left:5px;'>중복확인</button>
+      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark "  style='margin-left:5px;'>중복확인</button>
     </div>  
     
      <div class="form_input" style = "margin-bottom:20px;">
@@ -283,7 +300,7 @@
       <label style="margin-right: 107px; font-size: 18px;">우편번호</label>
       <input type='text' class="form-control " name='zipcode' id='zipcode' 
                 value='${memberVO.zipcode }' style='width: 400px; height:50px;; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark"  style='width:150px; height:50px; margin-bottom:2px; margin-left:5px;'>우편번호 찾기</button>
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark"  style='margin-left:5px;'>우편번호 찾기</button>
     </div>  
   
      <div class="form_input" style = "margin-bottom:20px;">

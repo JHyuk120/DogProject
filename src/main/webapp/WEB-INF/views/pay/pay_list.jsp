@@ -21,16 +21,39 @@ $(function(){
 });
 </script>
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
- <DIV class='title_line'>
-    ${sessionScope.mname }님 주문결제 내역
-  </DIV>
 
-  <DIV class='content_body' style='width: 100%;'>
-
+  <DIV class='content_body'>
+  <DIV>
+    <img src="/menu/images/receipt.svg" class="icon0" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${sessionScope.mname }님 주문 및 결제 내역</span>
+</DIV> <br>
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style='width: 5%;'/>
@@ -91,8 +114,8 @@ $(function(){
   </TABLE>
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
-    <button type='button' onclick="location.href='/cart/list_by_memberno.do'" class="btn btn-primary">장바구니</button>
+    <button type='button' onclick="location.reload();" class="btn btn-outline-dark">새로 고침</button>
+    <button type='button' onclick="location.href='/cart/list_by_memberno.do'" class="btn btn-dark">장바구니</button>
   </DIV>
 </DIV>
  
