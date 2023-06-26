@@ -1,5 +1,7 @@
 DROP TABLE recom;
 
+SELECT * FROM recom;
+
 CREATE TABLE recom(
     recomno                         NUMBER(10)      NOT NULL    PRIMARY KEY,
     memberno                       NUMBER(10)    NOT NULL ,
