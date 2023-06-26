@@ -1,5 +1,7 @@
 DROP TABLE recom;
 
+SELECT * FROM recom;
+
 CREATE TABLE recom(
     recomno                         NUMBER(10)      NOT NULL    PRIMARY KEY,
     memberno                       NUMBER(10)    NOT NULL ,
@@ -53,7 +55,7 @@ select count(recomno) from recom where recipeno = 18;
 select count(recipeno) from recom where recipeno = 18 AND memberno = 7;
 
 -- delete
-delete from recom where memberno = 7;
+delete from recom where memberno = 7 and recipeno = 3;
 
 
 --adminList

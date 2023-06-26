@@ -302,14 +302,14 @@
           </td> 
           
            <td style='vertical-align: middle; text-align: center;'>
-            <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+            <del><fmt:formatNumber value="${price}" pattern="#,###" />원</del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-            <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-            <img src="/cart/images/point.jpg" class="icon">
-            <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
+            <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" />원</strong><br>
+            <img src="/cart/images/point.png" class="icon">
+            <span style="font-size: 0.8em; "><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
             <br>
-            <button type='button' id='btn_cart' class="btn btn-info btn-sm" style='margin-bottom: 2px;' onclick="cart_ajax(${goodsno })">장바 구니</button><br>
-            <button type='button' id='btn_ordering' class="btn btn-info btn-sm" onclick="cart_ajax(${goodsno })">바로 구매</button>  
+            <button type='button' id='btn_cart' class="btn btn-dark" style='margin-bottom: 2px; margin-top:8px;' onclick="cart_ajax(${goodsno })">장바구니</button><br>
+            <button type='button' id='btn_ordering' class="btn btn-outline-dark" onclick="cart_ajax(${goodsno })">바로구매</button>  
           </td>
           
          <%--  <td style='vertical-align: middle; text-align: center;'>

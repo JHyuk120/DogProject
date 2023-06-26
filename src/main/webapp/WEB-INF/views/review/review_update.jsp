@@ -392,7 +392,7 @@ function checkRatingValue() {
     <textarea name='reviewcont' required="required" rows="7" cols="63">${reviewVO.reviewcont }</textarea>
     </td>
   </tr>
-   <button type='submit' class='btn btn-info btn-sm'  onclick="checkRatingValue(event)">리뷰 글 수정</button>
+   <button type='submit' class='btn btn-info btn-sm'  onclick="checkRatingValue(event)">리뷰 수정</button>
     <div>
        <label>리뷰 사진 업로드</label>
        <input type='file' class="form-control" name='file2MF' id='file2MF' 

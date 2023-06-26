@@ -70,7 +70,7 @@ public class RecomCont {
 
         }
       } else {
-        int delete_recom = this.recomProc.delete(memberno);
+        int delete_recom = this.recomProc.delete(recomVO);
         
         mav.addObject("recipeVO", recipeVO);
         this.recipeProc.recom_sub(recipeVO.getRecipeno());

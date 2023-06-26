@@ -23,6 +23,6 @@ public interface RecomProcInter {
    * @param memberno
    * @return
    */
-  public int delete(int memberno);
+  public int delete(RecomVO recomVO);
 
 }

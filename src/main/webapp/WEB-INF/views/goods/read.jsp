@@ -431,7 +431,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
      
 <li class="li_none">
   <div style='margin-left: 570px; margin-top: 50px; display: flex;'>
-    <form name="frm_order" id="frm_order">
+    <form name="frm_order" id="frm_order" action="/wish/create.do" method="POST">
       <input type="hidden" name="goodsno" value="${goodsno}" />
       <input type="hidden" name="check" value="${check}" />
       
@@ -451,7 +451,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       </c:when>
       <c:when test="${check == 1}">
         <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
-      <img src="/goods/images/pullhrt.png" class="icon" style="width:30px; margin-bottom:3px;"></button>
+      <img src="/goods/images/pullhrt.png" class="icon" style="width:25px; margin-bottom:3px;"></button>
       </c:when>
       <c:otherwise>
         <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
@@ -474,8 +474,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 
   <fieldset class="fieldset_basic">
     <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  enctype='multipart/form-data' onsubmit="return checkLoginStatus();" >
-      <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->
-    
+      <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->   
       <input type="hidden" name="memberno" value="${sessionScope.memberno}"/>
       <input type="hidden" name="id" value="${sessionScope.id}"/>
       <input type="hidden" id="star-rating" name="ratingValue" value=""/>
@@ -483,30 +482,55 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       <!-- <input type="hidden" name="ratingValue" value="${reiviewVO.ratingValue}"/> -->
       <!-- 댓글 평점 별  -->
 
-        <div class="stars">
-          <td  width="100" rowspan="2">${sessionScope.id } </td>
-          <span class="star" id="star_1" onclick="setStarRating(1)">⭐</span>
-          <span class="star" id="star_2" onclick="setStarRating(2)">⭐</span>
-          <span class="star" id="star_3" onclick="setStarRating(3)">⭐</span>
-          <span class="star" id="star_4" onclick="setStarRating(4)">⭐</span>
-          <span class="star" id="star_5" onclick="setStarRating(5)">⭐</span>
-          <input type="hidden" id="star-rating" value="0"/>
-          <div id="rating-display" >(0)</div>
-       </div>
-          
         <div style='width: 70%; max-width: 70%; margin:0 auto; display: flex; align-items: center; font-size:20px; margin-bottom: 0.2%;'>
         <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 
 
 
 				<div style='margin-left: 1%; color: #8E9187;'>리뷰수 ${reviewcnt}</div>
 				<div style='margin-left: 1%; color: #8E9187;'>평점 ${ratingAVG}</div>
+				
+				
 
         <div style='width: 70%; max-width: 70%; margin:0 auto; '>
         <div style="display: flex; align-items: center; font-size:20px;"> 
 
      </div>  </div></div>
-    
-    <textarea name='replycont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
+     
+			<div class="stars" style="margin-right: 53%; margin-bottom: 0.5%;">
+			  <img src="/menu/images/pcircle.svg">
+			  <td width="100" rowspan="2">${sessionScope.id} : </td>
+			  <span class="star" id="star_1" onclick="setStarRating(1)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_2" onclick="setStarRating(2)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_3" onclick="setStarRating(3)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_4" onclick="setStarRating(4)" style="opacity: 0.2;">⭐</span>
+			  <span class="star" id="star_5" onclick="setStarRating(5)" style="opacity: 0.2;">⭐</span>
+			  <div id="rating-display" style="display: inline; color: #838580;">(0) </div>
+			  <input type="hidden" id="star-rating" value="0" />
+			</div>
+			
+			<script>
+			  function setStarRating(rating) {
+				    var stars = document.getElementsByClassName('star');
+				    var ratingDisplay = document.getElementById('rating-display');
+				    var starRatingInput = document.getElementById('star-rating');
+				    for (var i = 0; i < stars.length; i++) {
+				      if (i < rating) {
+				        stars[i].style.opacity = '1';
+				      } else {
+				        stars[i].style.opacity = '0.2';
+				      }
+				    }
+				    ratingDisplay.textContent = '(' + rating + ')';
+				    starRatingInput.value = rating;
+				  }
+
+				  // 초기 값 설정
+				  window.addEventListener('DOMContentLoaded', function() {
+				    setStarRating(5); // 초기 값으로 5 설정
+				  });
+			</script>
+
+    <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
     
     <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
   <input type="file" name="file2MF" id="file2MF" value="" placeholder="첨부파일" >
@@ -572,10 +596,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
                       <img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
                     </c:when>
                     <c:when test="${ratingValue.toString() == ' 4' }"><center>
-                      <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
+                      <img src="/review/images/star_4.png" style="width: 100px; text-align: center;"></center>
                     </c:when>
                     <c:when test="${ratingValue.toString() == ' 3'}"><center>
-                      <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
+                      <img src="/review/images/star_3.png" style="width: 100px; text-align: center;"></center>
                     </c:when>
                     <c:when test="${ratingValue.toString() == ' 2'}"><center>
                       <img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
@@ -615,8 +639,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           
               <td style='vertical-align: middle; text-align: center; '>
                 <div>
-                  <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/
-                  <a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a>
+
+                        <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/
+                        <a href="/review/delete.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a>
+
                 </div>
               </td>
             </tr>

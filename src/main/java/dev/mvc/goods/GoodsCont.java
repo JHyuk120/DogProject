@@ -258,12 +258,12 @@ public class GoodsCont {
     mav.addObject("mname", mname);
 
     mav.setViewName("/goods/read"); // /WEB-INF/views/goods/read.jsp
-    
+    //댓글 read
     ArrayList<ReviewVO> list = this.reviewProc.list_by_review_paging(reviewVO);
     String paging = reviewProc.pagingBox(reviewVO.getGoodsno(), reviewVO.getNow_page(),"read.do");
     mav.addObject("paging", paging);
     mav.addObject("list", list);
- 
+    
     // 게시물 별 리뷰 평점
     float ratingAVG = this.reviewProc.ratingAVG(goodsno);
     mav.addObject("ratingAVG", ratingAVG);
@@ -274,7 +274,7 @@ public class GoodsCont {
    
    // 찜 관련 시작 ------------------------------------------------
    
-   // 좋아요 확인
+   // 찜 확인
    if (memberProc.isMember(session)) {
      int memberno = (int) (session.getAttribute("memberno"));
      wishVO.setMemberno(memberno);
@@ -707,25 +707,7 @@ public class GoodsCont {
    return "";
  }
  
-/**
- 
- 회원이 찜한 재료 항목
- @param session
- @return
- */
- @RequestMapping(value = "/wish/memberList.do", method = RequestMethod.GET)
- public ModelAndView memberList(int memberno, HttpSession session) {
-   ModelAndView mav = new ModelAndView();
-   if (memberProc.isMember(session)) {
-     ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
-     mav.addObject("list_m", list_m);
-   } else {
-     mav.addObject("code", "member_fail");
-     mav.setViewName("redirect:/wish/msg.do");
-   }
 
-     return mav; 
-   }
  
  
 }

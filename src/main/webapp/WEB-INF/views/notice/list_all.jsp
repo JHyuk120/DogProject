@@ -16,17 +16,40 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    
+   <style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style> 
 </head> 
  
-<body style="background-color: #EFF8FB;">
+<body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>
-  📢 전체 공지사항
-</DIV>
 
 <DIV class='content_body'>
+<DIV>
+    <img src="/menu/images/notice.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 공지사항</span>
+</DIV> 
+
   <ASIDE class="aside_right">
   <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
   

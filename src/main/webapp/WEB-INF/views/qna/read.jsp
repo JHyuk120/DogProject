@@ -28,10 +28,37 @@
     
 </head> 
  
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color: #FEFCF0;
+  }
+
+  .fieldset_basic {
+    width: 100%;
+    height: 100%;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+  
+
+</style>
+</head>
+ 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢Q&A</DIV>
+<DIV style='background-color:#FEFCF0; margin-right: 60%; font-size: 30px;'><img src="/menu/images/qna1.png" class="icon1"> Q&A</DIV>
+
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -55,18 +82,15 @@
 
   <fieldset class="fieldset_basic">
     <ul>
-      <li class="li_none">
-        <DIV style="width:100%;">          
+      <li class="li_none">         
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
           <div style="font-size: 0.7em;">${mname} ${rdate }</div><br>
-          ${content }
-        </DIV>
+        <div style="float: left;">${content }</div>
       </li>
-  
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
         <br>
-          검색어(키워드): ${word }
+          <img src="/menu/images/words.png" class="icon0"> :  ${word }
         </DIV>
       </li>
       
