@@ -131,4 +131,5 @@ public interface GoodsDAOInter {
   @return
   */
   public ArrayList<GoodsVO> memberList(int memberno);
+  
 }
