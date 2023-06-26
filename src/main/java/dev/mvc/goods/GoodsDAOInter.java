@@ -125,10 +125,16 @@ public interface GoodsDAOInter {
    */
   public int mycnt(int goodsno);
   
+  
   /**
   회원이 찜한 재료 목록
   @param memberno
   @return
   */
   public ArrayList<GoodsVO> memberList(int memberno);
+  
+  /**
+   * goodsno 출력
+   */
+  public int select_goodsno(String gname);
 }
