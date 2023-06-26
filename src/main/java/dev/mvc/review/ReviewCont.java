@@ -153,7 +153,7 @@ public class ReviewCont {
           ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
           
            // 아이디 확인
-          if (reviewVOmid != null) {
+          if (session.getAttribute("id") != null) {
               if(reviewVOmid.getMid().equals(currentUserId)) {
                   GoodsVO goodsVO = this.goodsProc.read(goodsno);
                   mav.addObject("goodsVO", goodsVO);
@@ -163,11 +163,10 @@ public class ReviewCont {
                   mav.setViewName("/review/review_update");
               } else {
                   mav.addObject("code", "review_update_fail");
-                  mav.setViewName("/member/msg.do");
+                  mav.addObject("url", "/member/msg");
+                  mav.setViewName("redirect:/member/msg.do");            
                   }
           } else {
-
-              
               mav.setViewName("/member/login_need.do");
           }
           // 댓글 조회
@@ -197,7 +196,7 @@ public class ReviewCont {
           ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
           
            // 아이디 확인
-          if (reviewVOmid != null && reviewVOmid.getMid().equals(currentUserId)) {
+          if (currentUserId != null && reviewVOmid.getMid().equals(currentUserId)) {
               
               mav.addObject("reviewno", reviewVO.getReviewno());
               mav.addObject("goodsno", goodsno);
@@ -288,7 +287,7 @@ public class ReviewCont {
          ReviewVO reviewVOmid = this.reviewProc.review_read(reviewVO.getReviewno());
          
           // 아이디 확인
-         if (reviewVOmid != null) {
+         if (session.getAttribute("id") != null) {
              if(reviewVOmid.getMid().equals(currentUserId)) {
                  this.reviewProc.review_delete(reviewno);
                  mav.addObject("reviewno", reviewVO.getReviewno());
@@ -297,7 +296,8 @@ public class ReviewCont {
              }
              else {
                  mav.addObject("code", "review_delete_fail");
-                 mav.setViewName("/member/msg.do");                 
+                 mav.addObject("url", "/member/msg");
+                 mav.setViewName("redirect:/member/msg.do");                         
              }
          } else {
              mav.setViewName("/member/login_need");

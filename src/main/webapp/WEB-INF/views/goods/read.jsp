@@ -596,10 +596,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
                       <img src="/review/images/star_5.png" style="width: 100px; text-align: center;"></center>
                     </c:when>
                     <c:when test="${ratingValue.toString() == ' 4' }"><center>
-                      <img src="/review/images/star_4.jpg" style="width: 100px; text-align: center;"></center>
+                      <img src="/review/images/star_4.png" style="width: 100px; text-align: center;"></center>
                     </c:when>
                     <c:when test="${ratingValue.toString() == ' 3'}"><center>
-                      <img src="/review/images/star_3.jpg" style="width: 100px; text-align: center;"></center>
+                      <img src="/review/images/star_3.png" style="width: 100px; text-align: center;"></center>
                     </c:when>
                     <c:when test="${ratingValue.toString() == ' 2'}"><center>
                       <img src="/review/images/star_2.png" style="width: 100px; text-align: center;"></center>
@@ -639,8 +639,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           
               <td style='vertical-align: middle; text-align: center; '>
                 <div>
-                  <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" >수정</a>/
-                  <a href="/review/delete.do?goodsno=${goodsno }&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a>
+
+                        <a href="/review/update.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}">수정</a>/
+                        <a href="/review/delete.do?goodsno=${goodsno}&reviewno=${reviewVO.reviewno}" onclick="return confirm('리뷰를 삭제하시겠습니까?')">삭제</a>
+
                 </div>
               </td>
             </tr>
