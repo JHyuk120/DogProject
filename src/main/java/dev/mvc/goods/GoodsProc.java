@@ -284,11 +284,7 @@ import dev.mvc.tool.Tool;
         return list_m;
       }
 
-      @Override
-      public int mycnt(int goodsno) {
-        // TODO Auto-generated method stub
-        return 0;
-      }
+  
 
 
 }
