@@ -3,6 +3,7 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.item.ItemVO" %>
+<%@ page import="dev.mvc.member.MemberVO" %>
 
 <DIV class='container_main'> 
 
@@ -83,6 +84,8 @@
                                     <img src="/menu/images/pcircle.svg" class="icon" style='margin-left:20px'>&nbsp;마이페이지
                                 </a>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" >
+                                        <img src="/menu/images/mpoint.png" class="icon" style='margin-left:5px'>&nbsp; 적립금 ${memberVO.mpoint} 원</a>
                                     <a class="dropdown-item" href="/member/read.do">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                                     <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
