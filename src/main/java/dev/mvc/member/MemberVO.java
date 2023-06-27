@@ -46,6 +46,9 @@ public class MemberVO {
     private String passwd_save = "";
     /** 이동할 주소 저장 */
     private String url_address = "";
+    /** 포인트 */
+    private int mpoint;
+    
     
     
 }

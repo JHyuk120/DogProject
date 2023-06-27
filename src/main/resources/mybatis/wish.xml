@@ -19,7 +19,7 @@ WHERE goodsno = #{goodsno} AND memberno = #{memberno}
 </select>
 
 <!-- 삭제 -->
-<delete id = "delete" parameterType="dev.mvc.wish.WishVO">
+<delete id = "delete" parameterType="dev.mvc.wish.WishVO" >
 DELETE FROM wish WHERE memberno = #{memberno} and goodsno = #{goodsno}
 
 </delete>
