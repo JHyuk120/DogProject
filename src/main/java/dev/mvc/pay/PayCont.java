@@ -66,6 +66,8 @@ public class PayCont {
     int total_order = 0;     // 전체 주문 금액
     
     int memberno = (int)session.getAttribute("memberno");
+    MemberVO memberVO = this.memberProc.read(memberno);
+    mav.addObject("memberVO", memberVO);
     
     // 쇼핑카트에 등록된 상품 목록을 가져옴
     List<CartVO> list = this.cartProc.list_by_memberno(memberno);
@@ -114,6 +116,31 @@ public class PayCont {
     
     int memberno = (int)session.getAttribute("memberno");
     payVO.setMemberno(memberno); // 회원 번호 저장
+    MemberVO memberVO = this.memberProc.read(memberno);
+    
+  //포인트 사용
+    int ptype = payVO.getPtype();
+    if (ptype == 3) {
+      int amount = payVO.getamount();
+      int mpoint = memberVO.getMpoint();
+      
+      if (amount >= mpoint) {
+        amount = amount - mpoint;
+        
+        payVO.setamount(amount);
+        memberVO.setMpoint(0);
+        this.memberProc.mpoint_update(memberVO);
+        
+      } else if (amount < mpoint) {
+        mpoint = mpoint - amount;
+
+        payVO.setamount(0);
+        memberVO.setMpoint(mpoint);
+        this.memberProc.mpoint_update(memberVO);
+      }      
+    }
+    System.out.println("mpoint : " + memberVO.getMpoint());
+    //포인트 사용 끝
     
     int cnt = this.payProc.create(payVO);
 
@@ -131,37 +158,18 @@ public class PayCont {
                                        #{taddress1}, #{taddress2}, #{ptype}, #{amount}, sysdate)
     </insert>
     */
-    
-    
-    // Detail: 주문 상세 테이블 관련 시작
-    
+
     int payno = payVO.getPayno(); // 결재 번호 수집
     
+    // Detail: 주문 상세 테이블 관련 시작
     DetailVO detailVO = new DetailVO();
+    
     if (cnt == 1) { // 정상적으로 주문 결재 정보가 등록된 경우
       // 회원의 쇼핑카트 정보를 읽어서 주문 상세 테이블로 insert
       // 1. cart 읽음, SELECT
       List<CartVO> list = this.cartProc.list_by_memberno(memberno);
-      
-   // 포인트 적립
-      MemberVO memberVO = this.memberProc.read(memberno);
-      
-      int point_tot = memberVO.getMpoint();
-      
-      for (CartVO cartVO : list) {
-        // 포인트 합계 = 포인트 합계 + (포인트 * 수량)
-        point_tot = point_tot + (cartVO.getPoint() * cartVO.getCnt());
-        
-      }
-      System.out.println("point_tot" + point_tot);
-      memberVO.setMpoint(point_tot);
-      System.out.println("mpoint" + memberVO.getMpoint());
-      this.memberProc.mpoint_update(memberVO);
-      // 포인트 적립 끝
-      
       for (CartVO cartVO : list) {
         int goodsno = cartVO.getGoodsno();
-        int cartno = cartVO.getCartno();
         
         // 2. detail INSERT
        detailVO.setMemberno(memberno);
@@ -186,12 +194,26 @@ public class PayCont {
          this.goodsProc.cnt_sub(goodsno);
        }
 
-       // 3. 주문된 상품 cart에서 DELETE
-       int delete_cnt = this.cartProc.delete(cartno);
-       System.out.println("-> delete_cnt: " + delete_cnt + " 건 주문후 cart에서 삭제됨.");
-
       }
-
+      // 포인트 적립
+        int point_tot = memberVO.getMpoint();
+         
+         for (CartVO cartVO : list) {
+           // 포인트 합계 = 포인트 합계 + (포인트 * 수량)
+           point_tot = point_tot + (cartVO.getPoint() * cartVO.getCnt());
+           
+           // 3. 주문된 상품 cart에서 DELETE
+           int cartno = cartVO.getCartno();
+           int delete_cnt = this.cartProc.delete(cartno);
+           System.out.println("-> delete_cnt: " + delete_cnt + " 건 주문후 cart에서 삭제됨.");
+           
+         }
+         
+         memberVO.setMpoint(point_tot);
+         this.memberProc.mpoint_update(memberVO);
+         System.out.println("mpoint > " + memberVO.getMpoint());
+         // 포인트 적립 끝
+         
       
     } else {
       // 결재 실패했다는 에러 페이지등 제작 필요, 여기서는 생략

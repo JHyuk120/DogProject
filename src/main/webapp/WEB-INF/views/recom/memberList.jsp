@@ -47,7 +47,7 @@
 
   <DIV>
     <div style='display: flex; align-items: flex-start;'>
-        <span style='font-size: 20px;'>나의 ❤️ 레시피</span>
+        <img src="/menu/images/save.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${myrecom }건
     </div>
 
   

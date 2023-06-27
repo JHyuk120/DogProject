@@ -136,7 +136,11 @@ public class RecomCont {
     ModelAndView mav = new ModelAndView();
     if (memberProc.isMember(session)) {
       ArrayList<RecipeVO> list_m = this.recipeProc.memberList(memberno);
+      int myrecom = this.recomProc.myrecom(memberno);
+      mav.addObject("myrecom", myrecom);
       mav.addObject("list_m", list_m);
+  
+      
     } else {
       mav.addObject("code", "member_fail");
       mav.setViewName("redirect:/recom/msg.do");

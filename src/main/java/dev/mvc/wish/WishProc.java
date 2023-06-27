@@ -28,10 +28,10 @@ public class WishProc implements WishProcInter{
     return cnt;
   }
 
-//  @Override
-//  public int mycnt(int goodsno) {
-//    int cnt = this.wishDAO.mycnt(goodsno);
-//    return cnt;
-//  }
+  @Override
+  public int mycnt(int memberno) {
+    int cnt = this.wishDAO.mycnt(memberno);
+    return cnt;
+ }
 
 }

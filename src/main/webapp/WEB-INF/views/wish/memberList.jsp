@@ -152,7 +152,7 @@
  
 <DIV class='title_line'>
 
-<img src="/goods/images/wish.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
+<img src="/goods/images/wish.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${mycnt }건
 </DIV>
 
 <DIV class='content_body'>
