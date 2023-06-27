@@ -25,7 +25,15 @@
             </button>    
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
+            <c:choose>
+              <c:when test="${sessionScope.id != null}">
+                  <a class="navbar-brand" href="/recommend.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
+              </c:when>
+              <c:otherwise>
                 <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
+              </c:otherwise>
+            </c:choose>
+
 
                 <ul class="navbar-nav mr-auto">
 
