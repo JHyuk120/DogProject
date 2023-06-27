@@ -26,8 +26,31 @@
 .gallery_item_rc {
     flex: 1 0 auto;
 }
+
+.carousel-item .col {
+    margin-bottom: 20px; /* 일정한 간격을 설정합니다. */
+}
+.carousel-image {
+    max-width: 100%;
+    max-height: 140px;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.image-container_rc {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 18px;
+    
+}
 </style>
+
 <body style="background-color: #FEFCE6;">
+
 <c:import url="/menu/top.do" />
    
 <!-- 광고 캐러셀 효과 -->
@@ -60,12 +83,15 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
- <!-- 로그인 시 추천시스템  -->         
+
   <c:choose>
     <c:when test="${sessionScope.id != null}">  
+     <!-- 로그인 시 추천시스템 그리드 형식 -->
+ <%--          
+
     <br>
      <p style="font-size: 24px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">추천 레시피</p>
-        <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
+        <div style='width: 100%;'> 
              <c:forEach var="recommendVO" items="${list}" begin="0" end="9" varStatus="status">
               <c:set var="title" value="${recommendVO.title }" />
               <c:set var="thumb1" value="${recommendVO.thumb1 }" />                
@@ -93,25 +119,42 @@
               </div>           
             </c:forEach>
         </div>
+--%>
+<div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${sessionScope.id}님 맞춤 추천 레시피</div>
+
   <!-- 추천시스템 캐러셀 효과 -->      
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="container">
                 <div class="row">
-                    <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
-                        <div class="col">
-                          <div class="image-container_rc">
-                            <c:choose> 
-                              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                                <img src="/recipe/storage/${thumb1 }" class="carousel-image">
-                              </c:when>
-                              <c:otherwise>
-                                <IMG src="/images/ee.png" class="carousel-image">
-                              </c:otherwise>
-                            </c:choose>
-                           </div>            
-                        </div>
+<c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
+                        <a href="http://localhost:9093/recipe/read.do?recipeno=${recipeVO.recipeno }&word=&now_page=1">
+                            <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                <div class="image-container_rc">
+                                    <c:choose>
+                                        <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+                                            <img src="/recipe/storage/${thumb1 }" class="carousel-image">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="/images/ee.png" class="carousel-image">
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                                <div style="margin: 20px;">
+                                    <strong style="display: block; width: 150px; height: 60px; overflow: hidden; text-overflow: ellipsis;">
+                                        <c:choose>
+                                            <c:when test="${recommendVO.title.length() > 20}">
+                                                ${recommendVO.title.substring(0, 20)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${recommendVO.title}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </strong>
+                                </div>
+                            </div>
+                        </a>
                     </c:forEach>
                 </div>
             </div>
@@ -120,17 +163,29 @@
             <div class="container">
                 <div class="row">
                     <c:forEach var="recommendVO" items="${list}" begin="5" end="9" varStatus="status">
-                        <div class="col">
-                          <div class="image-container_rc">
-                             <c:choose> 
-                              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                                <img src="/recipe/storage/${thumb1 }" class="carousel-image">
-                              </c:when>
-                              <c:otherwise>
-                                <IMG src="/images/ee.png" class="carousel-image">
-                              </c:otherwise>
-                            </c:choose>
-                           </div> 
+                        <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                            <div class="image-container_rc">
+                                <c:choose>
+                                    <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+                                        <img src="/recipe/storage/${thumb1 }" class="carousel-image">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/images/ee.png" class="carousel-image">
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div style="margin: 20px;">
+                                <strong style="display: block; width: 150px; height: 60px; overflow: hidden; text-overflow: ellipsis;">
+                                    <c:choose>
+                                        <c:when test="${recommendVO.title.length() > 20}">
+                                            ${recommendVO.title.substring(0, 20)}...
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${recommendVO.title}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </strong>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
@@ -152,7 +207,7 @@
  
     </c:otherwise>
   </c:choose>
- 
+
 <jsp:include page="./menu/bottom.jsp" flush='false' />
  
 </body>

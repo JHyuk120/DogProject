@@ -22,7 +22,7 @@ public interface WishProcInter {
    * @param wishVO
    * @return
    */
-  public int delete(int memberno);
+  public int delete(WishVO wishVO);
   
 //  /**
 //   * 내가 찜한 항목 수

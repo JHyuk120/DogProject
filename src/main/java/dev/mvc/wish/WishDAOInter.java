@@ -22,7 +22,7 @@ public interface WishDAOInter {
    * @param wishVO
    * @return
    */
-  public int delete(int memberno);
+  public int delete(WishVO wishVO);
   
   
 //  /**

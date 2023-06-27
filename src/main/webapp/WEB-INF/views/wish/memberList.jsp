@@ -74,6 +74,15 @@
 
       }
 
+  function delete_func(goodsno,memberno) {  // GET -> POST 전송, 상품 삭제
+	    var frm = $('#frm_post');
+	    frm.attr('action', 'wish/delete.do');
+	    $('#goodsno',  frm).val(goodsno);
+	    $('#memberno',  frm).val(memberno);
+	    
+	    frm.submit();
+	  }   
+
     <%-- 쇼핑 카트에 상품 추가 --%>
     function cart_ajax(goodsno) {
       var f = $('#frm_login');
@@ -303,9 +312,38 @@
            <td style='vertical-align: middle; text-align: center;'>
             
             <button type='button' id='btn_cart' class="btn btn-dark" style='margin-bottom: 8px; width:130px; height:43px' onclick="cart_ajax(${goodsno })">장바구니</button><br>
-            <form name="frm" action="/wish/delete.do" method="POST">
-            <button type='submit' id='btn_ordering' class="btn btn-outline-dark" style="width:130px; height:40px">삭제</button> 
-            </form> 
+            
+            <%-- <button type='button' id='btn_ordering' class="btn btn-outline-dark" style="width:130px; height:40px" onclick="delete_func(${goodsno}, ${memberno})">삭제</button>  --%>
+            <form name="frm_order" id="frm_order" action="/wish/create.do" method="POST">
+					      <input type="hidden" name="goodsno" value="${goodsno}" />
+					      <input type="hidden" name="check" value="${check}" />
+					      
+					      <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
+					        <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+					      </button>
+					
+					  
+					    <c:choose>
+					      <c:when test="${sessionScope.adminno != null}">
+					        <button type='button'onclick="favorite_ajax(${goodsno}) id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+					      <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
+					      </c:when>
+					      <c:when test="${sessionScope.memberno == null}">
+					        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+					      <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
+					      </c:when>
+					      <c:when test="${check == 1}">
+					        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+					      <img src="/goods/images/pullhrt.png" class="icon" style="width:25px; margin-bottom:3px;"></button>
+					      </c:when>
+					      <c:otherwise>
+					        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+					      <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
+					      </c:otherwise>
+					    </c:choose>
+
+           </form> 
+  
           </td>
           
          <%--  <td style='vertical-align: middle; text-align: center;'>

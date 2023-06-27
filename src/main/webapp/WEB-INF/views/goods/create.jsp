@@ -100,7 +100,7 @@
                  autofocus="autofocus" class="form-control" style='width: 30%;'><br>
     </div>
      
-    <div class="row" style='width:60%'>
+    <div class="row" style='width:60% '>
       <div class="col-sm-4">
         <label for="price">가격</label>
         <input type="number" class="form-control" id="price" name="price" value="" >
@@ -158,7 +158,7 @@
     </div>  
      
     <div >
-      <button type="submit" class="btn btn-dark">등록</button>
+      <button type="submit" class="btn btn-dark" style="margin-left: 90%;">등록</button>
       <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark">목록</button>
     </div>
   
