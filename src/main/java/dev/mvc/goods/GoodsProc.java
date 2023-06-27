@@ -286,6 +286,7 @@ import dev.mvc.tool.Tool;
 
   
 
+      
       @Override
       public int select_goodsno(String gname) {
          int cnt = this.goodsDAO.select_goodsno(gname);

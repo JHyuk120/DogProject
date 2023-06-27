@@ -14,36 +14,51 @@
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- 
+
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
 <body>
 <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>
-    회원 삭제(관리자 전용)
-  </DIV>
-
   <DIV class='content_body'>
-    <ASIDE class="aside_right">
-      <A href="javascript:location.reload();">새로고침</A>
-      <span class='menu_divide' >│</span> 
-      <A href='./create.do'>회원 가입</A>
-      <span class='menu_divide' >│</span> 
-      <A href='./list.do'>목록</A>
-    </ASIDE> 
-   
-    <div class='menu_line'></div>
+  <DIV>
+    <img src="/menu/images/px.svg" class="icon0" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'> 회원 삭제 (관리자 전용)</span>
+</DIV> 
    
    
     <DIV class='message'>
       <FORM name='frm' method='POST' action='./delete.do'>
-        '${memberVO.mname }(${memberVO.id })' 회원을 삭제하면 복구 할 수 없습니다.<br><br>
+        ${memberVO.mname }(${memberVO.id }) 회원을 삭제하면 복구 할 수 없습니다.<br><br>
         정말로 삭제하시겠습니까?<br><br>         
-        <input type='hidden' name='memberno' value='${memberVO.memberno}'>     
-            
-        <button type="submit" class="btn btn-outline-danger btn-sm">삭제</button>
-        <button type="button" onclick="location.href='./list.do'" class="btn btn-outline-secondary btn-sm">취소(목록)</button>
-     
+        <input type='hidden' name='memberno' value='${memberVO.memberno}'>
+             
+        <button type="button" onclick="location.href='./list.do'" class="btn btn-outline-dark">취소</button>
+                 
+        <button type="submit" class="btn btn-dark">삭제</button>
+
       </FORM>
     </DIV>
   </DIV> <%--  <DIV class='content_body'> END --%>

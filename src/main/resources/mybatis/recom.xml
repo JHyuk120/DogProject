@@ -20,7 +20,7 @@
   <!-- 삭제 -->
   <delete id="delete" parameterType="dev.mvc.recom.RecomVO">
     DELETE FROM RECOM 
-    WHERE memberno = #{memberno}
+    WHERE memberno = #{memberno} and recipeno = #{recipeno}
   
   </delete>
   

@@ -32,22 +32,41 @@
   } );
 </script>
 
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>${itemVO.item  } > 글 등록</DIV>
+  <DIV class='content_body'>
+  <DIV>
+    <span style='font-size: 30px; margin-left: 35%;'>🥗 ${itemVO.item  } > 글 등록</span>
+</DIV> 
 
-<DIV class='content_body'>
   <ASIDE class="aside_right">
-    <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
-    <span class='menu_divide' >│</span>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno_search_paging_cart.do?itemno=${itemVO.itemno }">기본 목록형</A>    
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno_grid.do?itemno=${itemVO.itemno }">갤러리형</A>
+    <A href="javascript:location.reload();">🔄 새로고침</A>
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
@@ -76,15 +95,15 @@
     <input type="hidden" name="itemno" value="${param.itemno }">
     
     <div>
-       <label>제목</label>
-       <input type='text' name='gname' value='서울 우수 야경' required="required" 
+       <label>재료 이름</label>
+       <input type='text' name='gname' value='' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'><br>
     </div>
      
-    <div class="row" style='width:40%'>
+    <div class="row" style='width:60% '>
       <div class="col-sm-4">
         <label for="price">가격</label>
-        <input type="number" class="form-control" id="price" name="price" value="10000" >
+        <input type="number" class="form-control" id="price" name="price" value="" >
       </div>
       <div class="col-sm-4">
         <label for="dc">DC</label>
@@ -97,7 +116,7 @@
         </div>
         <div class="col-sm-4">
           <label for="cnt">수량</label>
-          <input type="number" class="form-control" id="cnt" name="cnt" value="1" min="0" style='width:80%'>
+          <input type="number" class="form-control" id="cnt" name="cnt" value="100" min="0" style='width:80%'>
         </div>
         <div class="col-sm-4">
           <label for="cnt">원산지</label>
@@ -113,9 +132,10 @@
         </div>
         <div class="col-sm-4">
           <label for="cnt">그램 수</label>
+          <div class="input-group">
           <input type="number" class="form-control" id="grams" name="grams" value="100" min="1" style='width:80%'>
            <div class="input-group-append">
-              <span class="input-group-text">g</span>
+              <span class="input-group-text">g</span></div>
            </div>
         </div>
     </div>
@@ -123,12 +143,12 @@
     
     <div>
        <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>가을 단풍보며 멍때리기</textarea><br>
+       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'></textarea><br>
     </div>
     
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='서울, 야경, 힐링, 산책, 데이트, 친구, 연인, 운동, 생각, 스릴러' required="required" 
+       <input type='text' name='word' value='해시태그' required="required" 
                  class="form-control" style='width: 100%;'><br>
     </div>   
     <div>
@@ -138,7 +158,7 @@
     </div>  
      
     <div >
-      <button type="submit" class="btn btn-dark">등록</button>
+      <button type="submit" class="btn btn-dark" style="margin-left: 90%;">등록</button>
       <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark">목록</button>
     </div>
   

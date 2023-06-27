@@ -54,7 +54,7 @@ public class CartCont {
     CartVO cartVO = new CartVO();
     cartVO.setGoodsno(goodsVO.getGoodsno()); //상품번호
     cartVO.setCnt(cntc);
-
+    
     int memberno = (Integer)session.getAttribute("memberno");
     cartVO.setMemberno(memberno); //회원번호
     

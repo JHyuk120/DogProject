@@ -210,16 +210,16 @@ public class RecipeCont {
    * @return
    */
   @RequestMapping(value="/recipe/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int recipeno, ReplyVO replyVO, RecomVO recomVO, HttpSession session, GoodsVO goodsVO) {
+  public ModelAndView read(HttpServletRequest request, RecipeVO recipeVO, ReplyVO replyVO, RecomVO recomVO, HttpSession session, GoodsVO goodsVO) {
     ModelAndView mav = new ModelAndView();
-
-    RecipeVO recipeVO = this.recipeProc.read(recipeno);
+    int recipeno = recipeVO.getRecipeno();
+    recipeVO = this.recipeProc.read(recipeno);
    
     String title = recipeVO.getTitle();
     String article = recipeVO.getArticle();
     String ingredient = recipeVO.getIngredient();
     
-    int goodsNo = -1; // -1은 goodsNo를 찾지 못하였음을 의미합니다.
+    int no = -1; // -1은 goodsNo를 찾지 못하였음을 의미합니다.
     
     title = Tool.convertChar(title);  // 특수 문자 처리
     article = Tool.convertChar(article); 
@@ -227,25 +227,26 @@ public class RecipeCont {
     recipeVO.setTitle(title);
     recipeVO.setArticle(article);  
     
+    HashMap<String, Integer> map = new HashMap<>();
     // 재료 연결시작 //
     // 재료 키,값으로 저장(키: 재료명, 값: 주소)
-    String[] keyValue = ingredient.split(",");
-    HashMap<String, String> hashMap = new HashMap<>();
-
+    String[] keyValue = ingredient.split(", ");
     for (int i = 0; i < keyValue.length; i++) {
-      System.out.println("List: " + goodsVO.getGname());
-        if (keyValue[i].equals(this.goodsProc.list_all())) {
-            
-            goodsNo = goodsVO.getGoodsno(); // goodsNo 값을 가져오기
-            break; // 루프를 종료하고 goodsNo를 얻습니다.
-        }
-    }
-
-    if (goodsNo == -1) {
+      System.out.println(keyValue[i]);
+      no = goodsProc.select_goodsno(keyValue[i]);
+      
+      map.put(keyValue[i], no);
+      
+      if (no == -1) {
         System.out.println("동일한 gname을 가진 goodsVO를 찾지 못하였습니다.");
-    } else {
-        System.out.println("동일한 gname을 가진 goodsVO의 goodsNo: " + goodsNo);
+      } else {
+        System.out.println("동일한 gname을 가진 goodsVO의 goodsNo: " + no);
+        recipeVO.setMap(map);
+        
+      }
     }
+    System.out.println("MAP: " + recipeVO.getMap());
+    request.setAttribute("map", map); 
     // 재료와 연결 끝 //
     
     long size1 = recipeVO.getSize1();

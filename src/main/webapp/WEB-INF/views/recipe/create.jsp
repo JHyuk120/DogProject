@@ -79,29 +79,26 @@
     </div>
     <br>
     <div>
-       <label>재료</label>
+       <label>재료선택</label>
         <div>
           <tbody>
             <c:forEach var="goodsVO" items="${list}">
-
               <c:set var="gname" value="${goodsVO.gname}"/>
-
                 <input type="checkbox" id="gname" name="gname" value="${gname }">
-                <label for="gname">${gname }</label>
+                  <label>${gname }</label>
             </c:forEach>
           </tbody>
         </div>
         <button id="addBtn">선택된 항목 추가</button><br><br>
-        <textarea name='ingredient' id='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'>
-🍚재료🍚
-</textarea>
+        🍚재료🍚
+        <textarea name='ingredient' id='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'></textarea>
     </div>
     <br>
   
     <div>
-       <label>글</label>
+       <label>🍚조리순서🍚</label>
        <textarea name='article' required="required" class="form-control" rows="12" style="overflow-y: scroll"; 'width: 100%;'>
-🍚조리순서🍚
+
 </textarea>
     </div>  
       

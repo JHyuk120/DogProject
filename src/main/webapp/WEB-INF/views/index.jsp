@@ -66,7 +66,7 @@
     <br>
      <p style="font-size: 24px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">추천 레시피</p>
         <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
-             <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
+             <c:forEach var="recommendVO" items="${list}" begin="0" end="9" varStatus="status">
               <c:set var="title" value="${recommendVO.title }" />
               <c:set var="thumb1" value="${recommendVO.thumb1 }" />                
               <div  onclick="" class='hover'
@@ -101,16 +101,16 @@
                 <div class="row">
                     <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
                         <div class="col">
-                        
+                          <div class="image-container_rc">
                             <c:choose> 
                               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                                <img src="/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                                <img src="/recipe/storage/${thumb1 }" class="carousel-image">
                               </c:when>
                               <c:otherwise>
-                                <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
+                                <IMG src="/images/ee.png" class="carousel-image">
                               </c:otherwise>
                             </c:choose>
-                                         
+                           </div>            
                         </div>
                     </c:forEach>
                 </div>
@@ -121,14 +121,16 @@
                 <div class="row">
                     <c:forEach var="recommendVO" items="${list}" begin="5" end="9" varStatus="status">
                         <div class="col">
+                          <div class="image-container_rc">
                              <c:choose> 
                               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                                <img src="/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                                <img src="/recipe/storage/${thumb1 }" class="carousel-image">
                               </c:when>
                               <c:otherwise>
-                                <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
+                                <IMG src="/images/ee.png" class="carousel-image">
                               </c:otherwise>
                             </c:choose>
+                           </div> 
                         </div>
                     </c:forEach>
                 </div>

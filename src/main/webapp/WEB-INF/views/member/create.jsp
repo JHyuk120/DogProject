@@ -196,11 +196,34 @@
     $('#frm').submit(); // required="required" 작동 안됨.
   }  
 </script>
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
 </head> 
-
-
 <body>
 <c:import url="/menu/top.do" />
+
 
   <!-- ******************** Modal 알림창 시작 ******************** -->
   <div id="modal_panel" class="modal fade"  role="dialog">
@@ -223,21 +246,15 @@
   </div>
   <!-- ******************** Modal 알림창 종료 ******************** -->
 
-  <DIV class='title_line'>회원 가입</DIV>
-
   <DIV class='content_body'>
+  <DIV>
+    <img src="/menu/images/pheart.svg" class="icon0" style='margin-left:40%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'> 회원 가입</span>
+</DIV> 
+
   
-  <ASIDE class="aside_left" style="margin-left:900px;  font-size: 16px;">
+  <ASIDE class="aside_right" style="margin-left:900px;  font-size: 16px;">
    <span style="color: red;  margin-right: 5px;" >*</span>필수입력사항
   </ASIDE>
-
-  <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./list.do'>목록</A>
-  </ASIDE> 
 
   <div class='menu_line'></div>
   
@@ -247,7 +264,7 @@
     <div class="form_input"  style = "margin-bottom:20px;  margin-top:40px; ">
       <label style="font-size: 18px;">아이디</label><span style="color: red;  margin-right:124px;" >*</span>
       <input type='text' class="form-control " name='id' id='id' value="" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark" style='width:150px; height:50px; margin-bottom:2px; margin-left:5px;'>중복확인</button>
+      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark" style=' margin-bottom:2px; margin-left:5px;'>중복확인</button>
     </div>   
                 
     <div class="form_input"  style = "margin-bottom:20px; ">
@@ -277,7 +294,7 @@
       <label style="font-size: 18px;">우편번호</label><span style="color: red;  margin-right: 107px;" >*</span>
       <input type='text' class="form-control" name='zipcode' id='zipcode' 
                 value='' style='width: 400px; height:50px; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style="width:150px; height:50px; margin-bottom:2px; margin-left:5px;">우편번호 찾기</button>
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style="margin-bottom:2px; margin-left:5px;">우편번호 찾기</button>
     </div>  
     
     <div class="form_input" style = "margin-bottom:20px;">
@@ -366,8 +383,8 @@
     </div>
     
     <div class="form_input">
-      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" style="margin-left:30px; width: 500px;  height:50px;" >가입하기</button>
-      <button type="button" onclick="history.back()" class="btn btn-outline-dark" style='width:70px; height:50px;'><img src="/member/images/back.png" class="icon"  style="width:30px"></button>
+      <button type="button" onclick="history.back()" class="btn btn-outline-dark"  style="margin-left:43%;"><img src="/member/images/back.png" class="icon"></button>    
+      <button type="button" id='btn_send' onclick="send()" class="btn btn-dark" >가입하기</button>
     </div>   
   </FORM>
   </DIV>

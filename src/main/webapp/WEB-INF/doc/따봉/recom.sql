@@ -55,7 +55,7 @@ select count(recomno) from recom where recipeno = 18;
 select count(recipeno) from recom where recipeno = 18 AND memberno = 7;
 
 -- delete
-delete from recom where memberno = 7;
+delete from recom where memberno = 7 and recipeno = 3;
 
 
 --adminList

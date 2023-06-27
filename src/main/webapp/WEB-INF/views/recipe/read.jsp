@@ -16,8 +16,11 @@
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
 <c:set var="recom" value="${recipeVO.recom }" />
+
  <c:set var="replycont" value="${replyVO.replycont}" />
 <c:set var="replyno" value="${replyVO.replyno}" />
+
+
 
  
 <!DOCTYPE html> 
@@ -49,6 +52,46 @@ function checkLoginStatus() {
     }
     return true; // 폼 제출 진행
 }
+
+// 레시피에서 구매 Ajax
+function cart_ajax_post(goodsno) {
+    //var f = $('#frm_order');
+    //var cntc = $('#cntc', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
+    let cntc = 1;
+    var params = "";
+    // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+    params += 'goodsno=' + goodsno + '&cntc=' + cntc;
+    // alert('-> cart_ajax_post: ' + params);
+    // return;
+    // 쇼핑카트 등록시 사용할 상품 번호.
+
+    $.ajax(
+      {
+        url: '/cart/create.do',
+        type: 'post',  // get, post
+        cache: false, // 응답 결과 임시 저장 취소
+        async: true,  // true: 비동기 통신
+        dataType: 'json', // 응답 형식: json, html, xml...
+        data: params,     // 데이터
+        success: function(rdata) { // 응답이 온경우
+          var str = '';
+          // console.log('-> cart_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
+          
+          if (rdata.cnt == 1) {
+        	   alert('상품이 장바구니에 담겼습니다.')
+          } else {
+            alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
+          }
+        },
+        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+        error: function(request, status, error) { // callback 함수
+          console.log(error);
+        }
+      }
+    );  //  $.ajax END
+
+  }    
+
 </script>
 
 </head>
@@ -194,7 +237,25 @@ function checkLoginStatus() {
                 style="width: 25%; height: 250px; float: left; margin-top: 0.5%; margin-right:5%; margin-left: 20px; margin-bottom: 5px;"> 
             </c:otherwise>
             </c:choose>
-            <div style='float: left; margin-left: 110px'>${ingredient}</div><br>          
+            
+            
+            <div style='float: left; margin-left: 110px'>🍚재료🍚<br><br>
+              <form name="frm" action="/cart/create.do" method="POST">
+                  <input type="hidden" name="recipeno" value="${recipeno}" />
+                  
+                <table class="table table">
+                  <c:forEach var="map" items="${map}">
+                    <input type="hidden" name="title" value="${(map.key)}" />
+                    <tbody>
+                      <tr>
+                        <th>${(map.key)}</th>
+                        <th><button type=button id=${(map.value)} onclick="cart_ajax_post(${map.value})" style='border-radius: 10px;'>담기</button></th>
+                      </tr>
+                    </tbody>
+                  </c:forEach>
+                </table>
+              </form>
+            </div><br>          
         </DIV>
       </li>
       
@@ -207,8 +268,8 @@ function checkLoginStatus() {
       </c:if>
         
      <li class="li_none" style="clear: both;">
-        <DIV style='text-decoration: none;'>
-            <br><br>
+        <DIV style='text-decoration: none;'>🍚조리순서🍚
+            <br>
             ${article }
         <br>
           검색어(키워드): ${word }

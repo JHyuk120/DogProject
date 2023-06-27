@@ -24,7 +24,7 @@ public interface RecomDAOInter {
    * @param memberno
    * @return
    */
-  public int delete(int memberno);
+  public int delete(RecomVO recomVO);
   
 
 }

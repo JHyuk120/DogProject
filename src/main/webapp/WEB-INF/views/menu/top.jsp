@@ -55,6 +55,9 @@
                     </li>
 
                     <c:choose>
+                        <c:when test="${sessionScope.admin_id != null }">
+                        </c:when>
+                        
                         <c:when test="${sessionScope.id == null}">
                             <li class="nav-item dropdown">
                                 <%-- 회원 서브 메뉴 --%>
@@ -73,7 +76,7 @@
                             </li>
                         </c:when>
                         
-                        <c:otherwise>
+                        <c:when test="${sessionScope.id != null }">
                           <li class="nav-item dropdown">
                                 <%-- 회원 서브 메뉴 --%>
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
@@ -94,6 +97,10 @@
                                         <img src="/menu/images/px.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 탈퇴</a>
                                 </div>
                             </li>
+                        </c:when>
+                                                
+                        <c:otherwise>
+                          
                         </c:otherwise>
                     </c:choose>
 

@@ -1,5 +1,7 @@
 package dev.mvc.recipe;
 
+import java.util.HashMap;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -74,6 +76,8 @@ public class RecipeVO {
     
     /** 현재 페이지 */
     private int now_page=1;
+    
+    private HashMap<String, Integer> map;
 
 
 
