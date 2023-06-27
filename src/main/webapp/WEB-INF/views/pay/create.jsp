@@ -321,8 +321,16 @@
           <div class='cart_label'>나의 포인트</div>
           <div class='cart_price'><fmt:formatNumber value="${memberVO.mpoint }" pattern="#,###" /> 원 </div>
           
-          <div class='cart_label' style='font-size: 1.8em;'>최종 주문 금액</div>
-          <div class='cart_price'  style='font-size: 1.8em; color: #FF0000;'><fmt:formatNumber value="${total_order - memberVO.mpoint}" pattern="#,###" /> 원</div>
+          <c:choose>
+            <c:when test="${total_order <= memberVO.mpoint }">
+              <div class='cart_label' style='font-size: 1.8em;'>최종 주문 금액</div>
+              <div class='cart_price'  style='font-size: 1.8em; color: #FF0000;'><fmt:formatNumber value="0" pattern="#,###" /> 원</div>
+            </c:when>
+            <c:otherwise>
+              <div class='cart_label' style='font-size: 1.8em;'>최종 주문 금액</div>
+              <div class='cart_price'  style='font-size: 1.8em; color: #FF0000;'><fmt:formatNumber value="${total_order - memberVO.mpoint}" pattern="#,###" /> 원</div>
+            </c:otherwise>
+          </c:choose>
           
         </td>
         <td style='width: 10%;'>
