@@ -296,7 +296,8 @@
   <div style=" text-align: left;">
     <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="1" checked="checked"> 신용 카드</label>  
     <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="2"> 모바일</label>  
-    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="3"> 포인트</label>  
+    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="3"> 포인트</label>  <br>
+    <div style='font-size: 1.0em; color: #FF0000;'>포인트로 결제시 포인트를 제외한 나머지 값은 기존 등록 카드로 결제 됩니다.</div>
   </div>
   
   <table class="table table-striped" style='margin-top: 20px; margin-bottom: 50px; width: 100%; clear: both;'>
@@ -306,7 +307,10 @@
           <div class='cart_label'>상품 금액</div>
           <div class='cart_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
           
-          <div class='cart_label'>포인트</div>
+          <div class='cart_label'>적립 포인트</div>
+          <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
+          
+          <div class='cart_label'>나의 포인트</div>
           <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
           
           <div class='cart_label'>배송비</div>
@@ -315,7 +319,7 @@
         <td style='width: 50%;'>
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
-          
+                              
           <button type='button' id='btn_pay' class='btn btn-outline-primary btn-sm' style='font-size: 1.5em;'>결제하기</button>
           <button type='button' id='btn_cart' class='btn btn-outline-dark btn-sm' onclick="location.href='/cart/list_by_memberno.do'" 
                       style='font-size: 1.5em;'>취소하기(쇼핑카트)</button>
