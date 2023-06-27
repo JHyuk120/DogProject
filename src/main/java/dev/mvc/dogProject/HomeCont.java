@@ -2,6 +2,8 @@ package dev.mvc.dogProject;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 
 
 // Setvlet으로 작동함, GET/POST등의 요청을 처리함.
@@ -20,6 +24,10 @@ public class HomeCont {
   @Autowired
   @Qualifier("dev.mvc.item.ItemProc")
   private ItemProcInter itemProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.member.MemberProc")
+  private MemberProcInter memberProc;
   
   public HomeCont() {
     System.out.println("-> HomeCont created.");
@@ -40,7 +48,7 @@ public class HomeCont {
   
  // http://localhost:9093/menu/top.do
  @RequestMapping(value= {"/menu/top.do"}, method=RequestMethod.GET)
- public ModelAndView top() {
+ public ModelAndView top(HttpSession session) {
    ModelAndView mav = new ModelAndView();
       
    ArrayList<ItemVO> list = this.itemProc.list_all();
@@ -48,6 +56,12 @@ public class HomeCont {
    
    ArrayList<ItemVO> list_y = this.itemProc.list_all_y();
    mav.addObject("list_y", list_y);
+   
+   if (memberProc.isMember(session)) {
+     int memberno = (int) (session.getAttribute("memberno"));
+     MemberVO memberVO = this.memberProc.read(memberno);
+     mav.addObject("memberVO", memberVO);
+   }
    
    mav.setViewName("/menu/top"); // /WEB-INF/views/menu/top.jsp
    

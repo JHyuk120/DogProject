@@ -176,8 +176,10 @@
           <div class='cart_label'>상품 금액</div>
           <div class='cart_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
           
-          <div class='cart_label'>총 적립금</div>
+          <div class='cart_label'>추가 적립금</div>
           <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
+          
+
           
           <div class='cart_label'>배송비</div>
           <div class='cart_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
