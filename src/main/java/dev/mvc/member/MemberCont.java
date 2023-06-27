@@ -435,7 +435,7 @@ public class MemberCont {
      
    } else {
      // 회원으로 로그인을 하지 않은 경우
-     mav.setViewName("/member/login_need2"); // /webapp/WEB-INF/views/member/login_need.jsp
+     mav.setViewName("/member/login_need"); // /webapp/WEB-INF/views/member/login_need.jsp
    }
    
    return mav; // forward
