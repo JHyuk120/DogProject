@@ -17,6 +17,8 @@ import dev.mvc.detail.DetailProcInter;
 import dev.mvc.detail.DetailVO;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 
 
 
@@ -37,6 +39,10 @@ public class PayCont {
   @Autowired
   @Qualifier("dev.mvc.goods.GoodsProc")
   private GoodsProcInter goodsProc;
+
+  @Autowired
+  @Qualifier("dev.mvc.member.MemberProc")
+  private MemberProcInter memberProc;
  
   public PayCont() {
     System.out.println("-> PayCont created.");
@@ -136,6 +142,23 @@ public class PayCont {
       // 회원의 쇼핑카트 정보를 읽어서 주문 상세 테이블로 insert
       // 1. cart 읽음, SELECT
       List<CartVO> list = this.cartProc.list_by_memberno(memberno);
+      
+   // 포인트 적립
+      MemberVO memberVO = this.memberProc.read(memberno);
+      
+      int point_tot = memberVO.getMpoint();
+      
+      for (CartVO cartVO : list) {
+        // 포인트 합계 = 포인트 합계 + (포인트 * 수량)
+        point_tot = point_tot + (cartVO.getPoint() * cartVO.getCnt());
+        
+      }
+      System.out.println("point_tot" + point_tot);
+      memberVO.setMpoint(point_tot);
+      System.out.println("mpoint" + memberVO.getMpoint());
+      this.memberProc.mpoint_update(memberVO);
+      // 포인트 적립 끝
+      
       for (CartVO cartVO : list) {
         int goodsno = cartVO.getGoodsno();
         int cartno = cartVO.getCartno();
@@ -168,6 +191,7 @@ public class PayCont {
        System.out.println("-> delete_cnt: " + delete_cnt + " 건 주문후 cart에서 삭제됨.");
 
       }
+
       
     } else {
       // 결재 실패했다는 에러 페이지등 제작 필요, 여기서는 생략
