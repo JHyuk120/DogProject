@@ -435,7 +435,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       <input type="hidden" name="goodsno" value="${goodsno}" />
       <input type="hidden" name="check" value="${check}" />
       
-	    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
+	    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 4px;' onclick="cart_ajax(${goodsno })">
 	      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
 	    </button>
 
@@ -460,7 +460,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     </c:choose>
 
      </form> 
-    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 370px;' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
+    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 380px; ' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
     
   
   </div>
