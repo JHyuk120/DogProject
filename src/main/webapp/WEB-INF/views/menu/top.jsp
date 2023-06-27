@@ -3,7 +3,6 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.item.ItemVO" %>
-<%@ page import="dev.mvc.member.MemberVO" %>
 
 <DIV class='container_main'> 
 
@@ -25,15 +24,7 @@
             </button>    
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
-            <c:choose>
-              <c:when test="${sessionScope.id != null}">
-                  <a class="navbar-brand" href="/recommend.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
-              </c:when>
-              <c:otherwise>
                 <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
-              </c:otherwise>
-            </c:choose>
-
 
                 <ul class="navbar-nav mr-auto">
 
@@ -92,8 +83,6 @@
                                     <img src="/menu/images/pcircle.svg" class="icon" style='margin-left:20px'>&nbsp;마이페이지
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" >
-                                        <img src="/menu/images/mpoint.png" class="icon" style='margin-left:5px'>&nbsp; 적립금 ${memberVO.mpoint} 원</a>
                                     <a class="dropdown-item" href="/member/read.do">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                                     <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
