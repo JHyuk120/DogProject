@@ -8,15 +8,16 @@ DELETE FROM member;
 DROP TABLE member CASCADE CONSTRAINTS; 
  
 CREATE TABLE member (
-  memberno NUMBER(10) NOT NULL, -- 회원 번호, 레코드를 구분하는 컬럼 
-  id         VARCHAR(30)   NOT NULL UNIQUE, -- 아이디, 중복 안됨, 레코드를 구분 
-  passwd     VARCHAR(60)   NOT NULL, -- 패스워드, 영숫자 조합
-  mname      VARCHAR(30)   NOT NULL, -- 성명, 한글 10자 저장 가능
-  tel            VARCHAR(14)   NULL, -- 전화번호
-  zipcode     VARCHAR(5)        NULL, -- 우편번호, 12345
-  address1    VARCHAR(80)       NULL, -- 주소 1
-  address2    VARCHAR(50)       NULL, -- 주소 2
-  mdate       DATE             NOT NULL, -- 가입일    
+  memberno      NUMBER(10)        NOT NULL, -- 회원 번호, 레코드를 구분하는 컬럼 
+  id                       VARCHAR(30)               NOT NULL UNIQUE, -- 아이디, 중복 안됨, 레코드를 구분 
+  passwd            VARCHAR(60)        NOT NULL, -- 패스워드, 영숫자 조합
+  mname             VARCHAR(30)        NOT NULL, -- 성명, 한글 10자 저장 가능
+  tel                       VARCHAR(14)            NULL, -- 전화번호
+  zipcode             VARCHAR(5)            NULL, -- 우편번호, 12345
+  address1          VARCHAR(80)       NULL, -- 주소 1
+  address2          VARCHAR(50)       NULL, -- 주소 2
+  mdate                 DATE                          NOT NULL, -- 가입일    
+ mpoint                 NUMBER(10)          NULL DEFAULT 1000,
   PRIMARY KEY (memberno)                     -- 한번 등록된 값은 중복 안됨
 );
  
