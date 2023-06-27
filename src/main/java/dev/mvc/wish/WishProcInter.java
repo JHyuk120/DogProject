@@ -24,9 +24,9 @@ public interface WishProcInter {
    */
   public int delete(WishVO wishVO);
   
-//  /**
-//   * 내가 찜한 항목 수
-//   */
-//  public int mycnt(int goodsno);
+  /**
+   * 내가 찜한 항목 수
+   */
+  public int mycnt(int memberno);
 
 }

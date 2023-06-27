@@ -190,23 +190,27 @@ function cart_ajax_post(goodsno) {
     <input type="hidden" name="check" value="${check}" />
 
     <c:choose>
-      <c:when test="${sessionScope.adminno != null}">
-        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;">🤍 ${recom}</button>
+     <c:when test="${sessionScope.adminno != null}">
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장">
+        <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;">${recom}</button> ${recom}</button>
       </c:when>
       <c:when test="${sessionScope.memberno == null}">
-        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;">🤍 ${recom}</button>
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장">
+        <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;">${recom}</button> ${recom}</button>
       </c:when>
       <c:when test="${check == 1}">
-        <button type="submit" id="recom" class="btn btn-danger btn-sm" style="font-size: 0.8em;">❤️ ${recom}</button>
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장취소">
+        <img src="/recipe/images/pullsave.png" class="icon" style="width:25px; margin-bottom:3px;"> ${recom}</button>
       </c:when>
       <c:otherwise>
-        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;">🤍 ${recom}</button>
+        <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장">
+         <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;"> ${recom}</button>
       </c:otherwise>
     </c:choose>
   </form>
 
-  <button onclick="sharePage()" class="btn btn-outline-secondary btn-sm" style="font-size: 0.8em; margin-left: 10px;">공유하기</button>
-
+ <button onclick="sharePage()" class="btn btn-outline-secondary btn-sm" style="font-size: 0.8em; margin-left: 10px;"title="링크복사">
+  <img src="/recipe/images/gong.png" class="icon" style="width:25px; margin-bottom:3px;"></button>
   <script>
     function sharePage() {
       const url = window.location.href;
