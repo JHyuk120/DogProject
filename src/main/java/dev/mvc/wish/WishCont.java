@@ -137,7 +137,7 @@ public class WishCont {
     if (memberProc.isMember(session)) {
       ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
       int mycnt = this.wishProc.mycnt(memberno);
-      System.out.println("mycnt:"+mycnt);
+      //System.out.println("mycnt:"+mycnt);
       mav.addObject("mycnt", mycnt);
       mav.addObject("list_m", list_m);
       

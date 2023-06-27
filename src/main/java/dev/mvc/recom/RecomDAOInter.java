@@ -26,5 +26,12 @@ public interface RecomDAOInter {
    */
   public int delete(RecomVO recomVO);
   
+  /**
+   * 저장한 레시피 수
+   * @param memberno
+   * @return
+   */
+  public int myrecom(int memberno);
+  
 
 }

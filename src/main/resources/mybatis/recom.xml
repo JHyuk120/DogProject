@@ -24,6 +24,12 @@
   
   </delete>
   
+  <!-- 저장한 레시피 수량 확인 -->
+ <select id="myrecom" resultType="int" parameterType="int">
+		SELECT count(recipeno) as cnt
+		FROM recom
+		WHERE memberno = #{memberno}
+  </select>
   
   
 </mapper>

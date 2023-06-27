@@ -192,11 +192,11 @@ function cart_ajax_post(goodsno) {
     <c:choose>
      <c:when test="${sessionScope.adminno != null}">
         <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장">
-        <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;">${recom}</button> ${recom}</button>
+        <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;">${recom}</button> 
       </c:when>
       <c:when test="${sessionScope.memberno == null}">
         <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장">
-        <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;">${recom}</button> ${recom}</button>
+        <img src="/recipe/images/save.png" class="icon" style="width:25px; margin-bottom:3px;">${recom}</button> 
       </c:when>
       <c:when test="${check == 1}">
         <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장취소">
