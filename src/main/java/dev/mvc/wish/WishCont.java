@@ -139,24 +139,26 @@ public class WishCont {
       mav.addObject("list_m", list_m);
       
 
-      // 찜 관련 시작 ------------------------------------------------
-      
-      // 찜 확인
-      if (memberProc.isMember(session)) {
+     // 찜 관련 시작 ------------------------------------------------
+    
+//      // 찜 확인
+     if (memberProc.isMember(session)) {
         memberno = (int) (session.getAttribute("memberno"));
-        wishVO.setMemberno(memberno);
+       wishVO.setMemberno(memberno);
         
-        int check_cnt = this.wishProc.check(wishVO);
-        mav.addObject("check", check_cnt);
-      }
+       int check_cnt = this.wishProc.check(wishVO);
+       mav.addObject("check", check_cnt);
+     }
       
     } else {
       mav.addObject("code", "member_fail");
       mav.setViewName("redirect:/wish/msg.do");
     }
+          
+     
 
       return mav; 
     }
 
   
-}
+  }
