@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
@@ -71,7 +72,7 @@ public class WishCont {
          mav.addObject("code", "create_fail");
        }
       }else {
-        int delete_wisih = this.wishProc.delete(memberno);
+        int delete_wisih = this.wishProc.delete(wishVO);
         
         mav.addObject("goodsVO", goodsVO);
         //this.goodsProc.wish_sub(goodsVO.getGoodsno());
@@ -90,21 +91,24 @@ public class WishCont {
     
   }
   
-  /**
-   * 삭제
-   */
-  @RequestMapping(value = "/wish/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete(HttpSession session, GoodsVO goodsVO) {
-    ModelAndView mav = new ModelAndView();
-    int memberno = (int)(session.getAttribute("memberno"));//회원번호 가져옴
-    int delete_wisih = this.wishProc.delete(memberno);
-    
-    mav.addObject("goodsVO", goodsVO);
-    //this.goodsProc.wish_sub(goodsVO.getGoodsno());
-    mav.setViewName("redirect:/wish/memberList.do?memberno=" + memberno); 
-
-    return mav; // forward
-  }
+//  /**
+//   * 삭제
+//   */
+//  @RequestMapping(value = "/wish/delete.do", method = RequestMethod.POST)
+//  public ModelAndView delete(HttpSession session, GoodsVO goodsVO,WishVO wishVO,@RequestParam(value="goodsno", defaultValue="0") int goodsno, @RequestParam(value = "memberno", defaultValue = "0") int memberno ) {
+//    ModelAndView mav = new ModelAndView();
+//    //int memberno = (int)(session.getAttribute("memberno"));//회원번호 가져옴
+//    wishVO.setGoodsno(goodsno);
+//    wishVO.setMemberno(memberno);
+//   this.wishProc.delete(wishVO);
+//    
+//    //mav.addObject("goodsVO", goodsVO);
+//    //this.goodsProc.wish_sub(goodsVO.getGoodsno());
+//    mav.setViewName("redirect:/wish/memberList.do");        
+//   
+//
+//    return mav; // forward
+//  }
   
   /**
    * 오류 메시지
@@ -128,11 +132,24 @@ public class WishCont {
   @return
   */
   @RequestMapping(value = "/wish/memberList.do", method = RequestMethod.GET)
-  public ModelAndView memberList(int memberno, HttpSession session) {
+  public ModelAndView memberList(int memberno, HttpSession session,WishVO wishVO) {
     ModelAndView mav = new ModelAndView();
     if (memberProc.isMember(session)) {
       ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
       mav.addObject("list_m", list_m);
+      
+
+      // 찜 관련 시작 ------------------------------------------------
+      
+      // 찜 확인
+      if (memberProc.isMember(session)) {
+        memberno = (int) (session.getAttribute("memberno"));
+        wishVO.setMemberno(memberno);
+        
+        int check_cnt = this.wishProc.check(wishVO);
+        mav.addObject("check", check_cnt);
+      }
+      
     } else {
       mav.addObject("code", "member_fail");
       mav.setViewName("redirect:/wish/msg.do");

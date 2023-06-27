@@ -23,8 +23,8 @@ public class WishProc implements WishProcInter{
   }
 
   @Override
-  public int delete(int memberno) {
-    int cnt = this.wishDAO.delete(memberno);
+  public int delete(WishVO wishVO) {
+    int cnt = this.wishDAO.delete(wishVO);
     return cnt;
   }
 
