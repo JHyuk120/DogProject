@@ -111,7 +111,9 @@ public class RecipeCont {
       int memberno = (int)session.getAttribute("memberno");
       String mname = (String)session.getAttribute("mname");
       recipeVO.setMname(mname);
+      recipeVO.setMemberno(memberno);
       
+      int cnt = this.recipeProc.create(recipeVO); 
       // ------------------------------------------------------------------------------
       // 메인 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
@@ -159,7 +161,8 @@ public class RecipeCont {
       String cookfile = ""; // 원본 파일명
       String cookfilesaved = ""; // 업로드된 파일명
       String thumb = ""; // Preview 이미지
-      int upload_count = 0; // 정상처리된 레코드 갯수    
+      int upload_count = 0; // 정상처리된 레코드 갯수  
+      String exp = "";
       
       System.out.println( "멀티파일: "+ recipeVO.getCookfileMF()); 
       
@@ -168,6 +171,7 @@ public class RecipeCont {
       int count = cookfileMF.size(); // 전송 파일 갯수
       if (count > 0) {
         for (MultipartFile multipartFile:cookfileMF) {
+          exp = cook_multiVO.getExp();
           cookfile = multipartFile.getOriginalFilename(); // 원본 파일명
           cookfilesaved = Upload.saveFileSpring(multipartFile, upDir); // 파일 저장, 업로드된 파일명
           if (Tool.isImage(cookfile)) { // 이미지인지 검사
@@ -179,6 +183,7 @@ public class RecipeCont {
           vo.setCookfile(cookfile);
           vo.setCookfilesaved(cookfilesaved);
           vo.setThumb(thumb);
+          vo.setExp(exp);
           
           upload_count = upload_count + cook_multiProc.create(vo);
         }
@@ -188,7 +193,6 @@ public class RecipeCont {
       // -----------------------------------------------------
       
       // Call By Reference: 메모리 공유, Hashcode 전달
-      int cnt = this.recipeProc.create(recipeVO); 
       
       // ------------------------------------------------------------------------------
       // PK의 return

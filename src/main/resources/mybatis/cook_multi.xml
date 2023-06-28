@@ -6,13 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace = "dev.mvc.cook_multi.Cook_multiDAOInter">
 
   <insert id="create" parameterType="dev.mvc.cook_multi.Cook_multiVO">
-    INSERT INTO cook_multi(cookfileno, recipeno, cookfile, cookfilesaved)
-    VALUES(cook_multi_seq.nextval, #{recipeno}, #{cookfile}, #{cookfilesaved})
+    INSERT INTO cook_multi(cookfileno, recipeno, cookfile, cookfilesaved, exp)
+    VALUES(cook_multi_seq.nextval, #{recipeno}, #{cookfile}, #{cookfilesaved}, #{exp})
   </insert>
   
   <!-- FK 기준 recipeno가 동일한 레코드 조회, cookfile 오름 차순 -->
   <select id="read" resultType="dev.mvc.cook_multi.Cook_multiVO" parameterType="int">
-    SELECT cookfileno, recipeno, cookfile, cookfilesaved, thumb
+    SELECT cookfileno, recipeno, cookfile, cookfilesaved, thumb, exp
     FROM cook_multi
     WHERE recipeno=#{recipeno}
   </select>
