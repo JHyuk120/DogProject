@@ -2,6 +2,7 @@ package dev.mvc.recipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.cook_multi.Cook_multiVO;
+import dev.mvc.cook_multi.Cook_multiProcInter;
+import dev.mvc.cook_multi.Cook_multiVO;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
 import dev.mvc.item.ItemProcInter;
@@ -64,6 +68,11 @@ public class RecipeCont {
   @Qualifier("dev.mvc.goods.GoodsProc")
   private GoodsProcInter goodsProc;
   
+  @Autowired
+  @Qualifier("dev.mvc.cook_multi.Cook_multiProc") 
+  private Cook_multiProcInter cook_multiProc;
+  
+  
   public RecipeCont () {
     System.out.println("-> RecipeCont created.");
   }
@@ -95,7 +104,7 @@ public class RecipeCont {
    * @return
    */
   @RequestMapping(value = "/recipe/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, HttpSession session, RecipeVO recipeVO,ReplyVO replyVO) {
+  public ModelAndView create(HttpServletRequest request, HttpSession session, RecipeVO recipeVO,ReplyVO replyVO, Cook_multiVO cook_multiVO) {
     ModelAndView mav = new ModelAndView();
 
     if (memberProc.isMember(session)) { // 회원으로 로그인 한 경우
@@ -104,18 +113,19 @@ public class RecipeCont {
       recipeVO.setMname(mname);
       
       // ------------------------------------------------------------------------------
-      // 파일 전송 코드 시작
+      // 메인 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
       String file1 = "";          // 원본 파일명 image
       String file1saved = "";   // 저장된 파일명, image
-      String thumb1 = "";     // preview image
+      String thumb1 = "";     // preview image  
 
       String upDir =  Recipe.getUploadDir();
       System.out.println("-> upDir: " + upDir);
-      
+         
       // 전송 파일이 없어도 file1MF 객체가 생성됨.
       // <input type='file' class="form-control" name='file1MF' id='file1MF' 
       //           value='' placeholder="파일 선택">
+      
       MultipartFile mf = recipeVO.getFile1MF();
       
       file1 = Tool.getFname(mf.getOriginalFilename()); // 원본 순수 파일명 산출
@@ -139,8 +149,43 @@ public class RecipeCont {
       recipeVO.setThumb1(thumb1);      // 원본이미지 축소판
       recipeVO.setSize1(size1);  // 파일 크기
       // ------------------------------------------------------------------------------
-      // 파일 전송 코드 종료
+      // 메인 파일 전송 코드 종료
       // ------------------------------------------------------------------------------
+      //
+      // ------------------------------------------------------------------------------
+      // 멀티 파일 전송 코드 시작
+      // ------------------------------------------------------------------------------
+      int recipeno = recipeVO.getRecipeno(); //레시피 번호 호출
+      String cookfile = ""; // 원본 파일명
+      String cookfilesaved = ""; // 업로드된 파일명
+      String thumb = ""; // Preview 이미지
+      int upload_count = 0; // 정상처리된 레코드 갯수    
+      
+      System.out.println( "멀티파일: "+ recipeVO.getCookfileMF()); 
+      
+      List<MultipartFile> cookfileMF = cook_multiVO.getCookfileMF();
+      
+      int count = cookfileMF.size(); // 전송 파일 갯수
+      if (count > 0) {
+        for (MultipartFile multipartFile:cookfileMF) {
+          cookfile = multipartFile.getOriginalFilename(); // 원본 파일명
+          cookfilesaved = Upload.saveFileSpring(multipartFile, upDir); // 파일 저장, 업로드된 파일명
+          if (Tool.isImage(cookfile)) { // 이미지인지 검사
+            thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
+          }
+          
+          Cook_multiVO vo = new Cook_multiVO();
+          vo.setRecipeno(recipeno);
+          vo.setCookfile(cookfile);
+          vo.setCookfilesaved(cookfilesaved);
+          vo.setThumb(thumb);
+          
+          upload_count = upload_count + cook_multiProc.create(vo);
+        }
+      }
+      // -----------------------------------------------------
+      // 파일 전송 코드 종료
+      // -----------------------------------------------------
       
       // Call By Reference: 메모리 공유, Hashcode 전달
       int cnt = this.recipeProc.create(recipeVO); 
@@ -214,6 +259,9 @@ public class RecipeCont {
     ModelAndView mav = new ModelAndView();
     int recipeno = recipeVO.getRecipeno();
     recipeVO = this.recipeProc.read(recipeno);
+    
+    ArrayList<Cook_multiVO> list2 = this.cook_multiProc.read(recipeno);
+    mav.addObject("list", list2);
    
     String title = recipeVO.getTitle();
     String article = recipeVO.getArticle();
@@ -430,28 +478,6 @@ public class RecipeCont {
     return mav;
   }
   
-  /**
-   * 수정 폼
-   * http://localhost:9091/recipe/update_text.do?recipeno=1
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/recipe/update_text.do", method = RequestMethod.GET)
-  public ModelAndView update_text(int recipeno) {
-    ModelAndView mav = new ModelAndView();
-    
-    RecipeVO recipeVO = this.recipeProc.read(recipeno);
-    mav.addObject("recipeVO", recipeVO);
-    
-    ItemVO itemVO = this.itemProc.read(recipeVO.getItemno());
-    mav.addObject("itemVO", itemVO);
-    
-    mav.setViewName("/recipe/update_text"); // /WEB-INF/views/recipe/update_text.jsp
-    // String article = "장소:\n인원:\n준비물:\n비용:\n기타:\n";
-    // mav.addObject("article", article);
-
-    return mav; // forward
-  }
   
   /**
    * 패스워드 확인
@@ -472,155 +498,161 @@ public class RecipeCont {
     return mav;
   }
   
-  
   /**
-   * 수정 처리
-   * http://localhost:9091/recipe/update_text.do?recipeno=1
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/recipe/update_text.do", method = RequestMethod.POST)
-  public ModelAndView update_text(HttpSession session, RecipeVO recipeVO) {
+  * 수정 폼
+  * http://localhost:9091/recipe/update_text.do?recipeno=1
+  * @return
+  */
+  @RequestMapping(value = "/recipe/update_text.do", method = RequestMethod.GET)
+  public ModelAndView update_text(int recipeno) {
+
     ModelAndView mav = new ModelAndView();
     
-    if(this.adminProc.isAdmin(session)) {
+    RecipeVO recipeVO = this.recipeProc.read(recipeno);
+    ItemVO itemVO = this.itemProc.read(recipeVO.getItemno());
+    ArrayList<Cook_multiVO> cook_multiVO = this.cook_multiProc.read(recipeno);
+
+    mav.addObject("recipeVO", recipeVO);
+    mav.addObject("itemVO", itemVO);
+    mav.addObject("cook_multiVO", cook_multiVO);
+
+    
+    mav.setViewName("/recipe/update_text"); 
+
+    return mav; // forward
+  }
+  
+  //수정처리
+  @RequestMapping(value = "/recipe/update_text.do", method = RequestMethod.POST)
+  public ModelAndView update(HttpServletRequest request, HttpSession session, RecipeVO recipeVO, Cook_multiVO cook_multiVO) {
+    ModelAndView mav = new ModelAndView();
+    
+    String cookfile = "";
+    String cookfilesaved = "";
+    String thumb = "";
+    int upload_count = 0; // 정상처리된 레코드 갯수
+     
+    RecipeVO recipeVO_old = recipeProc.read(recipeVO.getRecipeno());
+    
+    ArrayList<Cook_multiVO> list_old = cook_multiProc.read(recipeVO.getRecipeno());
+    String file1saved = recipeVO_old.getFile1saved(); // 실제 저장된 파일명
+    String thumb1 = recipeVO_old.getThumb1(); // 실제 저장된 preview 이미지 파일명
+    long size1 = 0;
+
+    
+    this.cook_multiProc.delete(recipeVO.getRecipeno()); // DBMS Q&A삭제
+    // -------------------------------------------------------------------
+    // 파일 삭제 코드 시작
+    // -------------------------------------------------------------------
+
+    for (int i=0; i < list_old.size(); i++) {
+      cook_multiVO = list_old.get(i);
+       
+      cookfilesaved = cook_multiVO.getCookfilesaved();
+      thumb = cook_multiVO.getThumb();
+        
+      String upDir = Recipe.getUploadDir(); // 경로설정
+   
+      Tool.deleteFile(upDir, cookfilesaved); // Folder에서 1건의 파일 삭제
+      Tool.deleteFile(upDir, thumb); // 1건의 Thumb 파일 삭제
+      Tool.deleteFile(upDir, file1saved); // 실제 저장된 파일삭제      
+      Tool.deleteFile(upDir, thumb1); // preview 이미지 삭제
+    }
+    
+    
+
+    // -------------------------------------------------------------------
+    // 파일 삭제 종료 
+    // -------------------------------------------------------------------
+   
+   // -------------------------------------------------------------------
+   // 파일 전송 코드 시작
+   // -------------------------------------------------------------------
+
+    cookfile = ""; // 원본 파일명
+    String file1 = ""; // 원본 파일명 image
+   
+   String upDir = Recipe.getUploadDir(); // 경로설정
+   
+   List<MultipartFile>cookfileMF = recipeVO.getCookfileMF();
+   System.out.println( "멀티파일: "+ cookfileMF.size());
+   
+   int count = cookfileMF.size(); // 전송 파일 갯수
+   if (count > 0) {
+       
+     for (MultipartFile multipartFile:cookfileMF) { // 파일 추출, 1개이상 파일 처리
+            
+              if (Tool.isImage(cookfile)) { // 이미지인지 검사
+                thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
+              }
+            }
+             Cook_multiVO vo = new Cook_multiVO();
+             vo.setRecipeno(cook_multiVO.getRecipeno());
+             System.out.println("cookfile: " + cookfile);
+             vo.setCookfile(cookfile);
+             vo.setCookfilesaved(cookfilesaved);
+           
+            upload_count = upload_count + cook_multiProc.create(vo); 
+
+       }
+           MultipartFile mf = recipeVO.getFile1MF();
+        
+           file1 = mf.getOriginalFilename(); // 원본 파일명
+        
+           size1 = mf.getSize(); // 파일 크기
+        
+           if (size1 > 0) { // 파일 크기 체크
+        
+           // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
+        
+           file1saved = Upload.saveFileSpring(mf, upDir);
+        
+           if (Tool.isImage(file1saved)) { // 이미지인지 검사
+        
+           // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
+        
+           thumb1 = Tool.preview(upDir, file1saved, 250, 200);
+        
+           }
+        
+           } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
+        
+           file1="";
+        
+           file1saved="";
+        
+           thumb1="";
+        
+           size1=0;
+        
+           }
+        
+           recipeVO.setFile1(file1);
+        
+           recipeVO.setFile1saved(file1saved);
+        
+           recipeVO.setThumb1(thumb1);
+        
+           recipeVO.setSize1(size1);   
+     
+       
+      
+       // -------------------------------------------------------------------
+       // 파일 전송 코드 종료
+       // -------------------------------------------------------------------
+      
       this.recipeProc.update_text(recipeVO);
       
       mav.addObject("recipeno", recipeVO.getRecipeno());
       mav.addObject("itemno", recipeVO.getItemno());
-      mav.setViewName("redirect:/recipe/read.do");
-    }else {
-      if(this.recipeProc.password_check(recipeVO) == 1) {
-        this.recipeProc.update_text(recipeVO);
+      mav.addObject("upload_count", upload_count);
       
-      // URL에 파라미터의 전송
-      // mav.setViewName("redirect:/recipe/read.do?recipeno=" + recipeVO.getRecipeno() + "&itemno=" + recipeVO.getItemno());             
-  
-      // mav 객체 이용
-      mav.addObject("recipeno", recipeVO.getRecipeno());
-      mav.addObject("itemno", recipeVO.getItemno());
-      mav.setViewName("redirect:/recipe/read.do");
-      } else {
-        mav.addObject("url", "recipe/passwd_check"); 
-        mav.setViewName("redirect:/recipe/msg.do"); 
-      }
-    }
-    
-    mav.addObject("now_page", recipeVO.getNow_page());
-    
+      mav.setViewName("redirect:/Recipe/read.do");
+      
+      mav.addObject("now_page", recipeVO.getNow_page());
+      
     return mav; // forward
   }
-  
-  
-  /**
-   * 파일 수정 폼
-   * http://localhost:9091/recipe/update_file.do?recipeno=1
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/recipe/update_file.do", method = RequestMethod.GET)
-  public ModelAndView update_file(int recipeno) {
-    ModelAndView mav = new ModelAndView();
-    
-    RecipeVO recipeVO = this.recipeProc.read(recipeno);
-    mav.addObject("recipeVO", recipeVO);
-    
-    ItemVO itemVO = this.itemProc.read(recipeVO.getItemno());
-    mav.addObject("itemVO", itemVO);
-    
-    mav.setViewName("/recipe/update_file"); // /WEB-INF/views/recipe/update_file.jsp
-
-    return mav; // forward
-  }
-  
-  /**
-   * 파일 수정 처리 http://localhost:9091/recipe/update_file.do
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/recipe/update_file.do", method = RequestMethod.POST)
-  public ModelAndView update_file(HttpSession session, RecipeVO recipeVO) {
-    ModelAndView mav = new ModelAndView();
-    
-    if (this.adminProc.isAdmin(session)) {
-      // 삭제할 파일 정보를 읽어옴, 기존에 등록된 레코드 저장용
-      RecipeVO recipeVO_old = recipeProc.read(recipeVO.getRecipeno());
-      
-      // -------------------------------------------------------------------
-      // 파일 삭제 코드 시작
-      // -------------------------------------------------------------------
-      String file1saved = recipeVO_old.getFile1saved();  // 실제 저장된 파일명
-      String thumb1 = recipeVO_old.getThumb1();       // 실제 저장된 preview 이미지 파일명
-      long size1 = 0;
-         
-      // 완성된 경로 C:/kd/ws_java/resort_v1sbm3c/src/main/resources/static/recipe/storage/
-      // String upDir =  System.getProperty("user.dir") + "/src/main/resources/static/recipe/storage/"; // 절대 경로
-      String upDir = Recipe.getUploadDir(); // C:\\kd\\deploy\\resort_v2sbm3c\\recipe\\storage\\
-      
-      Tool.deleteFile(upDir, file1saved);  // 실제 저장된 파일삭제
-      Tool.deleteFile(upDir, thumb1);     // preview 이미지 삭제
-      // -------------------------------------------------------------------
-      // 파일 삭제 종료 시작
-      // -------------------------------------------------------------------
-          
-      // -------------------------------------------------------------------
-      // 파일 전송 코드 시작
-      // -------------------------------------------------------------------
-      String file1 = "";          // 원본 파일명 image
-
-      // 완성된 경로 C:/kd/ws_java/resort_v1sbm3c/src/main/resources/static/recipe/storage/
-      // String upDir =  System.getProperty("user.dir") + "/src/main/resources/static/recipe/storage/"; // 절대 경로
-          
-      // 전송 파일이 없어도 file1MF 객체가 생성됨.
-      // <input type='file' class="form-control" name='file1MF' id='file1MF' 
-      //           value='' placeholder="파일 선택">
-      MultipartFile mf = recipeVO.getFile1MF();
-          
-      file1 = mf.getOriginalFilename(); // 원본 파일명
-      size1 = mf.getSize();  // 파일 크기
-          
-      if (size1 > 0) { // 파일 크기 체크
-        // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-        file1saved = Upload.saveFileSpring(mf, upDir); 
-        
-        if (Tool.isImage(file1saved)) { // 이미지인지 검사
-          // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
-          thumb1 = Tool.preview(upDir, file1saved, 250, 200); 
-        }
-        
-      } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
-        file1="";
-        file1saved="";
-        thumb1="";
-        size1=0;
-      }
-          
-      recipeVO.setFile1(file1);
-      recipeVO.setFile1saved(file1saved);
-      recipeVO.setThumb1(thumb1);
-      recipeVO.setSize1(size1);
-      // -------------------------------------------------------------------
-      // 파일 전송 코드 종료
-      // -------------------------------------------------------------------
-          
-      this.recipeProc.update_file(recipeVO); // Oracle 처리
-
-      mav.addObject("recipeno", recipeVO.getRecipeno());
-      mav.addObject("itemno", recipeVO.getItemno());
-      
-
-      mav.setViewName("redirect:/recipe/read.do"); // request -> param으로 접근 전환
-                
-    } else {
-      mav.addObject("url", "/admin/login_need"); // login_need.jsp, redirect parameter 적용
-      mav.setViewName("redirect:/recipe/msg.do"); // GET
-    }
-    
-    // redirect 하게 되면 데이터가 삭제됨
-    mav.addObject("now_page", recipeVO.getNow_page());
-
-    return mav; // forward
-  }   
 
   /**
    * 삭제 폼
@@ -649,7 +681,7 @@ public class RecipeCont {
    * @return
    */
   @RequestMapping(value = "/recipe/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete(RecipeVO recipeVO) {
+  public ModelAndView delete(RecipeVO recipeVO, HttpServletRequest request, Cook_multiVO cook_multiVO) {
     ModelAndView mav = new ModelAndView();
     
     // -------------------------------------------------------------------
@@ -660,10 +692,22 @@ public class RecipeCont {
         
     String file1saved = recipeVO.getFile1saved();
     String thumb1 = recipeVO.getThumb1();
+    
+    ArrayList<Cook_multiVO> list = this.cook_multiProc.read(recipeVO.getRecipeno()); 
+    for (int i=0; i < list.size(); i++) {
+     cook_multiVO = list.get(i);
+       
+   String cookfilesaved = cook_multiVO.getCookfilesaved();
+   String thumb = cook_multiVO.getThumb();
        
     String uploadDir = Recipe.getUploadDir();
     Tool.deleteFile(uploadDir, file1saved);  // 실제 저장된 파일삭제
     Tool.deleteFile(uploadDir, thumb1);     // preview 이미지 삭제
+    
+    Tool.deleteFile(uploadDir, cook_multiVO.getCookfilesaved()); // Folder에서 1건의 파일 삭제
+    Tool.deleteFile(uploadDir, cook_multiVO.getThumb()); // 1건의 Thumb 파일 삭제
+    }
+    
     // -------------------------------------------------------------------
     // 파일 삭제 종료 시작
     // -------------------------------------------------------------------

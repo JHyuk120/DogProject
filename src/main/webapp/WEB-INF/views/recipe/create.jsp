@@ -12,6 +12,13 @@
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }
+ </style>
+
     
 <script>
     $(function() {
@@ -58,9 +65,9 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'class='btn btn-info'>검색</button>
+      <button type='submit'class='btn btn-custom btn-sm'>검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
+        <button type='button'   class='btn btn-custom btn-sm' 
                      onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
@@ -103,23 +110,26 @@
     </div>  
       
     <div>
+    <br>
        <label>검색어</label>
        <input type='text' name='word' value='# ' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
+     <br>
     <div>
        <label>이미지</label>
        <input type='file' class="form-control" name='file1MF' id='file1MF' 
                  value='' placeholder="파일 선택">
     </div>   
+     <br>
     <div>
        <label>패스워드</label>
        <input type='password' name='passwd' value='1234' required="required" 
                  class="form-control" style='width: 50%;'>
     </div>   
     <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-primary">목록</button>
+      <button type="submit" class="btn btn-dark" style="width:5%; height:45px;">등록</button>
+      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-dark" style="width:5%; height:45px;">목록</button>
     </div>
   
   </FORM>
