@@ -6,13 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="dev.mvc.recipe.RecipeDAOInter"> 
     <!--  등록한 레코드 갯수 1 리턴 -->
-  <insert id="create" parameterType="dev.mvc.recipe.RecipeVO">
+  <insert id="create" parameterType="dev.mvc.recipe.RecipeVO">    
+    <selectKey keyProperty="recipeno" resultType="int" order="BEFORE">
+      SELECT recipe_seq.nextval FROM dual
+    </selectKey>
     INSERT INTO recipe(recipeno, memberno, itemno, title, article, 
                       passwd, word, file1, file1saved,
-                      thumb1, size1, ingredient, rdate, mname)
-    VALUES(recipe_seq.nextval, #{memberno}, #{itemno}, #{title}, #{article}, 
+                      thumb1, size1, ingredient, rdate, mname, gname, time, difficulty)
+    VALUES(#{recipeno}, #{memberno}, #{itemno}, #{title}, #{article}, 
           #{passwd}, #{word}, #{file1}, #{file1saved}, 
-          #{thumb1}, #{size1}, #{ingredient}, sysdate, #{mname})
+          #{thumb1}, #{size1}, #{ingredient}, sysdate, #{mname}, #{gname}, #{time}, #{difficulty})
   </insert>
   
   
@@ -20,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_all" resultType="dev.mvc.recipe.RecipeVO">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star, mname
+                      thumb1, size1, youtube, ingredient, review, star, mname, gname, time, difficulty
     FROM recipe 
     ORDER BY recipeno DESC
   </select> 
@@ -29,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_by_itemno" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star, mname
+                      thumb1, size1, youtube, ingredient, review, star, mname, gname, time, difficulty
     FROM recipe
     WHERE itemno=#{itemno}
     ORDER BY recipeno DESC
@@ -39,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="read" resultType="dev.mvc.recipe.RecipeVO" parameterType="int">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star, mname
+                      thumb1, size1, youtube, ingredient, review, star, mname, gname, time, difficulty
     FROM recipe
     WHERE recipeno = #{recipeno}
   </select>
@@ -56,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_by_itemno_search" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
     SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
                       passwd, word, rdate, file1,file1saved,
-                      thumb1, size1, youtube, ingredient, review, star, mname
+                      thumb1, size1, youtube, ingredient, review, star, mname, gname, time, difficulty
     FROM recipe
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
@@ -90,13 +93,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.recipe.RecipeVO" parameterType="dev.mvc.recipe.RecipeVO">
    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
-                file1, file1saved, thumb1, size1,   youtube, mname,  r
+                file1, file1saved, thumb1, size1, youtube, mname, gname, time, difficulty, r
      FROM (
                 SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
-                           file1, file1saved, thumb1, size1,   youtube, mname, rownum as r
+                           file1, file1saved, thumb1, size1,   youtube, mname, gname, time, difficulty, rownum as r
                 FROM (
                           SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt, rdate,
-                                     file1, file1saved, thumb1, size1,   youtube, mname
+                                     file1, file1saved, thumb1, size1, youtube, mname, gname, time, difficulty
                           FROM recipe
                           <choose>
                             <when test="word == null or word == ''"> 

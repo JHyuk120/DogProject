@@ -21,6 +21,8 @@ public class Cook_multiVO {
   private String cookfilesaved;
   /** Thumb 이미지 */
   private String thumb;
+  /** 레시피 설명 */
+  private String exp;
   
   /** Form의 파일을 MultipartFile로 변환하여 List에 저장  */
   private List<MultipartFile> cookfileMF;

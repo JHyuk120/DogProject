@@ -59,7 +59,7 @@
                  // $('#div_login').hide(); // 로그인폼 감추기
                   //alert('로그인 성공');
                   $('#login_yn').val('Y');
-                  window.location.href = "/recommend.do";
+                  window.location.href = "/index.do";
                   
                 } else {
                   alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
