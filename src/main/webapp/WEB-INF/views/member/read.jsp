@@ -21,74 +21,6 @@
 
 <script type="text/javascript">
     // jQuery ajax 요청
-    function checkID() {
-      // $('#btn_close').attr("data-focus", "이동할 태그 지정");
-      
-      let frm = $('#frm'); // id가 frm인 태그 검색
-      let id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
-      let params = '';
-      let msg = '';
-    
-      if ($.trim(id).length == 0) { // $.trim(id) : 문자열 좌우의 공백 제거, length : 문자열 길이, id를 입력받지 않은 경우
-        $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
-
-        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-        msg = '· ID(이메일)를 입력하세요.<br>· ID(이메일) 입력은 필수 입니다.<br>· ID(이메일)는 3자이상 권장합니다.';
-        $('#modal_content').html(msg);        // 내용
-        
-        $('#btn_close').attr("data-focus", "id");  // data-focus : 개발자가 추가한 속성, 닫기 버튼 클릭시 "id" 입력으로 focus 이동
-        $('#modal_panel').modal();               // 다이얼로그 출력, modal : 메시지 창을 닫아야 다음 동작 진행 가능
-        return false;  // 회원 가입 진행 중지
-      } else {  // when ID is entered
-        params = 'id=' + id;
-        // var params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-        // alert('params: ' + params);
-    
-        $.ajax({
-          url: './checkID.do', // spring execute
-          type: 'get',  // post
-          cache: false, // 응답 결과 임시 저장 취소
-          async: true,  // true: 비동기 통신
-          dataType: 'json', // 응답 형식: json, html, xml...
-          data: params,      // 데이터
-          success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우: {"cnt":1}
-            // alert(rdata);
-            let msg = "";
-            
-            if (rdata.cnt > 0) {
-              $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-              msg = "이미 사용중인 ID(이메일) 입니다.<br>";
-              msg = msg + "다른 ID(이메일)을 지정해주세요.";
-              $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
-            } else {
-              $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
-              msg = "사용 가능한 ID(이메일) 입니다.";
-              $('#btn_close').attr("data-focus", "passwd");  // passwd 입력으로 focus 이동
-              // $.cookie('checkId', 'TRUE'); // Cookie 기록
-            }
-            
-            $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
-            $('#modal_content').html(msg);        // 내용
-            $('#modal_panel').modal();              // 다이얼로그 출력
-          },
-          // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-          error: function(request, status, error) { // callback 함수
-            console.log(error);
-          }
-        });
-        
-        // 처리중 출력
-    /*     var gif = '';
-        gif +="<div style='margin: 0px auto; text-align: center;'>";
-        gif +="  <img src='/member/images/ani04.gif' style='width: 10%;'>";
-        gif +="</div>";
-        
-        $('#panel2').html(gif);
-        $('#panel2').show(); // 출력 */
-        
-      }
-    
-    }
 
   function setFocus() {  // focus 이동
     // console.log('btn_close click!');
@@ -101,30 +33,8 @@
   
   function send() { // 회원 가입 처리
     let id = $('#id').val(); // 태그의 아이디가 'id'인 태그의 값
-      if ($.trim(id).length == 0) { // id를 입력받지 않은 경우
-        msg = '· ID를 입력하세요.<br>· ID 입력은 필수 입니다.<br>· ID는 3자이상 권장합니다.';
-        
-        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-        $('#modal_title').html('ID 중복 확인'); // 제목 
-        $('#modal_content').html(msg);        // 내용
-        $('#btn_close').attr("data-focus", "id");  // 닫기 버튼 클릭시 id 입력으로 focus 이동
-        $('#modal_panel').modal();               // 다이얼로그 출력
-        return false;
-        } 
-
-    let mname = $('#mname').val(); // 태그의 아이디가 'id'인 태그의 값
-      if ($.trim(mname).length == 0) { // id를 입력받지 않은 경우
-        msg = '· 이름을 입력하세요.<br>· 이름 입력은 필수입니다.';
-        
-        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-        $('#modal_title').html('이름 입력 누락'); // 제목 
-        $('#modal_content').html(msg);        // 내용
-        $('#btn_close').attr("data-focus", "mname");  // 닫기 버튼 클릭시 mname 입력으로 focus 이동
-        $('#modal_panel').modal();               // 다이얼로그 출력
-        return false;
-        } 
-
     let tel = $('#tel').val().trim(); // 태그의 아이디가 'id'인 태그의 값
+    
       if (tel.length == 0) { // id를 입력받지 않은 경우
         msg = '· 전화번호를 입력하세요.<br>· 전화번호 입력은 필수입니다.';
         
@@ -267,8 +177,7 @@
     <input type="hidden" name="memberno" value="${memberVO.memberno }">
     <div class="form_input"  style = "margin-bottom:20px; margin-top:40px;">
       <label style="  margin-right: 124px; font-size: 18px;" >아이디</label>
-      <input type='text' class="form-control " name='id' id='id' value="${memberVO.id }" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
-      <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark "  style='margin-left:5px;'>중복확인</button>
+      <input type='text' class="form-control " name='id' id='id' value="${memberVO.id }" required="required" disabled style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
     </div>  
     
      <div class="form_input" style = "margin-bottom:20px;">
