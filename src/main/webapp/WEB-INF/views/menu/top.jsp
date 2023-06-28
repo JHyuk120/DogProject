@@ -35,7 +35,15 @@ function recommend() {
             </button>    
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
+              <c:choose>
+                <c:when test="${sessionScope.id != null}">
+                    <a class="navbar-brand" href="/recommend.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
+                </c:when>
+                <c:otherwise>
+                    <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
+                </c:otherwise>
+              </c:choose>
+                
 
                 <ul class="navbar-nav mr-auto">
 
@@ -81,7 +89,7 @@ function recommend() {
                                    
                                     <a class="dropdown-item" href="/member/idFind.do">
                                         <img src="/menu/images/sheart.svg" class="icon" style='margin-left:5px'>&nbsp; 아이디 찾기</a>
-                                    <a class="dropdown-item" href="member/pwFind.do">
+                                    <a class="dropdown-item" href="/member/pwFind.do">
                                         <img src="/menu/images/sh2.svg" class="icon" style='margin-left:5px'>&nbsp; 비밀번호 찾기</a>
                                 </div>
                             </li>
