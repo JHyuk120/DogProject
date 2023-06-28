@@ -225,10 +225,10 @@
     </div>
    
     <div style='text-align: center; margin: 10px auto;'>
-      <button type="button" id='btn_login' class="btn btn-info" onclick="login_ajax()">로그인</button>
-      <button type='button' onclick="location.href='./create.do'" class="btn btn-info">회원가입</button>
-      <button type='button' id='btn_loadDefault' class="btn btn-info" onclick="loadDefault()">테스트 계정</button>
-      <button type='button' id='btn_cancel' class="btn btn-info" onclick="$('#div_login').hide();">취소</button>
+      <button type="button" id='btn_login' class="btn btn-dark" onclick="login_ajax()">로그인</button>
+      <button type='button' onclick="location.href='./create.do'" class="btn btn-dark">회원가입</button>
+      <button type='button' id='btn_loadDefault' class="btn btn-dark" onclick="loadDefault()">테스트 계정</button>
+      <button type='button' id='btn_cancel' class="btn btn-dark" onclick="$('#div_login').hide();">취소</button>
     </div>
   
   </DIV>
