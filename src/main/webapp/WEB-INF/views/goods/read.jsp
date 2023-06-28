@@ -124,9 +124,7 @@
       // alert('-> cart_ajax_post: ' + params);
       // return;
       // 쇼핑카트 등록시 사용할 상품 번호.
-      
-
-      
+  
       $.ajax(
         {
           url: '/cart/create.do',
@@ -291,7 +289,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           <input type='text' class="form-control" name='id' id='id' 
                     value="${ck_id }" required="required" 
                     style='width: 100%;' placeholder="아이디" autofocus="autofocus">
-          <Label>   
+          <Label style="margin-right:83%;">   
             <input type='checkbox' name='id_save' value='Y' ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>    
         </div>   
@@ -299,7 +297,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
         <div class="form_input">
           <input type='password' class="form-control" name='passwd' id='passwd' 
                     value='${ck_passwd }' required="required" style='width: 100%;' placeholder="패스워드">
-          <Label>
+          <Label style="margin-right:83%;">
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
         </div>   
@@ -308,10 +306,10 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     </div>
    
     <div style='text-align: center; margin: 10px auto;'>
-      <button type="button" id='btn_login' class="btn btn-info" onclick="login_ajax()">로그인</button>
-      <button type='button' onclick="location.href='./create.do'" class="btn btn-info">회원가입</button>
-      <button type='button' id='btn_loadDefault' class="btn btn-info" onclick="loadDefault()">테스트 계정</button>
-      <button type='button' id='btn_cancel' class="btn btn-info" onclick="$('#div_login').hide();">취소</button>
+      <button type="button" id='btn_login' class="btn btn-dark" onclick="login_ajax()">로그인</button>
+      <button type='button' onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
+      <button type='button' id='btn_loadDefault' class="btn btn-dark" onclick="loadDefault()">테스트 계정</button>
+      <button type='button' id='btn_cancel' class="btn btn-outline-dark" onclick="$('#div_login').hide();">취소</button>
     </div>
   
   </DIV>

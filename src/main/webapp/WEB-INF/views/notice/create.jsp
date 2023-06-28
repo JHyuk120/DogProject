@@ -14,6 +14,7 @@
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     
 </head> 
  
@@ -32,7 +33,7 @@
        <input type='text' name='title' value='🖤제목을 입력하시오🖤' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
-    
+    <br>
     <div>
        <label>글</label>
        <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>
@@ -41,25 +42,28 @@
 
 </textarea>
     </div>  
-      
+      <br>
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='해시태그' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
+    <br>
     <div>
        <label>이미지</label>
        <input type='file' class="form-control" name='file1MF' id='file1MF' 
                  value='' placeholder="파일 선택">
     </div>   
+    <br>
     <div>
        <label>패스워드</label>
        <input type='password' name='passwd' value='1234' required="required" 
                  class="form-control" style='width: 50%;'>
     </div>   
+    <br>
     <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list_all.do'" class="btn btn-primary">목록</button>
+      <button type="submit" class="btn btn-dark">등록</button>
+      <button type="button" onclick="location.href='./list_all.do'" class="btn btn-outline-dark">목록</button>
     </div>
   
   </FORM>

@@ -108,7 +108,7 @@
   }  
 
   function RecommendForm(memberno) {
-      var url = "http://localhost:8001/ais/recommend_form/?memberno=" + memberno;
+      var url = "http://15.164.233.43:8000/ais/recommend_form/?memberno=${sessionScope.memberno }";
       window.location.href = url;
   }
   
