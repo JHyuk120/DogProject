@@ -71,7 +71,7 @@
         <TD><%=itemVO.getItem() %></TD>
         <TD class='td_bs'><%=itemVO.getCnt() %></TD>
         <TD><a href="./read_update.do?itemno=<%=itemVO.getItemno() %>" title="수정"><IMG src="/item/images/update.png" class=icon></a>/
-        <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/item/images/delete.png" class=icon></a></TD>
+        <a href="./read_delete.do?itemno=<%=itemVO.getItemno() %>" title="삭제"><IMG src="/item/images/dele.png" class=icon></a></TD>
         
       </TR>
     <%  
