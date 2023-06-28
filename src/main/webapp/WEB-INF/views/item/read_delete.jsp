@@ -71,7 +71,7 @@ ItemVO read_itemVO = (ItemVO) request.getAttribute("itemVO");
       <TD class = 'td_bs'><%=itemVO.getCnt() %></TD>
       <TD class = 'td_bs'>
       <a href="./read_update.do?itemno=<%=itemVO.getItemno()%>" title="수정"><IMG src="/item/images/update.png" class=icon></a> /
-      <a href="./read_delete.do?itemno=<%=itemVO.getItemno()%>" title="삭제"><IMG src="/item/images/delete.png" class=icon></a>
+      <a href="./read_delete.do?itemno=<%=itemVO.getItemno()%>" title="삭제"><IMG src="/item/images/dele.png" class=icon></a>
       </TD>
       </TR>
     
