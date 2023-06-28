@@ -199,5 +199,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY c.rdate DESC
   </select>
   
+  <!-- 좋아요 많은 순 출력 -->
+  <select id="recom_list" resultType="dev.mvc.recipe.RecipeVO">
+  SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
+           passwd, word, rdate, file1, file1saved,
+           thumb1, size1, youtube, ingredient, review, star, mname,r
+  FROM (
+              SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
+                     passwd, word, rdate, file1, file1saved,
+                     thumb1, size1, youtube, ingredient, review, star, mname,
+                     ROW_NUMBER() OVER (ORDER BY recom DESC) AS r
+              FROM recipe
+              ORDER BY recom DESC   
+            )
+  WHERE  5 >= r
+  </select>
+  
+    <!-- 최신 게시물 출력 -->
+  <select id="new_list" resultType="dev.mvc.recipe.RecipeVO">
+    SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star, mname, r
+    FROM ( SELECT recipeno, memberno, itemno, title, article, recom, cnt, replycnt,
+                      passwd, word, rdate, file1,file1saved,
+                      thumb1, size1, youtube, ingredient, review, star, mname,
+                      ROW_NUMBER() OVER (ORDER BY recom DESC) AS r
+                 FROM recipe
+                 ORDER BY rdate DESC
+    
+              )
+    WHERE  5 >= r
+  </select>
+  
   
 </mapper> 

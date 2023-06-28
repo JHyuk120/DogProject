@@ -212,7 +212,11 @@
  
     </c:otherwise>
   </c:choose>
-
+  
+  
+  
+  
+<jsp:include page="./main/main.jsp" flush='false' />
 <jsp:include page="./menu/bottom.jsp" flush='false' />
  
 </body>

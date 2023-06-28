@@ -119,5 +119,15 @@ public interface RecipeDAOInter {
   @return
   */
   public ArrayList<RecipeVO> memberList(int memberno);
+  /**
+   * 좋아요 많은 순 출력
+   * @return
+   */
+  public ArrayList<RecipeVO> recom_list ();
+  /**
+   * 최신 게시물 출력
+   * @return
+   */
+  public ArrayList<RecipeVO> new_list ();
 
 }
