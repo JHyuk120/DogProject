@@ -95,7 +95,7 @@ public class MemberCont {
     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
     
     int memberno = this.memberProc.recommend_memberno(memberVO);
-    mav.setViewName("redirect:http://15.164.233.43:8000/ais/recommend_form/?memberno=" + memberno);
+    mav.setViewName("redirect:http://15.164.233.43:8000/ais/recommend_form_m/?memberno="+memberno);
 
 //    mav.addObject("code", "create_fail"); // 가입 실패 test용
 //    mav.addObject("cnt", 0);                 // 가입 실패 test용
