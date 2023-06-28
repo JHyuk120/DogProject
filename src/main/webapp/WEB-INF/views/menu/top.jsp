@@ -3,7 +3,18 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.item.ItemVO" %>
-<%@ page import="dev.mvc.member.MemberVO" %>
+
+<script type="text/javascript">
+function recommend() {
+      var url = 'http://15.164.233.43:8000/ais/recommend_form/?memberno=${sessionScope.memberno }';
+      var win = window.open(url, '공지 사항', 'width=1300px, height=850px');
+      
+      var x = (screen.width - 1300) / 2;
+      var y = (screen.height - 850) / 2;
+      
+      win.moveTo(x, y); // 화면 중앙으로 이동
+}
+</script>
 
 <DIV class='container_main'> 
 
@@ -11,7 +22,6 @@
     <div class="header">
         <nav class="navbar navbar-expand-md fixed-top navbar-custom">
             <style>
-
                 .navbar-custom {
                   height: 80px; /* 높이 설정 */
                   width: 100%; /* 넓이 설정 */
@@ -25,15 +35,7 @@
             </button>    
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
-            <c:choose>
-              <c:when test="${sessionScope.id != null}">
-                  <a class="navbar-brand" href="/recommend.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
-              </c:when>
-              <c:otherwise>
                 <a class="navbar-brand" href="/"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
-              </c:otherwise>
-            </c:choose>
-
 
                 <ul class="navbar-nav mr-auto">
 
@@ -92,8 +94,8 @@
                                     <img src="/menu/images/pcircle.svg" class="icon" style='margin-left:20px'>&nbsp;마이페이지
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" >
-                                        <img src="/menu/images/mpoint.png" class="icon" style='margin-left:5px'>&nbsp; 적립금 <span style="color:#FDCB00; font-weight: bold; font-size:20px">${memberVO.mpoint}</span> 원</a>
+                                    <a class="dropdown-item" href="javascript: recommend();">
+                                        <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 관심분야 등록하고 추천받기</a>
                                     <a class="dropdown-item" href="/member/read.do">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>
                                     <a class="dropdown-item" href="/recom/memberList.do?memberno=${sessionScope.memberno }">
