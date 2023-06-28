@@ -58,6 +58,15 @@ public class RecipeVO {
     
     /** 글작성자이름 */
     private String mname;
+
+    /** 재료이름 */
+    private String gname;
+    
+    /** 소요시간 */
+    private String time;
+    
+    /** 난이도 */
+    private String difficulty;    
     
     /**
      이미지 파일

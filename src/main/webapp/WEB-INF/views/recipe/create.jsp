@@ -43,7 +43,7 @@ function clearFileInput(fileInput) {
         <div style='display: flex; align-items: center;'>
           <div style="width: 30%;">
             <div class="col-md-12">
-              <input type='file' class="form-control" name='fnamesMF' id='fileInput' 
+              <input type='file' class="form-control" name='cookfileMF' id='fileInput' 
                      value='' placeholder="파일 선택" multiple="multiple">
             </div>
             <div class='content_bottom_menu'>
@@ -135,7 +135,20 @@ function clearFileInput(fileInput) {
        <label>🤍제목🤍</label>
        <input type='text' name='title' value='▸레시피 이름을 입력해주세요◂' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
+    </div>    <br>
+<div>
+  <label for="time" style="display: inline-block;">🤍소요시간🤍</label>
+  <input type="text" name="time" id="time" value="   시간     분 " required autofocus class="form-control" style="width: 9%; display: inline-block;">
+    
+  <label for="difficulty" style="display: inline-block; margin-left: 20px;">🤍난이도🤍</label>
+  <input type="text" name="difficulty" id="difficulty" value="⭐⭐⭐⭐⭐" required autofocus class="form-control" style="width: 12%; display: inline-block;">
+</div><br>
+       <label>🤍레시피 설명🤍</label>
+    <div>
+      <textarea name='article' required="required" class="form-control" 
+      rows="3" style="overflow-y: scroll; width: 70%;"></textarea>
     </div>
+            
     <br>
     <div>
        <label>🤍메인 이미지🤍</label>
@@ -166,7 +179,7 @@ function clearFileInput(fileInput) {
     <div style='display: flex; align-items: center;'>
       <div style="width: 30%;">
         <div class="col-md-12">
-          <input type='file' class="form-control" name='fnamesMF' id='fileInput' 
+          <input type='file' class="form-control" name='cookfileMF' id='fileInput' 
                  value='' placeholder="파일 선택" multiple="multiple">
         </div>
         <div class='content_bottom_menu'>
@@ -174,7 +187,7 @@ function clearFileInput(fileInput) {
                class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
         </div>
       </div>
-      <textarea name='article' required="required" class="form-control" 
+      <textarea name='exp' required="required" class="form-control" 
       rows="3" style="overflow-y: scroll; width: 70%;"></textarea>
     </div>
   </div>

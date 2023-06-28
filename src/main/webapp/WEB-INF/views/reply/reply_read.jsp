@@ -40,7 +40,7 @@
     <textarea name='replycont' required="required" rows="2" cols="145"  style='background-color:#FEFCF0; width: 100%;'></textarea>
     
     <br>
-   <button type='submit' class='btn btn-outline-dark btn-sm' style='margin-left: 87%; margin-top: 2%; width:100px;'>댓글 등록</button>
+   <button type='submit' class='btn btn-outline-dark btn-sm' style='margin-left: 92%; margin-top: 0.5%; width:7%;'>댓글 등록</button>
   </div>
  </FORM>    
     <br>
