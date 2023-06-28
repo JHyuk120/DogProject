@@ -33,5 +33,11 @@ public class RecomProc implements RecomProcInter{
     return cnt;
   }
 
+  @Override
+  public int myrecom(int memberno) {
+    int cnt = this.recomDAO.myrecom(memberno);
+    return cnt;
+  }
+
 
 }

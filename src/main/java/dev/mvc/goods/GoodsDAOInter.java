@@ -121,8 +121,6 @@ public interface GoodsDAOInter {
   public int g_cnt(int goodsno);
   
 
-  
-  
   /**
   회원이 찜한 재료 목록
   @param memberno

@@ -91,24 +91,24 @@ public class WishCont {
     
   }
   
-//  /**
-//   * 삭제
-//   */
-//  @RequestMapping(value = "/wish/delete.do", method = RequestMethod.POST)
-//  public ModelAndView delete(HttpSession session, GoodsVO goodsVO,WishVO wishVO,@RequestParam(value="goodsno", defaultValue="0") int goodsno, @RequestParam(value = "memberno", defaultValue = "0") int memberno ) {
-//    ModelAndView mav = new ModelAndView();
-//    //int memberno = (int)(session.getAttribute("memberno"));//회원번호 가져옴
-//    wishVO.setGoodsno(goodsno);
-//    wishVO.setMemberno(memberno);
-//   this.wishProc.delete(wishVO);
-//    
-//    //mav.addObject("goodsVO", goodsVO);
-//    //this.goodsProc.wish_sub(goodsVO.getGoodsno());
-//    mav.setViewName("redirect:/wish/memberList.do");        
-//   
-//
-//    return mav; // forward
-//  }
+  /**
+   * memberlist에서 삭제
+   */
+  @RequestMapping(value = "/wish/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(HttpSession session, WishVO wishVO) {
+    ModelAndView mav = new ModelAndView();
+    
+    int memberno = (int)(session.getAttribute("memberno"));//회원번호 가져옴
+    wishVO.setMemberno(memberno); //wishVO에 넣어줌
+    int check = this.wishProc.check(wishVO);
+
+    
+    int delete_wish = this.wishProc.delete(wishVO);
+    
+    mav.setViewName("redirect:/wish/memberList.do?memberno=" +memberno);        
+
+    return mav; // forward
+  }
   
   /**
    * 오류 메시지
@@ -132,31 +132,19 @@ public class WishCont {
   @return
   */
   @RequestMapping(value = "/wish/memberList.do", method = RequestMethod.GET)
-  public ModelAndView memberList(int memberno, HttpSession session,WishVO wishVO) {
+  public ModelAndView memberList(int memberno, HttpSession session,WishVO wishVO,GoodsVO goodsVO) {
     ModelAndView mav = new ModelAndView();
     if (memberProc.isMember(session)) {
       ArrayList<GoodsVO> list_m = this.goodsProc.memberList(memberno);
+      int mycnt = this.wishProc.mycnt(memberno);
+      //System.out.println("mycnt:"+mycnt);
+      mav.addObject("mycnt", mycnt);
       mav.addObject("list_m", list_m);
       
 
-      // 찜 관련 시작 ------------------------------------------------
-      
-      // 찜 확인
-      if (memberProc.isMember(session)) {
-        memberno = (int) (session.getAttribute("memberno"));
-        wishVO.setMemberno(memberno);
-        
-        int check_cnt = this.wishProc.check(wishVO);
-        mav.addObject("check", check_cnt);
-      }
-      
-    } else {
-      mav.addObject("code", "member_fail");
-      mav.setViewName("redirect:/wish/msg.do");
     }
-
-      return mav; 
-    }
-
+    return mav;
+    
+  }
   
-}
+  }

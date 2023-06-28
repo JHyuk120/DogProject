@@ -101,6 +101,13 @@ public interface MemberDAOInter {
    * @return
    */
   public int recommend_memberno (MemberVO memberVO);
+
+  /**
+   * 패스워드 변경
+   * @param map
+   * @return 변경된 패스워드 갯수
+   */
+  public int mpoint_update(MemberVO memberVO);
   
 }
  

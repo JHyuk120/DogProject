@@ -152,7 +152,7 @@
  
 <DIV class='title_line'>
 
-<img src="/goods/images/wish.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${search_count }건
+<img src="/goods/images/wish.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${mycnt }건
 </DIV>
 
 <DIV class='content_body'>
@@ -311,37 +311,18 @@
           
            <td style='vertical-align: middle; text-align: center;'>
             
-            <button type='button' id='btn_cart' class="btn btn-dark" style='margin-bottom: 8px; width:130px; height:43px' onclick="cart_ajax(${goodsno })">장바구니</button><br>
+            <button type='button' id='btn_cart' class="btn btn-dark" style='margin-bottom: 8px; margin-right:3px;  width:130px; height:43px' onclick="cart_ajax(${goodsno })">장바구니</button><br>
             
             <%-- <button type='button' id='btn_ordering' class="btn btn-outline-dark" style="width:130px; height:40px" onclick="delete_func(${goodsno}, ${memberno})">삭제</button>  --%>
-            <form name="frm_order" id="frm_order" action="/wish/create.do" method="POST">
+            <form name="frm_order" id="frm_order" action="/wish/delete.do" method="POST">
 					      <input type="hidden" name="goodsno" value="${goodsno}" />
-					      <input type="hidden" name="check" value="${check}" />
 					      
-					      <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
-					        <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
-					      </button>
-					
-					  
-					    <c:choose>
-					      <c:when test="${sessionScope.adminno != null}">
-					        <button type='button'onclick="favorite_ajax(${goodsno}) id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
-					      <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
-					      </c:when>
-					      <c:when test="${sessionScope.memberno == null}">
-					        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
-					      <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
-					      </c:when>
-					      <c:when test="${check == 1}">
-					        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
-					      <img src="/goods/images/pullhrt.png" class="icon" style="width:25px; margin-bottom:3px;"></button>
-					      </c:when>
-					      <c:otherwise>
-					        <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
-					      <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
-					      </c:otherwise>
-					    </c:choose>
-
+					      <button type='submit' id='wish' class="btn btn-outline-dark btn-lg" style=' width: 130px; height: 40px; '>
+                 <span style="font-size: 18px; display: flex; align-items: center; justify-content: center;">삭제</span>
+                </button>
+					      
+					      
+			
            </form> 
   
           </td>

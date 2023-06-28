@@ -110,7 +110,7 @@
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                
         </div>  
-        <div style="margin-left:310px; margin-bottom:55px; ">
+        <div style="margin-left:47%; margin-bottom:55px; ">
            <A href="./idFind.do" style="font-size:14px; font-weight: bold;">아이디 찾기</A>
               <span class='menu_divide' >│</span>
               <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
@@ -123,7 +123,7 @@
    
     <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column;  '>
       <button type="button"  id='btn_login' style="width:160px; height:45px; "class="btn btn-dark" onclick="login_ajax()">로그인</button>
-      <button type='button'  style="width:160px; height:45px; onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
+      <button type="button" style="width:160px; height:45px;" onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
     </div>
     
  
