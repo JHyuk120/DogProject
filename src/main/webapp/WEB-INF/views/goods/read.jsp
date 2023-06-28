@@ -346,82 +346,82 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
            
                
             
-						<style>
-						  .table {
-						    width: 45%; /* 테이블 너비 */
-						    margin: 0 auto; /* 가운데 정렬 */
-						  }
-						  
-						  .table caption {
-						    font-weight: bold; /* 표 제목 굵게 */
-						    margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
-						  }
-						  
-						  .table td,
-						  .table th {
-						    color: #989993; /* 폰트 색상 변경 */
-						    text-align: left; /* 텍스트 왼쪽 정렬 */
-						    font-size: 0.9em; /* 폰트 크기 작게 설정 */
-						  }
-						  
-						  .table td.bold,
-						  .table th.bold {
-						    font-weight: bold; /* 해당 셀에 폰트 굵게 적용 */
-						    color: #7C7D78; 
-						  }
-						</style>
-						
-						<table class="table table-sm ">
-						  <thead>
-						    <tr>
-						      <th>상세옵션</th>
-						      <th>/ 상품 기본정보 입니다.</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						    <tr>
-						      <td>원산지</td>
-						      <td>${origin }</td>
-						    </tr>
-						    <tr>
-						      <td>유통기한</td>
-						      <td>${exdate }</td>
-						    </tr>
-						    <tr>
-						      <td>보관방법</td>
-						      <td>${storage } 보관</td>
-						    </tr>
-						    <tr>
-						      <td>그램 수</td>
-						      <td>${grams } g</td>
-						    </tr>
+            <style>
+              .table {
+                width: 45%; /* 테이블 너비 */
+                margin: 0 auto; /* 가운데 정렬 */
+              }
+              
+              .table caption {
+                font-weight: bold; /* 표 제목 굵게 */
+                margin-bottom: 2px; /* 표 제목과 표 사이 여백 */
+              }
+              
+              .table td,
+              .table th {
+                color: #989993; /* 폰트 색상 변경 */
+                text-align: left; /* 텍스트 왼쪽 정렬 */
+                font-size: 0.9em; /* 폰트 크기 작게 설정 */
+              }
+              
+              .table td.bold,
+              .table th.bold {
+                font-weight: bold; /* 해당 셀에 폰트 굵게 적용 */
+                color: #7C7D78; 
+              }
+            </style>
+            
+            <table class="table table-sm ">
+              <thead>
+                <tr>
+                  <th>상세옵션</th>
+                  <th>/ 상품 기본정보 입니다.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>원산지</td>
+                  <td>${origin }</td>
+                </tr>
+                <tr>
+                  <td>유통기한</td>
+                  <td>${exdate }</td>
+                </tr>
+                <tr>
+                  <td>보관방법</td>
+                  <td>${storage } 보관</td>
+                </tr>
+                <tr>
+                  <td>그램 수</td>
+                  <td>${grams } g</td>
+                </tr>
                   <td>적립금</td>
                   <td>${point }원 (2%)</td>
                 </tr>
-						    <tr>
-						      <td>배송비</td>
-						      <td class="bold">3000원 (30,000원 이상 구매 시 무료)</td>
-						    </tr>
-						    <tr>
-						      <td>남은 수량</td>
-						      <td class="bold">${cnt }</td>
-						    </tr>
-						    <tr>
-						      <td>수량 선택</td>
-							    <td class="bold">
+                <tr>
+                  <td>배송비</td>
+                  <td class="bold">3000원 (30,000원 이상 구매 시 무료)</td>
+                </tr>
+                <tr>
+                  <td>남은 수량</td>
+                  <td class="bold">${cnt }</td>
+                </tr>
+                <tr>
+                  <td>수량 선택</td>
+                  <td class="bold">
                     <input type="number" class="form-control" id="cntc" name="cntc" value="1" max="${cnt }" min="1" style='width:15%; height: 25px;'>
 
-							    </td>
-						    </tr>  
-						                                      
-						  </tbody>
-						 
-						  
-						</table>
-						<div style="text-align: left; margin-left: 50%; margin-top: 0.8%; ">
-						  <span style="font-size: 0.8em;">ღ 주문 수량안내 : 최소 주문수량 1개 이상<br>
-						  ღ 위 수량선택 박스를 선택하시면 아래에 상품이 추가됩니다.</span>
-						</div>
+                  </td>
+                </tr>  
+                                                  
+              </tbody>
+             
+              
+            </table>
+            <div style="text-align: left; margin-left: 50%; margin-top: 0.8%; ">
+              <span style="font-size: 0.8em;">ღ 주문 수량안내 : 최소 주문수량 1개 이상<br>
+              ღ 위 수량선택 박스를 선택하시면 아래에 상품이 추가됩니다.</span>
+            </div>
 
           </DIV>
         </li>
@@ -435,14 +435,14 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       <input type="hidden" name="goodsno" value="${goodsno}" />
       <input type="hidden" name="check" value="${check}" />
       
-	    <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' onclick="cart_ajax(${goodsno })">
-	      <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
-	    </button>
+      <button type='button' id='btn_cart' class="btn btn-outline-dark btn-lg" style='margin-right: 4px;' onclick="cart_ajax(${goodsno })">
+        <img src="/goods/images/cart.png" class="icon" style="width:22px; margin-bottom:3px;">
+      </button>
 
   
     <c:choose>
       <c:when test="${sessionScope.adminno != null}">
-        <button type='button'onclick="favorite_ajax(${goodsno}) id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+        <button type='button'onclick="favorite_ajax(${goodsno})" id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
       <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
       </c:when>
       <c:when test="${sessionScope.memberno == null}">
@@ -460,7 +460,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     </c:choose>
 
      </form> 
-    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 370px;' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
+    <button type='button' id='btn_ordering' class=" btn btn-dark btn-lg" style='width: 380px; ' onclick="cart_ajax(${goodsno })">&emsp;BUY&emsp;</button>
     
   
   </div>
@@ -486,49 +486,49 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
         <img src="/review/images/reviewst.png" class="icon3" >리뷰 작성 
 
 
-				<div style='margin-left: 1%; color: #8E9187;'>리뷰수 ${reviewcnt}</div>
-				<div style='margin-left: 1%; color: #8E9187;'>평점 ${ratingAVG}</div>
-				
-				
+        <div style='margin-left: 1%; color: #8E9187;'>리뷰수 ${reviewcnt}</div>
+        <div style='margin-left: 1%; color: #8E9187;'>평점 ${ratingAVG}</div>
+        
+        
 
         <div style='width: 70%; max-width: 70%; margin:0 auto; '>
         <div style="display: flex; align-items: center; font-size:20px;"> 
 
      </div>  </div></div>
      
-			<div class="stars" style="margin-right: 53%; margin-bottom: 0.5%;">
-			  <img src="/menu/images/pcircle.svg">
-			  <td width="100" rowspan="2">${sessionScope.id} : </td>
-			  <span class="star" id="star_1" onclick="setStarRating(1)" style="opacity: 0.2;">⭐</span>
-			  <span class="star" id="star_2" onclick="setStarRating(2)" style="opacity: 0.2;">⭐</span>
-			  <span class="star" id="star_3" onclick="setStarRating(3)" style="opacity: 0.2;">⭐</span>
-			  <span class="star" id="star_4" onclick="setStarRating(4)" style="opacity: 0.2;">⭐</span>
-			  <span class="star" id="star_5" onclick="setStarRating(5)" style="opacity: 0.2;">⭐</span>
-			  <div id="rating-display" style="display: inline; color: #838580;">(0) </div>
-			  <input type="hidden" id="star-rating" value="0" />
-			</div>
-			
-			<script>
-			  function setStarRating(rating) {
-				    var stars = document.getElementsByClassName('star');
-				    var ratingDisplay = document.getElementById('rating-display');
-				    var starRatingInput = document.getElementById('star-rating');
-				    for (var i = 0; i < stars.length; i++) {
-				      if (i < rating) {
-				        stars[i].style.opacity = '1';
-				      } else {
-				        stars[i].style.opacity = '0.2';
-				      }
-				    }
-				    ratingDisplay.textContent = '(' + rating + ')';
-				    starRatingInput.value = rating;
-				  }
+      <div class="stars" style="margin-right: 53%; margin-bottom: 0.5%;">
+        <img src="/menu/images/pcircle.svg">
+        <td width="100" rowspan="2">${sessionScope.id} : </td>
+        <span class="star" id="star_1" onclick="setStarRating(1)" style="opacity: 0.2;">⭐</span>
+        <span class="star" id="star_2" onclick="setStarRating(2)" style="opacity: 0.2;">⭐</span>
+        <span class="star" id="star_3" onclick="setStarRating(3)" style="opacity: 0.2;">⭐</span>
+        <span class="star" id="star_4" onclick="setStarRating(4)" style="opacity: 0.2;">⭐</span>
+        <span class="star" id="star_5" onclick="setStarRating(5)" style="opacity: 0.2;">⭐</span>
+        <div id="rating-display" style="display: inline; color: #838580;">(0) </div>
+        <input type="hidden" id="star-rating" value="0" />
+      </div>
+      
+      <script>
+        function setStarRating(rating) {
+            var stars = document.getElementsByClassName('star');
+            var ratingDisplay = document.getElementById('rating-display');
+            var starRatingInput = document.getElementById('star-rating');
+            for (var i = 0; i < stars.length; i++) {
+              if (i < rating) {
+                stars[i].style.opacity = '1';
+              } else {
+                stars[i].style.opacity = '0.2';
+              }
+            }
+            ratingDisplay.textContent = '(' + rating + ')';
+            starRatingInput.value = rating;
+          }
 
-				  // 초기 값 설정
-				  window.addEventListener('DOMContentLoaded', function() {
-				    setStarRating(5); // 초기 값으로 5 설정
-				  });
-			</script>
+          // 초기 값 설정
+          window.addEventListener('DOMContentLoaded', function() {
+            setStarRating(5); // 초기 값으로 5 설정
+          });
+      </script>
 
     <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
     

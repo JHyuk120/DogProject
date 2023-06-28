@@ -50,7 +50,7 @@
 </DIV>   
     <div style='display: flex; align-items: flex-start;'>
         <img src="/recipe/images/arrow.png" class="icon0" style='margin-right: 10px;'>
-        <span style='font-size: 20px;'><span style='font-size: larger; '>${search_count}</span> 개의 재료가 있습니다</span>
+        <span style='font-size: 20px;'><span style='font-size: larger; '>${search_count}</span> 개의 재료</span>
     </div>
 
 

@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+  
 
 
 <script type="text/javascript">
@@ -29,7 +29,8 @@
       let id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
       let params = '';
       let msg = '';
-    
+      let confirm = 0; // 아이디 중복 확인 누르면 값이 1이됨.
+      
       if ($.trim(id).length == 0) { // $.trim(id) : 문자열 좌우의 공백 제거, length : 문자열 길이, id를 입력받지 않은 경우
     	  $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
 
@@ -42,6 +43,7 @@
         return false;  // 회원 가입 진행 중지
       } else {  // when ID is entered
         params = 'id=' + id;
+        confirm = 1;
         // var params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
         // alert('params: ' + params);
     
@@ -103,6 +105,7 @@
   
   function send() { // 회원 가입 처리
     let id = $('#id').val(); // 태그의 아이디가 'id'인 태그의 값
+    
       if ($.trim(id).length == 0) { // id를 입력받지 않은 경우
         msg = '· ID를 입력하세요.<br>· ID 입력은 필수 입니다.<br>· ID는 3자이상 권장합니다.';
         
@@ -112,7 +115,18 @@
         $('#btn_close').attr("data-focus", "id");  // 닫기 버튼 클릭시 id 입력으로 focus 이동
         $('#modal_panel').modal();               // 다이얼로그 출력
         return false;
-        } 
+        }
+      if (confirm == 0){
+    	  $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
+
+        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+        msg = '· ID(이메일) 중복 확인을 눌러주세요.';
+        $('#modal_content').html(msg);        // 내용
+          
+        $('#btn_close').attr("data-focus", "id");  // data-focus : 개발자가 추가한 속성, 닫기 버튼 클릭시 "id" 입력으로 focus 이동
+        $('#modal_panel').modal();               // 다이얼로그 출력, modal : 메시지 창을 닫아야 다음 동작 진행 가능
+        return false;  // 회원 가입 진행 중지
+          }
       
    // 패스워드를 정상적으로 2번 입력했는지 확인
       if ($('#passwd').val() != $('#passwd2').val()) {

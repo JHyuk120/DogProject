@@ -19,15 +19,15 @@ WHERE goodsno = #{goodsno} AND memberno = #{memberno}
 </select>
 
 <!-- 삭제 -->
-<delete id = "delete" parameterType="dev.mvc.wish.WishVO">
+<delete id = "delete" parameterType="dev.mvc.wish.WishVO" >
 DELETE FROM wish WHERE memberno = #{memberno} and goodsno = #{goodsno}
 
 </delete>
   <!--찜한 재료 수량 확인 -->
-<!--   <select id="mycnt" resultType="int" parameterType="int">
+ <select id="mycnt" resultType="int" parameterType="int">
   SELECT count(goodsno) as cnt 
   FROM wish
   WHERE memberno = #{memberno}
   </select>
- -->
+
 </mapper>

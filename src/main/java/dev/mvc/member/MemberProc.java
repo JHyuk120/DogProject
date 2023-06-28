@@ -117,6 +117,12 @@ public int recommend_memberno(MemberVO memberVO) {
     return memberno;
 }
 
+@Override
+public int mpoint_update(MemberVO memberVO) {
+  int cnt = this.memberDAO.mpoint_update(memberVO);
+  return cnt;
+}
+
 
 
 

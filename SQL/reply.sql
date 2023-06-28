@@ -15,7 +15,7 @@ CREATE TABLE reply (
     ratingValue NUMBER(7)    DEFAULT 5,
     ratingAvg   NUMBER(7,2)    DEFAULT 0,
     FOREIGN KEY (memberno) REFERENCES member (memberno) ON DELETE CASCADE,
-    FOREIGN KEY (recipeno) REFERENCES recipe (recipeno)
+    FOREIGN KEY (recipeno) REFERENCES recipe (recipeno) ON DELETE CASCADE
 );
 
 COMMENT ON TABLE reply is '댓글,평점';
@@ -34,7 +34,9 @@ COMMENT ON COLUMN reply.recom is '추천수';
 COMMENT ON COLUMN reply.replycnt is '리뷰수';
 COMMENT ON COLUMN reply.ratingValue is '댓글별 점수';
 COMMENT ON COLUMN reply.ratingAvg is '게시물점 평점';
+
 DROP SEQUENCE reply_seq;
+
 ALTER TABLE reply DROP COLUMN ratingValue;
 ALTER TABLE reply DROP COLUMN ratingAvg;
 commit;

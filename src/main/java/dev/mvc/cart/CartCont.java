@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
 import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
 
 @Controller
 public class CartCont {
@@ -83,7 +84,7 @@ public class CartCont {
    * @return
    */
   @RequestMapping(value="/cart/list_by_memberno.do", method=RequestMethod.GET )
-  public ModelAndView list_by_memberno(HttpSession session,GoodsVO goodsVO) {
+  public ModelAndView list_by_memberno(HttpSession session,GoodsVO goodsVO, MemberVO memberVO) {
     ModelAndView mav = new ModelAndView();
     
     int tot = 0;               // 할인 금액 합계 = 할인 금액 * 수량
@@ -109,6 +110,11 @@ public class CartCont {
 
         // 포인트 합계 = 포인트 합계 + (포인트 * 수량)
         point_tot = point_tot + (cartVO.getPoint() * cartVO.getCnt());
+        
+        //총 적립금
+        int point = memberVO.getMpoint();
+        point = point + point_tot;
+        memberVO.setMpoint(point);
 
         int goodsno = cartVO.getGoodsno();
         int g_cnt = this.goodsProc.g_cnt(goodsno);
