@@ -471,7 +471,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     </fieldset>
   </DIV>
   <%-- 댓글 조회 --%>
-
+ <%--
   <fieldset class="fieldset_basic">
     <FORM name='frm' method='POST' action='../review/create.do' enctype="multipart/form-data"  enctype='multipart/form-data' onsubmit="return checkLoginStatus();" >
       <input type="hidden" name="goodsno" value="${goodsno}"/><!-- 현재 recipe의 recipeno -->   
@@ -618,7 +618,6 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
                 <div>
                   <c:choose>
                     <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
-                      <%-- /static/contents/storage/ --%>
                       <img src="/dogproject/images/${file2saved }" style= "width: 50%; margin: 1px;"> 
                     </c:when>
               
@@ -675,9 +674,12 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
    </c:when>
    </c:choose>
       <!-- 페이지 목록 출력 부분 시작 -->
-      <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
+      <DIV class='bottom_menu'>${paging }</DIV> 
       <!-- 페이지 목록 출력 부분 종료 -->
-  
+      <!-- 리뷰 조회 -->
+       --%>
+      <jsp:include page="../review/review_read.jsp"  flush='true'/>
+      
       <jsp:include page="../menu/bottom.jsp" flush='false' />
     </body>
  
