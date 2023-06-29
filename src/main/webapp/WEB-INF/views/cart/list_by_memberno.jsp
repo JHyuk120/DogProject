@@ -149,7 +149,7 @@
                 <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
                 <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-                <img src="/cart/images/point.jpg" class="icon">
+                <img src="/cart/images/point.png" class="icon">
                 <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
               </td>
               <td style='vertical-align: middle; text-align: center;'>

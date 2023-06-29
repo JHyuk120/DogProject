@@ -24,7 +24,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
 <style>
     .btn-custom {
       background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
@@ -32,10 +31,11 @@
     }
 </style>
 
-    
+
 </head> 
  
 <body>
+
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'><A href="./list_by_itemno_search_paging.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A> > 파일 수정</DIV>
