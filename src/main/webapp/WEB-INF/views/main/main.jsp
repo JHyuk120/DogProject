@@ -18,11 +18,11 @@
 <!-- 인기순 레시피 그리드 형식 -->
 <div style="width: 90%; text-align: center;">
      <p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">좋아요 많이받은 레시피 TOP5</p>
-        <div style='width: 100%; text-align: center; '> 
+        <div style='width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: space-between;'>
              <c:forEach var="recipeVO" items="${recom_list}"  varStatus="status">
               <c:set var="title" value="${recipeVO.title }" />
               <c:set var="thumb1" value="${recipeVO.thumb1 }" />                
-              <div  onclick="" class='hover'
+              <div  onclick="location.href='/recipe/read.do?recipeno=${recipeVO.recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'
                style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%;  text-align: center; '>
                 
                 <c:choose> 
@@ -51,11 +51,11 @@
  <!-- 판매순 레시피 그리드 형식 -->
 <div style="width: 90%; text-align: center;">
      <p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;"> 최신 레시피</p>
-        <div style='width: 100%; text-align: center;'> 
+        <div style='width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: space-between;'>
              <c:forEach var="recipeVO" items="${new_list}" begin="0" end="4" varStatus="status">
               <c:set var="title" value="${recipeVO.title }" />
               <c:set var="thumb1" value="${recipeVO.thumb1 }" />                
-              <div  onclick="" class='hover'
+              <div  onclick="location.href='/recipe/read.do?recipeno=${recipeVO.recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'
                style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%; text-align: center;'>
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
