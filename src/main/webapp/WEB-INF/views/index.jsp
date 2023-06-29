@@ -63,15 +63,15 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/dogproject/images/b6.jpg" class="d-block w-100" alt="..."  >
+                <img src="/dogproject/images/ccc.png" class="d-block w-100" alt="..."  >
                  <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">              
-                    <IMG src="/dogproject/images/b4.jpg"  class="d-block w-100" >
+                    <IMG src="/dogproject/images/My project2.png"  class="d-block w-100" >
                      <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">              
-                    <IMG src="/dogproject/images/b5.jpg"   class="d-block w-100">     
+                    <IMG src="/dogproject/images/d7.png"   class="d-block w-100">     
               </div>
                                                  
             </div>
