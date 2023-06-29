@@ -20,7 +20,8 @@
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_my_address').on('click', my_address);          // 나의 주소 가져오기
     $('#btn_pay').on('click', send);                      // 결제
-    
+
+    RadioClick();
   });
 
   // 나의 주소 가져오기, jQuery ajax 요청
@@ -355,7 +356,7 @@
 
   <div class='menu_line'></div>
   <div style=" text-align: left;">
-    <label><input type="radio" name="ptype" id="ptype" value="1" onclick="RadioClick()"> 신용 카드</label>
+    <label><input type="radio" name="ptype" id="ptype" value="1" checked onclick="RadioClick()"> 신용 카드</label>
     <label><input type="radio" name="ptype" id="ptype" value="2" onclick="RadioClick()"> 모바일</label>
     <label><input type="radio" name="ptype" id="ptype" value="3" onclick="RadioClick()"> 포인트</label><br>
     
