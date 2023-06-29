@@ -66,10 +66,10 @@
       
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' class='input_word'>
+          <input maxlength="100" type='text' name='word' id='word' value='${param.word }' class='input_word'>
         </c:when>
         <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
+          <input maxlength="100" type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
       <button type="submit" class="btn btn-custom btn-sm">검색</button>
