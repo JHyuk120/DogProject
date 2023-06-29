@@ -509,27 +509,65 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
         <input type="hidden" id="star-rating" value="0" />
       </div>
       
-      <script>
-        function setStarRating(rating) {
-            var stars = document.getElementsByClassName('star');
-            var ratingDisplay = document.getElementById('rating-display');
-            var starRatingInput = document.getElementById('star-rating');
-            for (var i = 0; i < stars.length; i++) {
-              if (i < rating) {
-                stars[i].style.opacity = '1';
-              } else {
-                stars[i].style.opacity = '0.2';
-              }
-            }
-            ratingDisplay.textContent = '(' + rating + ')';
-            starRatingInput.value = rating;
+  <script>
+    function setStarRating(rating) {
+        var stars = document.getElementsByClassName('star');
+        var ratingDisplay = document.getElementById('rating-display');
+        var starRatingInput = document.getElementById('star-rating');
+        for (var i = 0; i < stars.length; i++) {
+          if (i < rating) {
+            stars[i].style.opacity = '1';
+          } else {
+            stars[i].style.opacity = '0.2';
           }
+        }
+        ratingDisplay.textContent = '(' + rating + ')';
+        starRatingInput.value = rating;
+      }
 
-          // 초기 값 설정
-          window.addEventListener('DOMContentLoaded', function() {
-            setStarRating(5); // 초기 값으로 5 설정
+      // 초기 값 설정
+      window.addEventListener('DOMContentLoaded', function() {
+        setStarRating(5); // 초기 값으로 5 설정
+      });
+      
+      <!--리뷰 더보기-->
+      $(document).ready(function(){
+
+          $('.box').each(function(){
+              var content = $(this).children('.content');
+              var content_txt = content.text();
+              var content_txt_short = content_txt.substring(0,80)+"...";
+              var btn_more = $('<a href="javascript:void(0)" class="more" style="margin-left:70%">더보기</a>');
+
+              
+              $(this).append(btn_more);
+              
+              if(content_txt.length >= 100){
+                  content.html(content_txt_short)
+                  
+              }else{
+                  btn_more.hide()
+              }
+              
+              btn_more.click(toggle_content);
+
+              function toggle_content(){
+                  if($(this).hasClass('short')){
+                      // 접기 상태
+                      $(this).html('더보기');
+                      content.html(content_txt_short)
+                      $(this).removeClass('short');
+                  }else{
+                      // 더보기 상태
+                      $(this).html('접기');
+                      content.html(content_txt);
+                      $(this).addClass('short');
+
+                  }
+              }
           });
-      </script>
+      });          
+  </script>
 
       <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'>${reviewVO.reviewcont }</textarea>
     </td>
@@ -627,8 +665,9 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
                 </div>
               </td> 
           
-              <td  style='vertical-align: middle; text-align: center;'>
-                <div >${reviewcont}</div>
+              <td style='vertical-align: middle; ' class="box">
+                <div class="content">
+                  ${reviewcont}</div>
               </td> 
           
               <td style='vertical-align: middle; text-align: center;'>
