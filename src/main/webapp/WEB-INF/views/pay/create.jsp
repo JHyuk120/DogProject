@@ -134,12 +134,19 @@
         <div class="cart_label" style="font-size: 1.8em;">최종 주문 금액</div>
           <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="${total_order}" pattern="#,###" /> 원</div>
         `;
+        
+        const m_code = `
+            <button type='button' id='btn_pay' class='btn btn-outline-dark btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
+            <button type='button' id='btn_cart' class='btn btn-dark btn-sm onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.2em;'>돌 아 가 기</button>
+            `;
       
       // 초기 화면 로드시 실행
       if (checkedValue === '3') {
           document.getElementById('result').innerHTML = p_code;
+          document.getElementById('payMent').innerHTML = m_code;
       } else {
           document.getElementById('result').innerHTML = code;
+          document.getElementById('payMent').innerHTML = m_code;
       }
       }
 
@@ -243,7 +250,7 @@
 
     <div class="form_input">
       <input type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
-      <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-info btn-sm">
+      <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-dark btn-sm">
     </div>  
 
     <div class="form_input">
@@ -357,14 +364,12 @@
         <td style='width: 45%;'>
           <div class='cart_label' style='font-size: 1.5em;'>주문 금액</div>
           <div class='cart_price'  style='font-size: 1.5em;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
-         
-         <div id="result"></div>
           
-         
+         <div id="result"></div>    <!-- radio버튼 선택시 -->
+
         </td>
         <td style='width: 10%;'>
-          <button type='button' id='btn_pay' class='btn btn-outline-primary btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
-          <button type='button' id='btn_cart' class='btn btn-outline-dark btn-sm' onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.0em;'>취소(쇼핑카트)</button>
+          <div id="payMent"></div>    <!-- radio버튼 선택시 -->
         </td>
       </tr>
     </tbody>
