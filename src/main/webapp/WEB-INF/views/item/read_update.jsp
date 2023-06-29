@@ -51,9 +51,10 @@
 <c:import url="/menu/top.do" />
 <%-- <jsp:include page="../menu/top.jsp" flush='false' />   -- 구형 --%> 
  
-<DIV class='title_line'>전체 품목 > 수정</DIV>
-
 <DIV class='content_body'>
+
+<div><IMG src="/item/images/update.png" class=icon0>&nbsp;수정</div>
+
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_create' id='frm_create' method='POST' action='./update.do'>
       <input type ="hidden" name="itemno" value="<%=read_itemVO.getItemno()%>" >
@@ -63,8 +64,8 @@
       <label>순서 지정</label>
       <input type='number' name='seqno' min='1' value='<%=read_itemVO.getSeqno()%>' required="required" style='width: 5%;' >
       
-      <button type="submit" id='submit' class='btn btn-info btn-sm'>수정</button>
-      <button type="button" onclick="location.href='/item/list_all.do'" class='btn btn-danger btn-sm'>취소</button>
+      <button type="submit" id='submit' class='btn btn-outline-dark btn-sm'>수정</button>
+      <button type="button" onclick="location.href='/item/list_all.do'" class='btn btn-dark btn-sm'>취소</button>
     </FORM>
   </DIV>
 
