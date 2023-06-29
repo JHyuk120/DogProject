@@ -67,11 +67,11 @@
                  <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">              
-                    <IMG src="/dogproject/images/My project2.png"  class="d-block w-100" >
+                    <IMG src="/dogproject/images/My project5.png"  class="d-block w-100" >
                      <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">              
-                    <IMG src="/dogproject/images/d7.png"   class="d-block w-100">     
+                    <IMG src="/dogproject/images/d8.png"   class="d-block w-100">     
               </div>
                                                  
             </div>

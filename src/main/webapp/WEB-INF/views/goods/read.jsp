@@ -442,7 +442,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
  
     <c:choose>
       <c:when test="${sessionScope.adminno != null}">
-        <button type='button'onclick="favorite_ajax(${goodsno}) id='wish' class="btn btn-outline-dark btn-lg" style='margin-right: 10px;' >
+        <button type='button'onclick="favorite_ajax(${goodsno})" id='wish' class="btn btn-outline-dark btn-lg" style="margin-right: 10px;" >
       <img src="/goods/images/wish.png" class="icon" style="width:22px; margin-bottom:3px;"></button>
       </c:when>
       <c:when test="${sessionScope.memberno == null}">

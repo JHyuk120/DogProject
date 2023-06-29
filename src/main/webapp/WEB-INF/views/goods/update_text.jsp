@@ -25,10 +25,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    
+<style>
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }
+</style>
 </head>
  
 <body>
+
+
+
+
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'> ${itemVO.item } > ${gname } > 수정</DIV>
@@ -56,9 +65,9 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm'>검색</button>
+      <button type='submit' class='btn btn-custom btn-sm'>검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
+        <button type='button' class='btn btn-custom btn-sm' 
                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
@@ -110,8 +119,8 @@
     </div>  
        
     <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">저장</button>
-      <button type="button" onclick="location.href='./read.do?itemno=${param.itemno}&goodsno=${goodsno }'" class="btn btn-primary">취소</button>
+      <button type="submit" class="btn btn-dark">저장</button>
+      <button type="button" onclick="location.href='./read.do?itemno=${param.itemno}&goodsno=${goodsno }'" class="btn btn-outline-dark">취소</button>
     </div>
   
   </FORM>
