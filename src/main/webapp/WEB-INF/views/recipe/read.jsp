@@ -182,7 +182,7 @@ function cart_ajax_post(goodsno) {
   <DIV class='menu_line'></DIV><br>
   
             <span style="font-size: 1.7em; font-weight: bold;">${title }</span>
-                      <div style="font-size: 0.7em;">${mname } ${rdate }</div> <br>
+                      <div style="font-size: 0.8em; margin-left: 78%;">${mname } / ${rdate }</div> <br>
                       
                       <!-- 좋아요 -->
 
@@ -245,8 +245,10 @@ function cart_ajax_post(goodsno) {
             </c:otherwise>
             </c:choose>
 
-<div style="float: left; margin-left: 10%; margin-bottom: 2%; width: 50%; background-color: #FBFCF5; text-align: left; font-size: 10px;">
-   <img src="/recipe/images/timec.png" class="icon1" style="margin-right: 18%; margin-left: 10%;">${time } <img src="/recipe/images/fstars.png" class="icon1">${difficulty }<br><br>
+<div style="float: left; margin-left: 10%; margin-bottom: 2%; width: 50%;  height: 50px; background-color: #FBFCF5; text-align: left; font-size:1.2em; opacity: 0.6;">
+	<img src="/recipe/images/timec.png" class="icon1" style="margin-left: 19%; margin-right: 4%; opacity: 0.8;">${time} 
+	<img src="/recipe/images/fstars.png" class="icon1" style="margin-left: 10%; margin-right: 4%;opacity: 0.8;">${difficulty}<br><br>
+
 </div>
 
             
@@ -261,7 +263,7 @@ function cart_ajax_post(goodsno) {
           </c:if>
           <input type="hidden" name="title" value="${map.key}" />
           <td>${map.key}</td>
-          <td><button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" style="border-radius: 10px;">담기</button></td>
+          <td><button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" class="btn btn-outline-warning btn-sm;" style="font-size:0.8em;">담기</button></td>
           <c:if test="${loop.index % 4 == 3 || loop.last}">
             </tr>
           </c:if>
@@ -279,22 +281,27 @@ function cart_ajax_post(goodsno) {
           </li>
       </c:if> -->
         
-        <DIV style="width:100%;">
-        <label>🤍조리순서🤍</label><br>
-			 <c:choose>
-			  <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-			    <%-- /static/recipe/storage/ --%>
-			    <img src="/dogproject/storage/${cookfilesaved}" style="width: 15%; height: 150px; float: left; margin-top: 0.5%; margin-right: 5%; margin-left: 10%; margin-bottom: 5px; border: 3px solid black;">
-			  </c:when>
-			  <c:otherwise> <!-- 기본 이미지 출력 -->
-			    <img src="/goods/images/ee.png" style="width: 15%; height: 150px; float: left; margin-top: 0.5%; margin-right: 5%; margin-left: 10%; margin-bottom: 5px; border: 3px solid black;">
-			  </c:otherwise>
-			</c:choose>
-			           
+<DIV style="width:100%;">
+  <label>🤍조리순서🤍</label><br>
+  <div style="display: flex;">
+    <div style="width: 15%; float: left; margin-top: 0.5%; margin-right: 5%; margin-left: 10%; margin-bottom: 5px;">
+      <c:choose>
+        <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+          <%-- /static/recipe/storage/ --%>
+          <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 120px; border: 1px solid black;">
+        </c:when>
+        <c:otherwise> <!-- 기본 이미지 출력 -->
+          <img src="/goods/images/ee.png" style="width: 100%; height:  120px; border: 3px solid black;">
+        </c:otherwise>
+      </c:choose>
+    </div>
+    <div style="width: 60%; height: 120px; border: 1px solid black; margin-top: 0.5%; margin-right: 5%;  margin-bottom: 5px;"> 
+      ${article}
+    </div>
+  </div>
+</DIV>
+
      <li class="li_none" style="clear: both;">
-            <br>
-            ${article }
-<br>
           🤍검색어🤍: ${word }
         </DIV>
       </li>

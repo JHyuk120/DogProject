@@ -6,8 +6,8 @@ CREATE TABLE cook_multi(
         cookfile        VARCHAR2(100)               NULL,
         cookfilesaved   VARCHAR2(100)               NULL,
         thumb           VARCHAR2(100)               NULL ,
-        cookfilesize    NUMBER(10)                DEFAULT 0         NOT NULL,
-        article             CLOB            NOT NULL,
+        cookfilesize    NUMBER(10)                DEFAULT 0         NULL,
+        exp             CLOB            NOT NULL,
   FOREIGN KEY (recipeno) REFERENCES recipe (recipeno)ON DELETE CASCADE
 );
 
@@ -18,7 +18,7 @@ COMMENT ON COLUMN cook_multi.cookfile is '원본 파일명';
 COMMENT ON COLUMN cook_multi.cookfilesaved is '업로드 파일명';
 COMMENT ON COLUMN cook_multi.thumb is 'Thumb 파일명';
 COMMENT ON COLUMN cook_multi.cookfilesize is '파일 사이즈';
-COMMENT ON COLUMN cook_multi.article is '글 여러개';
+COMMENT ON COLUMN cook_multi.exp is '글 여러개';
 
 DROP SEQUENCE cook_multi_seq;
 CREATE SEQUENCE cook_multi_seq
