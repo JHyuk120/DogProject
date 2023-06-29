@@ -53,7 +53,7 @@
       <FORM name='frm' method='POST' action='./delete.do'>
         ${memberVO.mname }(${memberVO.id }) 회원을 삭제하면 복구 할 수 없습니다.<br><br>
         정말로 삭제하시겠습니까?<br><br>         
-        <input type='hidden' name='memberno' value='${memberVO.memberno}'>
+        <input maxlength="10" type='hidden' name='memberno' value='${memberVO.memberno}'>
              
         <button type="button" onclick="location.href='./list.do'" class="btn btn-outline-dark">취소</button>
                  

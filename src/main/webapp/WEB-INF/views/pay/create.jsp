@@ -255,25 +255,25 @@
     <div class='menu_line'></div>
 
     <div class="form_input">
-      <input type='text' class="form-control" name='tname' id='tname'
+      <input maxlength="30" type='text' class="form-control" name='tname' id='tname'
                 value='' required="required" style='width: 30%;' placeholder="수취인 성명*">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
+      <input maxlength="14" type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
+      <input maxlength="5" type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
       <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-dark btn-sm">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
+      <input maxlength="80" type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='taddress2' id='taddress2' value='' style='width: 80%;'
+      <input maxlength="50" type='text' class="form-control" name='taddress2' id='taddress2' value='' style='width: 80%;'
                 placeholder="상세 주소(없을시 수취인 성명 입력)*">
     </div>  
 

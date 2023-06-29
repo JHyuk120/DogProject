@@ -56,7 +56,7 @@ function clearFileInput(fnamesMF) {
 
     <div>
        <label>제목</label>
-       <input type='text' name='title' value='${title }' required="required" 
+       <input maxlength="100" type='text' name='title' value='${title }' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     
@@ -67,7 +67,7 @@ function clearFileInput(fnamesMF) {
     
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='${word }' required="required" 
+       <input  maxlength="100" type='text' name='word' value='${word }' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
     

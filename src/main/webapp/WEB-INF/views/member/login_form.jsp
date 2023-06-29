@@ -48,14 +48,14 @@
       
         <div class="form_input">
           <label>아이디</label>    
-          <input type='text' class="form-control" name='id' id='id' 
+          <input maxlength="30" type='text' class="form-control" name='id' id='id' 
                     value='' required="required" 
                     style='width: 80%;' placeholder="아이디" autofocus="autofocus">
         </div>   
      
         <div class="form_input">
           <label>패스워드</label>    
-          <input type='password' class="form-control" name='passwd' id='passwd' 
+          <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
                     value='' required="required" style='width: 80%;' placeholder="패스워드">
         </div>   
      
