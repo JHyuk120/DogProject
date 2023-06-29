@@ -95,19 +95,19 @@
   
       <div class="form_input">
         <label>현재 패스워드</label>    
-        <input type='password' class="form-control" name='current_passwd' 
+        <input maxlength="60" type='password' class="form-control" name='current_passwd' 
                     id='current_passwd' value='' required="required" style='width: 300px; height:50px; ' placeholder="현재 패스워드">
       </div>   
                       
       <div class="form_input">
         <label>새로운 패스워드</label>    
-        <input type='password' class="form-control" name='new_passwd' 
+        <input maxlength="60" type='password' class="form-control" name='new_passwd' 
                   id='new_passwd' value='' required="required"  style='width: 300px; height:50px; ' placeholder="새로운 패스워드">
       </div>   
    
       <div class="form_input">
         <label>새로운 패스워드 확인</label>    
-        <input type='password' class="form-control" name='new_passwd2' 
+        <input maxlength="60" type='password' class="form-control" name='new_passwd2' 
                   id='new_passwd2' value='' required="required"  style='width: 300px; height:50px; ' placeholder="패스워드">
       </div>   
       
