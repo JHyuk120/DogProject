@@ -48,7 +48,7 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno.do?itemno=${itemno }">기본 목록형</A>    
+    <A href="./list_by_itemno_search_paging_cart.do?itemno=${itemno }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
     <A href="./list_by_itemno_grid.do?itemno=${itemno }">갤러리형</A>
   </ASIDE> 
