@@ -21,8 +21,11 @@ CREATE TABLE recipe(
         youtube             VARCHAR2(1000)            NULL,
         ingredient         CLOB            NOT NULL,
         review              CLOB            NULL,
-        star                NUMBER(5)       DEFAULT 0         NOT NULL,
+        star                NUMBER(10)       DEFAULT 0         NOT NULL,
         mname           VARCHAR(30)   NOT NULL,
+        difficulty          VARCHAR2(20)    NOT NULL,
+        time                VARCHAR2(50)    NOT NULL,
+        gname               CLOB            NOT NULL,
     FOREIGN KEY (memberno) REFERENCES member (memberno) ON DELETE CASCADE,
     FOREIGN KEY (itemno) REFERENCES item (itemno)
 );
@@ -30,9 +33,9 @@ CREATE TABLE recipe(
 COMMENT ON TABLE recipe is '레시피';
 COMMENT ON COLUMN recipe.recipeno is '레시피 번호';
 COMMENT ON COLUMN recipe.itemno is '품목 번호';
-COMMENT ON COLUMN recipe.member is '회원 번호';
+COMMENT ON COLUMN recipe.memberno is '회원 번호';
 COMMENT ON COLUMN recipe.title is '제목';
-COMMENT ON COLUMN recipe.article is '글 내용';
+COMMENT ON COLUMN recipe.article is '레시피 설명';
 COMMENT ON COLUMN recipe.recom is '추천수';
 COMMENT ON COLUMN recipe.cnt is '조회수';
 COMMENT ON COLUMN recipe.replycnt is '댓글수';
@@ -48,6 +51,10 @@ COMMENT ON COLUMN recipe.ingredient is '재료';
 COMMENT ON COLUMN recipe.review is '리뷰';
 COMMENT ON COLUMN recipe.star is '별점';
 COMMENT ON COLUMN recipe.mname is '작성자이름';
+COMMENT ON COLUMN recipe.star is '별점';
+COMMENT ON COLUMN recipe.difficulty is '난이도';
+COMMENT ON COLUMN recipe.time is '소요시간';
+COMMENT ON COLUMN recipe.gname is '재료 이름';
 
 
 COMMIT;
@@ -59,7 +66,7 @@ CREATE SEQUENCE recipe_seq
   INCREMENT BY 1            -- 증가값
   MAXVALUE 9999999999  -- 최대값: 9999999999 --> NUMBER(10) 대응
   CACHE 2                        -- 2번은 메모리에서만 계산
-  NOCYCLE;                      -- 다시 1부터 생성되는 것을 방지
+  NOCYCLE;                    -- 다시 1부터 생성되는 것을 방지
 
 
 /** 레시피 등록 */

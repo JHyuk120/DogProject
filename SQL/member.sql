@@ -17,7 +17,7 @@ CREATE TABLE member (
   address1          VARCHAR(80)       NULL, -- 주소 1
   address2          VARCHAR(50)       NULL, -- 주소 2
   mdate                 DATE                          NOT NULL, -- 가입일    
- mpoint                 NUMBER(10)          NULL DEFAULT 1000,
+ mpoint                 NUMBER(10)          DEFAULT 1000 NULL ,
   PRIMARY KEY (memberno)                     -- 한번 등록된 값은 중복 안됨
 );
  

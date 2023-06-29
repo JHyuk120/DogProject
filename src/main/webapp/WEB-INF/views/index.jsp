@@ -47,6 +47,7 @@
     margin: 18px;
     
 }
+
 </style>
 
 <body style="background-color: #FEFCE6;">
@@ -86,40 +87,7 @@
 
   <c:choose>
     <c:when test="${sessionScope.id != null}">  
-     <!-- 로그인 시 추천시스템 그리드 형식 -->
- <%--          
 
-    <br>
-     <p style="font-size: 24px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">추천 레시피</p>
-        <div style='width: 100%;'> 
-             <c:forEach var="recommendVO" items="${list}" begin="0" end="9" varStatus="status">
-              <c:set var="title" value="${recommendVO.title }" />
-              <c:set var="thumb1" value="${recommendVO.thumb1 }" />                
-              <div  onclick="" class='hover'
-               style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
-                
-                <c:choose> 
-                  <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                    <img src="/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
-                  </c:when>
-                  <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-                    <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
-                  </c:otherwise>
-                </c:choose>
-                <strong>
-                    <c:choose>
-                      <c:when test="${title.length() > 20 }">
-                          ${title.substring(0, 20)}.....
-                      </c:when>
-                      <c:when test="${title.length() <= 20 }">
-                          ${title}
-                      </c:when>
-                    </c:choose>
-                </strong>
-              </div>           
-            </c:forEach>
-        </div>
---%>
 <div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${sessionScope.id}님 맞춤 추천 레시피</div>
 
   <!-- 추천시스템 캐러셀 효과 -->      
@@ -193,7 +161,7 @@
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon" style="fill: red;"aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
@@ -201,13 +169,21 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-
+<style>
+    .carousel-control-next-icon {
+        color: red;
+    }
+</style>
     </c:when>
     <c:otherwise>
  
     </c:otherwise>
   </c:choose>
-
+  
+  
+  
+  
+<jsp:include page="./main/main.jsp" flush='false' />
 <jsp:include page="./menu/bottom.jsp" flush='false' />
  
 </body>

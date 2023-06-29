@@ -1,6 +1,7 @@
 package dev.mvc.recipe;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,6 +58,15 @@ public class RecipeVO {
     
     /** 글작성자이름 */
     private String mname;
+
+    /** 재료이름 */
+    private String gname;
+    
+    /** 소요시간 */
+    private String time;
+    
+    /** 난이도 */
+    private String difficulty;    
     
     /**
      이미지 파일
@@ -78,6 +88,19 @@ public class RecipeVO {
     private int now_page=1;
     
     private HashMap<String, Integer> map;
+    
+    /** 파일 번호 */
+    private int cookfileno;
+    /** 원본 파일명 */
+    private String cookfile;
+    /** 업로드된 파일명 */
+    private String cookfilesaved;
+    /** Thumb 이미지 */
+    private String thumb;
+    
+    /** Form의 파일을 MultipartFile로 변환하여 List에 저장  */
+    private List<MultipartFile> cookfileMF;
+    
 
 
 
