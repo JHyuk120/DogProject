@@ -6,15 +6,12 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, width=device-width" /> 
 <title>댕키트</title>
- <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>itle>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
+<link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
 
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
-
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -105,7 +102,6 @@
           alert('결제 방식을 선택해주세요.');
           return;
         }
-    alert("뭐지" + $('#ptype'));
 
     frm.submit();
   }
@@ -367,7 +363,7 @@
          
         </td>
         <td style='width: 10%;'>
-        <button type='button' id='btn_pay' class='btn btn-outline-primary btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
+          <button type='button' id='btn_pay' class='btn btn-outline-primary btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
           <button type='button' id='btn_cart' class='btn btn-outline-dark btn-sm' onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.0em;'>취소(쇼핑카트)</button>
         </td>
       </tr>

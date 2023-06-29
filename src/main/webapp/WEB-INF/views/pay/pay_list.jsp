@@ -114,7 +114,7 @@ $(function(){
   </TABLE>
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.reload();" class="btn btn-outline-dark">새로 고침</button>
+    <button type='button' onclick="location.href='/index.do'" class="btn btn-outline-dark">HOME</button>
     <button type='button' onclick="location.href='/cart/list_by_memberno.do'" class="btn btn-dark">장바구니</button>
   </DIV>
 </DIV>
