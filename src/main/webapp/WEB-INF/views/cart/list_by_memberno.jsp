@@ -50,11 +50,37 @@
 
     
 </style>
- 
+
+  <style>
+    body {
+      background-color: #FEFCE6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content_body {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      background-color:#FEFCF0;
+    }
+  
+    .gallery_item {
+      width: 22%;
+      height: 300px;
+      margin: 1.5%;
+      padding: 0.5%;
+      text-align: center;
+    }
+  </style>
+
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
+
+<DIV class='content_body'>
 
 <%-- GET -> POST: 수량 변경, 상품 삭제용 폼 --%>
 <form name='frm_post' id='frm_post' action='' method='post'>
@@ -62,24 +88,7 @@
   <input type='hidden' name='cnt' id='cnt'>
 </form>
  
-<DIV class='title_line'>쇼핑 카트</DIV>
-
-<DIV class='content_body'>
-  <ASIDE class="aside_right">
-    <%-- 
-    http://localhost:9091/cart/list_by_memberno.do
-    http://localhost:9091/cart/list_by_memberno.do?cateno=
-    http://localhost:9091/cart/list_by_memberno.do?cateno=4  <- 이런 패턴만 링크 출력
-    --%>
-    <c:if test="${param.itemno != null and param.itemno != ''}"> 
-      <A href="/goodsno/list_by_itemno_search_paging.do?itemno=${param.itemno }">쇼핑 계속하기</A>
-      <span class='menu_divide' >│</span>  
-    </c:if>
- 
-    <A href="javascript:location.reload();">새로고침</A>
-  </ASIDE> 
-
-  <DIV class='menu_line'></DIV>
+<DIV class='title_line'><img src="/menu/images/cart4.svg" class="icon0" style='margin-left:5px'>&nbsp;쇼핑 카트</DIV>
 
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>
@@ -198,7 +207,7 @@
                <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품이 선택하신 수량보다 적습니다.</div>
               </c:when>
               <c:otherwise>
-                <button type='submit' id='btn_order' class='btn btn-dark btn-sm' style='font-size: 1.5em; right;'>주문하기</button>
+                <button type='submit' id='btn_order' class='btn btn-dark btn-sm' style='font-size: 1.5em; margin-right: -80%;'>주문하기</button>
               </c:otherwise>
             </c:choose>
           </form>

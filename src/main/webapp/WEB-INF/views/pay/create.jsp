@@ -20,6 +20,7 @@
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_my_address').on('click', my_address);          // 나의 주소 가져오기
     $('#btn_pay').on('click', send);                      // 결제
+    
   });
 
   // 나의 주소 가져오기, jQuery ajax 요청
@@ -109,6 +110,7 @@
   // 라디오 함수
       function RadioClick() {
           const radios = document.getElementsByName('ptype');
+          var checkedValue = '4';
           
           for (let i = 0; i < radios.length; i++) {
             if (radios[i].checked) {
@@ -134,37 +136,49 @@
         <div class="cart_label" style="font-size: 1.8em;">최종 주문 금액</div>
           <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="${total_order}" pattern="#,###" /> 원</div>
         `;
-        
-        const m_code = `
-            <button type='button' id='btn_pay' class='btn btn-outline-dark btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
-            <button type='button' id='btn_cart' class='btn btn-dark btn-sm onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.2em;'>돌 아 가 기</button>
-            `;
-      
+              
       // 초기 화면 로드시 실행
       if (checkedValue === '3') {
           document.getElementById('result').innerHTML = p_code;
-          document.getElementById('payMent').innerHTML = m_code;
-      } else {
-          document.getElementById('result').innerHTML = code;
-          document.getElementById('payMent').innerHTML = m_code;
-      }
+        } else {
+            document.getElementById('result').innerHTML = code;
+        }
       }
 
 </script>
+  <style>
+    body {
+      background-color: #FEFCE6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content_body {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      background-color:#FEFCF0;
+    }
+  
+    .gallery_item {
+      width: 22%;
+      height: 300px;
+      margin: 1.5%;
+      padding: 0.5%;
+      text-align: center;
+    }
+  </style>
+
 </head>
 
 
 <body>
 <c:import url="/menu/top.do" />
-<DIV class='title_line'>주문, 결제</DIV>
 
 <DIV class='content_body'>
-  <ASIDE class="aside_left">
-    주문 상품
-  </ASIDE>
+<DIV class='title_line'>주문, 결제</DIV>
 
-  <div class='menu_line'></div>
- 
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 10%;"></col>
@@ -336,7 +350,7 @@
  
   <div style='margin-top: 20px; width: 100%; clear: both;'> </div>  
   <ASIDE class="aside_left" style='margin-top: 50px;'>
-    결제 정보<br>
+    결제 정보&nbsp;<a style='font-size: 0.7em; color: #FF0000;'>※결제 방식을 선택해주세요</a> <br>
   </ASIDE>
 
   <div class='menu_line'></div>
@@ -344,6 +358,7 @@
     <label><input type="radio" name="ptype" id="ptype" value="1" onclick="RadioClick()"> 신용 카드</label>
     <label><input type="radio" name="ptype" id="ptype" value="2" onclick="RadioClick()"> 모바일</label>
     <label><input type="radio" name="ptype" id="ptype" value="3" onclick="RadioClick()"> 포인트</label><br>
+    
        
   </div>
  
@@ -369,7 +384,8 @@
 
         </td>
         <td style='width: 10%;'>
-          <div id="payMent"></div>    <!-- radio버튼 선택시 -->
+          <button type='button' id='btn_pay' class='btn btn-outline-dark btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
+          <button type='button' id='btn_cart' class='btn btn-dark btn-sm onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.2em;'>돌 아 가 기</button>
         </td>
       </tr>
     </tbody>

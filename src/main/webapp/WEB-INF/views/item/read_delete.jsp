@@ -52,9 +52,10 @@ ItemVO read_itemVO = (ItemVO) request.getAttribute("itemVO");
 <c:import url="/menu/top.do" />
 <%-- <jsp:include page="../menu/top.jsp" /> --%>
  
-<DIV class='title_line'>전체 품목 > 삭제</DIV>
-
 <DIV class='content_body'>
+
+<div><IMG src="/item/images/dele.png" class=icon0>&nbsp;전체 품목 > 삭제</div>
+
   <DIV id='panel_delete' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_delete' id='frm_delete' method='POST' action='./delete.do'>
       <input type="hidden" name="itemno" value="<%=read_itemVO.getItemno() %>">
