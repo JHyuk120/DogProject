@@ -121,23 +121,23 @@
           
           <div onclick="location.href='./read.do?goodsno=${goodsno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page}'"
         class="gallery_item"
-        style="background-color: ${goodsno % 2 == 0 ? '#FEFCD6' : '#F5FEDE'};">
+        style=" height:400px;">
   
           <c:choose> 
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-              <div style="padding-bottom: 10px;">
-              <img src="/dogproject/storage/${thumb1 }" style="width: 85%; height: 140px; ">
+              <div >
+              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 250px; margin-bottom:10px; ">
               </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-            <div style="padding-bottom:10px;">
-              <IMG src="/goods/images/ee.png" style="width: 85%; height: 140px; ">
+            <div style="padding-bottom:10px; height:400px;">
+              <IMG src="/goods/images/ee.png" style="width: 100%; height: 250px; margin-bottom:10px; ">
               </div>
             </c:otherwise>
           </c:choose>
-          <strong><br>
-          <div style='height: 25px; word-break: break-all;'>
+          <strong>
+          <div style='height: 23px; word-break: break-all;'>
               <c:choose>
                 <c:when test="${gname.length() > 20 }"> <%-- 20 이상이면 10만 출력 --%>
                   ${gname.substring(0, 20)}...
@@ -158,35 +158,35 @@
           <br>
           
           
-				<c:forEach var="reviewVO" varStatus="reviewStatus" items="${reviewList}">
-				  <c:if test="${reviewStatus.index eq status.index}">
-				    <span>
-				      <c:choose>
-				        <c:when test="${reviewVO.ratingAvg >= 5}">
-				          ⭐⭐⭐⭐⭐
-				        </c:when>
-				        <c:when test="${reviewVO.ratingAvg >= 4 && reviewVO.ratingAvg < 5}">
-				          ⭐⭐⭐⭐
-				        </c:when>
-				        <c:when test="${reviewVO.ratingAvg >= 3 && reviewVO.ratingAvg < 4}">
-				          ⭐⭐⭐
-				        </c:when>
-				        <c:when test="${reviewVO.ratingAvg >= 2 && reviewVO.ratingAvg < 3}">
-				          ⭐⭐
-				        </c:when>
-				        <c:when test="${reviewVO.ratingAvg >= 1 && reviewVO.ratingAvg < 2}">
-				          ⭐
-				        </c:when>
-				        <c:otherwise>
-				          <img src="/review/images/wstar.png" style="width: 16px; text-align: center;">
-				        </c:otherwise>
-				      </c:choose>
-				      <span style="font-size: 12px; color: #F2DC49;">(${reviewVO.reviewcnt})</span>
-				    </span>
-				  </c:if>
-				</c:forEach>
-				</div>
-				</c:forEach>
+        <c:forEach var="reviewVO" varStatus="reviewStatus" items="${reviewList}">
+          <c:if test="${reviewStatus.index eq status.index}">
+            <span>
+              <c:choose>
+                <c:when test="${reviewVO.ratingAvg >= 5}">
+                  ⭐⭐⭐⭐⭐
+                </c:when>
+                <c:when test="${reviewVO.ratingAvg >= 4 && reviewVO.ratingAvg < 5}">
+                  ⭐⭐⭐⭐
+                </c:when>
+                <c:when test="${reviewVO.ratingAvg >= 3 && reviewVO.ratingAvg < 4}">
+                  ⭐⭐⭐
+                </c:when>
+                <c:when test="${reviewVO.ratingAvg >= 2 && reviewVO.ratingAvg < 3}">
+                  ⭐⭐
+                </c:when>
+                <c:when test="${reviewVO.ratingAvg >= 1 && reviewVO.ratingAvg < 2}">
+                  ⭐
+                </c:when>
+                <c:otherwise>
+                  <img src="/review/images/wstar.png" style="width: 16px; text-align: center;">
+                </c:otherwise>
+              </c:choose>
+              <span style="font-size: 12px; color: #F2DC49;">(${reviewVO.reviewcnt})</span>
+            </span>
+          </c:if>
+        </c:forEach>
+        </div>
+        </c:forEach>
 
   </div>
   

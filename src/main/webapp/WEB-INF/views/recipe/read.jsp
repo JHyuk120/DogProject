@@ -16,6 +16,12 @@
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
 <c:set var="recom" value="${recipeVO.recom }" />
+<c:set var="cookfile" value="${recipeVO.file1 }" />
+<c:set var="cookfilesaved" value="${recipeVO.file1saved }" />
+<c:set var="thumb" value="${recipeVO.thumb }" />
+<c:set var="gname" value="${recipeVO.gname }" />
+<c:set var="time" value="${recipeVO.time }" />
+<c:set var="difficulty" value="${recipeVO.difficulty }" />
 
 
 
@@ -116,7 +122,7 @@ function cart_ajax_post(goodsno) {
 <c:import url="/menu/top.do" />
  
 <br>
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 280px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
 
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
@@ -176,7 +182,7 @@ function cart_ajax_post(goodsno) {
   <DIV class='menu_line'></DIV><br>
   
             <span style="font-size: 1.7em; font-weight: bold;">${title }</span>
-                      <div style="font-size: 0.7em;">${mname } ${rdate }</div> <br>
+                      <div style="font-size: 0.8em; margin-left: 78%;">${mname } / ${rdate }</div> <br>
                       
                       <!-- 좋아요 -->
 
@@ -223,7 +229,7 @@ function cart_ajax_post(goodsno) {
 </div>
 <br>
 
-<fieldset class="fieldset_basic" style='background-color:#FEFCF0;'>
+
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
@@ -231,51 +237,75 @@ function cart_ajax_post(goodsno) {
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
                 <IMG src="/dogproject/storage/${file1saved }" 
-                style="width: 25%; height: 250px; float:left; margin-top: 0.5%; margin-right: 20px; margin-left: 20px; margin-bottom: 5px;'"> 
+                style="width: 25%; height: 250px; float:left; margin-top: 1%; margin-right: 20px; margin-left: 6%; margin-bottom: 5px;'"> 
             </c:when>
             <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/goods/images/ee.png" 
-                style="width: 25%; height: 250px; float: left; margin-top: 0.5%; margin-right:5%; margin-left: 20px; margin-bottom: 5px;"> 
+                style="width: 25%; height: 250px; float: left; margin-top: 1%; margin-right:5%; margin-left: 6%; margin-bottom: 5px;"> 
             </c:otherwise>
             </c:choose>
+
+<div style="float: left; margin-left: 10%; margin-bottom: 2%; width: 50%;  height: 50px; background-color: #FBFCF5; text-align: left; font-size:1.2em; opacity: 0.6;">
+	<img src="/recipe/images/timec.png" class="icon1" style="margin-left: 19%; margin-right: 4%; opacity: 0.8;">${time} 
+	<img src="/recipe/images/fstars.png" class="icon1" style="margin-left: 10%; margin-right: 4%;opacity: 0.8;">${difficulty}<br><br>
+
+</div>
+
             
-            
-            <div style='float: left; margin-left: 110px'>🍚재료🍚<br><br>
-              <form name="frm" action="/cart/create.do" method="POST">
-                  <input type="hidden" name="recipeno" value="${recipeno}" />
-                  
-                <table class="table table">
-                  <c:forEach var="map" items="${map}">
-                    <input type="hidden" name="title" value="${(map.key)}" />
-                    <tbody>
-                      <tr>
-                        <th>${(map.key)}</th>
-                        <th><button type=button id=${(map.value)} onclick="cart_ajax_post(${map.value})" style='border-radius: 10px;'>담기</button></th>
-                      </tr>
-                    </tbody>
-                  </c:forEach>
-                </table>
-              </form>
-            </div><br>          
-        </DIV>
-      </li>
-      
-      <c:if test="${youtube.trim().length() > 0 }">
+<div style="float: left; margin-left: 10%; margin-bottom: 13%; width: 50%; background-color: #FBFCF5;">🤍재료박스🤍<br><br>
+  <form name="frm" action="/cart/create.do" method="POST">
+    <input type="hidden" name="recipeno" value="${recipeno}" />
+    <table class="table">
+      <tbody>
+        <c:forEach var="map" items="${map}" varStatus="loop">
+          <c:if test="${loop.index % 4 == 0}">
+            <tr>
+          </c:if>
+          <input type="hidden" name="title" value="${map.key}" />
+          <td>${map.key}</td>
+          <td><button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" class="btn btn-outline-warning btn-sm;" style="font-size:0.8em;">담기</button></td>
+          <c:if test="${loop.index % 4 == 3 || loop.last}">
+            </tr>
+          </c:if>
+        </c:forEach>
+      </tbody>
+    </table>
+  </form>
+</div><br>
+
+     <!--<c:if test="${youtube.trim().length() > 0 }">
           <li class="li_none" style="clear: both; padding-top: 15px; padding-bottom: 15px;">
                   <DIV style='width:640px; height: 380px; margin: 0px auto;'>
                     ${youtube }
                   </DIV>
           </li>
-      </c:if>
+      </c:if> -->
         
+<DIV style="width:100%;">
+  <label>🤍조리순서🤍</label><br>
+  <div style="display: flex;">
+    <div style="width: 15%; float: left; margin-top: 0.5%; margin-right: 5%; margin-left: 10%; margin-bottom: 5px;">
+      <c:choose>
+        <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+          <%-- /static/recipe/storage/ --%>
+          <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 120px; border: 1px solid black;">
+        </c:when>
+        <c:otherwise> <!-- 기본 이미지 출력 -->
+          <img src="/goods/images/ee.png" style="width: 100%; height:  120px; border: 3px solid black;">
+        </c:otherwise>
+      </c:choose>
+    </div>
+    <div style="width: 60%; height: 120px; border: 1px solid black; margin-top: 0.5%; margin-right: 5%;  margin-bottom: 5px;"> 
+      ${article}
+    </div>
+  </div>
+</DIV>
+
      <li class="li_none" style="clear: both;">
-        <DIV style='text-decoration: none;'>🍚조리순서🍚
-            <br>
-            ${article }
-        <br>
-          검색어(키워드): ${word }
+          🤍검색어🤍: ${word }
         </DIV>
       </li>
+      </DIV>
       <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">
@@ -285,8 +315,7 @@ function cart_ajax_post(goodsno) {
         </DIV>
       </li>   
     </ul>
-  </fieldset>
-</DIV>
+
 
  
 <!-- 댓글 조회 -->

@@ -18,6 +18,13 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/i18n/datepicker-ko.js"></script>
 
+<style>
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }
+ </style>
+ 
 <script>
   $( function() {
     $( "#datepicker" ).datepicker({
@@ -81,9 +88,9 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm' >검색</button>
+      <button type='submit' class='btn btn-custom btn-sm'  >검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm'
+        <button type='button' class='btn btn-custom btn-sm' 
                      onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
@@ -158,7 +165,7 @@
     </div>  
      
     <div >
-      <button type="submit" class="btn btn-dark" style="margin-left: 90%;">등록</button>
+      <button type="submit" class="btn btn-dark" style="margin-left: 89%;">등록</button>
       <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark">목록</button>
     </div>
   

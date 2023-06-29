@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="itemno" value="${goodsVO.itemno }" />
 <c:set var="gname" value="${goodsVO.gname }" />
@@ -21,6 +23,14 @@
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<style>
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }
+</style>
 
     
 </head> 
@@ -54,9 +64,9 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type='submit' class='btn btn-info btn-sm'>검색</button>
+      <button type='submit' class='btn btn-custom btn-sm'>검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
+        <button type='button'class='btn btn-custom btn-sm' 
                     onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
@@ -91,9 +101,9 @@
             <input type='file' name='file1MF' id='file1MF' value='' placeholder="파일 선택"><br>
             <br>
             <div style='margin-top: 20px; clear: both;'>  
-              <button type="submit" class="btn btn-primary">파일 변경 처리</button>
-              <button type="submit" class="btn btn-primary">파일 삭제</button>
-              <button type="button" onclick="history.back();" class="btn btn-primary">취소</button>
+              <button type="submit" class="btn btn-dark">파일 변경 처리</button>
+              <button type="submit" class="btn btn-dark">파일 삭제</button>
+              <button type="button" onclick="history.back();" class="btn btn-outline-dark">취소</button>
             </div>  
           </FORM>
         </DIV>

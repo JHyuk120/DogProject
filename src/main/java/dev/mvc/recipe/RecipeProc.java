@@ -296,6 +296,18 @@ import dev.mvc.tool.Tool;
         ArrayList<RecipeVO> list_m = this.recipeDAO.memberList(memberno);
         return list_m;
       }
+
+    @Override
+    public ArrayList<RecipeVO> recom_list() {
+        ArrayList<RecipeVO> recom_list = this.recipeDAO.recom_list();
+        return recom_list;
+    }
+
+    @Override
+    public ArrayList<RecipeVO> new_list() {
+        ArrayList<RecipeVO> new_list = this.recipeDAO.new_list();
+        return new_list;
+    }
  
 
 }

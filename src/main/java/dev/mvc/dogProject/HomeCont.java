@@ -15,6 +15,10 @@ import dev.mvc.item.ItemProcInter;
 import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.recipe.RecipeProcInter;
+import dev.mvc.recipe.RecipeVO;
+import dev.mvc.recommend.RecommendProcInter;
+import dev.mvc.recommend.RecommendVO;
 
 
 // Setvlet으로 작동함, GET/POST등의 요청을 처리함.
@@ -28,6 +32,14 @@ public class HomeCont {
   @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
+
+  @Autowired
+  @Qualifier("dev.mvc.recipe.RecipeProc")
+  private RecipeProcInter recipeProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.recommend.RecommendProc")
+  private RecommendProcInter recommendProc;
   
   public HomeCont() {
     System.out.println("-> HomeCont created.");
@@ -36,15 +48,32 @@ public class HomeCont {
   // http://localhost:9093/
   // http://localhost:9093/index.do
   @RequestMapping(value= {"/", "/index.do"}, method=RequestMethod.GET)
-  public ModelAndView home() {
+  public ModelAndView home(HttpSession session) {
     ModelAndView mav = new ModelAndView();
     // spring.mvc.view.prefix=/WEB-INF/views/
     // spring.mvc.view.suffix=.jsp
+    if (memberProc.isMember(session)) {
+        int memberno = (int) session.getAttribute("memberno");
+        int itemno = this.recommendProc.recommend_read(memberno);
+
+        if (itemno != 0) {
+            mav.addObject("itemno", itemno);
+            ArrayList<RecommendVO> list = this.recommendProc.recommend(itemno);
+            mav.addObject("list", list);
+            mav.setViewName("/index");
+        } else {
+            mav.setViewName("/index");
+        }
+    } else {
+        mav.setViewName("/index");
+    }
     mav.setViewName("/index"); // /WEB-INF/views/index.jsp
-    
+    ArrayList<RecipeVO>recom_list = this.recipeProc.recom_list();
+    mav.addObject("recom_list", recom_list);
+    ArrayList<RecipeVO>new_list = this.recipeProc.new_list();
+    mav.addObject("new_list", new_list); 
     return mav;
   }
-  
   
  // http://localhost:9093/menu/top.do
  @RequestMapping(value= {"/menu/top.do"}, method=RequestMethod.GET)
