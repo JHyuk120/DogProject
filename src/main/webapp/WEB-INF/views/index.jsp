@@ -63,15 +63,15 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/dogproject/images/b6.jpg" class="d-block w-100" alt="..."  >
+                <img src="/dogproject/images/ccc.png" class="d-block w-100" alt="..."  >
                  <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">              
-                    <IMG src="/dogproject/images/b4.jpg"  class="d-block w-100" >
+                    <IMG src="/dogproject/images/My project2.png"  class="d-block w-100" >
                      <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">              
-                    <IMG src="/dogproject/images/b5.jpg"   class="d-block w-100">     
+                    <IMG src="/dogproject/images/d7.png"   class="d-block w-100">     
               </div>
                                                  
             </div>
@@ -84,103 +84,6 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
-  <c:choose>
-    <c:when test="${sessionScope.id != null}">  
-
-<div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${sessionScope.id}님 맞춤 추천 레시피</div>
-
-  <!-- 추천시스템 캐러셀 효과 -->      
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="container">
-                <div class="row">
-<c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
-                        <a href="http://localhost:9093/recipe/read.do?recipeno=${recipeVO.recipeno }&word=&now_page=1">
-                            <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <div class="image-container_rc">
-                                    <c:choose>
-                                        <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                            <img src="/recipe/storage/${thumb1 }" class="carousel-image">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src="/images/ee.png" class="carousel-image">
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
-                                <div style="margin: 20px;">
-                                    <strong style="display: block; width: 150px; height: 60px; overflow: hidden; text-overflow: ellipsis;">
-                                        <c:choose>
-                                            <c:when test="${recommendVO.title.length() > 20}">
-                                                ${recommendVO.title.substring(0, 20)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${recommendVO.title}
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </strong>
-                                </div>
-                            </div>
-                        </a>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row">
-                    <c:forEach var="recommendVO" items="${list}" begin="5" end="9" varStatus="status">
-                        <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                            <div class="image-container_rc">
-                                <c:choose>
-                                    <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                        <img src="/recipe/storage/${thumb1 }" class="carousel-image">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="/images/ee.png" class="carousel-image">
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                            <div style="margin: 20px;">
-                                <strong style="display: block; width: 150px; height: 60px; overflow: hidden; text-overflow: ellipsis;">
-                                    <c:choose>
-                                        <c:when test="${recommendVO.title.length() > 20}">
-                                            ${recommendVO.title.substring(0, 20)}...
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${recommendVO.title}
-                                        </c:otherwise>
-                                    </c:choose>
-                                </strong>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" style="fill: red;"aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-<style>
-    .carousel-control-next-icon {
-        color: red;
-    }
-</style>
-    </c:when>
-    <c:otherwise>
- 
-    </c:otherwise>
-  </c:choose>
-  
-  
   
   
 <jsp:include page="./main/main.jsp" flush='false' />
