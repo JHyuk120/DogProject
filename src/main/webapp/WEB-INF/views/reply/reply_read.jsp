@@ -21,55 +21,67 @@
 
 
 </head>  
-<script type="text/javascript">
+<style>
+    .box{margin:30px;}
+    .content{
+        width:400px;
+        padding:10px;
+        font: 400 1rem/1.5rem;
+    }
+</style>
+<script text="javascript/text">
+<!--댓글 등록시 로그인 여부 확인 -->
+function checkLoginStatus() {
+    var isMemberLoggedIn = ${sessionScope.id != null};
+    
+    // 일반 사용자가 로그인한 경우 댓글을 작성할 수 있음
+    if (!isMemberLoggedIn) {
+        // 로그인하지 않은 상태이므로 폼 제출을 방지하고 로그인 알림을 표시
+        
+        alert('로그인이 필요합니다.');
+        window.location.href = "../member/login.do";
+        return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 진행
+}
+<!--댓글 더보기-->
+    $(document).ready(function(){
 
-$(document).ready(function() {
-	  var contentContainer = $('td .contentContainer'); // 댓글 내용을 감싸는 div 요소 선택
-	  var showMoreButton = $('#showMoreButton'); // 더보기 버튼 선택
+        $('.box').each(function(){
+            var content = $(this).children('.content');
+            var content_txt = content.text();
+            var content_txt_short = content_txt.substring(0,80)+"...";
+            var btn_more = $('<a href="javascript:void(0)" class="more" style="margin-left:70%">더보기</a>');
 
-	  var originalContent = contentContainer.text().trim(); // 원본 댓글 내용 저장
-	  var truncatedContent = originalContent.substring(0, 90); // 일부 내용
+            
+            $(this).append(btn_more);
+            
+            if(content_txt.length >= 100){
+                content.html(content_txt_short)
+                
+            }else{
+                btn_more.hide()
+            }
+            
+            btn_more.click(toggle_content);
 
-	  if (originalContent.length > 90) {
-	    showMoreButton.show();
-	    contentContainer.text(truncatedContent + '...'); // 일부 내용 출력
-	  }else{
-		  showMoreButton.hide();
-          }
+            function toggle_content(){
+                if($(this).hasClass('short')){
+                    // 접기 상태
+                    $(this).html('더보기');
+                    content.html(content_txt_short)
+                    $(this).removeClass('short');
+                }else{
+                    // 더보기 상태
+                    $(this).html('접기');
+                    content.html(content_txt);
+                    $(this).addClass('short');
 
-	  showMoreButton.click(function() {
-		  // 더보기 버튼 클릭 시 Ajax 요청 전송
-    var parent = $(this).parent(); // 더보기 버튼이 속한 td 요소
-    var contentContainer = parent.find('.contentContainer'); // 해당 td 내의 div 요소
-    var replyno = contentContainer.data('replyno'); // replyno 값 가져오기
-//    var page = contentContainer.data('page'); // 페이지 값 가져오기
-//    var pageSize = contentContainer.data('pageSize'); // 항목 수 값 가져오기
-      
-		  $.ajax({
-		    url: '/recipe/read.do', // 댓글 처리 URL로 Ajax 요청
-		    type: 'GET',
-		    cache: false,
-		    async : true,
-		    dataType: 'json',
-		    data: {
-		        replyno: replyno// 댓글 번호 전달
-
-		    },
-		    success: function(response) {
-		        var content = response.content; // 응답에서 댓글 내용 가져오기
-		        contentContainer.text(content); // 댓글 내용을 출력
-		        showMoreButton.hide(); // 더보기 버튼 숨기기
-		    },
-		    error: function() {
-		      console.log('에러 발생');
-
-		    }
-		  });
-		});
-		});
-
-</script>
- 
+                }
+            }
+        });
+    });
+  </script>
 <body style="background-color: #FEFCE6;">
 <br>
 
@@ -124,10 +136,9 @@ $(document).ready(function() {
            <div> ${replyVO.mid }</div>
           </td>  
           
-          <td style='vertical-align: middle; ' >
-            <div id="contentContainer" class="contentContainer" data-page="${page}" data-pageSize="${pageSize}" data-replyno="${replyVO.replyno }">
+          <td style='vertical-align: middle; ' class="box">
+            <div class="content">
               ${replycont}</div>
-            <button id="showMoreButton" class="showMoreButton">...더보기</button>
           </td> 
           
           <td style='vertical-align: middle; text-align: center;'>
