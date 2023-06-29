@@ -111,6 +111,7 @@
             </div>
         </div>
     </div>
+    
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span aria-hidden="true" style="margin-bottom: 10%; margin-right: 80%"><img alt="" src="/main/pre.png" style="width:100%"></span>
         <span class="sr-only">Previous</span>
@@ -119,6 +120,7 @@
         <span  aria-hidden="true" style="margin-bottom: 10%; margin-left: 80% " ><img alt="" src="/main/next.png" style="width:100%"></span>
         <span class="sr-only">Next</span>
     </a>
+ 
 </div>
 
     </c:when>
@@ -160,7 +162,8 @@
             </c:forEach>
         </div>
 </div>     
-<br>  
+
+
  <!-- 판매순 레시피 그리드 형식 -->
 <p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;"> 최신 레시피</p>
   <div style="width: 90%; margin-left: 5%;">
