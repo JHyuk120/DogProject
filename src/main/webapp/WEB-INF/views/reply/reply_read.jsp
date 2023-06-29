@@ -21,6 +21,54 @@
 
 
 </head>  
+<script type="text/javascript">
+
+$(document).ready(function() {
+	  var contentContainer = $('td .contentContainer'); // 댓글 내용을 감싸는 div 요소 선택
+	  var showMoreButton = $('#showMoreButton'); // 더보기 버튼 선택
+
+	  var originalContent = contentContainer.text().trim(); // 원본 댓글 내용 저장
+	  var truncatedContent = originalContent.substring(0, 90); // 일부 내용
+
+	  if (originalContent.length > 90) {
+	    showMoreButton.show();
+	    contentContainer.text(truncatedContent + '...'); // 일부 내용 출력
+	  }else{
+		  showMoreButton.hide();
+          }
+
+	  showMoreButton.click(function() {
+		  // 더보기 버튼 클릭 시 Ajax 요청 전송
+    var parent = $(this).parent(); // 더보기 버튼이 속한 td 요소
+    var contentContainer = parent.find('.contentContainer'); // 해당 td 내의 div 요소
+    var replyno = contentContainer.data('replyno'); // replyno 값 가져오기
+//    var page = contentContainer.data('page'); // 페이지 값 가져오기
+//    var pageSize = contentContainer.data('pageSize'); // 항목 수 값 가져오기
+      
+		  $.ajax({
+		    url: '/recipe/read.do', // 댓글 처리 URL로 Ajax 요청
+		    type: 'GET',
+		    cache: false,
+		    async : true,
+		    dataType: 'json',
+		    data: {
+		        replyno: replyno// 댓글 번호 전달
+
+		    },
+		    success: function(response) {
+		        var content = response.content; // 응답에서 댓글 내용 가져오기
+		        contentContainer.text(content); // 댓글 내용을 출력
+		        showMoreButton.hide(); // 더보기 버튼 숨기기
+		    },
+		    error: function() {
+		      console.log('에러 발생');
+
+		    }
+		  });
+		});
+		});
+
+</script>
  
 <body style="background-color: #FEFCE6;">
 <br>
@@ -76,8 +124,10 @@
            <div> ${replyVO.mid }</div>
           </td>  
           
-          <td style='vertical-align: middle; text-align: center;' >
-            <div>${replycont}</div>
+          <td style='vertical-align: middle; ' >
+            <div id="contentContainer" class="contentContainer" data-page="${page}" data-pageSize="${pageSize}" data-replyno="${replyVO.replyno }">
+              ${replycont}</div>
+            <button id="showMoreButton" class="showMoreButton">...더보기</button>
           </td> 
           
           <td style='vertical-align: middle; text-align: center;'>
