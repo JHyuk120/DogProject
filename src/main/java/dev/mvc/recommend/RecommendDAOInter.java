@@ -15,6 +15,12 @@ public interface RecommendDAOInter {
      * @return
      */
     public ArrayList<RecommendVO> recommend(int itemno);
+    /**
+     * 추천시스템 실행 여부
+     * @param memberno
+     * @return
+     */
+    public int recommend_cnt(int memberno);
     
    
         

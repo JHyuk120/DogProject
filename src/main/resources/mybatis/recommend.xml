@@ -29,7 +29,12 @@
   )
   WHERE r >= 1 AND 10 >= r
 </select>
-
+<!-- 추천시스템 실행 여부 -->
+<select id="recommend_cnt" parameterType="int" resultType="int">
+  SELECT  COUNT(*) as cnt
+  FROM recommend
+  WHERE memberno = #{memberno}
+</select>
 
 </mapper>
 
