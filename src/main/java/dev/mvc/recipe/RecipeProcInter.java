@@ -69,18 +69,11 @@ public interface RecipeProcInter {
   public int password_check(RecipeVO recipeVO);
   
   /**
-   * 글 정보 수정
+   * 수정
    * @param recipeVO
    * @return 처리된 레코드 갯수
    */
-  public int update_text(RecipeVO recipeVO);
-  
-  /**
-   * 파일 정보 수정
-   * @param recipeVO
-   * @return 처리된 레코드 갯수
-   */
-  public int update_file(RecipeVO recipeVO);
+  public int update(RecipeVO recipeVO);
  
   /**
    * 삭제

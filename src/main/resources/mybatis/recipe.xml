@@ -130,18 +130,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
     <!-- 글 수정 -->
-  <update id="update_text" parameterType="dev.mvc.recipe.RecipeVO">
+  <update id="update" parameterType="dev.mvc.recipe.RecipeVO">
     UPDATE recipe
     SET title=#{title}, article=#{article}, ingredient=#{ingredient}, word=#{word}
+    file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
     WHERE recipeno = #{recipeno}
   </update>
   
-  <!-- 레시피 이미지 수정 -->
-  <update id="update_file" parameterType="dev.mvc.recipe.RecipeVO">
-    UPDATE recipe
-    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
-    WHERE recipeno = #{recipeno}
-  </update>
   
    <!-- 삭제 -->
   <delete id="delete" parameterType="int">

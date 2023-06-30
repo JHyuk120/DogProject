@@ -25,7 +25,10 @@ public class Cook_multiVO {
   private String exp;
   
   /** Form의 파일을 MultipartFile로 변환하여 List에 저장  */
-  private List<MultipartFile> cookfileMF;
+  private MultipartFile cookfileMF;
+  
+  /** 버튼 숫자 */
+  private int count;
   
   
 }

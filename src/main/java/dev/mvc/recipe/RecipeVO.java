@@ -41,6 +41,7 @@ public class RecipeVO {
     
     /** 메인 이미지 preview */
     private String thumb1 = "";
+    
     /** 메인 이미지 크기 */
     private long size1;
 
@@ -67,6 +68,9 @@ public class RecipeVO {
     
     /** 난이도 */
     private String difficulty;    
+    
+    /** 조리순서 설명 */
+    private String exp;    
     
     /**
      이미지 파일
@@ -97,10 +101,13 @@ public class RecipeVO {
     private String cookfilesaved;
     /** Thumb 이미지 */
     private String thumb;
+    /** 파일 사이즈 */
+    private long size2;
+    
     
     /** Form의 파일을 MultipartFile로 변환하여 List에 저장  */
-    private List<MultipartFile> cookfileMF;
-    
+    private MultipartFile cookfileMF;
+
 
 
 
