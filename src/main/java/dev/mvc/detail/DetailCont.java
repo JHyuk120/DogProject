@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
+import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.item.ItemVO;
 
 @Controller
@@ -25,6 +26,11 @@ public class DetailCont {
   @Autowired 
   @Qualifier("dev.mvc.admin.AdminProc")
   private AdminProcInter adminProc;
+
+  @Autowired 
+  @Qualifier("dev.mvc.goods.GoodsProc")
+  private GoodsProcInter goodsProc;
+  
   
   public DetailCont() {
     System.out.println("-> DetailCont created.");
@@ -117,6 +123,32 @@ public class DetailCont {
     
     return mav;
   }
+  
+
+  /**
+   * 회원 주문 취소
+   */
+  @RequestMapping(value="/detail/cancel.do", method = RequestMethod.GET)
+  public ModelAndView cancel(int detailno) {
+    ModelAndView mav = new ModelAndView();
+    
+    int cencel = this.detailProc.cancel(detailno);
+    if (cencel == 1) {
+      DetailVO detailVO = this.detailProc.read(detailno);
+      int payno = detailVO.getPayno();
+      int goodsno = detailVO.getGoodsno();
+      int cnt = detailVO.getCnt();
+      
+      for (int i = 1; i <= cnt; i++) {
+        int cnt_add = this.goodsProc.cnt_add(goodsno);
+      }
+      
+      mav.setViewName("redirect:/detail/detail_list.do?payno=" + detailVO.getPayno());
+    }
+    
+    return mav;
+  }
+  
   
   
   

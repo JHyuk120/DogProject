@@ -30,6 +30,13 @@
     WHERE cartno=#{cartno}
   </delete>
 
+<!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
+  <select id="cart_cnt" resultType="int" parameterType="int">
+		SELECT count(goodsno)as cnt
+		FROM cart
+		WHERE memberno=#{memberno}
+  </select>
+  
 
 
 </mapper>

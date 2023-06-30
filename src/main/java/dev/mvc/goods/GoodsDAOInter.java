@@ -114,6 +114,13 @@ public interface GoodsDAOInter {
   public int cnt_sub (int goodsno);
 
   /**
+   *재료 수량 증가
+   * @param goodsno
+   * @return
+  */
+  public int cnt_add (int goodsno);
+
+  /**
   * 재료 수량 확인
   * @param goodsno
   * @return
