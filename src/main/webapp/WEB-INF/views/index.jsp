@@ -85,9 +85,8 @@
             </a>
           </div>
 
-  
-  
-<jsp:include page="./main/main.jsp" flush='false' />
+    
+<c:import url="/main/main.do"/>
 <jsp:include page="./menu/bottom.jsp" flush='false' />
  
 </body>

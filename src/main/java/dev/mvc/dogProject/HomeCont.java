@@ -97,5 +97,26 @@ public class HomeCont {
    return mav;
  }
  
+ // http://localhost:9093/main/main.do
+ @RequestMapping(value= {"/main/main.do"}, method=RequestMethod.GET)
+ public ModelAndView main(HttpSession session) {
+   ModelAndView mav = new ModelAndView();
+   
+   if (memberProc.isMember(session)) {
+     int memberno = (int) (session.getAttribute("memberno"));
+     MemberVO memberVO = this.memberProc.read(memberno);
+     int itemno = this.recommendProc.recommend_read(memberno);
+     ArrayList<RecommendVO> rlist = this.recommendProc.recommend(itemno);
+     
+     mav.addObject("rlist", rlist);
+     
+     mav.addObject("memberVO", memberVO);
+   }
+   
+   mav.setViewName("/main/main"); // /WEB-INF/views/menu/top.jsp
+   
+   return mav;
+ }
+ 
   
 }
