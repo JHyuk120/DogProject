@@ -6,19 +6,22 @@ CREATE TABLE cook_multi(
         cookfile        VARCHAR2(100)               NULL,
         cookfilesaved   VARCHAR2(100)               NULL,
         thumb           VARCHAR2(100)               NULL ,
+        size2                          NUMBER(10)            DEFAULT 0 NULL,  -- 파일 사이즈
         cookfilesize    NUMBER(10)                DEFAULT 0         NULL,
         exp             CLOB            NOT NULL,
   FOREIGN KEY (recipeno) REFERENCES recipe (recipeno)ON DELETE CASCADE
 );
 
-COMMENT ON TABLE cook_multi is '첨부파일';
-COMMENT ON COLUMN cook_multi.cookfileno is '첨부파일번호';
+COMMENT ON TABLE cook_multi is '조리순서파일';
+COMMENT ON COLUMN cook_multi.cookfileno is '조리순서파일번호';
 COMMENT ON COLUMN cook_multi.recipeno is 'recipe번호';
 COMMENT ON COLUMN cook_multi.cookfile is '원본 파일명';
 COMMENT ON COLUMN cook_multi.cookfilesaved is '업로드 파일명';
 COMMENT ON COLUMN cook_multi.thumb is 'Thumb 파일명';
+COMMENT ON COLUMN cook_multi.size2 is '파일 사이즈';
 COMMENT ON COLUMN cook_multi.cookfilesize is '파일 사이즈';
 COMMENT ON COLUMN cook_multi.exp is '글 여러개';
+
 
 DROP SEQUENCE cook_multi_seq;
 CREATE SEQUENCE cook_multi_seq
@@ -80,3 +83,9 @@ WHERE recipeno=1;
 SELECT cookfileno, recipeno, fname, fupname, thumb, fsize, rdate
 FROM cookfile
 WHERE cookfileno=1;
+<<<<<<< HEAD
+
+SELECT * FROM cook_multi;
+SELECT * FROM goods;
+=======
+>>>>>>> 4ab4690e6c9476c309aa2a7ab222a41d787ea383

@@ -58,8 +58,9 @@
                   //alert('로그인 성공');
                   $('#login_yn').val('Y');
                   //window.location.href = "/member/passwd_update.do";
-                  window.history.back();
-                  
+                  //window.history.back();
+                  window.location.href = document.referrer;
+                 
                 } else {
                   alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
                   
@@ -116,7 +117,7 @@
    
         <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>
       <button type="button"  id='btn_login' style="width:150px; height:45px; "class="btn btn-dark" onclick="login_ajax()">로그인</button>
-      <button type='button'  style="width:150px; height:45px; onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
+      <button type='button'  style="width:150px; height:45px;" onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
     </div>
     
  

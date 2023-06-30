@@ -231,8 +231,8 @@ import dev.mvc.tool.Tool;
     }
 
       @Override
-      public int update_text(RecipeVO recipeVO) {
-        int cnt = this.recipeDAO.update_text(recipeVO);
+      public int update(RecipeVO recipeVO) {
+        int cnt = this.recipeDAO.update(recipeVO);
         return cnt;
       }
 
@@ -241,12 +241,6 @@ import dev.mvc.tool.Tool;
         int cnt = this.recipeDAO.password_check(recipeVO);
         return cnt;
       }
-
-      @Override
-      public int update_file(RecipeVO recipeVO) {
-        int cnt = this.recipeDAO.update_file(recipeVO);
-        return cnt;
-    }
 
       @Override
       public int delete(int recipeno) {

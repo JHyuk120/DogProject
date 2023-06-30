@@ -22,8 +22,7 @@
 <c:set var="gname" value="${recipeVO.gname }" />
 <c:set var="time" value="${recipeVO.time }" />
 <c:set var="difficulty" value="${recipeVO.difficulty }" />
-
-
+<c:set var="exp" value="${recipeVO.exp }" />
 
  
 <!DOCTYPE html> 
@@ -152,32 +151,7 @@ function cart_ajax_post(goodsno) {
     <A href="javascript:location.reload();">새로고침</A>
 
    
-  </ASIDE> 
-  
-  <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
-      <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
-      
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' class='input_word'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
-        </c:otherwise>
-      </c:choose>
-      <button type="submit" class="btn btn-custom btn-sm">검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
-      </c:if>
-      <style>
-      .btn-custom {
-        background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
-        color: white; /* 버튼 텍스트 색상 설정 (선택적) */
-      }
-      </style>
-    </form>
-  </DIV>
+  </ASIDE> <br>
   
   <DIV class='menu_line'></DIV><br>
   
@@ -245,14 +219,19 @@ function cart_ajax_post(goodsno) {
             </c:otherwise>
             </c:choose>
 
-<div style="float: left; margin-left: 10%; margin-bottom: 2%; width: 50%;  height: 50px; background-color: #FBFCF5; text-align: left; font-size:1.2em; opacity: 0.6;">
-	<img src="/recipe/images/timec.png" class="icon1" style="margin-left: 19%; margin-right: 4%; opacity: 0.8;">${time} 
-	<img src="/recipe/images/fstars.png" class="icon1" style="margin-left: 10%; margin-right: 4%;opacity: 0.8;">${difficulty}<br><br>
-
+<div style="float: left; margin-left: 10%; margin-bottom: 2%; width: 53%;  height: 50px; background-color: #FBFCF5; text-align: left;">
+  <span style="font-size: 1.2em; margin-right: 2%; margin-left: 11%; color: #78776C;">🤍소요시간🤍</span>
+  <span style="font-size: 1.2em; margin-right: 9%; color: #78776C;">${time}</span>
+  <span style="font-size: 1.2em; margin-right: 2%; color: #78776C;">🤍난이도🤍</span>
+  <span style="font-size: 1.2em; color: #78776C;">${difficulty}</span>
 </div>
 
+
+</div><br>
+
             
-<div style="float: left; margin-left: 10%; margin-bottom: 13%; width: 50%; background-color: #FBFCF5;">🤍재료박스🤍<br><br>
+<div style="float: left; margin-left: 10%; margin-bottom: 13%; width: 53%; background-color: #FBFCF5;">
+  🤍재료박스🤍<br><br>
   <form name="frm" action="/cart/create.do" method="POST">
     <input type="hidden" name="recipeno" value="${recipeno}" />
     <table class="table">
@@ -263,7 +242,11 @@ function cart_ajax_post(goodsno) {
           </c:if>
           <input type="hidden" name="title" value="${map.key}" />
           <td>${map.key}</td>
-          <td><button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" class="btn btn-outline-warning btn-sm;" style="font-size:0.8em;">담기</button></td>
+          <td>
+            <button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" onmouseout="this.style.backgroundColor='transparent';">
+              담기
+            </button>
+          </td>
           <c:if test="${loop.index % 4 == 3 || loop.last}">
             </tr>
           </c:if>
@@ -271,7 +254,17 @@ function cart_ajax_post(goodsno) {
       </tbody>
     </table>
   </form>
-</div><br>
+</div>
+
+
+  <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%; margin-bottom: 1%;" >🤍레시피 요약🤍</span>
+  <br>
+<div style="float: left; margin-left: 8%; margin-bottom: 2%; width: 90%;  height: 100px; overflow: auto;
+background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px solid #FFDAD5;">
+
+  <span style="font-size:0.8em; margin-right: 2%; margin-left: 5%; margin-bottom: 5%;" >${article} </span>
+</div>
+<br>
 
      <!--<c:if test="${youtube.trim().length() > 0 }">
           <li class="li_none" style="clear: both; padding-top: 15px; padding-bottom: 15px;">
@@ -280,41 +273,99 @@ function cart_ajax_post(goodsno) {
                   </DIV>
           </li>
       </c:if> -->
-        
-<DIV style="width:100%;">
-  <label>🤍조리순서🤍</label><br>
+   <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;" >🤍조리순서🤍</span>       
+<DIV style="width:100%; ">
+
   <div style="display: flex;">
-    <div style="width: 15%; float: left; margin-top: 0.5%; margin-right: 5%; margin-left: 10%; margin-bottom: 5px;">
-      <c:choose>
-        <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-          <%-- /static/recipe/storage/ --%>
-          <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 120px; border: 1px solid black;">
-        </c:when>
-        <c:otherwise> <!-- 기본 이미지 출력 -->
-          <img src="/goods/images/ee.png" style="width: 100%; height:  120px; border: 3px solid black;">
-        </c:otherwise>
-      </c:choose>
+    <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
+		<c:choose>
+		  <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+		    <%-- /static/recipe/storage/ --%>
+		    <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
+		  </c:when>
+		  <c:otherwise> <!-- 기본 이미지 출력 -->
+		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px;border-radius: 10px;">
+		  </c:otherwise>
+		</c:choose>
+
     </div>
-    <div style="width: 60%; height: 120px; border: 1px solid black; margin-top: 0.5%; margin-right: 5%;  margin-bottom: 5px;"> 
-      ${article}
+<style>
+  /* 스크롤바의 스타일을 변경 */
+  /* 아래의 스타일은 웹킷(Webkit) 브라우저(Chrome, Safari)에서만 동작합니다. */
+  /* 다른 브라우저에서 스타일을 변경하려면 해당 브라우저의 접두사(prefix)를 사용해야 합니다. */
+  ::-webkit-scrollbar {
+    width: 10px; /* 스크롤바의 너비 */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #FFFFF8; /* 스크롤바 트랙의 배경색 */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background:#FFDAD5; /* 스크롤바 썸의 배경색 */
+    border-radius: 4px; /* 스크롤바 썸의 모서리 반경 */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #DAF5E0; /* 스크롤바 썸의 호버 상태 배경색 */
+  }
+</style>
+
+
+<div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
+  ${exp}
+</div>
+  </div>
+</DIV>
+
+<DIV style="width:100%; ">
+
+  <div style="display: flex;">
+    <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
+    <c:choose>
+      <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+        <%-- /static/recipe/storage/ --%>
+        <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
+      </c:when>
+      <c:otherwise> <!-- 기본 이미지 출력 -->
+        <img src="/goods/images/ee.png" style="width: 100%; height:  160px;border-radius: 10px;">
+      </c:otherwise>
+    </c:choose>
+
+    </div>
+
+    <span style="font-size: 1.2em; margin-right: 2%; margin-left: 3%;">🤍조리순서🤍</span>
+
+    <div style="width: 60%; margin-top: 0.5%; margin-right: 5%; margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
+      <%-- 여러 개의 조리순서를 출력하기 위한 반복문 --%>
+      <c:forEach var="step" items="${cookingSteps}">
+        <div>
+          <div style='display: flex; align-items: center;'>
+            <div style="width: 30%;">
+              <div class="col-md-12">
+                <input type='file' class="form-control" name='cookfileMF' id='fileInput${step.index}' 
+                       value='' placeholder="파일 선택" multiple="multiple">
+              </div>
+              <div class='content_bottom_menu'>
+                <button type="button" onclick="clearFileInput(document.getElementById('fileInput${step.index}'));"
+                     class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
+              </div>
+            </div>
+            <textarea name='exp' required="required" class="form-control" 
+            rows="3" style="overflow-y: scroll; width: 70%;">${step.exp}</textarea>
+          </div>
+        </div>
+      </c:forEach>
     </div>
   </div>
 </DIV>
+
 
      <li class="li_none" style="clear: both;">
           🤍검색어🤍: ${word }
         </DIV>
       </li>
-      </DIV>
-      <li class="li_none">
-        <DIV>
-          <c:if test="${file1.trim().length() > 0 }">
-            첨부 파일: <A href='/download?dir=/recipe/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
-          </c:if>
-         
-        </DIV>
-      </li>   
-    </ul>
+
 
 
  
