@@ -37,8 +37,6 @@
 <c:choose>
 <c:when test="${sessionScope.id != null && recommendVO != null }">  
 
-<p>테스트 when</p>
-
 <div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${sessionScope.id}님 맞춤 추천 레시피</div>
 
   <!-- 추천시스템 캐러셀 효과 -->      
