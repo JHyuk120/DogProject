@@ -139,7 +139,6 @@ public class PayCont {
         this.memberProc.mpoint_update(memberVO);
       }      
     }
-    System.out.println("mpoint : " + memberVO.getMpoint());
     //포인트 사용 끝
     
     int cnt = this.payProc.create(payVO);
@@ -211,7 +210,6 @@ public class PayCont {
          
          memberVO.setMpoint(point_tot);
          this.memberProc.mpoint_update(memberVO);
-         System.out.println("mpoint > " + memberVO.getMpoint());
          // 포인트 적립 끝
          
       

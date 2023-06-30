@@ -48,6 +48,13 @@ public interface DetailProcInter {
   public int cancel(int detailno);
 
   /**
+   * 삭제를 위한 조회
+   * @param detailno
+   * @return
+   */
+  public DetailVO d_read(int payno);
+
+  /**
    * 상세 주문 삭제
    * @param detailno
    * @return

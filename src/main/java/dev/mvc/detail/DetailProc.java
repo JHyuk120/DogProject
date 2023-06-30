@@ -51,6 +51,12 @@ public class DetailProc implements DetailProcInter {
   }
 
   @Override
+  public DetailVO d_read(int payno) {
+    DetailVO detailVO = this.detailDAO.d_read(payno);
+    return detailVO;
+  }
+
+  @Override
   public int d_delete(int detailno) {
     int cnt = this.detailDAO.d_delete(detailno);
     return cnt;

@@ -49,19 +49,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </update>
   
   <!-- 조회 -->
-   <select id="read" resultType="dev.mvc.detail.DetailVO" parameterType="int">
-      SELECT memberno, payno, goodsno, cnt, tot, stateno, rdate
-      FROM detail
-      WHERE detailno = #{detailno}
-      
-   </select>
-   
-   <!-- 상세 주문 삭제 -->
-   <update id="d_delete" parameterType="int">
-     DROP from detail 
+  <select id="read" resultType="dev.mvc.detail.DetailVO" parameterType="int">
+     SELECT memberno, payno, goodsno, cnt, tot, stateno, rdate
+     FROM detail
      WHERE detailno = #{detailno}
-     
-  </update>
+      
+  </select>
    
+  <!-- 상세 주문 삭제 -->
+  <delete id="d_delete" parameterType="int">
+    DELETE from detail 
+    WHERE detailno = #{detailno}
+    
+  </delete>
+
+  <!-- 삭제를 위한 조회 -->
+  <select id="d_read" resultType="dev.mvc.detail.DetailVO" parameterType="int">
+     SELECT detailno, cnt
+     FROM detail
+     WHERE payno = #{payno}
+      
+   </select>   
 
 </mapper>

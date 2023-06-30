@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.pay.PayProcInter;
 
 @Controller
 public class DetailCont {
@@ -30,7 +31,10 @@ public class DetailCont {
   @Autowired 
   @Qualifier("dev.mvc.goods.GoodsProc")
   private GoodsProcInter goodsProc;
-  
+
+  @Autowired 
+  @Qualifier("dev.mvc.pay.PayProc")
+  private PayProcInter payProc;
   
   public DetailCont() {
     System.out.println("-> DetailCont created.");
@@ -148,6 +152,33 @@ public class DetailCont {
     
     return mav;
   }
+
+  /**
+   * 관리자 주문 삭제
+   */
+  @RequestMapping(value="/detail/d_delete.do", method = RequestMethod.GET)
+  public ModelAndView d_delete(HttpSession session, int detailno) {
+    ModelAndView mav = new ModelAndView();
+    
+    if (session.getAttribute("adminno") != null) {
+      DetailVO detailVO = this.detailProc.read(detailno);  
+      int payno = detailVO.getPayno();
+      
+      this.detailProc.d_delete(detailno);
+      
+      DetailVO deVO = this.detailProc.d_read(payno);
+
+      if (deVO == null) {
+        this.payProc.p_delete(payno);
+
+      }
+
+      mav.setViewName("redirect:/detail/order_list.do?");
+      
+    }
+    return mav;
+  }
+  
   
   
   
