@@ -82,9 +82,9 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?itemno=${itemno }'" class="btn btn-primary">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_itemno_search_paging_cart.do?itemno=${itemno }'" class="btn btn-primary">목록</button>
-        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${itemno }'" class="btn btn-primary">갤러리 목록</button>
+        <button type='button' onclick="location.href='./create.do?itemno=${itemno }'" class="btn btn-dark">새로운 컨텐츠 등록</button>
+        <button type='button' onclick="location.href='./list_by_itemno_search_paging_cart.do?itemno=${itemno }'" class="btn btn-outline-dark">목록</button>
+        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${itemno }'" class="btn btn-outline-dark">갤러리 목록</button>
       </LI>
     </UL> 
   </fieldset>
