@@ -96,7 +96,8 @@ public class CartCont {
     
     if (session.getAttribute("memberno") != null) { // 회원으로 로그인을 했다면 쇼핑카트로 이동
       int memberno = (int)session.getAttribute("memberno");
-
+      int cart_cnt = this.cartProc.cart_cnt(memberno);
+      mav.addObject("cart_cnt",cart_cnt);
       // 목록
       ArrayList<CartVO> list = this.cartProc.list_by_memberno(memberno);
 

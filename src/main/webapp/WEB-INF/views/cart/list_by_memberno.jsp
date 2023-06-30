@@ -88,7 +88,7 @@
   <input type='hidden' name='cnt' id='cnt'>
 </form>
  
-<DIV class='title_line'><img src="/menu/images/cart4.svg" class="icon0" style='margin-left:5px;margin-bottom: 7px;'>&nbsp;쇼핑 카트</DIV>
+<DIV class='title_line'><img src="/menu/images/cart4.svg" class="icon0" style='margin-left:5px;margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${cart_cnt }건</DIV>
 
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>

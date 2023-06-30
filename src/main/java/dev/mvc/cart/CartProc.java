@@ -37,4 +37,11 @@ public class CartProc implements CartProcInter{
     return cnt;
   }
 
+
+  @Override
+  public int cart_cnt(int memberno) {
+    int cnt = this.cartDAO.cart_cnt(memberno);
+    return cnt;
+  }
+
 }
