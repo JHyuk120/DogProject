@@ -81,7 +81,7 @@
         <div class="carousel-item">
             <div class="container">
                 <div class="row">
-                    <c:forEach var="recommendVO" items="${list}" begin="5" end="9" varStatus="status">
+                    <c:forEach var="recommendVO" items="${rlist}" begin="5" end="9" varStatus="status">
                         <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                             <div class="image-container_rc">
                                 <c:choose>
