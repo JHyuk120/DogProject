@@ -118,6 +118,24 @@ public class DetailCont {
     return mav;
   }
   
+
+  /**
+   * 회원 주문 취소
+   */
+  @RequestMapping(value="/detail/cancel.do", method = RequestMethod.GET)
+  public ModelAndView cancel(int detailno) {
+    ModelAndView mav = new ModelAndView();
+    
+    int cencel = this.detailProc.cancel(detailno);
+    if (cencel == 1) {
+      DetailVO detailVO = this.detailProc.read(detailno);
+      mav.setViewName("redirect:/detail/detail_list.do?payno=" + detailVO.getPayno());
+    }
+    
+    return mav;
+  }
+  
+  
   
   
 }

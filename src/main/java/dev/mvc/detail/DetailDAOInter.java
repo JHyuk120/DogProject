@@ -33,4 +33,26 @@ public interface DetailDAOInter {
    */
   public int update_stateno(int detailno);
 
+  /**
+   * 조회
+   * @param detailno
+   * @return
+   */
+  public DetailVO read(int detailno);
+
+  /**
+   * 회원 주문 취소
+   * @param detailno
+   * @return
+   */
+  public int cancel(int detailno);
+  
+  /**
+   * 상세 주문 삭제
+   * @param detailno
+   * @return
+   */
+  public int d_delete(int detailno);
+  
+
 }

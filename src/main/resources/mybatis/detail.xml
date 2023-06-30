@@ -39,6 +39,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      where detailno = #{detailno}
      
   </update>
+    
+   <!-- 회원 주문 취소 -->
+   <update id="cancel" parameterType="int">
+     update detail
+     set stateno = 5
+     where detailno = #{detailno}
+     
+  </update>
+  
+  <!-- 조회 -->
+   <select id="read" resultType="dev.mvc.detail.DetailVO" parameterType="int">
+      SELECT memberno, payno, goodsno, cnt, tot, stateno, rdate
+      FROM detail
+      WHERE detailno = #{detailno}
+      
+   </select>
+   
+   <!-- 상세 주문 삭제 -->
+   <update id="d_delete" parameterType="int">
+     DROP from detail 
+     WHERE detailno = #{detailno}
+     
+  </update>
    
 
 </mapper>
