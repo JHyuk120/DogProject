@@ -236,7 +236,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 <body style="background-color: #FEFCE6;">
 <c:import url="/menu/top.do" />
  
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style='background-color:#FEFCF0; margin-left: 15%; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link'  style=' margin-left: 15%; font-size: 25px;'>🥗${itemVO.item }🥗</A></DIV>
 
 <DIV class='content_body' style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
@@ -344,7 +344,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
                 <span style="font-size: 1.5em; font-weight: bold;">🥗${gname }🥗</span><br>
               </c:otherwise>
             </c:choose>
-            <span style="color: #59D9B2; font-size: 1.2em; margin-right: 0.3em;">${dc}% 🠗 </span>
+            <span style="color: red; font-size: 1.2em; margin-right: 0.3em;">${dc}% 🠗 </span>
             <strong style="font-size: 1.2em; margin-right: 0.2em;"><fmt:formatNumber value="${saleprice}" pattern="#,###" />원</strong>  
              <del style= "color: #949494; font-size: 1em;" ><fmt:formatNumber value="${price}" pattern="#,###" />원</del>
             </div>
