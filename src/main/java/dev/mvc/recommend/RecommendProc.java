@@ -24,6 +24,12 @@ public class RecommendProc implements RecommendProcInter {
         return recommendVO;
     }
 
+    @Override
+    public int recommend_cnt(int memberno) {
+        int cnt = this.recommendDAO.recommend_cnt(memberno);
+        return cnt;
+    }
+
 
 
 }

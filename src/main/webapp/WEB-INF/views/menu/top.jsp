@@ -4,18 +4,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.item.ItemVO" %>
 
-<script type="text/javascript">
-function recommend() {
-      var url = 'http://15.164.233.43:8000/ais/recommend_form/?memberno=${sessionScope.memberno }';
-      var win = window.open(url, '공지 사항', 'width=1300px, height=850px');
-      
-      var x = (screen.width - 1300) / 2;
-      var y = (screen.height - 850) / 2;
-      
-      win.moveTo(x, y); // 화면 중앙으로 이동
-}
-</script>
-
 <DIV class='container_main'> 
 
     <!-- 헤더 start -->
@@ -96,7 +84,7 @@ function recommend() {
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" >
                                         <img src="/menu/images/mpoint.png" class="icon" style='margin-left:5px'>&nbsp; 적립금 <span style="color:#FDCB00; font-weight: bold; font-size:20px">${memberVO.mpoint}</span> 원</a>
-                                    <a class="dropdown-item" href="javascript: recommend();">
+                                    <a class="dropdown-item" href='http://15.164.233.43:8000/ais/recommend_form/?memberno=${sessionScope.memberno }'>
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 관심분야 등록하고 추천받기</a>
                                     <a class="dropdown-item" href="/member/read.do">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 회원 정보 수정</a>

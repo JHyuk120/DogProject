@@ -54,20 +54,23 @@ public class HomeCont {
     // spring.mvc.view.suffix=.jsp
     if (memberProc.isMember(session)) {
         int memberno = (int) session.getAttribute("memberno");
-        int itemno = this.recommendProc.recommend_read(memberno);
-
-        if (itemno != 0) {
+        int cnt = this.recommendProc.recommend_cnt(memberno);
+        System.out.println("cnt : " + cnt);
+        if (cnt != 0 ) {
+            int itemno = this.recommendProc.recommend_read(memberno);
             mav.addObject("itemno", itemno);
             ArrayList<RecommendVO> list = this.recommendProc.recommend(itemno);
             mav.addObject("list", list);
             mav.setViewName("/index");
         } else {
-            mav.setViewName("/index");
+            mav.addObject("memberno", memberno);
+            mav.setViewName("redirect:http://15.164.233.43:8000/ais/recommend_form/?memberno="+memberno);
         }
+        
     } else {
         mav.setViewName("/index");
     }
-    mav.setViewName("/index"); // /WEB-INF/views/index.jsp
+     // /WEB-INF/views/index.jsp
     ArrayList<RecipeVO>recom_list = this.recipeProc.recom_list();
     mav.addObject("recom_list", recom_list);
     ArrayList<RecipeVO>new_list = this.recipeProc.new_list();
