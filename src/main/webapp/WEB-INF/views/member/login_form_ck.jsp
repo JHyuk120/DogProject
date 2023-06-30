@@ -113,7 +113,7 @@
         <div style="margin-left:47%; margin-bottom:55px; ">
            <A href="./idFind.do" style="font-size:14px; font-weight: bold;">아이디 찾기</A>
               <span class='menu_divide' >│</span>
-              <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
+           <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
         </div>
 
  

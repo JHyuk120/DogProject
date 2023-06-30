@@ -99,7 +99,7 @@
           <input maxlength="30" type='text' class="form-control" name='id' id='id' 
                     value="${ck_id }" required="required" 
                     style='width: 100%; height:50px;' placeholder="아이디" autofocus="autofocus">
-          <Label style='margin-right:250px; margin-bottom:13px;'>   
+          <Label style='margin-right:240px; margin-bottom:13px;'>   
             <input type='checkbox' name='id_save' value='Y' ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>    
         </div>   
@@ -107,13 +107,17 @@
         <div class="form_input">
           <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
                     value='${ck_passwd }' required="required" style='width: 100%; height:50px;' placeholder="패스워드">
-          <Label  style='margin-right:250px; margin-bottom:18px;'>
+          <Label  style='margin-right:240px; margin-bottom:18px;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
-        </div>   
-      
+        </div>        
       </FORM>
     </div>
+    <div style="margin-left:10%; margin-bottom:20px; ">
+           <A href="./idFind.do" style="font-size:14px; font-weight: bold;">아이디 찾기</A>
+              <span class='menu_divide' >│</span>
+              <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
+        </div>
    
         <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>
       <button type="button"  id='btn_login' style="width:150px; height:45px; "class="btn btn-dark" onclick="login_ajax()">로그인</button>
