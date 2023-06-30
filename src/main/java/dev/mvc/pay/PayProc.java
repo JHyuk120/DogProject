@@ -25,5 +25,12 @@ public class PayProc implements PayProcInter {
     return list;
   }
 
+
+  @Override
+  public int p_delete(int payno) {
+    int cnt = this.payDAO.p_delete(payno);
+    return cnt;
+  }
+
   
 }

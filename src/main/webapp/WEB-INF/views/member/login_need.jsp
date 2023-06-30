@@ -58,8 +58,9 @@
                   //alert('로그인 성공');
                   $('#login_yn').val('Y');
                   //window.location.href = "/member/passwd_update.do";
-                  window.history.back();
-                  
+                  //window.history.back();
+                  window.location.href = document.referrer;
+                 
                 } else {
                   alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
                   
@@ -95,7 +96,7 @@
         <input type="hidden" name="return_url" value="${return_url}">
       
         <div class="form_input">
-          <input type='text' class="form-control" name='id' id='id' 
+          <input maxlength="30" type='text' class="form-control" name='id' id='id' 
                     value="${ck_id }" required="required" 
                     style='width: 100%; height:50px;' placeholder="아이디" autofocus="autofocus">
           <Label style='margin-right:250px; margin-bottom:13px;'>   
@@ -104,7 +105,7 @@
         </div>   
      
         <div class="form_input">
-          <input type='password' class="form-control" name='passwd' id='passwd' 
+          <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
                     value='${ck_passwd }' required="required" style='width: 100%; height:50px;' placeholder="패스워드">
           <Label  style='margin-right:250px; margin-bottom:18px;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
@@ -116,7 +117,7 @@
    
         <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>
       <button type="button"  id='btn_login' style="width:150px; height:45px; "class="btn btn-dark" onclick="login_ajax()">로그인</button>
-      <button type='button'  style="width:150px; height:45px; onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
+      <button type='button'  style="width:150px; height:45px;" onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
     </div>
     
  

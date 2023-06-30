@@ -150,7 +150,7 @@ import dev.mvc.tool.Tool;
         str.append("  #paging {text-align: center; margin-top: 5px; font-size: 1em;}"); 
         str.append("  #paging A:link {text-decoration:none; color:black; font-size: 1em;}"); 
         str.append("  #paging A:hover{text-decoration:none; background-color: #FFFFFF; color:black; font-size: 1em;}"); 
-        str.append("  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}"); 
+        str.append("  #paging A:visited {text-decoration:none;color: #B6EADA; font-size: 1em;}"); 
         str.append("  .span_box_1{"); 
         str.append("    text-align: center;");    
         str.append("    font-size: 1em;"); 
@@ -162,7 +162,7 @@ import dev.mvc.tool.Tool;
         str.append("  }"); 
         str.append("  .span_box_2{"); 
         str.append("    text-align: center;");    
-        str.append("    background-color: #668db4;"); 
+        str.append("    background-color:#B6EADA;"); 
         str.append("    color: #FFFFFF;"); 
         str.append("    font-size: 1em;"); 
         str.append("    border: 1px;"); 
@@ -273,6 +273,12 @@ import dev.mvc.tool.Tool;
       }
 
       @Override
+      public int cnt_add(int goodsno) {
+        int cnt = this.goodsDAO.cnt_add(goodsno);
+        return cnt;
+      }
+
+      @Override
       public int g_cnt(int goodsno) {
         int cnt = this.goodsDAO.g_cnt(goodsno);
         return cnt;
@@ -292,6 +298,7 @@ import dev.mvc.tool.Tool;
          int cnt = this.goodsDAO.select_goodsno(gname);
       return cnt;
       }
+
 
 
 }

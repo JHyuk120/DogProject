@@ -2,19 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
-<meta charset="UTF-8"> 
-<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, width=device-width" /> 
 <title>댕키트</title>
- <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>itle>
+ <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
+<link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
 
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
-
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -23,12 +20,14 @@
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_my_address').on('click', my_address);          // 나의 주소 가져오기
     $('#btn_pay').on('click', send);                      // 결제
+
+    RadioClick();
   });
 
   // 나의 주소 가져오기, jQuery ajax 요청
   function my_address() {
     // $('#btn_close').attr("data-focus", "이동할 태그 지정");
-    
+   
     // var frm = $('#frm'); // id가 frm인 태그 검색
     // var id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
     var params = '';
@@ -51,8 +50,9 @@
         $('#taddress1').val(rdata.taddress1);
         $('#taddress2').val(rdata.taddress2);
         
+       
       },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우
       error: function(request, status, error) { // callback 함수
         console.log(error);
       }
@@ -75,13 +75,13 @@
       alert('수취인 성명을 입력해주세요.');
       $('#tname').focus();
       return; // 실행 중지
-    } 
+    }
 
     if (check_null($('#ttel').val()))  {
       alert('수취인 전화번호를 입력해주세요.');
       $('#ttel').focus();
       return;
-    } 
+    }
 
     if (check_null($('#tzipcode').val()))  {
       alert('우편번호를 입력해주세요.');
@@ -93,31 +93,93 @@
       alert('주소를 입력해주세요.');
       $('#taddress1').focus();
       return;
-    }     
+    }    
      
     if (check_null($('#taddress2').val()))  {
       alert('상세 주소를 입력해주세요. 내용이 없으면 수취인 성명을 입력주세요.');
       $('#taddress2').focus();
       return;
-    }     
+    }    
+    if (check_null($('#ptype').val())) {
+          alert('결제 방식을 선택해주세요.');
+          return;
+        }
 
     frm.submit();
   }
+
+  // 라디오 함수
+      function RadioClick() {
+          const radios = document.getElementsByName('ptype');
+          var checkedValue = '4';
+          
+          for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+              checkedValue = radios[i].value;
+              break;
+            }
+          }
+
+      const p_code = `<div class="cart_label">나의 포인트</div>
+          <div class="cart_price"><fmt:formatNumber value="${memberVO.mpoint }" pattern="#,###" /> 원 </div>
+          <c:choose>
+            <c:when test="${total_order <= memberVO.mpoint }">
+              <div class="cart_label" style="font-size: 1.8em;">최종 주문 금액</div>
+              <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="0" pattern="#,###" /> 원</div>
+            </c:when>
+            <c:otherwise>
+              <div class="cart_label" style="font-size: 1.8em;">최종 주문 금액</div>
+              <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="${total_order - memberVO.mpoint}" pattern="#,###" /> 원</div>
+            </c:otherwise>
+          </c:choose>`;
+
+      const code = `<br><br>
+        <div class="cart_label" style="font-size: 1.8em;">최종 주문 금액</div>
+        <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="${total_order}" pattern="#,###" /> 원</div>
+        `;
+
+      // 초기 화면 로드시 실행
+      if (checkedValue === '3') {
+          document.getElementById('result').innerHTML = p_code;
+      } else {
+          document.getElementById('result').innerHTML = code;
+      }
+      }
+
 </script>
-</head> 
+  <style>
+    body {
+      background-color: #FEFCE6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content_body {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      background-color:#FEFCF0;
+    }
+  
+    .gallery_item {
+      width: 22%;
+      height: 300px;
+      margin: 1.5%;
+      padding: 0.5%;
+      text-align: center;
+    }
+  </style>
+
+</head>
 
 
 <body>
 <c:import url="/menu/top.do" />
-<DIV class='title_line'>주문, 결제</DIV>
 
 <DIV class='content_body'>
-  <ASIDE class="aside_left">
-    주문 상품
-  </ASIDE> 
+<DIV class='title_line'>주문, 결제</DIV>
 
-  <div class='menu_line'></div>
-  
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 10%;"></col>
@@ -143,13 +205,13 @@
         <c:set var="cnt" value="${cartVO.cnt }" />
         <c:set var="tot" value="${cartVO.tot }" />
         <c:set var="rdate" value="${cartVO.rdate }" />
-        
-        <tr> 
+       
+        <tr>
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/goods/storage/ --%>
-                <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/goods/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
+                <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/goods/storage/${thumb1 }" style="width: 120px; height: 80px;"></a>
               </c:when>
               <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
                <IMG src="/recipe/images/ee.png" style="width: 90%; height: 90px; margin-bottom:4px; margin-top:4px; "><br>
@@ -157,8 +219,8 @@
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
-          </td> 
+            <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a>
+          </td>
           <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
@@ -176,44 +238,44 @@
           </td>
         </tr>
       </c:forEach>
-      
+     
     </tbody>
   </table>
-  
+ 
   <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='post'>
     <input type="hidden" name="amount" value=" ${total_order }">   <%-- 전체 주문 금액 --%>
-    
-    
+   
+   
     <ASIDE class="aside_left">
       배송 정보<span style="font-size: 0.7em;">(*: 필수 입력)</span>
-      <button type="button" id="btn_my_address" class="btn btn-light" style="margin-bottom: 2px;">나의 주소 가져오기</button> 
+      <button type="button" id="btn_my_address" class="btn btn-light" style="margin-bottom: 2px;">나의 주소 가져오기</button>
       <button type="reset" id="btn_reset" class="btn btn-light" style="margin-bottom: 2px;">주소 지우기</button>
-    </ASIDE> 
+    </ASIDE>
 
     <div class='menu_line'></div>
 
     <div class="form_input">
-      <input type='text' class="form-control" name='tname' id='tname' 
+      <input maxlength="30" type='text' class="form-control" name='tname' id='tname'
                 value='' required="required" style='width: 30%;' placeholder="수취인 성명*">
-    </div>   
-
-    <div class="form_input">
-      <input type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
-    </div>   
-
-    <div class="form_input">
-      <input type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
-      <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-info btn-sm">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
-    </div>   
+      <input maxlength="14" type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
+    </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='taddress2' id='taddress2' value='' style='width: 80%;' 
+      <input maxlength="5" type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
+      <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-dark btn-sm">
+    </div>  
+
+    <div class="form_input">
+      <input maxlength="80" type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
+    </div>  
+
+    <div class="form_input">
+      <input maxlength="50" type='text' class="form-control" name='taddress2' id='taddress2' value='' style='width: 80%;'
                 placeholder="상세 주소(없을시 수취인 성명 입력)*">
-    </div>   
+    </div>  
 
     <div>
 
@@ -268,7 +330,7 @@
 
                 // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
                 document.body.scrollTop = currentScroll;
-                
+               
                 $('#taddress2').focus(); //  ★
             },
             // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
@@ -286,31 +348,32 @@
 <!-- ------------------------------ DAUM 우편번호 API 종료 ------------------------------ -->
 
     </div>
-  
+ 
   <div style='margin-top: 20px; width: 100%; clear: both;'> </div>  
   <ASIDE class="aside_left" style='margin-top: 50px;'>
-    결제 정보<br>
-  </ASIDE> 
+    결제 정보&nbsp;<a style='font-size: 0.7em; color: #FF0000;'>※결제 방식을 선택해주세요</a> <br>
+  </ASIDE>
 
   <div class='menu_line'></div>
   <div style=" text-align: left;">
-    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="1" checked="checked"> 신용 카드</label>  
-    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="2"> 모바일</label>  
-    <label style="cursor: pointer;"><input type="radio" name="ptype" id="ptype" value="3"> 포인트</label>  <br>
-    <div style='font-size: 1.0em; color: #FF0000;'>포인트로 결제시 포인트를 제외한 나머지 값은 기존 등록 카드로 결제 됩니다.</div>
+    <label><input type="radio" name="ptype" id="ptype" value="1" checked onclick="RadioClick()"> 신용 카드</label>
+    <label><input type="radio" name="ptype" id="ptype" value="2" onclick="RadioClick()"> 모바일</label>
+    <label><input type="radio" name="ptype" id="ptype" value="3" onclick="RadioClick()"> 포인트</label><br>
+    
+       
   </div>
-  
+ 
   <table class="table table-striped" style='margin-top: 20px; margin-bottom: 50px; width: 100%; clear: both;'>
     <tbody>
       <tr>
         <td style='width: 45%;'>
           <div class='cart_label'>상품 금액</div>
           <div class='cart_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
-          
+         
           <div class='cart_label'>적립 포인트</div>
           <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
-          
-          
+         
+         
           <div class='cart_label'>배송비</div>
           <div class='cart_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
         </td>
@@ -318,28 +381,16 @@
           <div class='cart_label' style='font-size: 1.5em;'>주문 금액</div>
           <div class='cart_price'  style='font-size: 1.5em;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <div class='cart_label'>나의 포인트</div>
-          <div class='cart_price'><fmt:formatNumber value="${memberVO.mpoint }" pattern="#,###" /> 원 </div>
-          
-          <c:choose>
-            <c:when test="${total_order <= memberVO.mpoint }">
-              <div class='cart_label' style='font-size: 1.8em;'>최종 주문 금액</div>
-              <div class='cart_price'  style='font-size: 1.8em; color: #FF0000;'><fmt:formatNumber value="0" pattern="#,###" /> 원</div>
-            </c:when>
-            <c:otherwise>
-              <div class='cart_label' style='font-size: 1.8em;'>최종 주문 금액</div>
-              <div class='cart_price'  style='font-size: 1.8em; color: #FF0000;'><fmt:formatNumber value="${total_order - memberVO.mpoint}" pattern="#,###" /> 원</div>
-            </c:otherwise>
-          </c:choose>
-          
+         <div id="result"></div>    <!-- radio버튼 선택시 -->
+
         </td>
         <td style='width: 10%;'>
-        <button type='button' id='btn_pay' class='btn btn-outline-primary btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
-          <button type='button' id='btn_cart' class='btn btn-outline-dark btn-sm' onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.0em;'>취소(쇼핑카트)</button>
+          <button type='button' id='btn_pay' class='btn btn-outline-dark btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
+          <button type='button' id='btn_cart' class='btn btn-dark btn-sm onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.2em;'>돌 아 가 기</button>
         </td>
       </tr>
     </tbody>
-  </table>   
+  </table>  
      
   </FORM>
   </DIV>

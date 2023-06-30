@@ -68,11 +68,12 @@ $(function(){
       <col style='width: 7%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 30%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
      
     </colgroup>
     <TR>
@@ -83,8 +84,9 @@ $(function(){
       <TH class='th_bs'>상품명</TH>
       <TH class='th_bs'>수량</TH>
       <TH class='th_bs'>금액</TH>
-      <TH class='th_bs'>배송상태</TH>
+      <TH class='th_bs'>배송<br>상태</TH>
       <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>주문<br>삭제</TH>
     </TR>
    
     <c:forEach var="detailVO" items="${list }">
@@ -111,11 +113,13 @@ $(function(){
           <c:when test="${stateno == 1}"><a href="./update_stateno.do?detailno=${detailno }" title="상품 준비중"><img src="/detail/images/b1.png" class=icon2></a></c:when>
           <c:when test="${stateno == 2}"><a href="./update_stateno.do?detailno=${detailno }" title="배송중"><img src="/detail/images/b2.png" class=icon2></a></c:when>
           <c:when test="${stateno == 3}"><img src="/detail/images/b3.png" class=icon2 title="배송 완료"></c:when>
+          <c:otherwise><img src="/detail/images/b5.png" class=icon2 title="주문 취소"></c:otherwise>
         </c:choose>
       </TD>
       
       <TD class='td_basic'>${rdate.substring(2,16) }</TD>
       
+      <TD class='td_basic'><a href="./d_delete.do?detailno=${detailno }" title="주문 삭제"><img src="/detail/images/dele.png" class=icon2></a></TD>
     </TR>
     </c:forEach>
     

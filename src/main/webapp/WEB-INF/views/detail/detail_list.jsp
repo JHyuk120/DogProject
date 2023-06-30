@@ -22,28 +22,54 @@ $(function(){
 
 });
 </script>
+
+  <style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+  </style>
     
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>
-    ${sessionScope.mname }님 주문 결제 상세 내역
-  </DIV>
-   
+ 
+  <DIV class='content_body'>
+  <DIV>
+    <img src="/menu/images/receipt.svg" class="icon0" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${sessionScope.mname }님 주문 결제 상세 내역</span>
+</DIV> <br>   
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 30%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
      
     </colgroup>
     <TR>
@@ -57,6 +83,7 @@ $(function(){
       <TH class='th_bs'>금액</TH>
       <TH class='th_bs'>배송상태</TH>
       <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>주문취소</TH>
     </TR>
    
     <c:forEach var="detailVO" items="${list }">
@@ -76,7 +103,7 @@ $(function(){
       <TD class=td_basic>${detailno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
       <TD class=td_basic><A href="/goods/read.do?goodsno=${goodsno}">${goodsno}</A></TD>
-      <TD class='td_basic'>${gname}</TD>
+      <TD class='td_basic'><A href="/goods/read.do?goodsno=${goodsno}">${gname}</A></TD>
       <TD class='td_basic'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
@@ -85,10 +112,23 @@ $(function(){
           <c:when test="${stateno == 1}"><img src="/detail/images/b1.png" class=icon2 title="상품 준비중"></c:when>
           <c:when test="${stateno == 2}"><img src="/detail/images/b2.png" class=icon2 title="배송중"></c:when>
           <c:when test="${stateno == 3}"><img src="/detail/images/b3.png" class=icon2 title="배송 완료"></c:when>
+          <c:otherwise><img src="/detail/images/b5.png" class=icon2 title="주문 취소"></c:otherwise>
         </c:choose>
       </TD>
-      
       <TD class='td_basic'>${rdate.substring(2,16) }</TD>
+      <TD class='td_basic'>
+        <c:choose>
+          <c:when test="${stateno == 5 }">
+           <a>취소완료</a>
+          </c:when>
+          <c:when test="${stateno == 1 }">
+           <a href="./cancel.do?detailno=${detailno }" >주문취소</a>
+          </c:when>
+          <c:otherwise>
+           <a>취소불가</a>
+          </c:otherwise>
+        </c:choose>
+      </TD>
       
     </TR>
     </c:forEach>
@@ -105,8 +145,8 @@ $(function(){
   </table>    
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
-    <button type='button' onclick="location.href='/pay/pay_list.do?memberno=${memberno}'" class="btn btn-primary">결제 목록</button>
+    <button type='button' onclick="location.href='/index.do'" class="btn btn-outline-dark">HOME</button>
+    <button type='button' onclick="location.href='/pay/pay_list.do?memberno=${memberno}'" class="btn btn-dark">결제 목록</button>
   </DIV>
 </DIV>
  

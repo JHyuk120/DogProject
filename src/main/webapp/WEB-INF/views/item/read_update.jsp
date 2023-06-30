@@ -17,7 +17,33 @@
  <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
     
 </head> 
  
@@ -25,9 +51,10 @@
 <c:import url="/menu/top.do" />
 <%-- <jsp:include page="../menu/top.jsp" flush='false' />   -- 구형 --%> 
  
-<DIV class='title_line'>전체 품목 > 수정</DIV>
-
 <DIV class='content_body'>
+
+<div><IMG src="/item/images/update.png" class=icon0>&nbsp;수정</div>
+
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_create' id='frm_create' method='POST' action='./update.do'>
       <input type ="hidden" name="itemno" value="<%=read_itemVO.getItemno()%>" >
@@ -37,8 +64,8 @@
       <label>순서 지정</label>
       <input type='number' name='seqno' min='1' value='<%=read_itemVO.getSeqno()%>' required="required" style='width: 5%;' >
       
-      <button type="submit" id='submit' class='btn btn-info btn-sm'>수정</button>
-      <button type="button" onclick="location.href='/item/list_all.do'" class='btn btn-danger btn-sm'>취소</button>
+      <button type="submit" id='submit' class='btn btn-outline-dark btn-sm'>수정</button>
+      <button type="button" onclick="location.href='/item/list_all.do'" class='btn btn-dark btn-sm'>취소</button>
     </FORM>
   </DIV>
 

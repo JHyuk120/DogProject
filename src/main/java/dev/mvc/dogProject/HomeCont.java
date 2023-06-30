@@ -80,8 +80,8 @@ public class HomeCont {
  public ModelAndView top(HttpSession session) {
    ModelAndView mav = new ModelAndView();
       
-   ArrayList<ItemVO> list = this.itemProc.list_all();
-   mav.addObject("list", list);
+   ArrayList<ItemVO> list_f = this.itemProc.list_all();
+   mav.addObject("list_f", list_f);
    
    ArrayList<ItemVO> list_y = this.itemProc.list_all_y();
    mav.addObject("list_y", list_y);
@@ -93,6 +93,27 @@ public class HomeCont {
    }
    
    mav.setViewName("/menu/top"); // /WEB-INF/views/menu/top.jsp
+   
+   return mav;
+ }
+ 
+ // http://localhost:9093/main/main.do
+ @RequestMapping(value= {"/main/main.do"}, method=RequestMethod.GET)
+ public ModelAndView main(HttpSession session) {
+   ModelAndView mav = new ModelAndView();
+   
+   if (memberProc.isMember(session)) {
+     int memberno = (int) (session.getAttribute("memberno"));
+     MemberVO memberVO = this.memberProc.read(memberno);
+     int itemno = this.recommendProc.recommend_read(memberno);
+     ArrayList<RecommendVO> rlist = this.recommendProc.recommend(itemno);
+     
+     mav.addObject("rlist", rlist);
+     
+     mav.addObject("memberVO", memberVO);
+   }
+   
+   mav.setViewName("/main/main"); // /WEB-INF/views/menu/top.jsp
    
    return mav;
  }

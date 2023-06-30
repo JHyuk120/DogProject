@@ -277,49 +277,49 @@
   
     <div class="form_input"  style = "margin-bottom:20px;  margin-top:40px; ">
       <label style="font-size: 18px;">아이디</label><span style="color: red;  margin-right:124px;" >*</span>
-      <input type='text' class="form-control " name='id' id='id' value="" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
+      <input maxlength="30" type='text' class="form-control " name='id' id='id' value="" required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="아이디" autofocus="autofocus">
       <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-outline-dark" style=' margin-bottom:2px; margin-left:5px;'>중복확인</button>
     </div>   
                 
     <div class="form_input"  style = "margin-bottom:20px; ">
       <label style="font-size: 18px;">패스워드</label><span style="color: red;  margin-right: 107px;" >*</span>
-      <input type='password' class="form-control " name='passwd' id='passwd' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드">
+      <input maxlength="60" type='password' class="form-control " name='passwd' id='passwd' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드">
     </div>
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">패스워드 확인</label><span style="color: red;  margin-right: 63px;" >*</span>
-      <input type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드 확인">
+      <input maxlength="60" type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드 확인">
       <div  style="font-size: 13px; color:red; margin-left:190px;" >영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</div>
     </div>   
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">성명</label><span style="color: red;  margin-right: 143px;" >*</span>
-      <input type='text' class="form-control" name='mname' id='mname' 
+      <input maxlength="30" type='text' class="form-control" name='mname' id='mname' 
                 value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="성명">
     </div>   
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">휴대폰</label><span style="color: red;  margin-right: 124px;" >*</span>
-      <input type='text' class="form-control " name='tel' id='tel' 
+      <input maxlength="14" type='text' class="form-control " name='tel' id='tel' 
                 value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="숫자만 입력해주세요."> 
     </div>   
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">우편번호</label><span style="color: red;  margin-right: 107px;" >*</span>
-      <input type='text' class="form-control" name='zipcode' id='zipcode' 
+      <input maxlength="5" type='text' class="form-control" name='zipcode' id='zipcode' 
                 value='' style='width: 400px; height:50px; display: inline-block;' placeholder="우편번호">
       <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style="margin-bottom:2px; margin-left:5px;">우편번호 찾기</button>
     </div>  
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">주소</label><span style="color: red;  margin-right: 143px;" >*</span>
-      <input type='text' class="form-control " name='address1' id='address1' 
+      <input maxlength="100" type='text' class="form-control " name='address1' id='address1' 
                  value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="주소">
     </div>   
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">상세주소</label><span style="color: red;  margin-right: 107px;" >*</span>
-      <input type='text' class="form-control" name='address2' id='address2' 
+      <input maxlength="100" type='text' class="form-control" name='address2' id='address2' 
                 value='' required="required" style='width: 400px; height:50px; display: inline-block; margin-bottom:30px;' placeholder="상세 주소">
     </div>   
 

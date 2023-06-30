@@ -121,7 +121,7 @@ function cart_ajax_post(goodsno) {
 <c:import url="/menu/top.do" />
  
 <br>
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style=' margin-left: 280px; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
 
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">

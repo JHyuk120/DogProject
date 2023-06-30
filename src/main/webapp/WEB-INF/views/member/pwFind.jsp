@@ -43,13 +43,13 @@
     <DIV style='width: 40%;  margin: 0px auto; '>
      <FORM name='memberVO' id='frm' method='POST' action='/member/pwFind.do' class="">
         <div class="form_input"  >
-          <input type='text' class="form-control" name='id' id='id'  
+          <input  maxlength="30" type='text' class="form-control" name='id' id='id'  
                     value="" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;  margin-bottom:30px;"
                      placeholder="아이디" autofocus="autofocus">
         </div>   
 
         <div class="form_input" >
-          <input type='text' class="form-control" name='tel' id='tel'
+          <input  maxlength="14" type='text' class="form-control" name='tel' id='tel'
                     value='' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-bottom:50px;" placeholder="휴대폰 번호">            
         </div> 
         <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>

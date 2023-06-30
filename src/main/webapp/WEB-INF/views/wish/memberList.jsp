@@ -283,6 +283,8 @@
         <c:set var="itemno" value="${goodsVO.itemno }" />
         <c:set var="goodsno" value="${goodsVO.goodsno }" />
         <c:set var="thumb1" value="${goodsVO.thumb1 }" />
+        <c:set var="now_page" value="${goodsVO.now_page }" />
+        <c:set var="word" value="${goodsVO.word }" />
         <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
 
       <tr style="height: 102px;" >
@@ -290,7 +292,7 @@
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                  <img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;">
+                   <a href="/goods/read.do?goodsno=${goodsno}"><img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;"></a>
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                   <IMG src="/goods/images/ee.png" style="width: 100%; height: 120px; ">
@@ -306,6 +308,7 @@
               <del><fmt:formatNumber value="${price}" pattern="#,###" />원</del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
             <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" />원</strong><br>
+            
             </a>
           </td> 
           

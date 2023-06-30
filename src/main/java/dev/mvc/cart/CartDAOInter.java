@@ -29,5 +29,12 @@ public interface CartDAOInter {
    * @return
    */
   public  int delete(int cartno);
+  
+  /**
+   * 장바구니 수
+   * @param cartVO
+   * @return
+   */
+  public int cart_cnt(int memberno);
 
 }

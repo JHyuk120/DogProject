@@ -29,10 +29,15 @@
  <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<style>
+    .box{margin:30px;}
+    .content{
+        width:400px;
+        padding:10px;
+        font: 400 1rem/1.5rem;
+    }
+</style>
 <script type="text/javascript">
 
 <!--댓글 등록시 로그인 여부 확인 -->
@@ -49,6 +54,43 @@ function checkLoginStatus() {
     }
     return true; // 폼 제출 진행
 }
+<!--댓글 더보기-->
+$(document).ready(function(){
+
+    $('.box').each(function(){
+        var content = $(this).children('.content');
+        var content_txt = content.text();
+        var content_txt_short = content_txt.substring(0,80)+"...";
+        var btn_more = $('<a href="javascript:void(0)" class="more" style="margin-left:70%">더보기</a>');
+
+        
+        $(this).append(btn_more);
+        
+        if(content_txt.length >= 100){
+            content.html(content_txt_short)
+            
+        }else{
+            btn_more.hide()
+        }
+        
+        btn_more.click(toggle_content);
+
+        function toggle_content(){
+            if($(this).hasClass('short')){
+                // 접기 상태
+                $(this).html('더보기');
+                content.html(content_txt_short)
+                $(this).removeClass('short');
+            }else{
+                // 더보기 상태
+                $(this).html('접기');
+                content.html(content_txt);
+                $(this).addClass('short');
+
+            }
+        }
+    });
+});
 </script>
 
 </head>
@@ -275,8 +317,9 @@ function checkLoginStatus() {
            <div> ${replyVO.mid }</div>
           </td>  
           
-          <td style='vertical-align: middle; text-align: center;' >
-            <div>${replycont}</div>
+          <td style='vertical-align: middle; ' class="box">
+            <div class="content">
+              ${replycont}</div>
           </td> 
           
           <td style='vertical-align: middle; text-align: center;'>

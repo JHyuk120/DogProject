@@ -24,6 +24,11 @@
     ORDER BY payno DESC
   </select>
 
+  <!-- 주문 삭제 -->
+  <delete id="p_delete" parameterType="int">
+  DELETE FROM pay
+  WHERE payno = #{payno}
+  </delete>
 
 
 </mapper>

@@ -94,6 +94,8 @@ function recommend() {
                                     <img src="/menu/images/pcircle.svg" class="icon" style='margin-left:20px'>&nbsp;마이페이지
                                 </a>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" >
+                                        <img src="/menu/images/mpoint.png" class="icon" style='margin-left:5px'>&nbsp; 적립금 <span style="color:#FDCB00; font-weight: bold; font-size:20px">${memberVO.mpoint}</span> 원</a>
                                     <a class="dropdown-item" href="javascript: recommend();">
                                         <img src="/menu/images/pg.svg" class="icon" style='margin-left:5px'>&nbsp; 관심분야 등록하고 추천받기</a>
                                     <a class="dropdown-item" href="/member/read.do">

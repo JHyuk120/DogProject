@@ -37,7 +37,7 @@ function clearFileInput(fileInput) {
     
     <div>
        <label>제목</label>
-       <input type='text' name='title' value='🖤제목을 입력하시오🖤' required="required" 
+       <input maxlength="100" type='text' name='title' value='🖤제목을 입력하시오🖤' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     
@@ -52,7 +52,7 @@ function clearFileInput(fileInput) {
       
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='해시태그' required="required" 
+       <input maxlength="100" type='text' name='word' value='해시태그' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>  
     <br> 
@@ -75,7 +75,7 @@ function clearFileInput(fileInput) {
    <br>
    <div>
      <label>패스워드</label>
-     <input type='password' name='passwd' value='1234' required="required" 
+     <input maxlength="30" type='password' name='passwd' value='1234' required="required" 
                  class="form-control" style='width: 50%;'><br>
    </div>   
    <div class="content_body_bottom">

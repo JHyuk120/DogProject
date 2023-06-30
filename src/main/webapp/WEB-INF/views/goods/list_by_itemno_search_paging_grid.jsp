@@ -131,7 +131,7 @@
               </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-            <div style="padding-bottom:10px; height:400px;">
+            <div>
               <IMG src="/goods/images/ee.png" style="width: 100%; height: 250px; margin-bottom:10px; ">
               </div>
             </c:otherwise>
@@ -150,7 +150,7 @@
           </strong>
          
          <DIV class='goods_line'></DIV>
-          <span style="color: #42CFAB; font-size: 0.8em;">${dc} %</span>
+          <span style="color: red; font-size: 0.9em;">${dc} %</span>
            <del style="font-size: 0.4em; color: #D1D1D1"><fmt:formatNumber value="${price}" pattern="#,###" />원</del>
           <strong style="font-size: 0.99em;"><fmt:formatNumber value="${saleprice}" pattern="#,###" />원</strong><br>
           <img src="/cart/images/point.png" class="icon">

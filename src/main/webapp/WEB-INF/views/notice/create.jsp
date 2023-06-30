@@ -31,7 +31,7 @@
     <div>
        <label>제목</label>
        <input type='text' name='title' value='🖤제목을 입력하시오🖤' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 100%;'>
+                 autofocus="autofocus" class="form-control" style='width: 100%;' maxlength='50'>
     </div>
     <br>
     <div>

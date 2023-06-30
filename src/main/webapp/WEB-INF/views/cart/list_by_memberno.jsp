@@ -50,11 +50,37 @@
 
     
 </style>
- 
+
+  <style>
+    body {
+      background-color: #FEFCE6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content_body {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      background-color:#FEFCF0;
+    }
+  
+    .gallery_item {
+      width: 22%;
+      height: 300px;
+      margin: 1.5%;
+      padding: 0.5%;
+      text-align: center;
+    }
+  </style>
+
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
+
+<DIV class='content_body'>
 
 <%-- GET -> POST: 수량 변경, 상품 삭제용 폼 --%>
 <form name='frm_post' id='frm_post' action='' method='post'>
@@ -62,24 +88,7 @@
   <input type='hidden' name='cnt' id='cnt'>
 </form>
  
-<DIV class='title_line'>쇼핑 카트</DIV>
-
-<DIV class='content_body'>
-  <ASIDE class="aside_right">
-    <%-- 
-    http://localhost:9091/cart/list_by_memberno.do
-    http://localhost:9091/cart/list_by_memberno.do?cateno=
-    http://localhost:9091/cart/list_by_memberno.do?cateno=4  <- 이런 패턴만 링크 출력
-    --%>
-    <c:if test="${param.itemno != null and param.itemno != ''}"> 
-      <A href="/goodsno/list_by_itemno_search_paging.do?itemno=${param.itemno }">쇼핑 계속하기</A>
-      <span class='menu_divide' >│</span>  
-    </c:if>
- 
-    <A href="javascript:location.reload();">새로고침</A>
-  </ASIDE> 
-
-  <DIV class='menu_line'></DIV>
+<DIV class='title_line'><img src="/menu/images/cart4.svg" class="icon0" style='margin-left:5px;margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${cart_cnt }건</DIV>
 
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>
@@ -134,13 +143,13 @@
                 </c:choose>
               </td>  
               <td style='vertical-align: middle;'>
-                <a href="/goods/read.do?goodsno=${goodsno}"><strong>${gname}</strong></a> 
+                <a href="/goods/read.do?goodsno=${goodsno}"><strong style="margin-right:80%;">${gname}</strong></a> 
               </td> 
               <td style='vertical-align: middle; text-align: center;'>
-                <del>￦<fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <del><fmt:formatNumber value="${price}" pattern="#,###원" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-                <strong>￦<fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-                <img src="/cart/images/point.jpg" class="icon">
+                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###원" /></strong><br>
+                <img src="/cart/images/point.png" class="icon">
                 <span style="font-size: 0.8em;"><fmt:formatNumber value="${point}" pattern="#,###" />원 (2%)</span>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
@@ -149,10 +158,10 @@
                 <button type='button' onclick="update_cnt(${cartno})" class='btn btn-outline-dark btn-sm' style='margin-top: 5px;'>변경</button>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
-                <fmt:formatNumber value="${tot}" pattern="#,###" />
+                <strong><fmt:formatNumber value="${tot}" pattern="#,###원" /></strong>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
-                <A href="javascript: delete_func(${cartno })"><IMG src="/cart/images/delete.png" class="icon"></A>
+                <A href="javascript: delete_func(${cartno })"><IMG src="/wish/images/de2.png" class="icon"></A>
               </td>
             </tr>
           </c:forEach>
@@ -186,19 +195,19 @@
         </td>
         <td style='width: 50%;'>
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
-          <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
+          <div class='cart_price'  style='font-size: 2.0em; color: #FF0000; margin-bottom:13px;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
           <form name='frm' id='frm' style='margin-top: 50px;' action="/pay/create.do" method='get'>
             <c:choose>
               <c:when test="${total_order == 0}">
               <br>
-               <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품을 선택하고 다시 와주십시오.</div>
+               <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품을 선택해주세요.</div>
               </c:when>
               <c:when test="${g_cnt - cnt < 0 }">
                <div style='font-size: 1.5em; text-align: right; color: #FF0000;'>상품이 선택하신 수량보다 적습니다.</div>
               </c:when>
               <c:otherwise>
-                <button type='submit' id='btn_order' class='btn btn-dark btn-sm' style='font-size: 1.5em; right;'>주문하기</button>
+                <button type='submit' id='btn_order' class='btn btn-dark ' style='font-size: 1.5em; margin-right:0.5%; width:80%; height:60px;'>주문하기</button>
               </c:otherwise>
             </c:choose>
           </form>

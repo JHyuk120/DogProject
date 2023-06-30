@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
+import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.item.ItemVO;
+import dev.mvc.pay.PayProcInter;
 
 @Controller
 public class DetailCont {
@@ -25,6 +27,14 @@ public class DetailCont {
   @Autowired 
   @Qualifier("dev.mvc.admin.AdminProc")
   private AdminProcInter adminProc;
+
+  @Autowired 
+  @Qualifier("dev.mvc.goods.GoodsProc")
+  private GoodsProcInter goodsProc;
+
+  @Autowired 
+  @Qualifier("dev.mvc.pay.PayProc")
+  private PayProcInter payProc;
   
   public DetailCont() {
     System.out.println("-> DetailCont created.");
@@ -117,6 +127,59 @@ public class DetailCont {
     
     return mav;
   }
+  
+
+  /**
+   * 회원 주문 취소
+   */
+  @RequestMapping(value="/detail/cancel.do", method = RequestMethod.GET)
+  public ModelAndView cancel(int detailno) {
+    ModelAndView mav = new ModelAndView();
+    
+    int cencel = this.detailProc.cancel(detailno);
+    if (cencel == 1) {
+      DetailVO detailVO = this.detailProc.read(detailno);
+      int payno = detailVO.getPayno();
+      int goodsno = detailVO.getGoodsno();
+      int cnt = detailVO.getCnt();
+      
+      for (int i = 1; i <= cnt; i++) {
+        int cnt_add = this.goodsProc.cnt_add(goodsno);
+      }
+      
+      mav.setViewName("redirect:/detail/detail_list.do?payno=" + detailVO.getPayno());
+    }
+    
+    return mav;
+  }
+
+  /**
+   * 관리자 주문 삭제
+   */
+  @RequestMapping(value="/detail/d_delete.do", method = RequestMethod.GET)
+  public ModelAndView d_delete(HttpSession session, int detailno) {
+    ModelAndView mav = new ModelAndView();
+    
+    if (session.getAttribute("adminno") != null) {
+      DetailVO detailVO = this.detailProc.read(detailno);  
+      int payno = detailVO.getPayno();
+      
+      this.detailProc.d_delete(detailno);
+      
+      DetailVO deVO = this.detailProc.d_read(payno);
+
+      if (deVO == null) {
+        this.payProc.p_delete(payno);
+
+      }
+
+      mav.setViewName("redirect:/detail/order_list.do?");
+      
+    }
+    return mav;
+  }
+  
+  
   
   
   

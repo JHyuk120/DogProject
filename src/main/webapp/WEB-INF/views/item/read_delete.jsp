@@ -18,7 +18,33 @@ ItemVO read_itemVO = (ItemVO) request.getAttribute("itemVO");
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
     
 </head> 
  
@@ -26,9 +52,10 @@ ItemVO read_itemVO = (ItemVO) request.getAttribute("itemVO");
 <c:import url="/menu/top.do" />
 <%-- <jsp:include page="../menu/top.jsp" /> --%>
  
-<DIV class='title_line'>전체 품목 > 삭제</DIV>
-
 <DIV class='content_body'>
+
+<div><IMG src="/item/images/dele.png" class=icon0>&nbsp;전체 품목 > 삭제</div>
+
   <DIV id='panel_delete' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_delete' id='frm_delete' method='POST' action='./delete.do'>
       <input type="hidden" name="itemno" value="<%=read_itemVO.getItemno() %>">
