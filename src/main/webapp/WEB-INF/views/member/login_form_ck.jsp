@@ -95,7 +95,7 @@
         <input type="hidden" name="return_url" value="${return_url}">
       
         <div class="form_input"  >
-          <input type='text' class="form-control" name='id' id='id' 
+          <input maxlength="30" type='text' class="form-control" name='id' id='id' 
                     value="${ck_id }" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;"
                      placeholder="아이디" autofocus="autofocus">
           <Label style='margin-bottom:13px; margin-left:170px;'>   
@@ -104,7 +104,7 @@
         </div>   
      
         <div class="form_input" >
-          <input type='password' class="form-control" name='passwd' id='passwd' 
+          <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
                     value='${ck_passwd }' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;" placeholder="패스워드">
           <Label style=' margin-left:170px;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장

@@ -138,13 +138,13 @@
         <input type="hidden" name="return_url" value="${return_url}">
       
         <div class="form_input"  >
-          <input type='text' class="form-control" name='mname' id='mname'  
+          <input maxlength="30" type='text' class="form-control" name='mname' id='mname'  
                     value="${memberVO.mname }" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;  margin-bottom:30px;"
                      placeholder="이름" autofocus="autofocus"> 
         </div>   
 
         <div class="form_input" >
-          <input type='text' class="form-control" name='tel' id='tel'
+          <input maxlength="14" type='text' class="form-control" name='tel' id='tel'
                     value='${memberVO.tel }' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-bottom:50px;" placeholder="휴대폰 번호">            
         </div> 
         

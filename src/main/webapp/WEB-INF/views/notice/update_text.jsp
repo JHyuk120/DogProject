@@ -49,7 +49,7 @@
     <div>
        <label>제목</label>
        <input type='text' name='title' value='${title }' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 100%;'>
+                 autofocus="autofocus" class="form-control" style='width: 100%;' maxlength='50'>
     </div>
     
     <div>

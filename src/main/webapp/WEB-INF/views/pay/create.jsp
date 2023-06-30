@@ -20,7 +20,8 @@
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_my_address').on('click', my_address);          // 나의 주소 가져오기
     $('#btn_pay').on('click', send);                      // 결제
-    
+
+    RadioClick();
   });
 
   // 나의 주소 가져오기, jQuery ajax 요청
@@ -254,25 +255,25 @@
     <div class='menu_line'></div>
 
     <div class="form_input">
-      <input type='text' class="form-control" name='tname' id='tname'
+      <input maxlength="30" type='text' class="form-control" name='tname' id='tname'
                 value='' required="required" style='width: 30%;' placeholder="수취인 성명*">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
+      <input maxlength="14" type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
+      <input maxlength="5" type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
       <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-dark btn-sm">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
+      <input maxlength="80" type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
     </div>  
 
     <div class="form_input">
-      <input type='text' class="form-control" name='taddress2' id='taddress2' value='' style='width: 80%;'
+      <input maxlength="50" type='text' class="form-control" name='taddress2' id='taddress2' value='' style='width: 80%;'
                 placeholder="상세 주소(없을시 수취인 성명 입력)*">
     </div>  
 
@@ -355,7 +356,7 @@
 
   <div class='menu_line'></div>
   <div style=" text-align: left;">
-    <label><input type="radio" name="ptype" id="ptype" value="1" onclick="RadioClick()"> 신용 카드</label>
+    <label><input type="radio" name="ptype" id="ptype" value="1" checked onclick="RadioClick()"> 신용 카드</label>
     <label><input type="radio" name="ptype" id="ptype" value="2" onclick="RadioClick()"> 모바일</label>
     <label><input type="radio" name="ptype" id="ptype" value="3" onclick="RadioClick()"> 포인트</label><br>
     

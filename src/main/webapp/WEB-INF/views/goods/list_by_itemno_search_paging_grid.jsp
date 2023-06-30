@@ -131,7 +131,7 @@
               </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
-            <div style="padding-bottom:10px; height:400px;">
+            <div>
               <IMG src="/goods/images/ee.png" style="width: 100%; height: 250px; margin-bottom:10px; ">
               </div>
             </c:otherwise>

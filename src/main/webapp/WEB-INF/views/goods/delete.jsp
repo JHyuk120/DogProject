@@ -23,7 +23,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    
+<style>
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }
+</style>   
+
 </head> 
  
 <body>
@@ -59,9 +65,9 @@
           <input type='text' name='word' id='word' value='' style='width: 20%;'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'>검색</button>
+      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
+        <button type='button'  class='btn btn-custom btn-sm' 
                      onclick="location.href='./list_by_itemno.do?itemno=${itemno}&word='">검색 취소</button>  
       </c:if>    
     </form>
@@ -98,8 +104,8 @@
               <div style='text-align: center; margin: 10px auto;'>
                 <span style="color: #FF0000; font-weight: bold;">삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                 <br><br>
-                <button type = "submit" class="btn btn-primary">삭제 진행</button>
-                <button type = "button" onclick = "history.back()" class="btn btn-primary">취소</button>
+                <button type = "submit" class="btn btn-dark">삭제 진행</button>
+                <button type = "button" onclick = "history.back()" class="btn btn-outline-dark"">취소</button>
               </div>   
           </FORM>
         </DIV>
