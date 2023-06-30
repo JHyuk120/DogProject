@@ -121,7 +121,7 @@ function cart_ajax_post(goodsno) {
 <c:import url="/menu/top.do" />
  
 <br>
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style=' margin-left: 280px; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
 
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
@@ -284,82 +284,20 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
 		    <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
 		  </c:when>
 		  <c:otherwise> <!-- 기본 이미지 출력 -->
-		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px;border-radius: 10px;">
+		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; #FFDAD5; border-radius: 10px;">
 		  </c:otherwise>
 		</c:choose>
 
     </div>
-<style>
-  /* 스크롤바의 스타일을 변경 */
-  /* 아래의 스타일은 웹킷(Webkit) 브라우저(Chrome, Safari)에서만 동작합니다. */
-  /* 다른 브라우저에서 스타일을 변경하려면 해당 브라우저의 접두사(prefix)를 사용해야 합니다. */
-  ::-webkit-scrollbar {
-    width: 10px; /* 스크롤바의 너비 */
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #FFFFF8; /* 스크롤바 트랙의 배경색 */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background:#FFDAD5; /* 스크롤바 썸의 배경색 */
-    border-radius: 4px; /* 스크롤바 썸의 모서리 반경 */
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #DAF5E0; /* 스크롤바 썸의 호버 상태 배경색 */
-  }
-</style>
 
 
-<div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
+
+<div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
+margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
   ${exp}
 </div>
   </div>
 </DIV>
-
-<DIV style="width:100%; ">
-
-  <div style="display: flex;">
-    <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
-    <c:choose>
-      <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-        <%-- /static/recipe/storage/ --%>
-        <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
-      </c:when>
-      <c:otherwise> <!-- 기본 이미지 출력 -->
-        <img src="/goods/images/ee.png" style="width: 100%; height:  160px;border-radius: 10px;">
-      </c:otherwise>
-    </c:choose>
-
-    </div>
-
-    <span style="font-size: 1.2em; margin-right: 2%; margin-left: 3%;">🤍조리순서🤍</span>
-
-    <div style="width: 60%; margin-top: 0.5%; margin-right: 5%; margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
-      <%-- 여러 개의 조리순서를 출력하기 위한 반복문 --%>
-      <c:forEach var="step" items="${cookingSteps}">
-        <div>
-          <div style='display: flex; align-items: center;'>
-            <div style="width: 30%;">
-              <div class="col-md-12">
-                <input type='file' class="form-control" name='cookfileMF' id='fileInput${step.index}' 
-                       value='' placeholder="파일 선택" multiple="multiple">
-              </div>
-              <div class='content_bottom_menu'>
-                <button type="button" onclick="clearFileInput(document.getElementById('fileInput${step.index}'));"
-                     class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
-              </div>
-            </div>
-            <textarea name='exp' required="required" class="form-control" 
-            rows="3" style="overflow-y: scroll; width: 70%;">${step.exp}</textarea>
-          </div>
-        </div>
-      </c:forEach>
-    </div>
-  </div>
-</DIV>
-
 
      <li class="li_none" style="clear: both;">
           🤍검색어🤍: ${word }

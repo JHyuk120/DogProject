@@ -17,7 +17,7 @@ function clearFileInput(fileInput) {
     fileInput.value = "";
   }
 </script>
-<script>
+    <script>
     $(function() {
         $("#addBtn").on("click", function(event) {
             event.preventDefault(); // 전송 방지
@@ -32,10 +32,11 @@ function clearFileInput(fileInput) {
         });
     });
 </script>
+    
 <script>
   function addCookingStep() {
     var container = document.getElementById("cookingStepsContainer");
-
+    
     // Create the new set of elements
     var newDiv = document.createElement("div");
     newDiv.innerHTML = `
@@ -173,6 +174,7 @@ function clearFileInput(fileInput) {
     </div>
     <br>
     
+
   <div>
   <label>🤍조리순서🤍</label><br>
   <div id="cookingStepsContainer">
