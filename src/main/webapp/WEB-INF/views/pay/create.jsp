@@ -135,15 +135,15 @@
 
       const code = `<br><br>
         <div class="cart_label" style="font-size: 1.8em;">최종 주문 금액</div>
-          <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="${total_order}" pattern="#,###" /> 원</div>
+        <div class="cart_price"  style="font-size: 1.8em; color: #FF0000;"><fmt:formatNumber value="${total_order}" pattern="#,###" /> 원</div>
         `;
-              
+
       // 초기 화면 로드시 실행
       if (checkedValue === '3') {
           document.getElementById('result').innerHTML = p_code;
-        } else {
-            document.getElementById('result').innerHTML = code;
-        }
+      } else {
+          document.getElementById('result').innerHTML = code;
+      }
       }
 
 </script>

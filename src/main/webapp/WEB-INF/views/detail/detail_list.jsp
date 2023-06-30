@@ -63,12 +63,13 @@ $(function(){
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 30%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
      
     </colgroup>
     <TR>
@@ -82,6 +83,7 @@ $(function(){
       <TH class='th_bs'>금액</TH>
       <TH class='th_bs'>배송상태</TH>
       <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>주문취소</TH>
     </TR>
    
     <c:forEach var="detailVO" items="${list }">
@@ -110,10 +112,23 @@ $(function(){
           <c:when test="${stateno == 1}"><img src="/detail/images/b1.png" class=icon2 title="상품 준비중"></c:when>
           <c:when test="${stateno == 2}"><img src="/detail/images/b2.png" class=icon2 title="배송중"></c:when>
           <c:when test="${stateno == 3}"><img src="/detail/images/b3.png" class=icon2 title="배송 완료"></c:when>
+          <c:otherwise>주문 취소</c:otherwise>
         </c:choose>
       </TD>
-      
       <TD class='td_basic'>${rdate.substring(2,16) }</TD>
+      <TD class='td_basic'>
+        <c:choose>
+          <c:when test="${stateno == 5 }">
+           <a>취소완료</a>
+          </c:when>
+          <c:when test="${stateno == 1 }">
+           <a href="./cancel.do?detailno=${detailno }" >주문취소</a>
+          </c:when>
+          <c:otherwise>
+           <a>취소불가</a>
+          </c:otherwise>
+        </c:choose>
+      </TD>
       
     </TR>
     </c:forEach>

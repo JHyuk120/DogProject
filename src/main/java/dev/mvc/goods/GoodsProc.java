@@ -273,6 +273,12 @@ import dev.mvc.tool.Tool;
       }
 
       @Override
+      public int cnt_add(int goodsno) {
+        int cnt = this.goodsDAO.cnt_add(goodsno);
+        return cnt;
+      }
+
+      @Override
       public int g_cnt(int goodsno) {
         int cnt = this.goodsDAO.g_cnt(goodsno);
         return cnt;
@@ -292,6 +298,7 @@ import dev.mvc.tool.Tool;
          int cnt = this.goodsDAO.select_goodsno(gname);
       return cnt;
       }
+
 
 
 }

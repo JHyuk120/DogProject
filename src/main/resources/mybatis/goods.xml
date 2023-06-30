@@ -150,6 +150,13 @@
     SET cnt = cnt - 1
     WHERE goodsno = #{goodsno }
   </update>
+  
+  <!-- 재료 수량 증가 -->
+  <update id="cnt_add" parameterType="int">
+    UPDATE goods 
+    SET cnt = cnt + 1
+    WHERE goodsno = #{goodsno }
+  </update>
 
   <!-- 재료 수량 확인 -->
   <select id="g_cnt" resultType="int" parameterType="int">
