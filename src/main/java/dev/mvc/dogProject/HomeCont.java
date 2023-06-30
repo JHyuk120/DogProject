@@ -80,8 +80,8 @@ public class HomeCont {
  public ModelAndView top(HttpSession session) {
    ModelAndView mav = new ModelAndView();
       
-   ArrayList<ItemVO> list = this.itemProc.list_all();
-   mav.addObject("list", list);
+   ArrayList<ItemVO> list_f = this.itemProc.list_all();
+   mav.addObject("list_f", list_f);
    
    ArrayList<ItemVO> list_y = this.itemProc.list_all_y();
    mav.addObject("list_y", list_y);
