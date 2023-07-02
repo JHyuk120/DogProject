@@ -155,46 +155,57 @@ public class RecipeCont {
       // 메인 파일 전송 코드 종료
       // ------------------------------------------------------------------------------
       //
-      // ------------------------------------------------------------------------------
-      // 멀티 파일 전송 코드 시작
-      // ------------------------------------------------------------------------------
-      int recipeno = recipeVO.getRecipeno(); //레시피 번호 호출
-      String cookfile = ""; // 원본 파일명
-      String cookfilesaved = ""; // 업로드된 파일명
-      String thumb = ""; // Preview 이미지
-      int upload_count = 0; // 정상처리된 레코드 갯수  
-      String exp = "";
+   // ------------------------------------------------------------------------------
+   // 멀티 파일 전송 코드 시작
+   // ------------------------------------------------------------------------------
       
-      String upDir1 =  Recipe.getUploadDir();
-      System.out.println("-> upDir: " + upDir1);
-      
-      MultipartFile mf1 = recipeVO.getCookfileMF();
-      
-      cookfile = Tool.getFname(mf1.getOriginalFilename()); // 원본 순수 파일명 산출
-      System.out.println("-> cookfile: " + cookfile);
-      
-      long size0 = mf1.getSize();  // 파일 크기
-      
-      if (size0 > 0) { // 파일 크기 체크
-        // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-        file1saved = Upload.saveFileSpring(mf1, upDir1); 
-        
-        if (Tool.isImage(cookfilesaved)) { // 이미지인지 검사
-          // thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
-          thumb1 = Tool.preview(upDir1, cookfilesaved, 200, 150); 
-        }
-        
-      }    
-          
-          Cook_multiVO vo = new Cook_multiVO();
-          vo.setRecipeno(recipeno);
-          vo.setCookfile(cookfile);
-          vo.setCookfilesaved(cookfilesaved);
-          vo.setThumb(thumb);
-          vo.setExp(exp);
-      // -----------------------------------------------------
-      // 파일 전송 코드 종료
-      // -----------------------------------------------------
+   int recipeno = recipeVO.getRecipeno(); // 레시피 번호 호출
+   System.out.println("==> recipeno : "+recipeno);
+   String cookfile = ""; // 원본 파일명
+   String cookfilesaved = ""; // 업로드된 파일명
+   String thumb = ""; // Preview 이미지
+   //String exp = "";
+   String exp = ""; 
+   System.out.println("exp: " + exp);
+
+   String upDir1 = Recipe.getUploadDir();
+   System.out.println("-> upDir: " + upDir1);
+
+   MultipartFile fileList = recipeVO.getCookfileMF(); // 멀티 파일 리스트 가져오기
+
+   
+   
+       cookfile = Tool.getFname(fileList.getOriginalFilename()); // 원본 순수 파일명 산출
+       System.out.println("-> cookfile: " + cookfile);
+
+       long size0 = fileList.getSize();  // 파일 크기
+
+       if (size0 > 0) { // 파일 크기 체크
+           // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
+           cookfilesaved = Upload.saveFileSpring(fileList, upDir1);
+
+           if (Tool.isImage(cookfilesaved)) { // 이미지인지 검사
+               // thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
+               thumb = Tool.preview(upDir1, cookfilesaved, 200, 150);
+           }
+           exp = request.getParameter("exp");
+           Cook_multiVO vo = new Cook_multiVO();
+
+           vo.setRecipeno(recipeno);
+           vo.setCookfile(cookfile);
+           vo.setCookfilesaved(cookfilesaved);
+           vo.setThumb(thumb);
+           vo.setExp(exp);
+           this.cook_multiProc.create(vo);
+
+         
+       }
+  
+
+
+   // -----------------------------------------------------
+   // 파일 전송 코드 종료
+   // -----------------------------------------------------
       
       // Call By Reference: 메모리 공유, Hashcode 전달
       
@@ -535,7 +546,7 @@ public class RecipeCont {
    * 수정 처리 http://localhost:9091/recipe/update.do
    * 
    * @return
-   */
+   
   @RequestMapping(value = "/recipe/update.do", method = RequestMethod.POST)
   public ModelAndView update(HttpServletRequest request, HttpSession session, RecipeVO recipeVO, Cook_multiVO cook_multiVO) {
     ModelAndView mav = new ModelAndView();
@@ -641,7 +652,7 @@ public class RecipeCont {
       
     return mav; // forward
   }
-
+*/
   /**
    * 삭제 폼
    * @param recipeno

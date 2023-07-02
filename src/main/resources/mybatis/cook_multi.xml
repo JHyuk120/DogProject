@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <insert id="create" parameterType="dev.mvc.cook_multi.Cook_multiVO">
     INSERT INTO cook_multi(cookfileno, recipeno, cookfile, cookfilesaved, thumb, exp )
-    VALUES(cook_multi_seq.nextval, #{recipeno}, #{cookfile}, #{cookfilesaved}, #{thumb}, #{exp})
+    VALUES(cook_multi_seq.nextval, #{recipeno}, #{cookfile, jdbcType=VARCHAR}, #{cookfilesaved, jdbcType=VARCHAR}, #{thumb, jdbcType=VARCHAR}, #{exp})
   </insert>
   
   <!-- FK 기준 recipeno가 동일한 레코드 조회, cookfile 오름 차순 -->
