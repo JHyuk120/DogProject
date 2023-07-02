@@ -60,7 +60,7 @@
               <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
               <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol>
+            </ol> 
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="/dogproject/images/ccc.png" class="d-block w-100" alt="..."  >

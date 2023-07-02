@@ -161,15 +161,24 @@ function clearFileInput(fileInput) {
         <div>
           <tbody>
             <c:forEach var="goodsVO" items="${list}">
-              <c:set var="gname" value="${goodsVO.gname}"/>
-                <input type="checkbox" id="gname" name="gname" value="${gname }">
-                  <label>${gname }</label>
+              <c:set var="goodname" value="${goodsVO.gname}"/>
+                <input type="checkbox" id="goodname" name="goodname" value="${gname }">
+                  <label>${goodname }</label>
             </c:forEach>
           </tbody>
         </div>
         <button id="addBtn" class="btn-sm btn-outline-dark"> ✔ 체크한 항목 아래 재료 박스에 추가</button><br><br>
+        
         🤍재료박스🤍 <a style="color: #BBBDB2;">재료박스에 담으면 댕키트에서 구매가 가능합니다</a>
+        <!-- gname = recipeVO.gname -->
+        <input type='text'  name='gname' id='gname' required="required" class="form-control" rows="2" style='width: 100%;'>
+    </div>
+    <br>
+    <div>
+      <label>🤍추가 재료🤍</label>
+      <div>
         <textarea name='ingredient' id='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'></textarea>
+      </div>
     </div>
     <br>
     
