@@ -34,8 +34,8 @@
 
 <body style="background-color: #FEFCE6;">
 <div style='' class="content_body">
-  <c:choose>
-    <c:when test="${sessionScope.id != null}">  
+<c:choose>
+<c:when test="${sessionScope.id != null }">  
 
 <div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${sessionScope.id}님 맞춤 추천 레시피</div>
 
@@ -120,8 +120,9 @@
     </a>
  
 </div>
-
     </c:when>
+
+    
     <c:otherwise>
  
     </c:otherwise>
