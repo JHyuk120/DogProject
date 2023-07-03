@@ -177,7 +177,7 @@
 
   <DIV>
     <div style='display: flex; align-items: flex-start;'>
-        <img src="/goods/images/wish.png" class="icon0"  style='margin-left:5px; width: 2%; margin-bottom: 7px; margin-right: 1%;'>저장된 레시피 목록
+        <img src="/goods/images/wish.png" class="icon0"  style='margin-left:5px; width: 2%; margin-bottom: 7px; margin-right: 1%;'>찜한 재료 목록
     </div>
 
 </DIV>
@@ -201,33 +201,7 @@
     
   </ASIDE> 
   
-  <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_itemno_search_paging_cart.do'>
-      <input type='hidden' name='itemno' value='${itemVO.itemno }'>  <%-- 게시판의 구분 --%>
-      
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' class='input_word'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit' class='btn btn-custom btn-sm' >검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-custom btn-sm'
-                     onclick="location.href='./list_by_itemno_search_paging_cart.do?itemno=${itemVO.itemno}&word='">검색 취소</button>  
-      </c:if>    
-         <style>
-          .btn-custom {
-            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
-            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
-          }
-          </style>
-    </form>
-  </DIV>
 
-  <DIV class='menu_line'></DIV>
   
   <%-- ******************** Ajax 기반 로그인 폼 시작 ******************** --%>
   
@@ -387,6 +361,38 @@
   <!-- 페이지 목록 출력 부분 종료 -->
   
 </DIV>
+   <!-- 플로팅 메뉴 -->
+<style>
+    .float {
+        position: fixed;
+        bottom: 30px;
+        right: 20px;
+        z-index: 999;
+    }
+</style>
+
+<div class="float">
+    <div class="btn-group-vertical">
+      <c:choose>
+        <c:when test="${sessionScope.id != null }">
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='/cart/list_by_memberno.do'">장바구니</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
+          <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='/pay/pay_list.do'">주문내역</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+        </c:when>
+        <c:otherwise>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='member/create.do'">회원가입</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+        </c:otherwise>
+      </c:choose>
+    </div>
+</div>
 
  
 <jsp:include page="../menu/bottom.jsp" />
