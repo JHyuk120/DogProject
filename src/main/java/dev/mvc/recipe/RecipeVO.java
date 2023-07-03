@@ -98,6 +98,6 @@ public class RecipeVO {
     private MultipartFile cookfileMF;
 
 
-
+    private int count;
 
 }

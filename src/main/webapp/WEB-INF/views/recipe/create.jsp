@@ -13,29 +13,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
+var count = 1;
 function clearFileInput(fileInput) {
     fileInput.value = "";
   }
-</script>
-    <script>
-    $(function() {
-        $("#addBtn").on("click", function(event) {
-            event.preventDefault(); // 전송 방지
 
-            // 체크박스 데이터를 textarea에 추가
-            var checkedItems = "";
-            $("input[type=checkbox]:checked").each(function() {
-                checkedItems += $(this).val() + ", ";
-            });
+$(function() {
+    $("#addBtn").on("click", function(event) {
+        event.preventDefault(); // 전송 방지
 
-            $("#ingredient").val($("#ingredient").val() + checkedItems);
+        // 체크박스 데이터를 textarea에 추가
+        var checkedItems = "";
+        $("input[type=checkbox]:checked").each(function() {
+            checkedItems += $(this).val() + ", ";
         });
+
+        $("#gname").val($("#gname").val() + checkedItems);
     });
-</script>
+});
+
     
-<script>
   function addCookingStep() {
     var container = document.getElementById("cookingStepsContainer");
+    count +=1;
+    console.log("Current count:", count);
     
     // Create the new set of elements
     var newDiv = document.createElement("div");
@@ -57,9 +58,10 @@ function clearFileInput(fileInput) {
         </div>
       </div>
     `;
-
+    document.getElementById('result').textContent = count
     // Append the new elements to the container
     container.appendChild(newDiv);
+    
   }
 </script>
     
@@ -129,8 +131,8 @@ function clearFileInput(fileInput) {
   <DIV class='menu_line'></DIV>
   
   <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
-    <input type="hidden" name="itemno" value="${param.itemno }">
-    
+    <input type="hidden" name="itemno" value="${param.itemno }">  
+    <input type="hidden"  name="count" id="result">
     
     <div>
        <label>🤍제목🤍</label>
@@ -162,15 +164,24 @@ function clearFileInput(fileInput) {
         <div>
           <tbody>
             <c:forEach var="goodsVO" items="${list}">
-              <c:set var="gname" value="${goodsVO.gname}"/>
-                <input type="checkbox" id="gname" name="gname" value="${gname }">
-                  <label>${gname }</label>
+              <c:set var="gname1" value="${goodsVO.gname}"/>
+                <input type="checkbox" id="gname1" name="gname1" value="${gname1 }">
+                  <label for='gname1'>${gname1 }</label>
             </c:forEach>
           </tbody>
         </div>
         <button id="addBtn" class="btn-sm btn-outline-dark"> ✔ 체크한 항목 아래 재료 박스에 추가</button><br><br>
+        
         🤍재료박스🤍 <a style="color: #BBBDB2;">재료박스에 담으면 댕키트에서 구매가 가능합니다</a>
+        <!-- gname = recipeVO.gname -->
+        <input type='text'  name='gname' id='gname' required="required" class="form-control" rows="2" style='width: 100%;' readonly>
+    </div>
+    <br>
+    <div>
+      <label>🤍추가 재료🤍</label>
+      <div>
         <textarea name='ingredient' id='ingredient' required="required" class="form-control" rows="6" style='width: 100%;'></textarea>
+      </div>
     </div>
     <br>
     

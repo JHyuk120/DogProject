@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.answer.AnswerDAOInter">
+   <!-- 로그인 -->
+<insert id="create"  parameterType="dev.mvc.answer.AnswerVO">
+  INSERT INTO answer (answer_no, qnano, title, aname, text, passwd, rdate)
+  VALUES (answer_seq.nextval, #{qnano}, #{title}, #{aname}, #{text}, #{passwd}, sysdate)
+</insert>
+
+<!-- Read -->
+<select id="read"  resultType="dev.mvc.answer.AnswerVO" parameterType="int">
+  SELECT answer_no, qnano, title, aname, text, passwd, rdate
+  FROM answer
+  WHERE answer_no = #{answer_no}
+</select>
+
+</mapper>
