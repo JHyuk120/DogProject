@@ -55,6 +55,9 @@ public class HomeCont {
     if (memberProc.isMember(session)) {
         int memberno = (int) session.getAttribute("memberno");
         int cnt = this.recommendProc.recommend_cnt(memberno);
+        MemberVO memberVO = this.memberProc.read(memberno);
+        String mname = memberVO.getMname();
+        mav.addObject("mname", mname);
         System.out.println("cnt : " + cnt);
         if (cnt != 0 ) {
             int itemno = this.recommendProc.recommend_read(memberno);

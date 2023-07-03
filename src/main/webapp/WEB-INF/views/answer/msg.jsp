@@ -37,37 +37,37 @@
         
         <c:when test="${code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">🔔새로운 컨텐츠를 등록했습니다.</span>
+            <span class="span_success">🔔답변을 등록했습니다.</span>
           </LI> 
         </c:when>
         
         <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">🔔새로운 컨텐츠 등록에 실패했습니다.</span>
+            <span class="span_fail">🔔답변 등록을 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">🔔컨텐츠 수정에 실패했습니다.</span>
+            <span class="span_fail">🔔답변 수정에 실패했습니다</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">🔔컨텐츠 삭제에 성공했습니다.</span>
+            <span class="span_success">🔔답변 삭제를 성공했습니다.</span>
           </LI>                                                                      
         </c:when>        
         
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">🔔컨텐츠 삭제에 실패했습니다.</span>
+            <span class="span_fail">🔔답변 삭제에 실패했습니다.</span>
           </LI>                                                                      
         </c:when> 
         
         <c:otherwise>
           <LI class='li_none_left'>
-            <span class="span_fail">🔔알 수 없는 에러로 작업에 실패했습니다.</span>
+            <span class="span_fail">🔔알 수 없는 에러로 답변 등록에 실패했습니다.</span>
           </LI>
           <LI class='li_none_left'>
             <span class="span_fail">🔔다시 시도해주세요.</span>
@@ -82,8 +82,7 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do'" class="btn btn-primary">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_search.do'" class="btn btn-primary">목록</button>
+        <button type='button' onclick="location.href='/qna/list_by_search.do'" class="btn btn-dark">목록</button>
       </LI>
     </UL>
   </fieldset>

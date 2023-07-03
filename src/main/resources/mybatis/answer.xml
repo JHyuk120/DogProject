@@ -16,4 +16,11 @@
   WHERE answer_no = #{answer_no}
 </select>
 
+<!-- 모든 카테고리의 등록된 글목록 -->
+  <select id="list_all" resultType="dev.mvc.answer.AnswerVO">
+    SELECT answer_no, qnano, title, text, aname, rdate
+    FROM answer 
+    ORDER BY qnano DESC
+  </select>
+
 </mapper>

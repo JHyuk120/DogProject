@@ -533,7 +533,7 @@ public class MemberCont {
      
      mav.addObject("return_url", return_url); // 로그인 성공후 자동으로 이동할 주소
    
-     mav.setViewName("/member/login_need"); // /member/login_need.jsp
+     mav.setViewName("/member/login_form_ck"); // /member/login_need.jsp
      return mav;
    }
 

@@ -296,7 +296,7 @@ public class RecipeCont {
    
     String title = recipeVO.getTitle();
     String article = recipeVO.getArticle();
-    String ingredient = recipeVO.getIngredient();
+    String gname = recipeVO.getGname();
     
     int no = -1; // -1은 goodsNo를 찾지 못하였음을 의미합니다.
     
@@ -309,7 +309,7 @@ public class RecipeCont {
     HashMap<String, Integer> map = new HashMap<>();
     // 재료 연결시작 //
     // 재료 키,값으로 저장(키: 재료명, 값: 주소)
-    String[] keyValue = ingredient.split(", ");
+    String[] keyValue = gname.split(", ");
     for (int i = 0; i < keyValue.length; i++) {
       System.out.println(keyValue[i]);
       no = goodsProc.select_goodsno(keyValue[i]);

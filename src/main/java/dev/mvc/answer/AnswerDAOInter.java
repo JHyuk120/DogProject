@@ -19,4 +19,11 @@ public interface AnswerDAOInter {
  * @return
  */
   public AnswerVO read(int answer_no);
+
+  /**
+   * 전체보기
+   * @return
+   */
+  
+  public ArrayList<AnswerVO> list_all();
 }

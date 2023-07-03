@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.answer.AnswerProcInter;
+import dev.mvc.answer.AnswerVO;
 import dev.mvc.attachfile.AttachfileProcInter;
 import dev.mvc.attachfile.AttachfileVO;
 import dev.mvc.item.ItemProcInter;
@@ -44,6 +46,10 @@ public class QnaCont {
   @Autowired
   @Qualifier("dev.mvc.qna.QnaProc") 
   private QnaProcInter qnaProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.answer.AnswerProc") 
+  private AnswerProcInter answerProc;
   
   @Autowired
   @Qualifier("dev.mvc.attachfile.AttachfileProc") 
@@ -167,11 +173,12 @@ public class QnaCont {
   
     // QnA 목록
     @RequestMapping(value="/qna/list_all.do", method=RequestMethod.GET)
-    public ModelAndView list_all(QnaVO qnaVO, MemberVO memberVO) {
+    public ModelAndView list_all(QnaVO qnaVO, MemberVO memberVO, AnswerVO answerVO) {
       ModelAndView mav = new ModelAndView();
 
       ArrayList<MemberVO> members = this.memberProc.list();
       ArrayList<QnaVO> list = this.qnaProc.list_all();
+      ArrayList<AnswerVO> list2 = this.answerProc.list_all();
 
       for (QnaVO qna : list) {
           for (MemberVO member : members) {
@@ -185,6 +192,7 @@ public class QnaCont {
       }
       
       mav.addObject("list", list);
+      mav.addObject("list2", list2);
       
       
       mav.setViewName("/qna/list_all"); // /webapp/WEB-INF/views/qna/list_all.jsp
@@ -226,7 +234,7 @@ public class QnaCont {
      * @return
      */
     @RequestMapping(value = "/qna/list_by_search.do", method = RequestMethod.GET)
-    public ModelAndView list_by_search_paging(QnaVO qnaVO) {
+    public ModelAndView list_by_search_paging(QnaVO qnaVO, AnswerVO answerVO) {
 
       ModelAndView mav = new ModelAndView();
       
@@ -237,6 +245,8 @@ public class QnaCont {
       // 검색 목록
       ArrayList<QnaVO> list = qnaProc.list_by_search_paging(qnaVO);
       mav.addObject("list", list);
+      ArrayList<AnswerVO> list2 = this.answerProc.list_all();
+      mav.addObject("list2", list2);
       
       
       mav.addObject("qnaVO", qnaVO);

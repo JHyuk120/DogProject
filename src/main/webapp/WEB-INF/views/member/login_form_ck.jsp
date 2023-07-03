@@ -59,7 +59,8 @@
                  // $('#div_login').hide(); // 로그인폼 감추기
                   //alert('로그인 성공');
                   $('#login_yn').val('Y');
-                  window.location.href = "/index.do";
+                  //window.location.href = "/index.do";
+                  window.location.href = document.referrer;
                   
                 } else {
                   alert('로그인에 실패했습니다.\n잠시후 다시 시도해주세요.');
@@ -76,12 +77,34 @@
         }
     
 </script> 
+<style>
+    body {
+      background-color: #FEFCE6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content_body {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      background-color:#FEFCF0;
+    }
+  
+    .gallery_item {
+      width: 22%;
+      height: 300px;
+      margin: 1.5%;
+      padding: 0.5%;
+      text-align: center;
+    }
+  </style>
 
 </head>  
   <body>
 <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>로그인</DIV>
 
   <DIV class='content_body'> 
     <DIV style='width: 40%;  margin: 0px auto;'>
@@ -91,39 +114,46 @@
         <input type='hidden' name='login_yn' id='login_yn' value=''>
 
       <FORM name='frm' method='POST' action='./login.do'>
+      
+        <DIV style=' margin-bottom:13%;'><span style='font-size: 28px;'>로그인</span></DIV>
         <%-- 로그인 후 자동으로 이동할 페이지 전달 ★ --%>
         <input type="hidden" name="return_url" value="${return_url}">
       
         <div class="form_input"  >
           <input maxlength="30" type='text' class="form-control" name='id' id='id' 
-                    value="${ck_id }" required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-top:40px;"
+                    value="${ck_id }" required="required" 
+                    style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px;  margin-top:40px;"
                      placeholder="아이디" autofocus="autofocus">
-          <Label style='margin-bottom:13px; margin-left:170px;'>   
+          <Label style='margin-left:-48%; margin-bottom:13px;'>   
             <input type='checkbox' name='id_save' value='Y' ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
-          </Label>    
+          </Label>   
         </div>   
      
         <div class="form_input" >
-          <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
-                    value='${ck_passwd }' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;" placeholder="패스워드">
-          <Label style=' margin-left:170px;'>
+         <input maxlength="60" type='text' class="form-control" name='passwd' id='passwd' 
+                    value="${ck_passwd }" required="required" 
+                    style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px; "
+                     placeholder="비밀번호" autofocus="autofocus">
+          <Label  style='margin-left:-48%; margin-bottom:0%;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
-          </Label>                
+          </Label>                     
         </div>  
-        <div style="margin-left:47%; margin-bottom:55px; ">
-           <A href="./idFind.do" style="font-size:14px; font-weight: bold;">아이디 찾기</A>
-              <span class='menu_divide' >│</span>
-           <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
-        </div>
 
- 
 
       </FORM>
+      
     </div>
+    <div style="margin-left:8%; margin-bottom:4%; ">
+      <A href="./idFind.do" style="font-size:14px; font-weight: bold;">아이디 찾기</A>
+        <span class='menu_divide' >│</span>
+      <A href="./pwFind.do" style="font-size:14px; font-weight: bold;">비밀번호 찾기</A> 
+    </div>
+    
+    
    
     <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column;  '>
-      <button type="button"  id='btn_login' style="width:160px; height:45px; "class="btn btn-dark" onclick="login_ajax()">로그인</button>
-      <button type="button" style="width:160px; height:45px;" onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
+      <button type="button"  id='btn_login' style="width:12%; height:45px; margin-bottom:8%;" class="btn btn-dark" onclick="login_ajax()">로그인</button>
+      <button type="button" style="width:12%; height:45px; margin-bottom:8%;" onclick="location.href='./create.do'" class="btn btn-outline-dark">회원가입</button>
     </div>
     
  

@@ -308,7 +308,7 @@
       <label style="font-size: 18px;">우편번호</label><span style="color: red;  margin-right: 107px;" >*</span>
       <input maxlength="5" type='text' class="form-control" name='zipcode' id='zipcode' 
                 value='' style='width: 400px; height:50px; display: inline-block;' placeholder="우편번호">
-      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style="margin-bottom:2px; margin-left:5px;">우편번호 찾기</button>
+      <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style="margin-bottom:2px;">우편번호 찾기</button>
     </div>  
     
     <div class="form_input" style = "margin-bottom:20px;">

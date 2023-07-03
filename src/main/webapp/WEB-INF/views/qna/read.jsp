@@ -73,6 +73,11 @@
     	    <A href="./delete.do?qnano=${qnano}&now_page=${param.now_page}">삭제</A>  
       </c:if>
     </c:if>
+    <c:choose>
+     <c:when test="${sessionScope.admin_id != null }">
+       <A href="../answer/create.do?qnano=${qnano }"> ✒️관리자 답변 등록</A>
+      </c:when>
+    </c:choose>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
    
@@ -85,7 +90,7 @@
       <li class="li_none">         
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
           <div style="font-size: 0.7em;">${mname} ${rdate }</div><br>
-        <div style="float: left;">${content }</div>
+        <div style="float: left; margin-left: 16%; margin-top: 3%;">${content }</div>
       </li>
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
