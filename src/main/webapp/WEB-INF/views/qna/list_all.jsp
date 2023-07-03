@@ -47,7 +47,7 @@
  
 <DIV class='content_body'>
 <DIV>
-    <img src="/menu/images/qna1.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 Q&A</span>
+    <img src="/menu/images/qna1.png" class="icon0" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 Q&A 상담</span>
 </DIV> 
   <ASIDE class="aside_right">
   <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>

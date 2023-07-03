@@ -18,7 +18,7 @@
 
   .content_body {
     width: 100%;
-    max-width: 1200px;
+    max-width: 80%;
     text-align: center;
   }
 
@@ -33,11 +33,11 @@
 </head>
 
 <body style="background-color: #FEFCE6;">
-<div style='' class="content_body">
+<div class="content_body">
 <c:choose>
 <c:when test="${sessionScope.id != null }">  
 
-<div style="font-size: 24px; font-weight: bold; text-align: center; margin:20px; color: #9A9C92;">${mname}(${sessionScope.id})님 맞춤 추천 레시피</div>
+<div style="font-size: 24px; text-align: center; margin:20px; color: #9A9C92;"><img src="/menu/images/reco.png" class="icon0" style='margin-left:5px'> ${mname}(${sessionScope.id})님에게 추천하는 레시피</div>
 
   <!-- 추천시스템 캐러셀 효과 -->      
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -45,7 +45,7 @@
         <div class="carousel-item active">
             <div class="container">
                 <div class="row">
-<c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
+                  <c:forEach var="recommendVO" items="${list}" begin="0" end="4" varStatus="status">
                         <a href="http://localhost:9093/recipe/read.do?recipeno=${recipeVO.recipeno }&word=&now_page=1">
                             <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <div class="image-container_rc">
@@ -129,7 +129,7 @@
   </c:choose>
 
 <!-- 인기순 레시피 그리드 형식 -->
-<p  style="font-size: 24px; font-weight: bold; text-align: center; margin:20px; color: #9A9C92;">좋아요 많이받은 레시피 TOP5</p>
+<p  style="font-size: 24px; text-align: center; margin:20px; color: #9A9C92;"><img src="/menu/images/best.png" class="icon0"  style='margin-left:5px'> 좋아요 BEST 5</p>
   <div style="width: 90%; margin-left:5%">
 
         <div style='width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: space-between;'>
@@ -160,11 +160,11 @@
               </div>           
             </c:forEach>
         </div>
-</div>     
+</div> 
 
 
  <!-- 판매순 레시피 그리드 형식 -->
-<p  style="font-size: 24px; font-weight: bold; text-align: center; margin:20px; color: #9A9C92;"> 최신 레시피</p>
+<p  style="font-size: 24px; text-align: center; margin:20px; color: #9A9C92; margin-top: 5%;"><img src="/menu/images/new.png" class="icon0"  style='margin-left:5px'> 신상 레시피</p>
   <div style="width: 90%; margin-left: 5%;">
         <div style='width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: space-between;'>
              <c:forEach var="recipeVO" items="${new_list}" begin="0" end="4" varStatus="status">

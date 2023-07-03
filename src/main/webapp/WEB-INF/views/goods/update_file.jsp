@@ -32,16 +32,40 @@
 </style>
 
 
-</head> 
- 
-<body>
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
+    
+</head> 
+<body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno_search_paging.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A> > 파일 수정</DIV>
+  <DIV class='content_body'>
+  <DIV>
+    <span style='font-size: 30px; margin-left: 35%;'>🥗 ${itemVO.item  } > 파일 수정</span>
+</DIV> 
 
 
-<DIV class='content_body'>
   <ASIDE class="aside_right">
     <A href="./create.do?itemno=${itemno }">등록</A>
     <span class='menu_divide' >│</span>
@@ -102,7 +126,7 @@
             <br>
             <div style='margin-top: 20px; clear: both;'>  
               <button type="submit" class="btn btn-dark">파일 변경 처리</button>
-              <button type="submit" class="btn btn-dark">파일 삭제</button>
+              <button type="submit" class="btn btn-danger">파일 삭제</button>
               <button type="button" onclick="history.back();" class="btn btn-outline-dark">취소</button>
             </div>  
           </FORM>

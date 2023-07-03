@@ -22,22 +22,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>수정</DIV>
+  <DIV class='content_body'>
+  <DIV>
+<img src="/menu/images/qna1.png" class="icon1" style='margin-left:42%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>관리자 답변</span>
+</DIV> <br>
 
-<DIV class='content_body'>
-  <ASIDE class="aside_right">
-    <A href="./create.do">등록</A>
-    <span class='menu_divide' >│</span>
-    <A href="javascript:location.reload();">새로고침</A>
-  </ASIDE> 
-  
-  
-  <DIV class='menu_line'></DIV>
   <%--수정 폼 --%>
   <FORM name='frm' method='POST' action='./update_text.do'>
     <input type="hidden" name="noticeno" value="${noticeno }">
@@ -79,8 +94,8 @@
 
     
     <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">저장</button>
-      <button type="button" onclick="location.href='./read.do?'" class="btn btn-primary">취소</button>
+      <button type="submit" class="btn btn-dark">저장</button>
+      <button type="button" onclick="location.href='./read.do?'" class="btn btn-outline-dark">취소</button>
     </div>
   
   </FORM>

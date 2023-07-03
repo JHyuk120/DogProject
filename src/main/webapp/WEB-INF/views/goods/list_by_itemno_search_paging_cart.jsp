@@ -344,7 +344,8 @@
 </DIV>
 
  
-<jsp:include page="../menu/bottom.jsp" />
+
 </body>
+<jsp:include page="../menu/bottom.jsp" />
  
 </html>

@@ -47,11 +47,12 @@
 
   <DIV>
     <div style='display: flex; align-items: flex-start;'>
-        <img src="/menu/images/save.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${myrecom }건
+        <img src="/menu/images/save.png" class="icon0"  style='margin-left:5px; width: 2%; margin-bottom: 7px; margin-right: 1%;'>저장된 레시피 목록
+        <img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${myrecom }건
     </div>
 
   
-  <div style='width: 100%; display: flex; flex-wrap: wrap; '> <%-- 갤러리 Layout 시작 --%>
+  <div style='width: 100%; display: flex; flex-wrap: wrap; margin-top: 2%;'> <%-- 갤러리 Layout 시작 --%>
     <c:forEach var="recipeVO" items="${list_m }" varStatus="status">
       <c:set var="title" value="${recipeVO.title }" />
       <c:set var="ingredient" value="${recipeVO.article }" />

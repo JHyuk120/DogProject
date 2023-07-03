@@ -138,9 +138,9 @@ import dev.mvc.tool.Tool;
          
         str.append("<style type='text/css'>"); 
         str.append("  #paging {text-align: center; margin-top: 5px; font-size: 1em;}"); 
-        str.append("  #paging A:link {text-decoration:none; color:black; font-size: 1em;}"); 
+        str.append("  #paging A:link {text-decoration:none; color:#B6EADA; font-size: 1em;}"); 
         str.append("  #paging A:hover{text-decoration:none; background-color: #FFFFFF; color:black; font-size: 1em;}"); 
-        str.append("  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}"); 
+        str.append("  #paging A:visited {text-decoration:none; color:#B6EADA; font-size: 1em;}"); 
         str.append("  .span_box_1{"); 
         str.append("    text-align: center;");    
         str.append("    font-size: 1em;"); 
@@ -152,8 +152,8 @@ import dev.mvc.tool.Tool;
         str.append("  }"); 
         str.append("  .span_box_2{"); 
         str.append("    text-align: center;");    
-        str.append("    background-color: #668db4;"); 
-        str.append("    color: #FFFFFF;"); 
+        str.append("    background-color: #B6EADA;"); 
+        str.append("    color: white;"); 
         str.append("    font-size: 1em;"); 
         str.append("    border: 1px;"); 
         str.append("    border-style: solid;"); 
@@ -162,8 +162,7 @@ import dev.mvc.tool.Tool;
         str.append("    margin:1px 2px 1px 2px; /*위, 오른쪽, 아래, 왼쪽*/"); 
         str.append("  }"); 
         str.append("</style>"); 
-        str.append("<DIV id='paging'>"); 
-//        str.append("현재 페이지: " + nowPage + " / " + totalPage + "  "); 
+        str.append("<DIV id='paging'>");  
      
         // 이전 10개 페이지로 이동
         // now_grp: 1 (1 ~ 10 page)

@@ -13,6 +13,6 @@
     주소 : 서울시 종로구 종로12길 15 종로코아빌딩 512호
     <br><br>
     <img src="/menu/images/call.png" class="icon"  style='margin-left:5px;  margin-bottom: 7px;'> 고객센터
-    <br>1 5 4 4 - 0 7 1 4
+    <br>1 5 4 4 - 0 7 1 4 <br>(AM 9:30 - PM 6:20)
   </DIV>
   

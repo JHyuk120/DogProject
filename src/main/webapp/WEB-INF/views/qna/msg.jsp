@@ -16,11 +16,35 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
 <body>
 <c:import url="/menu/top.do" />
+ 
+  <DIV class='content_body'>
+<br>
 
-<DIV class='title_line'>🔔알림</DIV>
 
 <c:set var="code" value="${param.code }" />
 <c:set var="cnt" value="${param.cnt }" /> 
@@ -37,31 +61,31 @@
         
         <c:when test="${code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">🔔새로운 컨텐츠를 등록했습니다.</span>
+            <span class="span_success">🔔새로운 Q&A를 등록했습니다.</span>
           </LI> 
         </c:when>
         
         <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">🔔새로운 컨텐츠 등록에 실패했습니다.</span>
+            <span class="span_fail">🔔새로운 Q&A 등록에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">🔔컨텐츠 수정에 실패했습니다.</span>
+            <span class="span_fail">🔔Q&A 수정에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">🔔컨텐츠 삭제에 성공했습니다.</span>
+            <span class="span_success">🔔Q&A 삭제에 성공했습니다.</span>
           </LI>                                                                      
         </c:when>        
         
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">🔔컨텐츠 삭제에 실패했습니다.</span>
+            <span class="span_fail">🔔Q&A 삭제에 실패했습니다.</span>
           </LI>                                                                      
         </c:when> 
         
