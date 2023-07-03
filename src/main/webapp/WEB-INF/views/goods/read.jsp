@@ -56,6 +56,7 @@
   function login_ajax() {
     var params = "";
     params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+   
     // params += '&${ _csrf.parameterName }=${ _csrf.token }';
     // alert(params);
     // return;
@@ -104,7 +105,10 @@
       // console.log('-> goodsno: ' + $('#goodsno', f).val());
      
       if("${sessionScope.id}" == "" && $('#login_yn').val() != 'Y') {  // 로그인이 안되어 있다면
+    	  
         $('#div_login').show();   // 로그인 폼
+        
+      
       } else {  // 로그인 한 경우
        // alert('쇼핑카트에 insert 처리 Ajax 호출');
          cart_ajax_post(goodsno); // 쇼핑카트에 상품 담기

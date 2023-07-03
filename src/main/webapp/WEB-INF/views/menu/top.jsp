@@ -23,7 +23,7 @@
             </button>    
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <a class="navbar-brand" href="/index.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px;  '></a>
+                <a class="navbar-brand" href="/index.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px; '></a>
 
                 <ul class="navbar-nav mr-auto">
 
@@ -178,11 +178,11 @@
                         <c:choose>
 
                             <c:when test="${itemno != 6}">
-                                <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 15px;">                           
+                                <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 19px;">                           
                                     <img src="/menu/images/menu2.png" class="icon0"  style='margin-left:9px'>&nbsp;${item}</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 17px; margin-top: 6px">🥗${item}🥗</a>
+                                <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size:20px; margin-top: 3px;">🥗${item}🥗</a>
                             </c:otherwise>
                         </c:choose>
                     </li>

@@ -148,7 +148,7 @@ import dev.mvc.tool.Tool;
          
         str.append("<style type='text/css'>"); 
         str.append("  #paging {text-align: center; margin-top: 5px; font-size: 1em;}"); 
-        str.append("  #paging A:link {text-decoration:none; color:black; font-size: 1em;}"); 
+        str.append("  #paging A:link {text-decoration:none; color:#B6EADA; font-size: 1em;}"); 
         str.append("  #paging A:hover{text-decoration:none; background-color: #FFFFFF; color:black; font-size: 1em;}"); 
         str.append("  #paging A:visited {text-decoration:none;color: #B6EADA; font-size: 1em;}"); 
         str.append("  .span_box_1{"); 
