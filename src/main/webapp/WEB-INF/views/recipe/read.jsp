@@ -18,11 +18,11 @@
 <c:set var="recom" value="${recipeVO.recom }" />
 <c:set var="cookfile" value="${recipeVO.file1 }" />
 <c:set var="cookfilesaved" value="${recipeVO.file1saved }" />
-<c:set var="thumb" value="${recipeVO.thumb }" />
+<c:set var="thumb" value="${cook_multiVO.thumb }" />
 <c:set var="gname" value="${recipeVO.gname }" />
 <c:set var="time" value="${recipeVO.time }" />
 <c:set var="difficulty" value="${recipeVO.difficulty }" />
-<c:set var="exp" value="${recipeVO.exp }" />
+<c:set var="exp" value="${cook_multiVO.exp }" />
 
  
 <!DOCTYPE html> 
