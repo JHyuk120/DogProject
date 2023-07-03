@@ -47,15 +47,17 @@
  
 <DIV class='content_body'>
 <DIV>
-    <img src="/menu/images/qna1.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 QNA</span>
+    <img src="/menu/images/qna1.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 Q&A</span>
 </DIV> 
   <ASIDE class="aside_right">
   <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
   
-    <c:if test="${sessionScope.id != null }">
-     <A href="./create.do"> ✒️Q&A 등록</A>
-    <span class='menu_divide' >│</span>
-    </c:if>
+    <c:choose>
+      <c:when test="${sessionScope.id != null }">
+        <A href="./create.do"> ✒️Q&A 등록</A>
+        <span class='menu_divide' >│</span>
+      </c:when>
+    </c:choose>
     <A href="javascript:location.reload();">🔄새로고침</A>
   </ASIDE> 
   
@@ -91,10 +93,10 @@
     <colgroup>
     <c:choose>
         <c:when test="${sessionScope.id != null }">
-      <col style="width: 10%; "></col>
-      <col style="width: 60%;"></col>
-      <col style="width: 10%;"></col>
-      <col style="width: 20%;"></col>
+      <col style="width: 30%; "></col>
+      <col style="width: 40%;"></col>
+      <col style="width: 1%;"></col>
+      <col style="width: 29%;"></col>
         </c:when>
     </c:choose>
     
@@ -102,41 +104,70 @@
 
     <thead>
       <tr>
-        <th style="text-align: center;">번호</th>
+        <th style="text-align: center;">Q&A</th>
         <th style="text-align: center;">제목</th>
-        <th style="text-align: center;">작성자</th>
-        <th style="text-align: center;">날짜</th>
+        <th style="text-align: center;"></th>
+        <th style="text-align: center;">등록 날짜</th>
       </tr>
     </thead>
 
  
-    <tbody>
-      <c:forEach var="qnaVO" items="${list}" varStatus="loop">
-        <c:set var="title" value="${qnaVO.title }" />
-        <c:set var="content" value="${qnaVO.content }" />
-        <c:set var="qnano" value="${qnaVO.qnano }" />
-        <c:set var="rdate" value="${qnaVO.rdate.substring(0, 10)}" />
-        <c:set var="mname" value="${qnaVO.mname }"/>
-         
+<tbody>
+  <c:forEach var="qnaVO" items="${list}" varStatus="loop">
+    <c:set var="title" value="${qnaVO.title}" />
+    <c:set var="content" value="${qnaVO.content}" />
+    <c:set var="qnano" value="${qnaVO.qnano}" />
+    <c:set var="rdate" value="${qnaVO.rdate.substring(0, 10)}" />
+    <c:set var="mname" value="${qnaVO.mname}" />
+
+    <tr style="height: 50px;">
+      <td style='vertical-align: middle; text-align: center;'>
+        ${mname} 님 질문
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+        <a href="./read.do?qnano=${qnano}&now_page=${param.now_page == null?1:now_page}" style="display: block;">
+          <div style='font-weight:bold;'>${title}</div>
+        </a>
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+
+      </td>
+      <td style='vertical-align: middle; text-align: center;'>
+        <div>${rdate}</div>
+      </td>
+    </tr>
+
+    <c:forEach var="answerVO" items="${list2}" varStatus="loop">
+      <c:if test="${answerVO.qnano == qnano}">
+        <c:set var="answer_no" value="${answerVO.answer_no}" />
+        <c:set var="title" value="${answerVO.title}" />
+        <c:set var="aname" value="${answerVO.aname}" />
+        <c:set var="text" value="${answerVO.text}" />
+        <c:set var="rdate" value="${answerVO.rdate.substring(0, 10)}" />
+
         <tr style="height: 50px;">
           <td style='vertical-align: middle; text-align: center;'>
-            ${list.size() - loop.index}
+            ↳ 관리자 답변
           </td>
           <td style='vertical-align: middle; text-align: center;'>
-            <a href="./read.do?qnano=${qnano}&now_page=${param.now_page == null?1:now_page }" style="display: block;">
+            <a href="../answer/read.do?answer_no=${answer_no}&now_page=${param.now_page == null ? 1 : now_page}" style="display: block;">
               <div style='font-weight:bold;'>${title}</div>
             </a>
           </td>
-            <td style='vertical-align: middle; text-align: center;'>
-            ${mname }
-            </td>
-            <td style='vertical-align: middle; text-align: center;'>
-              <div>${rdate}</div>
-            </td>
+          <td style='vertical-align: middle; text-align: center;'>
+
+          </td>
+          <td style='vertical-align: middle; text-align: center;'>
+            <div>${rdate}</div>
+          </td>
         </tr>
+      </c:if>
     </c:forEach>
-  </tbody>
+  </c:forEach>
+</tbody>
+
 </table>
+  
      <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->

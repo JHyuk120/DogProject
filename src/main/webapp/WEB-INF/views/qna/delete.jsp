@@ -20,13 +20,42 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
     
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢Q&A 삭제</DIV>
+  <DIV class='content_body'>
+  <DIV>
+<img src="/menu/images/qna1.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${qnaVO.title } > 삭제</span>
+</DIV> 
   
   <DIV class='menu_line'></DIV>
 
@@ -34,7 +63,7 @@
     <ul>
       <li class="li_none">
 
-        <DIV style='text-align: left; width: 47%; float: left;'>
+        <DIV style='width: 47%;'>
           <span style='font-size: 1.5em;'>${title}</span>
           <c:if test="${size1 > 0 }">
             <br>삭제되는 파일: ${file1 }
@@ -44,7 +73,7 @@
               <input type='hidden' name='qnano' value='${qnano}'>
               <input type='hidden' name='now_page' value='${param.now_page}'>
               <br><br>
-              <div style='text-align: left; margin: 10px auto;'>
+              <div style='text-align: left;'>
                 <span style="color: #FF0000; font-weight: bold;">⚠️삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                 <br><br>
 								<div style="text-align: left;">
