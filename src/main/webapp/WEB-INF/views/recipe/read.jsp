@@ -20,12 +20,6 @@
 <c:set var="time" value="${recipeVO.time }" />
 <c:set var="difficulty" value="${recipeVO.difficulty }" />
 
-<c:set var="cookfile" value="${cook_multiVO.cookfile }" />
-<c:set var="cookfilesaved" value="${cook_multiVO.cookfilesaved }" />
-<c:set var="thumb" value="${cook_multiVO.thumb }" />
-<c:set var="gname" value="${cook_multiVO.gname }" />  
-<c:set var="exp" value="${cook_multiVO.exp }" />
-
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -136,7 +130,7 @@ function cart_ajax_post(goodsno) {
       --%>
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-      <A href="./update_text.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
+      <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
       <span class='menu_divide' >│</span>
       <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }">파일 수정</A>  
       <span class='menu_divide' >│</span>
@@ -278,25 +272,30 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
    <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;" >🤍조리순서🤍</span>       
 <DIV style="width:100%; ">
 
-  <div style="display: flex;">
-    <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
-    		<c:choose>
-    		  <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-    		    <%-- /static/recipe/storage/ --%>
-    		    <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
-    		  </c:when>
-    		  <c:otherwise> <!-- 기본 이미지 출력 -->
-    		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; #FFDAD5; border-radius: 10px;">
-    		  </c:otherwise>
-    		</c:choose>
-
-    </div>
-
-    <div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
+    <c:forEach var="cook_multiVO" items="${list2}">
+      <c:set var="cookfile" value="${cook_multiVO.cookfile }" />
+      <c:set var="cookfilesaved" value="${cook_multiVO.cookfilesaved }" />
+      <c:set var="thumb" value="${cook_multiVO.thumb }" />
+      <c:set var="exp" value="${cook_multiVO.exp }" />
+     
+      <div style="display: flex;">
+        <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
+    		  <c:choose>
+    		    <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+    		      <%-- /static/recipe/storage/ --%>
+    		      <img src="/dogproject/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
+        		</c:when>
+        		  <c:otherwise> <!-- 기본 이미지 출력 -->
+        		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; #FFDAD5; border-radius: 10px;">
+    		      </c:otherwise>
+    		    </c:choose>
+        </div>
+        <div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
                     margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
-      ${exp}
-    </div>
-  </div>
+            ${exp}
+        </div>
+      </div>    
+  </c:forEach>
 </DIV>
 
      <li class="li_none" style="clear: both;">
