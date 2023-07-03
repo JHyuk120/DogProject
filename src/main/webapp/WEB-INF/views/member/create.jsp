@@ -283,12 +283,12 @@
                 
     <div class="form_input"  style = "margin-bottom:20px; ">
       <label style="font-size: 18px;">패스워드</label><span style="color: red;  margin-right: 107px;" >*</span>
-      <input maxlength="60" type='password' class="form-control " name='passwd' id='passwd' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드">
+      <input maxlength="60" type='password' class="form-control " name='passwd' id='passwd' value='' required="required" style="font-family:'맑은 고딕'; width: 400px; height:50px; display: inline-block;" placeholder="패스워드">
     </div>
     
     <div class="form_input" style = "margin-bottom:20px;">
       <label style="font-size: 18px;">패스워드 확인</label><span style="color: red;  margin-right: 63px;" >*</span>
-      <input maxlength="60" type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드 확인">
+      <input maxlength="60" type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style="font-family:'맑은 고딕'; width: 400px; height:50px; display: inline-block;" placeholder="패스워드 확인">
       <div  style="font-size: 13px; color:red; margin-left:190px;" >영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</div>
     </div>   
     
