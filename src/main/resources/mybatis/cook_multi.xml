@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT cookfileno, recipeno, cookfile, cookfilesaved, thumb, exp
     FROM cook_multi
     WHERE recipeno=#{recipeno}
+    ORDER BY cookfileno 
   </select>
   
   <update id="update_file" parameterType="dev.mvc.cook_multi.Cook_multiVO">

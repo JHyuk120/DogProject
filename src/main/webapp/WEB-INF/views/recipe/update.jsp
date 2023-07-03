@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+ <c:set var="itemno" value="${itemVO.itemno }" />
+ 
 <c:set var="recipeno" value="${recipeVO.recipeno }" />
 <c:set var="itemno" value="${recipeVO.itemno }" />
 <c:set var="ingredient" value="${recipeVO.ingredient }" />
@@ -153,7 +155,9 @@ $(function() {
   <DIV class='menu_line'></DIV>
   
   <FORM name='frm' method='POST' action='./update.do' enctype="multipart/form-data">
-    <input type="hidden" name="itemno" value="${param.itemno }">  
+    <input type="hidden" name="itemno" value="${itemno }"> 
+    <input type="hidden" name="recipeno" value="${recipeno }"> 
+
     
     <div>
        <label>🤍제목🤍</label>
@@ -205,8 +209,6 @@ $(function() {
       </div>
     </div>
     <br>
-    
-
   <div>
   <label>🤍조리순서🤍</label><br>
   <div id="cookingStepsContainer">

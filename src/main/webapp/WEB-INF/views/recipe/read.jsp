@@ -121,7 +121,7 @@ function cart_ajax_post(goodsno) {
 
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
-    <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
+
     <c:if test="${sessionScope.id != null }">
       <%--
       http://localhost:9091/recipe/create.do?itemno=1
@@ -130,11 +130,7 @@ function cart_ajax_post(goodsno) {
       --%>
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
       <span class='menu_divide' >│</span>
-      <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">글 수정</A>
-      <span class='menu_divide' >│</span>
-      <A href="./update_file.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }">파일 수정</A>  
-      <span class='menu_divide' >│</span>
-      <A href="./youtube.do?recipeno=${recipeno}">유튜브</A> 
+      <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
       <span class='menu_divide' >│</span>
       <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
     <span class='menu_divide' >│</span>
