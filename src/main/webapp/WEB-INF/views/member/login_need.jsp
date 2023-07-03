@@ -121,7 +121,7 @@
                     value="${ck_id }" required="required" 
                     style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px;  margin-top:40px;"
                      placeholder="아이디" autofocus="autofocus">
-          <Label style='margin-left:-48%; margin-bottom:13px;'>   
+          <Label style="font-family:'맑은 고딕'; margin-left:-48%; margin-bottom:13px;">   
             <input type='checkbox' name='id_save' value='Y' ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>    
         </div>   
