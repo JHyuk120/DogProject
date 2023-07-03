@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="qnano" value="${qnaVO.qnano }" />
-<c:set var="title" value="${qnaVO.title }" />
+<c:set var="answer_no" value="${answerVO.answer_no }" />
+<c:set var="title" value="${answerVO.title }" />
 
            
 <!DOCTYPE html> 
@@ -54,7 +54,7 @@
  
   <DIV class='content_body'>
   <DIV>
-<img src="/menu/images/qna1.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${qnaVO.title } > 삭제</span>
+<img src="/menu/images/qna1.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${answerVO.title } > 삭제</span>
 </DIV> 
   
   <DIV class='menu_line'></DIV>
@@ -65,12 +65,9 @@
 
         <DIV style='width: 47%; text-align: center; margin-left: 20%;'>
           <span style='font-size: 1.5em;'>${title}</span>
-          <c:if test="${size1 > 0 }">
-            <br>삭제되는 파일: ${file1 }
-          </c:if>
           <br>
           <FORM name='frm' method='POST' action='./delete.do'>
-              <input type='hidden' name='qnano' value='${qnano}'>
+              <input type='hidden' name='answer_no' value='${answer_no}'>
               <input type='hidden' name='now_page' value='${param.now_page}'>
               <br><br>
               <div>

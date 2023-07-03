@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="aname" value="${adminVO.mname }" />
+<c:set var="aname" value="${answerVO.aname }" />
+
+<c:set var="answer_no" value="${answerVO.answer_no }" />
+<c:set var="qnano" value="${answerVO.qnano }" />
+<c:set var="title" value="${answerVO.title }" />
+<c:set var="text" value="${answerVO.text }" />
+
+
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -29,13 +36,7 @@
     background-color:#FEFCF0;
   }
 
-  .gallery_item {
-    width: 22%;
-    height: 300px;
-    margin: 1.5%;
-    padding: 0.5%;
-    text-align: center;
-  }
+
     .btn-custom {
       background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
       color: white; /* 버튼 텍스트 색상 설정 (선택적) */
@@ -48,33 +49,22 @@
  
   <DIV class='content_body'>
   <DIV>
-<img src="/menu/images/qna1.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${qnaVO.title } > 답변</span>
-</DIV> 
+<img src="/menu/images/qna1.png" class="icon1" style='margin-left:42%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>관리자 답변</span>
+</DIV> <br>
 
-  <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno_grid.do?itemno=${itemVO.itemno }">목록</A>
-  </ASIDE> 
   
-  <DIV style="text-align: right; clear: both;">  
-
-  </DIV>
-  
-  <DIV class='menu_line'></DIV>
-  
-  <FORM name='frm' method='POST' action='./create.do' >
-    <input type="hidden" name="qnano" value="${param.qnano }">
+  <FORM name='frm' method='POST' action='./update_text.do' >
+    <input type="hidden" name="answer_no" value="${answer_no }">
     
     
     <div>
        <label>🤍제목🤍</label>
-       <div class="row" style='width:60%; padding-right:0px'>
+       <div class="row" style='width:60%;'>
           <div class="col-sm-2" >
             <input type="text" class="form-control" value="[답변]">
           </div>
           <div class="col-sm-10" style='padding:0px'>
-              <input type='text' name='title' value="" 
+              <input type='text' name='title' value="${title }"  required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
           </div>
        </div>
@@ -86,12 +76,16 @@
     <br>
     <div>
        <label>🤍내용🤍</label>
-       <textarea name='text' required="required" class="form-control" 
-                            rows="20" style="overflow-y: scroll; width: 100%;"></textarea>
+       <input name='text' required="required" class="form-control" value="${text }"
+              style="width: 100%; height: 500px;"></input>
     </div>
     <br>
 
-
+    <div>
+       <label>🤍패스워드🤍</label>
+       <input type='password' name='passwd' value='' required="required" 
+                 class="form-control" style='width: 40%;'>
+    </div>   
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-dark" style="width:5%; height:45px;">등록</button>
       <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark" style="width:5%; height:45px;">목록</button>

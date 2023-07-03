@@ -153,4 +153,100 @@ public class AnswerCont {
   }
   
   
+  /**
+   * 삭제 폼
+   * @param answer_no
+   * @return
+   */
+  @RequestMapping(value="/answer/delete.do", method=RequestMethod.GET )
+  public ModelAndView delete(int answer_no) { 
+    ModelAndView mav = new  ModelAndView();
+    
+    // 삭제할 정보를 조회하여 확인
+    AnswerVO answerVO = this.answerProc.read(answer_no);
+    mav.addObject("answerVO", answerVO);
+
+    
+    mav.setViewName("/answer/delete");  // /webapp/WEB-INF/views/answer/delete.jsp
+    
+    return mav; 
+  }
+  
+  /**
+   * 삭제 처리 http://localhost:9091/answer/delete.do
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/answer/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(AnswerVO answerVO) {
+    ModelAndView mav = new ModelAndView();
+    
+
+    this.answerProc.delete(answerVO.getAnswer_no()); // DBMS 삭제
+
+    mav.setViewName("redirect:/qna/list_all.do"); 
+  
+    return mav;
+  }  
+  
+  // 수정폼
+  @RequestMapping(value = "/answer/update_text.do", method = RequestMethod.GET)
+  public ModelAndView update_text(int answer_no) {
+    ModelAndView mav = new ModelAndView();
+    
+    AnswerVO answerVO = this.answerProc.read(answer_no);
+    mav.addObject("answerVO", answerVO);
+
+    
+    mav.setViewName("/answer/update_text");
+
+    return mav; // forward
+  }
+  
+  //수정처리
+  @RequestMapping(value = "/answer/update_text.do", method = RequestMethod.POST)
+  public ModelAndView update_text(HttpSession session, AnswerVO answerVO) {
+    ModelAndView mav = new ModelAndView();
+    
+    
+    if(this.adminProc.isAdmin(session)) {
+      this.answerProc.update_text(answerVO);
+
+      mav.addObject("answer_no", answerVO.getAnswer_no());
+      mav.setViewName("redirect:/answer/read.do");
+    }else {
+      if(this.answerProc.password_check(answerVO) == 1) {
+        this.answerProc.update_text(answerVO);
+
+      // mav 객체 이용
+      mav.addObject("answer_no", answerVO.getAnswer_no());
+      mav.setViewName("redirect:/answer/read.do?");
+      } else {
+        mav.addObject("url", "answer/passwd_check"); 
+        mav.setViewName("redirect:/answer/msg.do"); 
+      }
+    }
+
+    return mav; // forward
+  }
+    
+    // 패스워드 확인
+    @RequestMapping(value="/answer/password_check.do", method=RequestMethod.GET )
+    public ModelAndView password_check(AnswerVO answerVO) {
+      ModelAndView mav = new ModelAndView();
+      
+      int cnt = this.answerProc.password_check(answerVO);
+      System.out.println("-> cnt:" + cnt);
+      
+      if(cnt == 0) {
+      mav.setViewName("answer/passwd_check"); // /WEB-INF/views/answer/read.jsp
+          
+      }
+      return mav;
+    }
+    
+
+
+  
+  
 }

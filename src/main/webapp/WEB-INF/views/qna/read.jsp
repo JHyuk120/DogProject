@@ -63,16 +63,14 @@
 <DIV class='content_body'>
   <ASIDE class="aside_right">
     <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
-    <c:if test="${sessionScope.id != null}">
-      <A href="./create.do">등록</A>
-      
+
       <c:if test="${sessionScope.memberno == memberno }">
-          <span class='menu_divide' >│</span>
+
     	    <A href="./update_text.do?qnano=${qnano}&now_page=${param.now_page}&word=${param.word}">글 수정</A>
     	    <span class='menu_divide' >│</span>
     	    <A href="./delete.do?qnano=${qnano}&now_page=${param.now_page}">삭제</A>  
       </c:if>
-    </c:if>
+
     <c:choose>
      <c:when test="${sessionScope.admin_id != null }">
        <A href="../answer/create.do?qnano=${qnano }"> ✒️관리자 답변 등록</A>
