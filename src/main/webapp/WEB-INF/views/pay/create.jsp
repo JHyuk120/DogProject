@@ -234,7 +234,7 @@
             <fmt:formatNumber value="${tot}" pattern="#,###" />
           </td>
           <td style='vertical-align: middle; text-align: center;'>
-            <A href="../cart/list_by_memberno.do"><IMG src="/cart/images/delete.png" title="쇼핑카트로 이동합니다."></A>
+            <A href="../cart/list_by_memberno.do"><IMG src="/wish/images/de2.png" class="icon" title="쇼핑카트로 이동합니다."></A>
           </td>
         </tr>
       </c:forEach>
@@ -247,7 +247,7 @@
    
    
     <ASIDE class="aside_left">
-      배송 정보<span style="font-size: 0.7em;">(*: 필수 입력)</span>
+      배송 정보(<span style=" color: red; ">*</span><span  style="font-size: 0.7em;">필수입력사항</span>)
       <button type="button" id="btn_my_address" class="btn btn-light" style="margin-bottom: 2px;">나의 주소 가져오기</button>
       <button type="reset" id="btn_reset" class="btn btn-light" style="margin-bottom: 2px;">주소 지우기</button>
     </ASIDE>
@@ -256,20 +256,21 @@
 
     <div class="form_input">
       <input maxlength="30" type='text' class="form-control" name='tname' id='tname'
-                value='' required="required" style='width: 30%;' placeholder="수취인 성명*">
+                value='' required="required" style='width: 30%;' placeholder="수취인 성명*"><br>
     </div>  
 
     <div class="form_input">
-      <input maxlength="14" type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
+      <input maxlength="14" type='text' class="form-control" name='ttel' id='ttel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호(숫자만 입력하세요)*"><br>
     </div>  
 
     <div class="form_input">
-      <input maxlength="5" type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;' placeholder="우편번호*">
-      <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-dark btn-sm">
+      <input maxlength="5" type='text' class="form-control" name='tzipcode' id='tzipcode' value='' style='width: 30%;  margin-left: -58%; display: inline-block;' placeholder="우편번호*">
+       <button type="button" id="btn_DaumPostcode" onclick="DaumPostcode()" class="btn btn-outline-dark" style=" ">우편번호 찾기</button>
     </div>  
 
     <div class="form_input">
-      <input maxlength="80" type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*">
+      <br>
+      <input maxlength="80" type='text' class="form-control" name='taddress1' id='taddress1' value='' style='width: 80%;' placeholder="주소*"><br>
     </div>  
 
     <div class="form_input">
@@ -385,8 +386,8 @@
 
         </td>
         <td style='width: 10%;'>
-          <button type='button' id='btn_pay' class='btn btn-outline-dark btn-sm' style='font-size: 1.2em;'>결 제 하 기</button><br>
-          <button type='button' id='btn_cart' class='btn btn-dark btn-sm onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.2em;'>돌 아 가 기</button>
+          <button type='button' id='btn_pay' class='btn btn-dark btn-sm' style='font-size: 1.0em; margin-bottom:25%;'>결제하기</button>
+          <button type='button' id='btn_cart' class='btn btn-outline-dark btn-sm onclick="location.href='/cart/list_by_memberno.do'" style='font-size: 1.0em;'>돌아가기</button>
         </td>
       </tr>
     </tbody>
