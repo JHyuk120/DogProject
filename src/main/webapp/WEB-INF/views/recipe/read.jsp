@@ -117,7 +117,7 @@ function cart_ajax_post(goodsno) {
 <c:import url="/menu/top.do" />
  
 <br>
-<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style='background-color:#FEFCF0; margin-left: 280px; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
+<A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style='background-color:#FEFCF0; margin-left: 15%; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
 
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
@@ -235,7 +235,8 @@ function cart_ajax_post(goodsno) {
           <input type="hidden" name="title" value="${map.key}" />
           <td>${map.key}</td>
           <td>
-            <button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" onmouseout="this.style.backgroundColor='transparent';">
+            <button type="button" id="${map.value}" onclick="cart_ajax_post(${map.value})" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" 
+            onmouseover="this.style.backgroundColor='#FFDAD5';" onmouseout="this.style.backgroundColor='transparent';">
               담기
             </button>
           </td>
@@ -249,12 +250,12 @@ function cart_ajax_post(goodsno) {
 </div>
 
 
-  <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%; margin-bottom: 1%;" >🤍레시피 요약🤍</span>
+  <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;" >🤍레시피 요약🤍</span>
   <br>
-<div style="float: left; margin-left: 8%; margin-bottom: 2%; width: 90%;  height: 100px; overflow: auto;
+<div style="float: left; margin-left: 8%; margin-bottom: 7%; width: 90%;  height: 100px; overflow: auto;
 background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px solid #FFDAD5;">
 
-  <span style="font-size:0.8em; margin-right: 2%; margin-left: 5%; margin-bottom: 5%;" >${article} </span>
+  <span style="font-size:0.8em; margin-right: 2%; margin-left: 5%;" >${article} </span>
 </div>
 <br>
 
@@ -265,7 +266,7 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
                   </DIV>
           </li>
       </c:if> -->
-   <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;" >🤍조리순서🤍</span>       
+   <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;  margin-bottom: 2%;" >🤍조리순서🤍</span>       
 <DIV style="width:100%; ">
 
     <c:forEach var="cook_multiVO" items="${list2}">
@@ -287,7 +288,7 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
     		    </c:choose>
         </div>
         <div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
-                    margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
+                     margin-bottom: 7%; overflow: auto; border-radius: 10px; background-color: #FBFCF5;">
             ${exp}
         </div>
       </div>    

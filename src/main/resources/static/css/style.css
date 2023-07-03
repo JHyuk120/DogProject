@@ -490,10 +490,7 @@
     cursor: pointer;
  }
 
- .btn-custom {
-   background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
-   color: white; /* 버튼 텍스트 색상 설정 (선택적) */
- }
+
  .star-rating {
   display: flex;
   flex-direction: row-reverse;

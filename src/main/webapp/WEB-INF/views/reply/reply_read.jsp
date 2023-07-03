@@ -105,7 +105,7 @@ function checkLoginStatus() {
  
  <!-- 댓글 목록 -->
  <br>
-<table class="table table-striped" style='width: 70%; table-layout: fixed; margin: 0 auto; background-color: #FEFCF0;'>
+<table class="table" style='width: 70%; table-layout: fixed; margin: 0 auto; background-color: #FEFCE6; '>
 
     <colgroup>
               <col style="width: 10%;"></col>
@@ -114,20 +114,20 @@ function checkLoginStatus() {
               <col style="width: 10%;"></col>
     </colgroup>
 
-    <thead>
+    <thead style="background-color: #FEFCF0;">
       <tr>
         <th style='text-align: center;'>작성자</th>
         <th style='text-align: center;'>댓글</th>
         <th style='text-align: center;'>작성일</th>
         <th style='text-align: center;'>수정 / 삭제</th>
       </tr>
-     <tbody>
+     <tbody style="background-color: #FEFCE6;">
       <c:forEach var="replyVO" items="${list}">
         <c:set var="replycont" value="${replyVO.replycont}" />
         <c:set var="rdate" value="${replyVO.rdate}" />
          <c:set var="mid" value="${memberVO.id}" />
             
-        <tr style="height: 112px;"  class='hover'>
+        <tr style="height: 50px;"  class='hover'>
           
           <td style='vertical-align: middle; text-align: center;'>
            <div> ${replyVO.mid }</div>
