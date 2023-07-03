@@ -37,7 +37,7 @@
 <c:choose>
 <c:when test="${sessionScope.id != null }">  
 
-<div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${sessionScope.id}님 맞춤 추천 레시피</div>
+<div style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">${mname}(${sessionScope.id})님 맞춤 추천 레시피</div>
 
   <!-- 추천시스템 캐러셀 효과 -->      
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -129,7 +129,7 @@
   </c:choose>
 
 <!-- 인기순 레시피 그리드 형식 -->
-<p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;">좋아요 많이받은 레시피 TOP5</p>
+<p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px; color:#8C8C8C">좋아요 많이받은 레시피 TOP5</p>
   <div style="width: 90%; margin-left:5%">
 
         <div style='width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: space-between;'>
@@ -164,7 +164,7 @@
 
 
  <!-- 판매순 레시피 그리드 형식 -->
-<p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px;"> 최신 레시피</p>
+<p  style="font-size: 24px; font-weight: bold; text-align: left; margin:20px; color:#8C8C8C"> 최신 레시피</p>
   <div style="width: 90%; margin-left: 5%;">
         <div style='width: 100%; text-align: center; display: flex; flex-wrap: wrap; justify-content: space-between;'>
              <c:forEach var="recipeVO" items="${new_list}" begin="0" end="4" varStatus="status">
