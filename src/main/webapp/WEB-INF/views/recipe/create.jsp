@@ -34,6 +34,11 @@ $(function() {
 
     
   function addCookingStep() {
+	     let filecnt = document.getElementsByName("cookfileMF").length;
+	     if (filecnt >= 5) {
+	       alert('최대 5개의 파일만 업로드 가능합니다.');
+	       return;
+	     }
     var container = document.getElementById("cookingStepsContainer");
     count +=1;
     console.log("Current count:", count);
@@ -53,12 +58,11 @@ $(function() {
                    class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
             </div>
           </div>
-          <textarea name='exp' required="required" class="form-control" 
+          <textarea name='cookexp' required="required" class="form-control" 
           rows="3" style="overflow-y: scroll; width: 70%;"></textarea>
         </div>
       </div>
     `;
-    document.getElementById('result').textContent = count
     // Append the new elements to the container
     container.appendChild(newDiv);
     
@@ -132,7 +136,6 @@ $(function() {
   
   <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
     <input type="hidden" name="itemno" value="${param.itemno }">  
-    <input type="hidden"  name="count" id="result">
     
     <div>
        <label>🤍제목🤍</label>
@@ -166,7 +169,7 @@ $(function() {
             <c:forEach var="goodsVO" items="${list}">
               <c:set var="gname1" value="${goodsVO.gname}"/>
                 <input type="checkbox" id="gname1" name="gname1" value="${gname1 }">
-                  <label for='gname1'>${gname1 }</label>
+                  <label for='${gname1}'>${gname1 }</label>
             </c:forEach>
           </tbody>
         </div>
@@ -200,7 +203,7 @@ $(function() {
                class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
         </div>
       </div>
-      <textarea name='exp' required="required" class="form-control" 
+      <textarea name='cookexp' required="required" class="form-control" 
       rows="3" style="overflow-y: scroll; width: 70%;"></textarea>
     </div>
   </div>
