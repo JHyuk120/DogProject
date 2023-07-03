@@ -48,7 +48,7 @@
  
   <DIV class='content_body'>
   <DIV>
-<img src="/menu/images/menu2.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${qnaVO.title } > 답변</span>
+<img src="/menu/images/qna1.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${qnaVO.title } > 답변</span>
 </DIV> 
 
   <ASIDE class="aside_right">
@@ -71,7 +71,7 @@
        <label>🤍제목🤍</label>
        <div class="row" style='width:60%; padding-right:0px'>
           <div class="col-sm-2" >
-            <input type="text" class="form-control" value="  [답변]">
+            <input type="text" class="form-control" value="[답변]">
           </div>
           <div class="col-sm-10" style='padding:0px'>
               <input type='text' name='title' value="" 
