@@ -303,6 +303,11 @@ import dev.mvc.tool.Tool;
         return new_list;
     }
  
+    @Override
+    public int count(int count) {
+        int c = count + 1;
+        return c;
+    }
 
 }
  

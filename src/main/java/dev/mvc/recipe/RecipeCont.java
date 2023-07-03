@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -98,23 +99,42 @@ public class RecipeCont {
     
     return mav;
   }
+//  
+//  @RequestMapping(value = "/recipe/increase_count.do", method = RequestMethod.POST)
+//  @ResponseBody
+//  public int count(@RequestParam("count") int count, HttpSession session) {
+//
+//      // Session에서 recipeVO 가져오기
+//      RecipeVO recipeVO = (RecipeVO) session.getAttribute("recipeVO");
+//
+//      // count 값을 recipeVO에 설정
+//      recipeVO.setCount(count);
+//      session.setAttribute("count", count);
+//
+//      return count;
+//  }
+//  
   
   /**
-   * 등록 처리 http://localhost:9091/recipe/create.do
+   * 등록 처리 http://localhost:9093/recipe/create.do
    * 
    * @return
    */
   @RequestMapping(value = "/recipe/create.do", method = RequestMethod.POST)
   public ModelAndView create(HttpServletRequest request, HttpSession session, RecipeVO recipeVO,ReplyVO replyVO, Cook_multiVO cook_multiVO) {
     ModelAndView mav = new ModelAndView();
-
+    
     if (memberProc.isMember(session)) { // 회원으로 로그인 한 경우
       int memberno = (int)session.getAttribute("memberno");
       String mname = (String)session.getAttribute("mname");
+      
+      RecipeVO sessionRecipeVO = (RecipeVO) session.getAttribute("recipeVO");
+      
       recipeVO.setMname(mname);
       recipeVO.setMemberno(memberno);
-      
-      int cnt = this.recipeProc.create(recipeVO); 
+
+      int count = sessionRecipeVO.getStar();
+      System.out.println("카운트: " + count);
       // ------------------------------------------------------------------------------
       // 메인 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
@@ -151,6 +171,8 @@ public class RecipeCont {
       recipeVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       recipeVO.setThumb1(thumb1);      // 원본이미지 축소판
       recipeVO.setSize1(size1);  // 파일 크기
+      
+      int cnt = this.recipeProc.create(recipeVO);
       // ------------------------------------------------------------------------------
       // 메인 파일 전송 코드 종료
       // ------------------------------------------------------------------------------

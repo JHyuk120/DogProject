@@ -23,6 +23,8 @@ public class Cook_multiVO {
   private String thumb;
   /** 레시피 설명 */
   private String exp;
+  /** count */
+  private int cookfilesize;
   
   /** Form의 파일을 MultipartFile로 변환하여 List에 저장  */
   private MultipartFile cookfileMF;

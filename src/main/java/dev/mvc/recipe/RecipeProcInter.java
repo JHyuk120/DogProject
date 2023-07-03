@@ -135,4 +135,6 @@ public interface RecipeProcInter {
    */
   public ArrayList<RecipeVO> new_list ();
 
+  public int count(int count);
+
 }

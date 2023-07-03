@@ -35,3 +35,6 @@ INSERT INTO answer (answer_no, qnano, title, text, passwd, rdate)
 VALUES (answer_seq.nextval, 1,'제목', '답변', '1234', sysdate);
 
 SELECT * FROm answer;
+
+SELECT * FROM answer
+WHERE answer_no = 2;
