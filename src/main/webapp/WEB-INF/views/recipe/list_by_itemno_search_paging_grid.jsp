@@ -52,7 +52,7 @@
   <DIV>
     <div style='display: flex; align-items: flex-start;'>
         <img src="/recipe/images/arrow.png" class="icon0" style='margin-right: 10px;'>
-        <span style='font-size: 20px;'><span style='font-size: larger; '>${search_count}</span> 개의 레시피</span>
+        <span style='font-size: 27px;'><span style='font-size: larger; '>${search_count}</span> 개의 레시피</span>
     </div>
 
   <ASIDE class="aside_right">
@@ -83,18 +83,19 @@
           <input type='text' name='word' id='word' value='' class='input_word'>
         </c:otherwise>
       </c:choose>
-      <button type="submit" class="btn btn-custom btn-sm">검색</button>
+      <button type="submit" class="btn0 btn0-custom btn-sm">검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type="button" class="btn btn-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
+        <button type="button" class="btn0 btn0-custom btn-sm" onclick="location.href='./list_by_itemno.do?itemno=${itemVO.itemno}&word='">검색 취소</button>
       </c:if>
-      <style>
-      .btn-custom {
-        background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
-        color: white; /* 버튼 텍스트 색상 설정 (선택적) */
-      }
-      </style>
-    </form>
-  </DIV>
+          <style>
+          .btn0-custom {
+            background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+            color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+            border: solid 1px white;
+          }
+          </style>
+        </form>
+      </DIV>
    
 
   <DIV class='menu_line'></DIV>
@@ -122,7 +123,7 @@
             <img src="/dogproject/storage/${thumb1 }" style="width: 80%; height: 180px;">
           </c:when>
           <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/recipe/images/none1.png -->
-            <IMG src="/recipe/images/ee.png" style="width: 80%; height: 180px; margin-bottom:20px; margin-top:8px; "><br>
+            <IMG src="/recipe/images/ee.png" style="width: 80%; height: 150px; margin-bottom:20px; margin-top:8px; "><br>
           </c:otherwise>
         </c:choose>
         <strong>
@@ -154,7 +155,7 @@
 <style>
     .float {
         position: fixed;
-        bottom: 50px;
+        bottom: 30px;
         right: 20px;
         z-index: 999;
     }
@@ -162,27 +163,27 @@
 
 <div class="float">
     <div class="btn-group-vertical">
-        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
-        data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">장바구니</button>
-        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
-        data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">주문내역</button>
-        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="popover" title="나의 장바구니 목록" 
-        data-content="오이 수박 배추 토마토 양배추 당근" data-placement="left">회원가입</button>
+      <c:choose>
+        <c:when test="${sessionScope.id != null }">
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='/cart/list_by_memberno.do'">장바구니</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
+          <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='/pay/pay_list.do'">주문내역</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+        </c:when>
+        <c:otherwise>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='member/create.do'">회원가입</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+        </c:otherwise>
+      </c:choose>
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    $(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-</script>
-
-
-
-  
 
   
   <!-- 페이지 목록 출력 부분 시작 -->
