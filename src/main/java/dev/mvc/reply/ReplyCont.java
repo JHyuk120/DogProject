@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.recipe.RecipeVO;
 import dev.mvc.admin.AdminProcInter;
+import dev.mvc.cook_multi.Cook_multiProcInter;
+import dev.mvc.cook_multi.Cook_multiVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.recipe.RecipeProcInter;
 import dev.mvc.reply.ReplyVO;
@@ -45,6 +47,10 @@ public class ReplyCont {
     @Autowired
     @Qualifier("dev.mvc.admin.AdminProc")
     private AdminProcInter adminProc;
+    
+    @Autowired
+    @Qualifier("dev.mvc.cook_multi.Cook_multiProc")
+    private Cook_multiProcInter cook_multiProc;
     
     
     public ReplyCont() {
@@ -104,6 +110,10 @@ public class ReplyCont {
               ReplyVO reply2VO = this.replyProc.reply_read(replyno);
               mav.addObject("replyVO", reply2VO);        
               mav.setViewName("/reply/read_update");
+              
+              ArrayList<Cook_multiVO> list2 = this.cook_multiProc.read(recipeno);
+              mav.addObject("list2", list2);
+              
               // 댓글 조회  
               ArrayList<ReplyVO> list = this.replyProc.list_by_reply_paging(replyVO);
               mav.addObject("list", list);

@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.goods.Goods;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
+import dev.mvc.item.ItemProcInter;
+import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
 import dev.mvc.pay.PayProcInter;
@@ -40,6 +42,9 @@ public class ReviewCont {
     @Autowired
     @Qualifier("dev.mvc.pay.PayProc")
     private PayProcInter payProc;
+    @Autowired
+    @Qualifier("dev.mvc.item.ItemProc")
+    private ItemProcInter itemProc;
     
     public ReviewCont() {
         System.out.println("-> ReviewCont created");
@@ -146,7 +151,7 @@ public class ReviewCont {
        * @return
        */
       @RequestMapping(value="/review/update.do", method=RequestMethod.GET)
-      public ModelAndView review_update (HttpSession session, int reviewno, int goodsno, ReviewVO reviewVO ){ 
+      public ModelAndView review_update (HttpSession session, int reviewno, int goodsno, ReviewVO reviewVO){ 
           ModelAndView mav = new ModelAndView();
           //현재 로그인된 id
           String currentUserId = (String) session.getAttribute("id");
@@ -157,6 +162,10 @@ public class ReviewCont {
               if(reviewVOmid.getMid().equals(currentUserId)) {
                   GoodsVO goodsVO = this.goodsProc.read(goodsno);
                   mav.addObject("goodsVO", goodsVO);
+                  
+                  int itemno = goodsVO.getItemno();
+                 ItemVO itemVO = this.itemProc.read(itemno);
+                 mav.addObject("itemVO",itemVO);
                   
                   ReviewVO review2VO = this.reviewProc.review_read(reviewno);
                   mav.addObject("reviewVO", review2VO);
