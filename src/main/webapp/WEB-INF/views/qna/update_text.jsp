@@ -29,12 +29,36 @@ function clearFileInput(fnamesMF) {
   }
 </script>
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>수정</DIV>
+  <DIV class='content_body'>
+  <DIV>
+<img src="/menu/images/qna1.png" class="icon1" style='margin-left:42%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>수정</span>
+</DIV> <br>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -75,17 +99,18 @@ function clearFileInput(fnamesMF) {
     <div>
      <label>첨부 파일</label>
     </div>
-    <DIV style='width: 100%;'>
+    <DIV style='width: 52%;'>
         <div class="form-group">   
           <div class="col-md-12">
             <input type='file' class="form-control" name='fnamesMF' id='fnamesMF' 
                          value='' placeholder="파일 선택" multiple="multiple">
           </div>
-        </div>
+        
         <DIV class='content_bottom_menu'>
-         <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-info">첨부파일 초기화</button>
+         <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-sm btn-outline-dark" style="margin-left: 80%;">첨부파일 초기화</button>
        </DIV>
      </DIV>
+     </div>
     
     <c:choose>
         <c:when test ='${sessionScope.admin_id == null }'>

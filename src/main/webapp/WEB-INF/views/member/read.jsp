@@ -183,19 +183,19 @@
      <div class="form_input" style = "margin-bottom:20px;">
         <label style="  margin-right: 63px; font-size: 18px;">현재 패스워드</label>    
         <input maxlength="60" type='password' class="form-control" name='current_passwd' 
-                    id='current_passwd' value='' required="required" style='width: 400px; height:50px; display: inline-block;' ' placeholder="현재 패스워드">
+                    id='current_passwd' value='' required="required" style="font-family:'맑은 고딕'; width: 400px; height:50px; display: inline-block;" ' placeholder="현재 패스워드">
       </div>   
                       
       <div class="form_input"  style = "margin-bottom:20px;">
         <label style="  margin-right: 82px; font-size: 18px;">새 비밀번호</label>    
         <input maxlength="60" type='password' class="form-control" name='new_passwd' 
-                  id='new_passwd' value='' required="required"  style='width: 400px; height:50px;display: inline-block; ' placeholder="새로운 패스워드">
+                  id='new_passwd' value='' required="required"  style="font-family:'맑은 고딕'; width: 400px; height:50px;display: inline-block; " placeholder="새로운 패스워드">
       </div>   
    
       <div class="form_input"  style = "margin-bottom:20px;">
         <label style="  margin-right: 40px; font-size: 18px;">새 비밀번호 확인</label>    
         <input maxlength="60" type='password' class="form-control" name='new_passwd2' 
-                  id='new_passwd2' value='' required="required"  style='width: 400px; height:50px; display: inline-block;' placeholder="패스워드">
+                  id='new_passwd2' value='' required="required"  style="font-family:'맑은 고딕'; width: 400px; height:50px; display: inline-block;" placeholder="패스워드">
       </div>   
        
     
