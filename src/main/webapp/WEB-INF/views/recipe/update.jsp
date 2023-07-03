@@ -41,7 +41,7 @@ function clearFileInput(fileInput) {
 $(function() {
     $("#addBtn").on("click", function(event) {
         event.preventDefault(); // 전송 방지
-
+        $("#gname").val("");
         // 체크박스 데이터를 textarea에 추가
         var checkedItems = "";
         $("input[type=checkbox]:checked").each(function() {
