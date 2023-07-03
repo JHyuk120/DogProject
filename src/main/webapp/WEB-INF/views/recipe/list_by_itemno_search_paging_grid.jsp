@@ -137,7 +137,7 @@
             </c:choose>
           </div>
         </strong>
-          
+          <br>  
         <div style='font-size:0.8em; word-break: break-all;'>
           <img src="/menu/images/pcircle.svg" class="icon" style="margin-bottom:8px; margin-top:4px;"> ${mname } <br>
           조회수: ${cnt }  | 좋아요: ${recom } 
