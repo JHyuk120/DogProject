@@ -16,14 +16,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢 공지사항 글 등록</DIV>
+  <DIV class='content_body'>
+  <DIV>
+<img src="/menu/images/notice.png" class="icon1" style='margin-left:42%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>관리자 답변</span>
+</DIV> <br>
 
-<DIV class='content_body'>
   
   <DIV style="text-align: left; clear: both;">  
   <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data"> 

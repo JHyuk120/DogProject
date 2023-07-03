@@ -176,7 +176,7 @@ $(document).ready(function(){
           });
       </script>
 
-    <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed; width: 70%;'></textarea>
+    <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; width: 70%;'></textarea>
     
     <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
   <input type="file" name="file2MF" id="file2MF" value="" placeholder="첨부파일" >

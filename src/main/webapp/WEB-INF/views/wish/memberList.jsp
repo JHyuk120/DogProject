@@ -145,14 +145,41 @@
     
     
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+</style>
 </head> 
  
-<body style="background-color: #FEFCE6;">
+<body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>
 
-<img src="/goods/images/wish.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 7px;'><img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${mycnt }건
+<DIV class='content_body' style='background-color:#FEFCF0;'>
+
+  <DIV>
+    <div style='display: flex; align-items: flex-start;'>
+        <img src="/goods/images/wish.png" class="icon0"  style='margin-left:5px; width: 2%; margin-bottom: 7px; margin-right: 1%;'>저장된 레시피 목록
+    </div>
+
 </DIV>
 
 <DIV class='content_body'>

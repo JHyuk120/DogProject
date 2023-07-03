@@ -24,14 +24,35 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_search_paging.do?" class='title_link'></A> > ${title } 삭제</DIV>
-
-<DIV class='content_body'>
+  <DIV class='content_body'>
+  <DIV style = "font-size: 30px; margin-left: 38%;"> ${title } > 삭제</DIV>
+ 
   <ASIDE class="aside_right">
     <A href="./create.do?">등록</A>
     <span class='menu_divide' >│</span>
@@ -78,7 +99,7 @@
           <FORM name='frm' method='POST' action='./delete.do'>
               <input type='hidden' name='noticeno' value='${noticeno}'>
               <br><br>
-              <div style='text-align: left; margin: 10px auto;'>
+              <div style='text-align: CNE; margin: 10px auto;'>
                 <span style="color: #FF0000; font-weight: bold;">⚠️삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                 <br><br>
                 <button type = "submit" class="btn btn-danger">삭제 진행</button>

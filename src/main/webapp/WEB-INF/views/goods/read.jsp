@@ -558,7 +558,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
 
     <textarea name='reviewcont' required="required" rows="6" cols="145"  style='background-color:#FEFCF0; table-layout: fixed;'></textarea>
    
-    <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 60%;">
+    <div style="display: flex; align-items: center; table-layout: fixed; margin-left: 62%;">
   <input type="file" name="file2MF" id="file2MF" value="" placeholder="첨부파일" >
   <button id="submitBtn" type="submit" class="btn btn-outline-dark btn-sm" style="table-layout: fixed;">리뷰 등록</button>
 </div>
@@ -704,7 +704,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
       <!-- 페이지 목록 출력 부분 종료 -->
  
-      <jsp:include page="../menu/bottom.jsp" flush='false' />
+
     </body>
- 
+       <jsp:include page="../menu/bottom.jsp" flush='false' />
   </html>
