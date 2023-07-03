@@ -79,8 +79,8 @@
      
         <div class="form_input">
           <input type='password' class="form-control" name='passwd' id='passwd' 
-                    value='${cookie.ck_admin_passwd.value }' required="required" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px;" placeholder="패스워드">
-          <Label style='margin-bottom:40px; margin-left:-48%;'>
+                    value='${cookie.ck_admin_passwd.value }' required="required" style="font-family:'맑은 고딕'; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px;" placeholder="패스워드">
+          <Label style="margin-bottom:40px; margin-left:-48%;">
             <input type='checkbox' name='passwd_save' value='Y' ${cookie.ck_admin_passwd_save.value == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
         </div>   

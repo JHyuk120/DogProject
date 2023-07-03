@@ -163,7 +163,7 @@ function setFocus() {  // focus 이동
 
    <DIV class='content_body'> 
   <DIV style='text-align: center; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; font-size:30px; font-weight: bold;'>아이디 찾기</DIV>
-    <ASIDE class="aside_right" style="float: right;">
+    <ASIDE class="aside_right" style="margin-right:20px;">
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='./create.do'>회원 가입</A>

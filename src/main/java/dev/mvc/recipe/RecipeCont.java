@@ -31,6 +31,7 @@ import dev.mvc.item.ItemVO;
 import dev.mvc.member.MemberProc;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.qna.Qna;
 import dev.mvc.recom.RecomProcInter;
 import dev.mvc.recom.RecomVO;
 import dev.mvc.reply.ReplyDAOInter;
@@ -100,21 +101,6 @@ public class RecipeCont {
     
     return mav;
   }
-//  
-//  @RequestMapping(value = "/recipe/increase_count.do", method = RequestMethod.POST)
-//  @ResponseBody
-//  public int count(@RequestParam("count") int count, HttpSession session) {
-//
-//      // Session에서 recipeVO 가져오기
-//      RecipeVO recipeVO = (RecipeVO) session.getAttribute("recipeVO");
-//
-//      // count 값을 recipeVO에 설정
-//      recipeVO.setCount(count);
-//      session.setAttribute("count", count);
-//
-//      return count;
-//  }
-//  
   
   /**
    * 등록 처리 http://localhost:9093/recipe/create.do
@@ -128,8 +114,6 @@ public class RecipeCont {
     if (memberProc.isMember(session)) { // 회원으로 로그인 한 경우
       int memberno = (int)session.getAttribute("memberno");
       String mname = (String)session.getAttribute("mname");
-      
-      RecipeVO sessionRecipeVO = (RecipeVO) session.getAttribute("recipeVO");
       
       recipeVO.setMname(mname);
       recipeVO.setMemberno(memberno);
@@ -196,7 +180,7 @@ public class RecipeCont {
    List<String> expList = cook_multiVO.getCookexp();
    
    System.out.println("-> 업로드한 파일 갯수: " + cookList.size());
-   System.out.println(("-> 업로드한 글 갯수: " + expList.size()));
+   System.out.println("-> 업로드한 글 갯수: " + expList.size());
    
    int size = Math.max(cookList.size(), expList.size()); // 두 리스트 중 작은 사이즈로 처리
    
@@ -543,6 +527,7 @@ public class RecipeCont {
     mav.addObject("list", list);
     
     RecipeVO recipeVO = this.recipeProc.read(recipeno);
+    
     ItemVO itemVO = this.itemProc.read(recipeVO.getItemno());
     ArrayList<Cook_multiVO> cook_multiVO = this.cook_multiProc.read(recipeno);
     
@@ -560,163 +545,153 @@ public class RecipeCont {
     return mav; // forward
   }
   
-//  /**
-//   * 수정 처리 http://localhost:9091/recipe/update.do
-//   * 
-//   * @return
-//   */
-//  @RequestMapping(value = "/recipe/update.do", method = RequestMethod.POST)
-//  public ModelAndView update(HttpServletRequest request, HttpSession session, RecipeVO recipeVO, Cook_multiVO cook_multiVO) {
-//    ModelAndView mav = new ModelAndView();
-//     
-//    RecipeVO recipeVO_old = recipeProc.read(recipeVO.getRecipeno());
-//    ArrayList<Cook_multiVO> cook_multiVO_old = cook_multiProc.read(recipeVO.getRecipeno());
-//    
-//    // 메인이미지
-//    // -------------------------------------------------------------------
-//    // 파일 삭제 코드 시작
-//    // -------------------------------------------------------------------
-//    //
-//    String file1saved = recipeVO_old.getFile1saved();  // 실제 저장된 파일명
-//    String thumb1 = recipeVO_old.getThumb1();       // 실제 저장된 preview 이미지 파일명
-//    long size1 = 0;
-//    
-//    String upDir = Goods.getUploadDir();
-//    
-//    Tool.deleteFile(upDir, file1saved);  // 실제 저장된 파일삭제
-//    Tool.deleteFile(upDir, thumb1);     // preview 이미지 삭제
-//    
-//    // -------------------------------------------------------------------
-//    // 파일 삭제 종료
-//    // -------------------------------------------------------------------
-//    // -------------------------------------------------------------------
-//    // 파일 전송 코드 시작
-//    // -------------------------------------------------------------------
-//    String file1 = "";          // 원본 파일명 image
-//
-//  
-//    MultipartFile mf = recipeVO.getFile1MF();
-//        
-//    file1 = mf.getOriginalFilename(); // 원본 파일명
-//    size1 = mf.getSize();  // 파일 크기
-//        
-//    if (size1 > 0) { // 폼에서 새롭게 올리는 파일이 있는지 파일 크기로 체크 !!
-//      // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-//      file1saved = Upload.saveFileSpring(mf, upDir); 
-//      
-//      if (Tool.isImage(file1saved)) { // 이미지인지 검사
-//        // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
-//        thumb1 = Tool.preview(upDir, file1saved, 250, 200); 
-//      }
-//      
-//    } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
-//      file1="";
-//      file1saved="";
-//      thumb1="";
-//      size1=0;
-//    }
-//        
-//    recipeVO.setFile1(file1);
-//    recipeVO.setFile1saved(file1saved);
-//    recipeVO.setThumb1(thumb1);
-//    recipeVO.setSize1(size1);
-//    // -------------------------------------------------------------------
-//    // 파일 전송 코드 종료
-//    // -------------------------------------------------------------------
-//    
-//    String cookfilesaved = cook_multiVO_old.get  // 실제 저장된 파일명
-//    String thumb = recipeVO_old.getThumb();       // 실제 저장된 preview 이미지 파일명
-//    long size2 = 0;
-//    //file1(메인이미지)
-//
-//
-//    //글 수정
-//    
-//
-//    String upDir = Recipe.getUploadDir();
-//    
-//    Tool.deleteFile(upDir, cookfilesaved);  // 실제 저장된 파일삭제
-//    Tool.deleteFile(upDir, thumb);     // preview 이미지 삭제
-//    
-//    Tool.deleteFile(upDir, file1saved);  // 실제 저장된 파일삭제
-//    Tool.deleteFile(upDir, thumb1);     // preview 이미지 삭제
-//    // -------------------------------------------------------------------
-//    // 파일 삭제 종료 시작
-//    // -------------------------------------------------------------------
-//        
-//    // -------------------------------------------------------------------
-//    // 파일 전송 코드 시작
-//    // -------------------------------------------------------------------
-//        String cookfile = "";          // 원본 파일명 image
-//        String file1 = "";          // 원본 파일명 image
-//       
-//       MultipartFile cookfileMF = recipeVO.getCookfileMF();
-//       MultipartFile file1MF = recipeVO.getFile1MF();
-//     
-//      MultipartFile mf = recipeVO.getFile1MF(); 
-//      MultipartFile mf1 = recipeVO.getCookfileMF();
-//      
-//      cookfile = mf1.getOriginalFilename(); // 원본 파일명
-//      size2 = mf1.getSize();  // 파일 크기
-//
-//      file1 = mf1.getOriginalFilename(); // 원본 파일명
-//      size1 = mf1.getSize();  // 파일 크기
-//    
-//      if (size2 > 0) { // 폼에서 새롭게 올리는 파일이 있는지 파일 크기로 체크 !!
-//        // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-//        cookfilesaved = Upload.saveFileSpring(mf1, upDir); 
-//        
-//        if (Tool.isImage(cookfilesaved)) { // 이미지인지 검사
-//          // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
-//          thumb = Tool.preview(upDir, cookfilesaved, 250, 200); 
-//        }
-//        
-//      } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
-//        cookfile="";
-//        cookfilesaved="";
-//        thumb="";
-//        size2=0;
-//      }
-//      recipeVO.setCookfile(cookfile);
-//      recipeVO.setCookfilesaved(cookfilesaved);
-//      recipeVO.setThumb(thumb);
-//      recipeVO.setSize2(size2);
-//      
-//      if (size1 > 0) { // 폼에서 새롭게 올리는 파일이 있는지 파일 크기로 체크 !!
-//        // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-//        cookfilesaved = Upload.saveFileSpring(mf1, upDir); 
-//        
-//        if (Tool.isImage(cookfilesaved)) { // 이미지인지 검사
-//          // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
-//          thumb = Tool.preview(upDir, cookfilesaved, 250, 200); 
-//        }
-//        
-//      } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
-//        cookfile="";
-//        cookfilesaved="";
-//        thumb="";
-//        size1=0;
-//      }
-//      recipeVO.setFile1(file1saved);
-//      recipeVO.setFile1saved(file1saved);
-//      recipeVO.setThumb1(thumb1);
-//      recipeVO.setSize1(size1);
-//   
-//   // -------------------------------------------------------------------
-//   // 파일 전송 코드 종료
-//   // -------------------------------------------------------------------
-//      
-//      this.recipeProc.update(recipeVO);
-//      
-//      mav.addObject("recipeno", recipeVO.getRecipeno());
-//      mav.addObject("itemno", recipeVO.getItemno());
-//      
-//      mav.setViewName("redirect:/Recipe/read.do");
-//      
-//      mav.addObject("now_page", recipeVO.getNow_page());
-//      
-//    return mav; // forward
-//  }
+  /**
+   * 수정 처리 http://localhost:9091/recipe/update.do
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/recipe/update.do", method = RequestMethod.POST)
+  public ModelAndView update(HttpServletRequest request, HttpSession session, RecipeVO recipeVO, Cook_multiVO cook_multiVO) {
+    ModelAndView mav = new ModelAndView();
+     
+    int recipeno = recipeVO.getRecipeno(); // 레시피 번호 호출
+    RecipeVO recipeVO_old = recipeProc.read(recipeno);
+    ArrayList<Cook_multiVO> cook_multiVO_old = cook_multiProc.read(recipeno);
+    
+    // 메인이미지
+    // -------------------------------------------------------------------
+    // 파일 삭제 코드 시작
+    // -------------------------------------------------------------------
+    //
+    String file1saved = recipeVO_old.getFile1saved();  // 실제 저장된 파일명
+    String thumb1 = recipeVO_old.getThumb1();       // 실제 저장된 preview 이미지 파일명
+    long size1 = 0;
+    
+    String upDir = Goods.getUploadDir();
+    
+    Tool.deleteFile(upDir, file1saved);  // 실제 저장된 파일삭제
+    Tool.deleteFile(upDir, thumb1);     // preview 이미지 삭제
+    
+    // -------------------------------------------------------------------
+    // 파일 삭제 종료
+    // -------------------------------------------------------------------
+    // -------------------------------------------------------------------
+    // 파일 전송 코드 시작
+    // -------------------------------------------------------------------
+    String file1 = "";          // 원본 파일명 image
+
+  
+    MultipartFile mf = recipeVO.getFile1MF();
+        
+    file1 = mf.getOriginalFilename(); // 원본 파일명
+    size1 = mf.getSize();  // 파일 크기
+        
+    if (size1 > 0) { // 폼에서 새롭게 올리는 파일이 있는지 파일 크기로 체크 !!
+      // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
+      file1saved = Upload.saveFileSpring(mf, upDir); 
+      
+      if (Tool.isImage(file1saved)) { // 이미지인지 검사
+        // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
+        thumb1 = Tool.preview(upDir, file1saved, 250, 200); 
+      }
+      
+    } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
+      file1="";
+      file1saved="";
+      thumb1="";
+      size1=0;
+    }
+        
+    recipeVO.setFile1(file1);
+    recipeVO.setFile1saved(file1saved);
+    recipeVO.setThumb1(thumb1);
+    recipeVO.setSize1(size1);
+    // -------------------------------------------------------------------
+    // 파일 전송 코드 종료
+    // -------------------------------------------------------------------
+    
+    // 멀티 파일 
+    // -------------------------------------------------------------------
+    // 파일 삭제 코드 시작
+    // -------------------------------------------------------------------
+    String cookfile = "";
+    String cookfilesaved = "";
+    String thumb = "";
+    String exp = ""; 
+    long size2 = 0;
+    int upload_count = 0; // 정상처리된 레코드 갯수
+    
+    for (int i=0; i < cook_multiVO_old.size(); i++) {
+      cook_multiVO = cook_multiVO_old.get(i);
+       
+      cookfilesaved = cook_multiVO.getCookfilesaved();
+      thumb = cook_multiVO.getThumb();
+        
+      String upDir1 = Qna.getUploadDir(); // 경로설정
+   
+      Tool.deleteFile(upDir1, cookfilesaved); // Folder에서 1건의 파일 삭제
+      Tool.deleteFile(upDir1, thumb); // 1건의 Thumb 파일 삭제
+      
+      this.cook_multiProc.delete(recipeVO.getRecipeno()); // DBMS Q&A삭제
+    }
+    // -------------------------------------------------------------------
+    // 파일 삭제 종료 
+    // -------------------------------------------------------------------
+    // -------------------------------------------------------------------
+    // 파일 전송 코드 시작
+    // -------------------------------------------------------------------
+    String upDir1 = Recipe.getUploadDir();
+    System.out.println("-> upDir: " + upDir1);
+
+    List<MultipartFile> cookList = recipeVO.getCookfileMF(); // 멀티 파일 리스트 가져오기
+    List<String> expList = recipeVO.getCookexp();
+    
+    System.out.println("-> 업로드한 파일 갯수: " + cookList.size());
+    System.out.println("-> 업로드한 글 갯수: " + expList.size());
+    
+    int size = Math.max(cookList.size(), expList.size()); // 두 리스트 중 작은 사이즈로 처리
+    
+    for (int i = 0; i < size; i++) {
+        MultipartFile multipartFile = cookList.get(i); // MultipartFile 객체 가져오기
+        exp = expList.get(i); // 텍스트 문자열 가져오기
+   
+        size2 = multipartFile.getSize();
+        if (size2 > 0) {
+            cookfile = multipartFile.getOriginalFilename();
+            cookfilesaved = Upload.saveFileSpring(multipartFile, upDir1);
+            System.out.println("--> cookfilesaved" + cookfilesaved);
+            
+            Cook_multiVO vo = new Cook_multiVO();
+            vo.setRecipeno(recipeno);
+            vo.setCookfile(cookfile);
+            vo.setCookfilesaved(cookfilesaved);
+            vo.setThumb(thumb);
+            vo.setExp(exp);
+            upload_count = upload_count + cook_multiProc.create(vo); 
+            
+            if (Tool.isImage(cookfile)) { // 이미지인지 검사
+              thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
+            }
+          }
+          System.out.println("내용: " + exp);
+      
+   
+          }
+    // -----------------------------------------------------
+    // 파일 전송 코드 종료
+    // -----------------------------------------------------
+
+      this.recipeProc.update(recipeVO);
+      
+      mav.addObject("recipeno", recipeVO.getRecipeno());
+      mav.addObject("itemno", recipeVO.getItemno());
+      
+      mav.setViewName("redirect:/recipe/read.do");
+      
+      mav.addObject("now_page", recipeVO.getNow_page());
+      
+    return mav; // forward
+  }
 
   /**
    * 삭제 폼
