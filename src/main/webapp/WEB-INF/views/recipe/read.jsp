@@ -9,6 +9,7 @@
 <c:set var="file1" value="${recipeVO.file1 }" />
 <c:set var="file1saved" value="${recipeVO.file1saved }" />
 <c:set var="thumb1" value="${recipeVO.thumb1 }" />
+<c:set var="gname" value="${recipeVO.gname }" />
 <c:set var="ingredient" value="${recipeVO.ingredient }" />
 <c:set var="article" value="${recipeVO.article }" />
 <c:set var="youtube" value="${recipeVO.youtube }" />
@@ -16,13 +17,14 @@
 <c:set var="size1_label" value="${recipeVO.size1_label }" />
 <c:set var="rdate" value="${recipeVO.rdate.substring(0,16) }" />
 <c:set var="recom" value="${recipeVO.recom }" />
-<c:set var="cookfile" value="${recipeVO.file1 }" />
-<c:set var="cookfilesaved" value="${recipeVO.file1saved }" />
-<c:set var="thumb" value="${recipeVO.thumb }" />
-<c:set var="gname" value="${recipeVO.gname }" />
 <c:set var="time" value="${recipeVO.time }" />
 <c:set var="difficulty" value="${recipeVO.difficulty }" />
-<c:set var="exp" value="${recipeVO.exp }" />
+
+<c:set var="cookfile" value="${cook_multiVO.cookfile }" />
+<c:set var="cookfilesaved" value="${cook_multiVO.cookfilesaved }" />
+<c:set var="thumb" value="${cook_multiVO.thumb }" />
+<c:set var="gname" value="${cook_multiVO.gname }" />  
+<c:set var="exp" value="${cook_multiVO.exp }" />
 
  
 <!DOCTYPE html> 
@@ -278,24 +280,22 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
 
   <div style="display: flex;">
     <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
-		<c:choose>
-		  <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-		    <%-- /static/recipe/storage/ --%>
-		    <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
-		  </c:when>
-		  <c:otherwise> <!-- 기본 이미지 출력 -->
-		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; #FFDAD5; border-radius: 10px;">
-		  </c:otherwise>
-		</c:choose>
+    		<c:choose>
+    		  <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+    		    <%-- /static/recipe/storage/ --%>
+    		    <img src="/dogproject/storage/${cookfilesaved}" style="width: 100%; height: 160px;  border-radius: 10px;">
+    		  </c:when>
+    		  <c:otherwise> <!-- 기본 이미지 출력 -->
+    		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; #FFDAD5; border-radius: 10px;">
+    		  </c:otherwise>
+    		</c:choose>
 
     </div>
 
-
-
-<div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
-margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
-  ${exp}
-</div>
+    <div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
+                    margin-bottom: 5px; overflow: auto; border-radius: 10px; ">
+      ${exp}
+    </div>
   </div>
 </DIV>
 

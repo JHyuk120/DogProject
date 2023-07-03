@@ -83,9 +83,8 @@ WHERE recipeno=1;
 SELECT cookfileno, recipeno, fname, fupname, thumb, fsize, rdate
 FROM cookfile
 WHERE cookfileno=1;
-<<<<<<< HEAD
+
 
 SELECT * FROM cook_multi;
 SELECT * FROM goods;
-=======
->>>>>>> 4ab4690e6c9476c309aa2a7ab222a41d787ea383
+

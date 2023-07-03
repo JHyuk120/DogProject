@@ -3,6 +3,7 @@ package dev.mvc.recipe;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -133,8 +134,6 @@ public class RecipeCont {
       recipeVO.setMname(mname);
       recipeVO.setMemberno(memberno);
 
-      int count = sessionRecipeVO.getStar();
-      System.out.println("카운트: " + count);
       // ------------------------------------------------------------------------------
       // 메인 파일 전송 코드 시작
       // ------------------------------------------------------------------------------
@@ -186,58 +185,48 @@ public class RecipeCont {
    String cookfile = ""; // 원본 파일명
    String cookfilesaved = ""; // 업로드된 파일명
    String thumb = ""; // Preview 이미지
-   //String exp = "";
+   long size2 = 0;
    String exp = ""; 
-   System.out.println("exp: " + exp);
+   int upload_count = 0;
 
    String upDir1 = Recipe.getUploadDir();
    System.out.println("-> upDir: " + upDir1);
 
-   MultipartFile fileList = recipeVO.getCookfileMF(); // 멀티 파일 리스트 가져오기
-
+   List<MultipartFile> cookList = cook_multiVO.getCookfileMF(); // 멀티 파일 리스트 가져오기
+   List<String> expList = cook_multiVO.getCookexp();
    
+   System.out.println("-> 업로드한 파일 갯수: " + cookList.size());
+   System.out.println(("-> 업로드한 글 갯수: " + expList.size()));
    
-       cookfile = Tool.getFname(fileList.getOriginalFilename()); // 원본 순수 파일명 산출
-       System.out.println("-> cookfile: " + cookfile);
-
-       long size0 = fileList.getSize();  // 파일 크기
-
-       if (size0 > 0) { // 파일 크기 체크
-           // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-           cookfilesaved = Upload.saveFileSpring(fileList, upDir1);
-
-           if (Tool.isImage(cookfilesaved)) { // 이미지인지 검사
-               // thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
-               thumb = Tool.preview(upDir1, cookfilesaved, 200, 150);
-           }
-           exp = request.getParameter("exp");
-           Cook_multiVO vo = new Cook_multiVO();
-
-           vo.setRecipeno(recipeno);
-           vo.setCookfile(cookfile);
-           vo.setCookfilesaved(cookfilesaved);
-           vo.setThumb(thumb);
-           vo.setExp(exp);
-           this.cook_multiProc.create(vo);
-
-         
-       }
+   int size = Math.max(cookList.size(), expList.size()); // 두 리스트 중 작은 사이즈로 처리
+   
+   for (int i = 0; i < size; i++) {
+       MultipartFile multipartFile = cookList.get(i); // MultipartFile 객체 가져오기
+       exp = expList.get(i); // 텍스트 문자열 가져오기
   
-
-
+       size2 = multipartFile.getSize();
+       if (size2 > 0) {
+           cookfile = multipartFile.getOriginalFilename();
+           cookfilesaved = Upload.saveFileSpring(multipartFile, upDir1);
+           
+           if (Tool.isImage(cookfile)) { // 이미지인지 검사
+             thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
+           }
+       }
+         System.out.println("내용: " + exp);
+             Cook_multiVO vo = new Cook_multiVO();
+             vo.setRecipeno(recipeno);
+             vo.setCookfile(cookfile);
+             vo.setCookfilesaved(cookfilesaved);
+             vo.setThumb(thumb);
+             vo.setExp(exp);
+             upload_count = upload_count + cook_multiProc.create(vo); 
+  
+         }
    // -----------------------------------------------------
    // 파일 전송 코드 종료
    // -----------------------------------------------------
-      
-      // Call By Reference: 메모리 공유, Hashcode 전달
-      
-      // ------------------------------------------------------------------------------
-      // PK의 return
-      // ------------------------------------------------------------------------------
-      // System.out.println("--> recipeno: " + recipeVO.getRecipeno());
-      // mav.addObject("recipeno", recipeVO.getRecipeno()); // redirect parameter 적용
-      // ------------------------------------------------------------------------------
-      
+
       if (cnt == 1) {
         this.itemProc.update_cnt_add(recipeVO.getItemno()); //item테이블 글 수 증가
           mav.addObject("code", "create_success");
@@ -246,7 +235,7 @@ public class RecipeCont {
       } else {
           mav.addObject("code", "create_fail");
       }
-      mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+      mav.addObject("upload_count", upload_count); // request.setAttribute("cnt", cnt)
       
       // System.out.println("--> itemno: " + recipeVO.getItemno());
       // redirect시에 hidden tag로 보낸것들이 전달이 안됨으로 request에 다시 저장
