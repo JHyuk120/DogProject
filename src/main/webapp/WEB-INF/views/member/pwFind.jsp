@@ -20,6 +20,30 @@
 <script type="text/javascript">
 
 </script>
+
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    </style>
 </head> 
 
 
@@ -28,18 +52,18 @@
 
     
 
-  <ASIDE class="aside_right" style="margin-right:20px;">
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./list.do'>목록</A>
-  </ASIDE> 
-  <br>
+  
  
-  <DIV style='text-align: center; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; font-size:30px; font-weight: bold;'>비밀번호 찾기</DIV>
-
+ 
   <DIV class='content_body'> 
+   <DIV style='text-align: center; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; font-size:30px; font-weight: bold;'>비밀번호 찾기</DIV> 
+	  <ASIDE class="aside_right" style="margin-right:20px;">
+	    <A href="javascript:location.reload();">새로고침</A>
+	    <span class='menu_divide' >│</span> 
+	    <A href='./create.do'>회원 가입</A>
+
+	  </ASIDE> 
+  <br>
     <DIV style='width: 40%;  margin: 0px auto; '>
      <FORM name='memberVO' id='frm' method='POST' action='/member/pwFind.do' class="">
         <div class="form_input"  >
@@ -52,7 +76,7 @@
           <input  maxlength="14" type='text' class="form-control" name='tel' id='tel'
                     value='' required="required"  style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 50%; height:50px;  margin-bottom:50px;" placeholder="휴대폰 번호">            
         </div> 
-        <div style='text-align: center; style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>
+        <div style='text-align: center; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; '>
       <button type="submit"  id='idFind_btn' style="width:340px; height:55px; margin-bottom:50px;"class="btn btn-dark">비밀번호 찾기</button>
         </div>
       
