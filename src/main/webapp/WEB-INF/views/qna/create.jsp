@@ -23,11 +23,38 @@ function clearFileInput(fileInput) {
     
 </head> 
 
+</head> 
+ 
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    background-color: #FEFCF0;
+  }
+
+  .fieldset_basic {
+    width: 100%;
+    height: 100%;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+  
+
+</style>
+</head>
  
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>📢 Q&A 글 등록</DIV>
+<DIV style='background-color:#FEFCF0; margin-right: 5%; font-size: 30px;'><img src="/menu/images/qna1.png" class="icon1"> Q&A 등록</DIV>
 
 <DIV class='content_body'>
   
@@ -59,28 +86,27 @@ function clearFileInput(fileInput) {
     <div>
      <label>첨부 파일</label>
     </div>
-    <DIV style='width: 100%;'>
+    <DIV style='width: 50%;'>
       
         <div class="form-group">   
           <div class="col-md-12">
             <input type='file' class="form-control" name='fnamesMF' id='fileInput' 
                          value='' placeholder="파일 선택" multiple="multiple">
+            <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-sm btn-outline-dark" style= "margin-left: 80%;">첨부파일 초기화</button>
           </div>
         </div>
-       <DIV class='content_bottom_menu'>
-         <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-info">첨부파일 초기화</button>
-       </DIV>
+
        
    </DIV>
    <br>
    <div>
      <label>패스워드</label>
-     <input maxlength="30" type='password' name='passwd' value='1234' required="required" 
-                 class="form-control" style='width: 50%;'><br>
+     <input maxlength="30" type='password' name='passwd' value='' required="required" 
+                 class="form-control" style='width: 30%;'><br>
    </div>   
    <div class="content_body_bottom">
-     <button type="submit" class="btn btn-primary">등록</button>
-     <button type="button" onclick="location.href='./list_all.do'" class="btn btn-primary">목록</button>
+     <button type="submit" class="btn btn-dark">등록</button>
+     <button type="button" onclick="location.href='./list_all.do'" class="btn btn-outline-dark">목록</button>
    </div>
   
   </FORM>

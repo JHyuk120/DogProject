@@ -61,9 +61,9 @@
   <ASIDE class="aside_right">
       <c:if test="${sessionScope.adminno == adminno }">
           <span class='menu_divide' >│</span>
-          <A href="./update_text.do?qnano=${qnano}&now_page=${param.now_page}&word=${param.word}">글 수정</A>
+          <A href="./update_text.do?answer_no=${answer_no}&qnano=${qnano}">글 수정</A>
           <span class='menu_divide' >│</span>
-          <A href="./delete.do?qnano=${qnano}&now_page=${param.now_page}">삭제</A>  
+          <A href="./delete.do?answer_no=${answer_no}">삭제</A>  
       </c:if>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>

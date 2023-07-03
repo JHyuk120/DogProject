@@ -127,7 +127,7 @@
         </div>   
      
         <div class="form_input">
-          <input maxlength="60" type='text' class="form-control" name='passwd' id='passwd' 
+          <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
                     value="${ck_passwd }" required="required" 
                     style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px; "
                      placeholder="비밀번호" autofocus="autofocus">

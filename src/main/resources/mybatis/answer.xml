@@ -22,5 +22,25 @@
     FROM answer 
     ORDER BY qnano DESC
   </select>
+  
+      <!-- 글 수정 -->
+  <update id="update_text" parameterType="dev.mvc.answer.AnswerVO">
+    UPDATE answer
+    SET title=#{title}, text=#{text}, passwd = #{passwd}
+    WHERE answer_no = #{answer_no}
+  </update>
+  
+   <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM answer
+    WHERE answer_no=#{answer_no}
+  </delete>
+  
+     <!-- 패스워드 확인 -->
+  <select id="password_check" resultType="int" parameterType="dev.mvc.answer.AnswerVO">
+    SELECT COUNT(*) as cnt
+    FROM answer
+    WHERE answer_no = #{answer_no} AND passwd = #{passwd}
+  </select>
 
 </mapper>

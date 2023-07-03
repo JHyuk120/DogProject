@@ -46,5 +46,23 @@ public class AnswerProc implements AnswerProcInter{
     return list;
   }
 
+  @Override
+  public int delete(int answer_no) {
+    int cnt = this.answerDAO.delete(answer_no);
+    return cnt;
+  }
+
+  @Override
+  public int update_text(AnswerVO answerVO) {
+    int cnt = this.answerDAO.update_text(answerVO);
+    return cnt;
+  }
+
+  @Override
+  public int password_check(AnswerVO answerVO) {
+    int cnt = this.answerDAO.password_check(answerVO);
+    return cnt;
+  }
+
 
 }
