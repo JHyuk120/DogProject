@@ -322,7 +322,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
      
         <div class="form_input">
           <input type='password' class="form-control" name='passwd' id='passwd'
-                    value='${ck_passwd }' required="required" style='width: 100%;' placeholder="패스워드">
+                    value='${ck_passwd }' required="required" style= "width: 100%; font-family: '맑은 고딕';" placeholder="패스워드">
           <Label style="margin-right:84%">
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
