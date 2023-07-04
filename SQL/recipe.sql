@@ -30,6 +30,8 @@ CREATE TABLE recipe(
     FOREIGN KEY (itemno) REFERENCES item (itemno)
 );
 
+ALTER TABLE recipe MODIFY (gname NULL);
+
 COMMENT ON TABLE recipe is '레시피';
 COMMENT ON COLUMN recipe.recipeno is '레시피 번호';
 COMMENT ON COLUMN recipe.itemno is '품목 번호';

@@ -627,7 +627,7 @@ public class RecipeCont {
       cookfilesaved = cook_multiVO.getCookfilesaved();
       thumb = cook_multiVO.getThumb();
         
-      String upDir1 = Qna.getUploadDir(); // 경로설정
+      String upDir1 = Recipe.getUploadDir(); // 경로설정
    
       Tool.deleteFile(upDir1, cookfilesaved); // Folder에서 1건의 파일 삭제
       Tool.deleteFile(upDir1, thumb); // 1건의 Thumb 파일 삭제

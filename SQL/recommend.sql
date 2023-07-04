@@ -19,6 +19,13 @@ COMMENT ON COLUMN RECOMMEND.itemno is '카테고리번호';
 COMMENT ON COLUMN RECOMMEND.seq is '추천 우선순위';
 COMMENT ON COLUMN RECOMMEND.RDATE is '추천 날짜';
 
+CREATE SEQUENCE recoomend_seq
+  START WITH 1         -- 시작 번호
+  INCREMENT BY 1       -- 증가값
+  MAXVALUE 9999999999  -- 최대값: 9999999999 --> NUMBER(10) 대응
+  CACHE 2              -- 2번은 메모리에서만 계산
+  NOCYCLE;             -- 다시 1부터 생성되는 것을 방지
+
 commit;
 -- 존재하는 memberno, recipeno 등록
 INSERT INTO recommend(recommendno, memberno, itemno, seq, rdate)
