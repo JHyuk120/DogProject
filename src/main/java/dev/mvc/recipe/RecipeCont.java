@@ -640,6 +640,7 @@ public class RecipeCont {
     // -------------------------------------------------------------------
     // 파일 전송 코드 시작
     // -------------------------------------------------------------------
+
     String upDir1 = Recipe.getUploadDir();
     System.out.println("-> upDir: " + upDir1);
 
@@ -655,27 +656,33 @@ public class RecipeCont {
         MultipartFile multipartFile = cookList.get(i); // MultipartFile 객체 가져오기
         exp = expList.get(i); // 텍스트 문자열 가져오기
    
+        Cook_multiVO vo = new Cook_multiVO();
+        vo.setRecipeno(recipeno);
+        vo.setExp(exp);
+        vo.setCookfile(cookfile);
+        vo.setCookfilesaved(cookfilesaved);
+        vo.setThumb(thumb);
+        
         size2 = multipartFile.getSize();
+        System.out.println("SIZE: " + size2);
+        
         if (size2 > 0) {
             cookfile = multipartFile.getOriginalFilename();
             cookfilesaved = Upload.saveFileSpring(multipartFile, upDir1);
             System.out.println("--> cookfilesaved" + cookfilesaved);
             
-            Cook_multiVO vo = new Cook_multiVO();
-            vo.setRecipeno(recipeno);
             vo.setCookfile(cookfile);
             vo.setCookfilesaved(cookfilesaved);
             vo.setThumb(thumb);
-            vo.setExp(exp);
-            upload_count = upload_count + cook_multiProc.create(vo); 
             
             if (Tool.isImage(cookfile)) { // 이미지인지 검사
               thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
             }
+            
           }
           System.out.println("내용: " + exp);
       
-   
+          upload_count = upload_count + cook_multiProc.create(vo); 
           }
     // -----------------------------------------------------
     // 파일 전송 코드 종료
