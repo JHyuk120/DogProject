@@ -135,7 +135,7 @@ public class MemberCont {
    }  
    
    /**
-    * 회원 조회
+    * 회원 수정 관리 폼
     * 관리자, 회원 본인만 가능
     * @param memberno
     * @return
@@ -176,20 +176,7 @@ public class MemberCont {
      ModelAndView mav = new ModelAndView();
      
      // System.out.println("id: " + memberVO.getId());
-     
-     int cnt= memberProc.update(memberVO);
-     
-     if (cnt == 1) {
-       mav.addObject("code", "update_success");
-       mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 정보를 변경했습니다.
-       mav.addObject("id", memberVO.getId());
-     } else {
-       mav.addObject("code", "update_fail");
-     }
-
-     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
-     mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
-     
+  
      memberVO = this.memberProc.read(memberno); // 패스워드를 변경하려는 회원 정보를 읽음
      mav.addObject("mname", memberVO.getMname());  
      mav.addObject("id", memberVO.getId());
@@ -199,7 +186,7 @@ public class MemberCont {
      map.put("memberno", memberno);
      map.put("passwd", current_passwd);
      
-     cnt = memberProc.passwd_check(map); // 현재 패스워드 검사
+     int cnt = memberProc.passwd_check(map); // 현재 패스워드 검사
      int update_cnt = 0; // 변경된 패스워드 수
      
      if (cnt == 1) { // 현재 패스워드가 일치하는 경우
@@ -208,6 +195,18 @@ public class MemberCont {
          update_cnt = this.memberProc.passwd_update(map); // 패스워드 변경 처리
        } else {
          update_cnt = 1; // 비밀번호 변경을 진행하지 않음
+       }
+       
+       cnt= memberProc.update(memberVO);
+       mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+       mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
+       
+       if (cnt == 1) {
+         mav.addObject("code", "update_success");
+         mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+         mav.addObject("id", memberVO.getId());
+       } else {
+         mav.addObject("code", "update_fail");
        }
        
          if (update_cnt == 1) {
@@ -222,8 +221,7 @@ public class MemberCont {
        } else {
          
          mav.addObject("code", "passwd_fail"); // 패스워드가 일치하지 않는 경우
-         
-        
+
        }
 
      mav.addObject("cnt", cnt); // 패스워드 일치 여부
