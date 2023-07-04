@@ -17,7 +17,6 @@
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
-<c:set var="content" value="${goodsVO.content }" />
 <c:set var="word" value="${goodsVO.word }" />
 <c:set var="size1_label" value="${goodsVO.size1_label }" />
 <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />

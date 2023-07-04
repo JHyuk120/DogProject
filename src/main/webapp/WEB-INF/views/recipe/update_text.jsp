@@ -99,7 +99,7 @@
         <div>
        <label>패스워드</label>
        <input type='passwd' name='passwd' value='' required="required" 
-                 class="form-control" style='width: 50%;'>
+                 class="form-control" style="font-family:'맑은 고딕'; width: 50%;">
         </div> 
         </c:when>
       <c:otherwise>

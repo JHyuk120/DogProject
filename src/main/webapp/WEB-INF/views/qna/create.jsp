@@ -102,7 +102,7 @@ function clearFileInput(fileInput) {
    <div>
      <label>패스워드</label>
      <input maxlength="30" type='password' name='passwd' value='' required="required" 
-                 class="form-control" style='width: 30%;'><br>
+                 class="form-control" style="font-family:'맑은 고딕'; width: 30%;"><br>
    </div>   
    <div class="content_body_bottom">
      <button type="submit" class="btn btn-dark">등록</button>

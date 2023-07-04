@@ -84,7 +84,7 @@
     <div>
        <label>🤍패스워드🤍</label>
        <input type='password' name='passwd' value='' required="required" 
-                 class="form-control" style='width: 40%;'>
+                 class="form-control" style="font-family:'맑은 고딕'; width: 40%;">
     </div>   
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-dark" style="width:5%; height:45px;">등록</button>

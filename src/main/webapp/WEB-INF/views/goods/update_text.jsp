@@ -3,7 +3,6 @@
  <c:set var="itemno" value="${goodsVO.itemno }" />
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="gname" value="${goodsVO.gname }" />
-<c:set var="content" value="${goodsVO.content }" />
 <c:set var="word" value="${goodsVO.word }" />
 <c:set var="price" value="${goodsVO.price }" />
 <c:set var="dc" value="${goodsVO.dc }" />
@@ -161,12 +160,6 @@
         </div>
     </div>
     <br>
-    
-    <div>
-       <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>${content }</textarea><br>
-    </div>
-    
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='${word }' required="required" 

@@ -27,13 +27,10 @@ import dev.mvc.tool.Tool;
       // for문을 사용하여 객체를 추출, CAll By Reference 기반의 원본 객체 값 변경
       for (GoodsVO goodsVO : list) {
         String gname = goodsVO.getGname();
-        String content = goodsVO.getContent();
-        
+
         gname = Tool.convertChar(gname);  // 특수 문자 처리
-        content = Tool.convertChar(content); 
         
         goodsVO.setGname(gname);
-        goodsVO.setContent(content);
       }
       return list;
     }
@@ -104,13 +101,10 @@ import dev.mvc.tool.Tool;
       
       for (GoodsVO vo : list) { // 특수 문자 처리 
         String gname = vo.getGname();
-        String content = vo.getContent();
         
         gname = Tool.convertChar(gname);
-        content = Tool.convertChar(content);
         
         goodsVO.setGname(gname);
-        goodsVO.setContent(content);
       }
       
       return list;

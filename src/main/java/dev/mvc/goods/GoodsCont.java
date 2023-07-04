@@ -235,13 +235,13 @@ public class GoodsCont {
     GoodsVO goodsVO = this.goodsProc.read(goodsno);
     
     String gname = goodsVO.getGname();
-    String content = goodsVO.getContent();
+
     
     gname = Tool.convertChar(gname);  // 특수 문자 처리
-    content = Tool.convertChar(content); 
+
     
     goodsVO.setGname(gname);
-    goodsVO.setContent(content);
+
     
     
     
