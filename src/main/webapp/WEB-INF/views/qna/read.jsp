@@ -88,7 +88,7 @@
       <li class="li_none">         
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
           <div style="font-size: 0.7em;">${mname} ${rdate }</div><br>
-        <div style="float: left; margin-left: 16%; margin-top: 3%;">${content }</div>
+        <div style="float: center; margin-top: 3%;">${content }</div>
       </li>
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
