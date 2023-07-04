@@ -14,6 +14,10 @@ CREATE TABLE goods (
         thumb1                      VARCHAR(100)          NULL,   -- preview image
         size1                          NUMBER(10)            DEFAULT 0 NULL,  -- 파일 사이즈
         price                           NUMBER(10)            DEFAULT 0 NULL,  
+        grams                       NUMBER(5)              NOT NULL,
+        origin                          VARCHAR(30)            NOT NULL,
+        exdate                         VARCHAR(16)            NOT NULL,
+        storage                     VARCHAR(20)             NOT NULL,
         dc                                NUMBER(10)            DEFAULT 0 NULL,  
         saleprice                    NUMBER(10)           DEFAULT 0 NULL,  
         salecnt                       NUMBER(10)            DEFAULT 0 NULL,

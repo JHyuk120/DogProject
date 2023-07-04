@@ -33,6 +33,10 @@ dependencies {
   implementation 'org.json:json:20230227'
 }
 
+bootWar {
+    duplicatesStrategy = 'exclude'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

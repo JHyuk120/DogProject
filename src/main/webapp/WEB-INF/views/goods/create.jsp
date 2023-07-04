@@ -130,7 +130,7 @@
         </div>
         <div class="col-sm-4">
           <label for="cnt">보관방법</label>
-          <input type="text" class="form-control" id="storage" name="storage" value="냉장/냉동/실온" style='width:80%'>
+          <input type="text" class="form-control" id="storage" name="storage" value="냉장/냉동/실온" style='width:80%' maxlength='20'>
         </div>
         <div class="col-sm-4">
           <label for="cnt">그램 수</label>

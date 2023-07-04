@@ -55,8 +55,8 @@ $(function() {
     
   function addCookingStep() {
        let filecnt = document.getElementsByName("cookfileMF").length;
-       if (filecnt >= 5) {
-         alert('최대 5개의 파일만 업로드 가능합니다.');
+       if (filecnt >= 8) {
+         alert('최대 8개의 파일만 업로드 가능합니다.');
          return;
        }
     var container = document.getElementById("cookingStepsContainer");

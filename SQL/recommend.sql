@@ -1,6 +1,8 @@
 /**********************************/
 /* Table Name: 추천 */
 /**********************************/
+DROP TABLE recommend;
+
 CREATE TABLE RECOMMEND(
         RECOMMENDNO                           NUMBER(8)         NOT NULL         PRIMARY KEY,
         MEMBERNO                              NUMBER(10)         NULL ,

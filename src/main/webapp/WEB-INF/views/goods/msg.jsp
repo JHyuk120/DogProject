@@ -15,12 +15,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+</style>
+    
 </head> 
 <body>
 <c:import url="/menu/top.do" />
+ 
 
-<DIV class='title_line'>알림</DIV>
+<br>
+<div style='background-color:#FEFCF0; margin-left: 1%; font-size: 25px;'> 🔔알림</A></dIV>
 
+  <DIV class='content_body'>
 <c:set var="code" value="${param.code }" /> <%--mav.addObject("code", "create_success"); --%>
 <c:set var="cnt" value="${param.cnt }" />     <%-- mav.addObject("cnt", cnt); --%>
 <c:set var="itemno" value="${param.itemno }" /> <%-- mav.addObject("itemno", contentsVO.getitemno()); // redirect parameter 적용 --%>
@@ -37,31 +57,31 @@
         
         <c:when test="${code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">새로운 컨텐츠를 등록했습니다.</span>
+            <span class="span_success">새로운 재료를 등록했습니다.</span>
           </LI> 
         </c:when>
         
         <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">새로운 컨텐츠 등록에 실패했습니다.</span>
+            <span class="span_fail">새로운 재료 등록에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">컨텐츠 수정에 실패했습니다.</span>
+            <span class="span_fail">재료 수정에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">컨텐츠 삭제에 성공했습니다.</span>
+            <span class="span_success">재료 삭제에 성공했습니다.</span>
           </LI>                                                                      
         </c:when>        
         
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">컨텐츠 삭제에 실패했습니다.</span>
+            <span class="span_fail">재료 삭제에 실패했습니다.</span>
           </LI>                                                                      
         </c:when> 
         
@@ -82,9 +102,9 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?itemno=${itemno }'" class="btn btn-dark">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_itemno_search_paging_cart.do?itemno=${itemno }'" class="btn btn-outline-dark">목록</button>
-        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${itemno }'" class="btn btn-outline-dark">갤러리 목록</button>
+        <button type='button' onclick="location.href='./create.do?itemno=${itemno }'" class="btn btn-dark">새로운 재료 추가</button>
+        <button type='button' onclick="location.href='./list_by_itemno_search_paging_cart.do?itemno=${itemno }'" class="btn btn-outline-dark">기본목록</button>
+        <button type='button' onclick="location.href='./list_by_itemno_grid.do?itemno=${itemno }'" class="btn btn-outline-dark">갤러리목록</button>
       </LI>
     </UL> 
   </fieldset>

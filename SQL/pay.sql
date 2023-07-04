@@ -1,5 +1,5 @@
 DROP TABLE pay;
-DROP TABLE detail CASCADE CONSTRAINTS;
+DROP TABLE pay CASCADE CONSTRAINTS;
 
 CREATE TABLE pay(
         payno                            NUMBER(10)         NOT NULL         PRIMARY KEY,

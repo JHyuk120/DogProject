@@ -1,4 +1,5 @@
 DROP TABLE qna;
+DROP TABLE qna CASCADE CONSTRAINTS;
 
 CREATE TABLE qna (
     qnano                 NUMBER(10)                                        PRIMARY KEY,
@@ -7,8 +8,9 @@ CREATE TABLE qna (
     content            CLOB                               NOT NULL,
     passwd              VARCHAR(30)                         NULL,
     word                   VARCHAR(100)                       NULL,
+    mname              VARCHAR(30)              NOT NULL,
     rdate                   DATE                                NOT NULL,
-    FOREIGN KEY(memberno)    REFERENCES member(memberno)
+    FOREIGN KEY (memberno) REFERENCES member (memberno) ON DELETE CASCADE
 );
 
 COMMENT ON TABLE qna is 'QNA';
@@ -18,6 +20,7 @@ COMMENT ON COLUMN qna.title is 'QNA 제목';
 COMMENT ON COLUMN qna.content is 'QNA 내용';
 COMMENT ON COLUMN qna.passwd is 'QNA비밀번호';
 COMMENT ON COLUMN qna.word is '검색단어';
+COMMENT ON COLUMN qna.mname is 'QNA 작성자';
 COMMENT ON COLUMN qna.rdate is 'QNA 등록일';
 
 
@@ -39,5 +42,6 @@ SELECT qnano, memberno, title, content, rdate
 FROM qna
 ORDER BY qnano DESC; 
 
-
+DELETE FROM qna;
+commit;
 
