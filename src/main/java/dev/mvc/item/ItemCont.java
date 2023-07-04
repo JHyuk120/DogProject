@@ -272,6 +272,7 @@ public class ItemCont {
     ModelAndView mav = new ModelAndView();
     
     if (this.adminProc.isAdmin(session) == true) {
+      System.out.println("itemno - > " + itemno);
       int cnt = this.itemProc.delete(itemno);
 
       if (cnt == 1) {

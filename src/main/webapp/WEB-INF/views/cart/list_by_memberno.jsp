@@ -169,7 +169,7 @@
                 </c:choose>
               </td>  
               <td style='vertical-align: middle;'>
-                <a href="/goods/read.do?goodsno=${goodsno}"><strong style="margin-right:80%;">${gname}</strong></a> 
+                <a href="/goods/read.do?goodsno=${goodsno}"><strong style="margin-right:60%;">${gname}</strong></a> 
               </td> 
               <td style='vertical-align: middle; text-align: center;'>
                 <del><fmt:formatNumber value="${price}" pattern="#,###원" /></del><br>
