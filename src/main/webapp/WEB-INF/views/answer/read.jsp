@@ -100,7 +100,7 @@
       <span style="font-size: 1.7em; font-weight: bold;">${title }</span>
           <div style="font-size: 0.8em; margin-left: 78%;">${aname } / ${rdate }</div> <br>
           
-          <div style="float: left;">${text }</div>
+          <div style="float: center">${text }</div>
       </li>
       
     </ul>

@@ -129,7 +129,7 @@
         <div class="form_input">
           <input maxlength="60" type='password' class="form-control" name='passwd' id='passwd' 
                     value="${ck_passwd }" required="required" 
-                    style="margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px; "
+                    style="font-family: '맑은 고딕'; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 60%; height:50px; "
                      placeholder="비밀번호" autofocus="autofocus">
           <Label  style='margin-left:-48%; margin-bottom:0%;'>
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
