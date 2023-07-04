@@ -1,14 +1,14 @@
 /**********************************/
 /* Table Name: 추천 */
 /**********************************/
-DROP table RECOMMEND;
+DROP table RECOMMEND; 
 CREATE TABLE RECOMMEND(
         RECOMMENDNO                           NUMBER(8)         NOT NULL         PRIMARY KEY,
         MEMBERNO                              NUMBER(10)         NULL ,
         itemno                                NUMBER(10)         NULL ,
         seq                                   NUMBER(2)         DEFAULT 1         NOT NULL,
         RDATE                                 DATE         NOT NULL,
-  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO),
+  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO) ON DELETE CASCADE,
   FOREIGN KEY (itemno) REFERENCES item (itemno)
 );
 
@@ -19,7 +19,9 @@ COMMENT ON COLUMN RECOMMEND.itemno is '카테고리번호';
 COMMENT ON COLUMN RECOMMEND.seq is '추천 우선순위';
 COMMENT ON COLUMN RECOMMEND.RDATE is '추천 날짜';
 
-CREATE SEQUENCE recoomend_seq
+DROP SEQUENCE recoomend_seq;
+
+CREATE SEQUENCE recommend_seq
   START WITH 1         -- 시작 번호
   INCREMENT BY 1       -- 증가값
   MAXVALUE 9999999999  -- 최대값: 9999999999 --> NUMBER(10) 대응
