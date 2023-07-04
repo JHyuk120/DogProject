@@ -118,8 +118,14 @@ $(function(){
       </TD>
       
       <TD class='td_basic'>${rdate.substring(2,16) }</TD>
-      
-      <TD class='td_basic'><a href="./d_delete.do?detailno=${detailno }" title="주문 삭제"><img src="/detail/images/dele.png" class=icon2></a></TD>
+      <c:choose>
+        <c:when test="${stateno == 5 || stateno == 3 }">
+          <TD class='td_basic'><a href="./d_delete.do?detailno=${detailno }" title="주문 삭제"><img src="/detail/images/dele.png" class=icon2></a></TD>
+        </c:when>
+        <c:otherwise>
+          <td class='td_basic'></td>
+        </c:otherwise>
+      </c:choose>
     </TR>
     </c:forEach>
     
