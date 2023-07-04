@@ -90,7 +90,11 @@
                             rows="20" style="overflow-y: scroll; width: 100%;"></textarea>
     </div>
     <br>
-
+   <div>
+     <label>패스워드</label>
+     <input maxlength="30" type='password' name='passwd' value='' required="required" 
+                 class="form-control" style='width: 30%;'><br>
+   </div>  
 
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-dark" style="width:5%; height:45px;">등록</button>

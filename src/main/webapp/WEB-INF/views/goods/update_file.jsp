@@ -107,7 +107,7 @@
               <IMG src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없음 -->
-               <IMG src="/dogproject/images/none1.png" style="width: 90%;"> 
+               <IMG src="/goods/images/ee.png" style="width: 90%;"> 
             </c:otherwise>
           </c:choose>
           

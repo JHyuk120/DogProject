@@ -108,7 +108,32 @@ function cart_ajax_post(goodsno) {
     padding: 0.5%;
     text-align: center;
   }
-  
+
+    /* 스크롤 막대의 색상 설정 */
+    ::-webkit-scrollbar {
+        width: 8px; /* 스크롤 막대의 너비 */
+    }
+    
+    /* 스크롤 막대의 바탕색 */
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+    
+    /* 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb {
+        background-color: #FFDAD5;
+    }
+    
+    /* 스크롤 막대의 색상 및 모서리 둥글게 */
+::-webkit-scrollbar-thumb {
+    background-color: #FFDAD5;
+    border-radius: 4px;
+}
+    
+    /* 마우스 호버 시 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #DAF5E0;
+    }
 
 </style>
 </head>  
@@ -247,16 +272,17 @@ function cart_ajax_post(goodsno) {
       </tbody>
     </table>
   </form>
+  🤍추가재료🤍<br>${ingredient}<br><br>
 </div>
 
 
   <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;" >🤍레시피 요약🤍</span>
   <br>
-<div style="float: left; margin-left: 8%; margin-bottom: 7%; width: 90%;  height: 100px; overflow: auto;
+<div style="float: left; margin-left: 8%; margin-bottom: 7%; width: 90%; height: 60px; overflow: auto; 
 background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px solid #FFDAD5;">
-
-  <span style="font-size:0.8em; margin-right: 2%; margin-left: 5%;" >${article} </span>
+    <span style="font-size: 0.9em; display: block; text-align: center; margin-top: 1%;">${article}</span>
 </div>
+
 <br>
 
      <!--<c:if test="${youtube.trim().length() > 0 }">
@@ -267,7 +293,7 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
           </li>
       </c:if> -->
    <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;  margin-bottom: 2%;" >🤍조리순서🤍</span>       
-<DIV style="width:100%; ">
+<DIV style="width:100%; margin-top: 1%;">
 
     <c:forEach var="cook_multiVO" items="${list2}">
       <c:set var="cookfile" value="${cook_multiVO.cookfile }" />
@@ -276,18 +302,18 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
       <c:set var="exp" value="${cook_multiVO.exp }" />
      
       <div style="display: flex;">
-        <div style="width: 20%; float: left; margin-top: 0.2%; margin-right: 7%; margin-left: 12%; margin-bottom: 2%;">
+        <div style="width: 20%; float: left; margin-right: 7%; margin-left: 20%; margin-bottom: 2%;">
     		  <c:choose>
     		    <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
     		      <%-- /static/recipe/storage/ --%>
     		      <img src="/dogproject/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
         		</c:when>
         		  <c:otherwise> <!-- 기본 이미지 출력 -->
-        		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; #FFDAD5; border-radius: 10px;">
+        		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; border-radius: 10px;">
     		      </c:otherwise>
     		    </c:choose>
         </div>
-        <div style="width: 60%; height: 160px; border: 1px solid #FFDAD5; margin-top: 0.5%; margin-right: 5%; 
+        <div style="width: 40%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
                      margin-bottom: 7%; overflow: auto; border-radius: 10px; background-color: #FBFCF5;">
             ${exp}
         </div>
@@ -296,7 +322,7 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
 </DIV>
 
      <li class="li_none" style="clear: both;">
-          🤍검색어🤍: ${word }
+          🤍검색어🤍<br> ${word }
         </DIV>
       </li>
 

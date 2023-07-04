@@ -4,7 +4,7 @@ DROP TABLE answer;
 CREATE TABLE answer(
         answer_no                          NUMBER(10)         NOT NULL         PRIMARY KEY,
         qnano                                   NUMBER(10)         NOT NULL , -- FK
-        title                                        VARCHAR(30)       NOT NULL,
+        title                                        VARCHAR(100)       NOT NULL,
         aname                                 VARCHAR(30)       NOT NULL,
         text                                       CLOB                      NOT NULL, 
         rdate                                     DATE                      NOT NULL, 

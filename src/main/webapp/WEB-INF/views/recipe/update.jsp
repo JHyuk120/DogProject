@@ -231,6 +231,7 @@ $(function() {
           <textarea name='cookexp' required="required" class="form-control" 
           rows="3" style="overflow-y: scroll; width: 70%;">${exp }</textarea>
         </div>
+        <br>
       </c:forEach>
   </div>
   <button type="button" onclick="addCookingStep();"

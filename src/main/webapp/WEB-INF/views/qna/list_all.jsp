@@ -38,6 +38,32 @@
     padding: 0.5%;
     text-align: center;
   }
+      /* 스크롤 막대의 색상 설정 */
+    ::-webkit-scrollbar {
+        width: 8px; /* 스크롤 막대의 너비 */
+    }
+    
+    /* 스크롤 막대의 바탕색 */
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+    
+    /* 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb {
+        background-color: #FFDAD5;
+    }
+    
+    /* 스크롤 막대의 색상 및 모서리 둥글게 */
+::-webkit-scrollbar-thumb {
+    background-color: #FFDAD5;
+    border-radius: 4px;
+}
+    
+    /* 마우스 호버 시 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #DAF5E0;
+    }
+  
     </style>
     
 </head> 
@@ -148,7 +174,7 @@
 
         <tr style="height: 50px;">
           <td style='vertical-align: middle; text-align: center;'>
-            ↳  ${aname }의 답변
+              <img src="/menu/images/ddq.png" class="icon4"> ${aname }의 답변
           </td>
           <td style='vertical-align: middle; text-align: center;'>
             <a href="../answer/read.do?answer_no=${answer_no}&now_page=${param.now_page == null ? 1 : now_page}" style="display: block;">
