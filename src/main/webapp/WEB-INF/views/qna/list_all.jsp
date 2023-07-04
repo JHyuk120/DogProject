@@ -148,7 +148,7 @@
 
         <tr style="height: 50px;">
           <td style='vertical-align: middle; text-align: center;'>
-            ↳  ${aname }의 답변
+              <img src="/menu/images/ddq.png" class="icon4"> ${aname }의 답변
           </td>
           <td style='vertical-align: middle; text-align: center;'>
             <a href="../answer/read.do?answer_no=${answer_no}&now_page=${param.now_page == null ? 1 : now_page}" style="display: block;">

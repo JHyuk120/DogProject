@@ -92,7 +92,7 @@ function clearFileInput(fileInput) {
           <div class="col-md-12">
             <input type='file' class="form-control" name='fnamesMF' id='fileInput' 
                          value='' placeholder="파일 선택" multiple="multiple">
-            <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-sm btn-outline-dark" style= "margin-left: 80%;">첨부파일 초기화</button>
+            <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));" class="btn btn-sm btn-outline-dark" style= "margin-left: 73%; width:25%;">첨부파일 초기화</button>
           </div>
         </div>
 
@@ -111,8 +111,8 @@ function clearFileInput(fileInput) {
   
   </FORM>
 </DIV>
- 
+ </body>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
-</body>
+
  
 </html>
