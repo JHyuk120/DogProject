@@ -37,8 +37,6 @@ COMMENT ON COLUMN reply.ratingAvg is '게시물점 평점';
 
 DROP SEQUENCE reply_seq;
 
-ALTER TABLE reply DROP COLUMN ratingValue;
-ALTER TABLE reply DROP COLUMN ratingAvg;
 commit;
 CREATE SEQUENCE reply_seq
   START WITH 1         -- 시작 번호
