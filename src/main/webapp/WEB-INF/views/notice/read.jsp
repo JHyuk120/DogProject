@@ -99,7 +99,7 @@
               </c:otherwise>
             </c:choose><br>
          
-        <div style="float: left;">${content }</div>
+        <div style="float: center;">${content }</div>
       </li>
   
      <li class="li_none" style="clear: both;">
