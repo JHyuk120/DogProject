@@ -31,6 +31,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
         registry.addResourceHandler("/dogproject/notice/storage/**").addResourceLocations("file:///" +  Notice.getUploadDir());
         registry.addResourceHandler("/dogproject/qna/storage/**").addResourceLocations("file:///" +  Qna.getUploadDir());
         registry.addResourceHandler("/dogproject/review/storage/**").addResourceLocations("file:///" +  Review.getUploadDir());
+
     }
  
 }

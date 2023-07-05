@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,7 +11,7 @@
 
 <style>
   body {
-    background-color: #FEFCE6;
+    background-color: #FEFCE6;m
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,12 +73,14 @@
             <div class="container">
                 <div class="row">
                   <c:forEach var="recommendVO" items="${rlist}" begin="0" end="4" varStatus="status">
-                        <a href="/recipe/read.do?recipeno=${recipeVO.recipeno }&word=&now_page=1">
+                      <c:set var="recipeno" value="${recommendVO.recipeno }" />
+                      <c:set var="thumb1" value="${recommendVO.thumb1 }" />
+                      <a href="/recipe/read.do?recipeno=${recipeno }&word=&now_page=1">
                             <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <div class="image-container_rc">
                                     <c:choose>
                                         <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                            <img src="/recipe/storage/${thumb1 }" class="carousel-image">
+                                            <img src="dogproject/recipe/storage/${thumb1 }" class="carousel-image">
                                         </c:when>
                                         <c:otherwise>
                                             <img src="/images/ee.png" class="carousel-image">
@@ -110,7 +113,7 @@
                             <div class="image-container_rc">
                                 <c:choose>
                                     <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                        <img src="/recipe/storage/${thumb1 }" class="carousel-image">
+                                        <img src="dogproject/recipe/storage/${thumb1 }" class="carousel-image">
                                     </c:when>
                                     <c:otherwise>
                                         <img src="/images/ee.png" class="carousel-image">
@@ -167,7 +170,7 @@
                 
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                    <img src="/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                    <img src="dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
                   </c:when>
                   <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                     <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
@@ -200,7 +203,7 @@
                style='width: 15%; height: 216px; float: left; margin: 0.3%; padding: 0.5%;  text-align: center; '>
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                    <img src="/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                    <img src="dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
                   </c:when>
                   <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                     <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
