@@ -22,7 +22,7 @@ public class Notice {
             
         } else {
             // System.out.println("Linux");
-          path = "/home/ubuntu/deploy/dogproject/recipe/storage/";
+          path = "/home/ubuntu/deploy/dogproject/notice/storage/";
         }
         
         return path;

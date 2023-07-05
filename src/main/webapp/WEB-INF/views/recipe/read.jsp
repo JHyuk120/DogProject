@@ -76,7 +76,7 @@ function cart_ajax_post(goodsno) {
           // console.log('-> cart_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
           
           if (rdata.cnt == 1) {
-        	   alert('상품이 장바구니에 담겼습니다.')
+             alert('상품이 장바구니에 담겼습니다.')
           } else {
             alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
           }
@@ -147,16 +147,16 @@ function cart_ajax_post(goodsno) {
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
 
-		<c:if test="${sessionScope.id != null }">
-		  <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
-		  <span class='menu_divide'>│</span>
-		  <c:if test="${sessionScope.memberno == recipeVO.memberno}">
-		    <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
-		    <span class='menu_divide'>│</span>
-		    <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>
-		    <span class='menu_divide'>│</span>
-		  </c:if>
-		</c:if>
+    <c:if test="${sessionScope.id != null }">
+      <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
+      <span class='menu_divide'>│</span>
+      <c:if test="${sessionScope.memberno == recipeVO.memberno}">
+        <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
+        <span class='menu_divide'>│</span>
+        <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>
+        <span class='menu_divide'>│</span>
+      </c:if>
+    </c:if>
 
 
     <A href="./list_by_itemno.do?itemno=${recipeVO.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">기본 목록형</A>    
@@ -225,7 +225,7 @@ function cart_ajax_post(goodsno) {
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
-                <IMG src="/dogproject/storage/${file1saved }" 
+                <IMG src="/dogproject/recipe/storage/${thumb1 }" 
                 style="width: 25%; height: 250px; float:left; margin-top: 1%; margin-right: 20px; margin-left: 6%; margin-bottom: 5px;'"> 
             </c:when>
             <c:otherwise> <!-- 기본 이미지 출력 -->
@@ -301,19 +301,21 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
      
       <div style="display: flex;">
         <div style="width: 20%; float: left; margin-right: 7%; margin-left: 20%; margin-bottom: 2%;">
-    		  <c:choose>
-    		    <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-    		      <%-- /static/recipe/storage/ --%>
-    		      <img src="/dogproject/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
-        		</c:when>
-        		  <c:otherwise> <!-- 기본 이미지 출력 -->
-        		    <img src="/goods/images/ee.png" style="width: 100%; height:  160px; border-radius: 10px;">
-    		      </c:otherwise>
-    		    </c:choose>
+          <c:choose>
+            <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+              <%-- /static/recipe/storage/ --%>
+              <img src="/dogproject/recipe/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
+            </c:when>
+              <c:otherwise> <!-- 기본 이미지 출력 -->
+                <img src="/goods/images/ee.png" style="width: 100%; height:  160px; border-radius: 10px;">
+              </c:otherwise>
+            </c:choose>
         </div>
-        <div style="width: 40%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
+        <div>
+        <span style="width: 40%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
                      margin-bottom: 7%; overflow: auto; border-radius: 10px; background-color: #FBFCF5;">
             ${exp}
+            </span>
         </div>
       </div>    
   </c:forEach>

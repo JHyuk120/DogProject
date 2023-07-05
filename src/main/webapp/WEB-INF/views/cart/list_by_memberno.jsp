@@ -159,7 +159,7 @@
                 <c:choose>
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                     <%-- /static/contents/storage/ --%>
-                    <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/dogproject/storage/${thumb1 }" style="width: 130px; height: 120px;"></a> 
+                    <a href="/goods/read.do?goodsno=${goodsno}"><IMG src="/dogproject/goods/storage/${thumb1 }" style="width: 130px; height: 120px;"></a> 
                   </c:when>
                   
                   <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
