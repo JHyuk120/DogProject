@@ -92,7 +92,7 @@
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/notice/storage/ --%>
-                <img src="/dogproject/storage/${thumb1 }" style='width: 80%; float:center; margin-top:5%;'> 
+                <img src="/dogproject/notice/storage/${thumb1 }" style='width: 80%; float:center; margin-top:5%;'> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 -none image-

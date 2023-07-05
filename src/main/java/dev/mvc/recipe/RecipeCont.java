@@ -173,8 +173,7 @@ public class RecipeCont {
    String exp = ""; 
    int upload_count = 0;
 
-   String upDir1 = Recipe.getUploadDir();
-   System.out.println("-> upDir: " + upDir1);
+   System.out.println("-> upDir: " + upDir);
 
    List<MultipartFile> cookList = cook_multiVO.getCookfileMF(); // 멀티 파일 리스트 가져오기
    List<String> expList = cook_multiVO.getCookexp();
@@ -191,7 +190,7 @@ public class RecipeCont {
        size2 = multipartFile.getSize();
        if (size2 > 0) {
            cookfile = multipartFile.getOriginalFilename();
-           cookfilesaved = Upload.saveFileSpring(multipartFile, upDir1);
+           cookfilesaved = Upload.saveFileSpring(multipartFile, upDir);
            
            if (Tool.isImage(cookfile)) { // 이미지인지 검사
              thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
@@ -567,7 +566,7 @@ public class RecipeCont {
     String thumb1 = recipeVO_old.getThumb1();       // 실제 저장된 preview 이미지 파일명
     long size1 = 0;
     
-    String upDir = Goods.getUploadDir();
+    String upDir = Recipe.getUploadDir();
     
     Tool.deleteFile(upDir, file1saved);  // 실제 저장된 파일삭제
     Tool.deleteFile(upDir, thumb1);     // preview 이미지 삭제
@@ -614,9 +613,6 @@ public class RecipeCont {
     // -------------------------------------------------------------------
     // 파일 삭제 코드 시작
     // -------------------------------------------------------------------
-    String cookfile = "";
-    String cookfilesaved = "";
-    String thumb = "";
     String exp = ""; 
     long size2 = 0;
     int upload_count = 0; // 정상처리된 레코드 갯수
@@ -624,13 +620,11 @@ public class RecipeCont {
     for (int i=0; i < cook_multiVO_old.size(); i++) {
       cook_multiVO = cook_multiVO_old.get(i);
        
-      cookfilesaved = cook_multiVO.getCookfilesaved();
-      thumb = cook_multiVO.getThumb();
-        
-      String upDir1 = Recipe.getUploadDir(); // 경로설정
+      String cookfilesaved = cook_multiVO.getCookfilesaved();
+      String thumb = cook_multiVO.getThumb();
    
-      Tool.deleteFile(upDir1, cookfilesaved); // Folder에서 1건의 파일 삭제
-      Tool.deleteFile(upDir1, thumb); // 1건의 Thumb 파일 삭제
+      Tool.deleteFile(upDir, cookfilesaved); // Folder에서 1건의 파일 삭제
+      Tool.deleteFile(upDir, thumb); // 1건의 Thumb 파일 삭제
       
       this.cook_multiProc.delete(recipeVO.getRecipeno()); // DBMS Q&A삭제
     }
@@ -640,9 +634,10 @@ public class RecipeCont {
     // -------------------------------------------------------------------
     // 파일 전송 코드 시작
     // -------------------------------------------------------------------
-
-    String upDir1 = Recipe.getUploadDir();
-    System.out.println("-> upDir: " + upDir1);
+    String cookfile = "";
+    String cookfilesaved = "";
+    String thumb = "";
+    System.out.println("-> upDir: " + upDir);
 
     List<MultipartFile> cookList = recipeVO.getCookfileMF(); // 멀티 파일 리스트 가져오기
     List<String> expList = recipeVO.getCookexp();
@@ -668,15 +663,15 @@ public class RecipeCont {
         
         if (size2 > 0) {
             cookfile = multipartFile.getOriginalFilename();
-            cookfilesaved = Upload.saveFileSpring(multipartFile, upDir1);
+            cookfilesaved = Upload.saveFileSpring(multipartFile, upDir);
             System.out.println("--> cookfilesaved" + cookfilesaved);
-            
-            vo.setCookfile(cookfile);
-            vo.setCookfilesaved(cookfilesaved);
-            vo.setThumb(thumb);
             
             if (Tool.isImage(cookfile)) { // 이미지인지 검사
               thumb = Tool.preview(upDir, cookfilesaved, 200, 150); // thumb 이미지 생성
+              
+              vo.setCookfile(cookfile);
+              vo.setCookfilesaved(cookfilesaved);
+              vo.setThumb(thumb);
             }
             
           }

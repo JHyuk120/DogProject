@@ -225,7 +225,7 @@ function cart_ajax_post(goodsno) {
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/recipe/storage/ --%>
-                <IMG src="/dogproject/storage/${file1saved }" 
+                <IMG src="/dogproject/recipe/storage/${thumb1 }" 
                 style="width: 25%; height: 250px; float:left; margin-top: 1%; margin-right: 20px; margin-left: 6%; margin-bottom: 5px;'"> 
             </c:when>
             <c:otherwise> <!-- 기본 이미지 출력 -->
@@ -304,16 +304,18 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
           <c:choose>
             <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
               <%-- /static/recipe/storage/ --%>
-              <img src="/dogproject/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
+              <img src="/dogproject/recipe/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
             </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/goods/images/ee.png" style="width: 100%; height:  160px; border-radius: 10px;">
               </c:otherwise>
             </c:choose>
         </div>
-        <div style="width: 40%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
+        <div>
+        <span style="width: 40%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
                      margin-bottom: 7%; overflow: auto; border-radius: 10px; background-color: #FBFCF5;">
             ${exp}
+            </span>
         </div>
       </div>    
   </c:forEach>

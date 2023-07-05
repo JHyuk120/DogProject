@@ -352,7 +352,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <IMG src="/dogproject/storage/${file1saved }" style="width: 40%; height:380px; float:left; margin-top: 5%; margin-right: 20px; margin-bottom: 5px;'">
+                <IMG src="/dogproject/goods/storage/${thumb1 }" style="width: 40%; height:380px; float:left; margin-top: 5%; margin-right: 20px; margin-bottom: 5px;'">
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/goods/images/ee.png" style="width: 40%; height:380px; float: left; margin-top: 5%; margin-right:5%;">

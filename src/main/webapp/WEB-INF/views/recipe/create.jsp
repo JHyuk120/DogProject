@@ -55,7 +55,7 @@ $(function() {
             </div>
             <div class='content_bottom_menu'>
               <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));"
-                   class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
+                   class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 27%; height: 25px;">첨부파일 초기화</button>
             </div>
           </div>
           <textarea name='cookexp' required="required" class="form-control" 
@@ -192,20 +192,7 @@ $(function() {
   <div>
   <label>🤍조리순서🤍</label><br>
   <div id="cookingStepsContainer">
-    <div style='display: flex; align-items: center;'>
-      <div style="width: 30%;">
-        <div class="col-md-12">
-          <input type='file' class="form-control" name='cookfileMF' id='cookfileMF' 
-                 value='' placeholder="파일 선택">
-        </div>
-        <div class='content_bottom_menu'>
-          <button type="button" onclick="clearFileInput(document.getElementById('fileInput'));"
-               class="btn-sm btn-light" style="font-size: 11px; margin-left: 70%; width: 26%; height: 25px;">첨부파일 초기화</button>
-        </div>
-      </div>
-      <textarea name='cookexp' required="required" class="form-control" 
-      rows="3" style="overflow-y: scroll; width: 70%;"></textarea>
-    </div>
+    
   </div>
   <button type="button" onclick="addCookingStep();"
          class="btn-sm btn-outline-dark" style="margin-left: 91%; margin-top: 1%;">조리순서 추가</button>
