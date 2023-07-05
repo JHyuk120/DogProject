@@ -146,12 +146,6 @@
         </div>
     </div>
     <br>
-    
-    <div>
-       <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'></textarea><br>
-    </div>
-    
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='해시태그' required="required" 

@@ -269,7 +269,6 @@
     <tbody>
       <c:forEach var="goodsVO" items="${list}">
         <c:set var="gname" value="${goodsVO.gname }" />
-        <c:set var="content" value="${goodsVO.content }" />
         <c:set var="price" value="${goodsVO.price }" />   
         <c:set var="dc" value="${goodsVO.dc }" /> 
         <c:set var="point" value="${goodsVO.point }" />

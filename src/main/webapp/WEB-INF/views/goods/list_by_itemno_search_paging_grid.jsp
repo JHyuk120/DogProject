@@ -136,7 +136,6 @@
           <c:set var="dc" value="${goodsVO.dc }" />
           <c:set var="saleprice" value="${goodsVO.saleprice}" />  
           <c:set var="point" value="${goodsVO.point}" />  
-          <c:set var="content" value="${goodsVO.content }" />
           <c:set var="itemno" value="${goodsVO.itemno }" />
           <c:set var="goodsno" value="${goodsVO.goodsno }" />
           <c:set var="thumb1" value="${goodsVO.thumb1 }" />

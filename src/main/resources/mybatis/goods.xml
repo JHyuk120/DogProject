@@ -6,15 +6,15 @@
 
 <!-- 상품 등록 -->
  <insert id="create" parameterType="dev.mvc.goods.GoodsVO">
-    INSERT INTO goods ( goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+    INSERT INTO goods ( goodsno, adminno, itemno, gname, cnt, word, rdate, 
                         file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point, origin, exdate, storage, grams)
-    VALUES(goods_seq.nextval, #{adminno}, #{itemno}, #{gname}, #{content}, #{cnt}, #{word}, sysdate, 
+    VALUES(goods_seq.nextval, #{adminno}, #{itemno}, #{gname}, #{cnt}, #{word}, sysdate, 
            #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{price}, #{dc}, #{saleprice}, #{salecnt}, #{point}, #{origin}, #{exdate}, #{storage}, #{grams})
   </insert>
   
   <!-- 전체 상품 목록 -->
   <select id="list_all" resultType="dev.mvc.goods.GoodsVO" >
-      SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+      SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                               file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
       FROM goods
       ORDER BY goodsno ASC
@@ -22,7 +22,7 @@
   
   <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_itemno" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
-    SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+    SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                             file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
     FROM goods 
     WHERE itemno = #{itemno}
@@ -31,7 +31,7 @@
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
-    SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+    SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                             file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point, origin, exdate, storage, grams
     FROM goods
     WHERE goodsno = #{goodsno}
@@ -39,7 +39,7 @@
   
   <!-- 카테고리별 검색 목록 -->
   <select id="list_by_itemno_search" resultType="dev.mvc.goods.GoodsVO" parameterType="dev.mvc.goods.GoodsVO">
-     SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+     SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                             file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
     FROM goods
     <choose>
@@ -48,7 +48,6 @@
       </when>
       <otherwise> <!-- 검색하는 경우 -->
         WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
     </choose>
@@ -65,7 +64,6 @@
       </when>
       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
         WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
       </otherwise>
     </choose>
@@ -73,13 +71,13 @@
   
   <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
   <select id="list_by_itemno_search_paging" resultType="dev.mvc.goods.GoodsVO" parameterType="dev.mvc.goods.GoodsVO">
-   SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+   SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                             file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point, r
    FROM (
-              SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+              SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                             file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point, rownum as r
               FROM (
-                        SELECT goodsno, adminno, itemno, gname, content, cnt, word, rdate, 
+                        SELECT goodsno, adminno, itemno, gname, cnt, word, rdate, 
                                             file1, file1saved, thumb1, size1, price, dc, saleprice, salecnt, point
                         FROM goods
                         <choose>
@@ -88,7 +86,6 @@
                           </when>
                           <otherwise>
                             WHERE itemno=#{itemno} AND (UPPER(gname) LIKE '%' || UPPER(#{word}) || '%' 
-                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
                                                   OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
                           </otherwise>
                         </choose>
@@ -113,7 +110,7 @@
   <!-- 글 수정 -->
   <update id="update_text" parameterType="dev.mvc.goods.GoodsVO">
     UPDATE goods
-    SET gname=#{gname}, content=#{content}, cnt=#{cnt},  word=#{word}, 
+    SET gname=#{gname}, cnt=#{cnt},  word=#{word}, 
             price=#{price}, dc=#{dc}, saleprice=#{saleprice}, origin= #{origin}, exdate= #{exdate}, storage= #{storage}, grams= #{grams}
     WHERE goodsno = #{goodsno}
   </update>
@@ -167,7 +164,7 @@
   
   <!-- 회원이 찜한 재료 목록 --> 
  <select id="memberList" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
-SELECT g.gname, g.content, g.goodsno,w.memberno,g.price,g.rdate,g.saleprice,g.dc,g.point
+SELECT g.gname, g.goodsno,w.memberno,g.price,g.rdate,g.saleprice,g.dc,g.point
 FROM goods g inner join wish w on g.goodsno = w.goodsno 
 WHERE w.memberno =#{memberno }
 ORDER BY w.rdate DESC
