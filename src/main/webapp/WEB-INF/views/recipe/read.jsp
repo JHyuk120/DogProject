@@ -147,19 +147,17 @@ function cart_ajax_post(goodsno) {
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
 
-    <c:if test="${sessionScope.id != null }">
-      <%--
-      http://localhost:9091/recipe/create.do?itemno=1
-      http://localhost:9091/recipe/create.do?itemno=2
-      http://localhost:9091/recipe/create.do?itemno=3
-      --%>
-      <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
-      <span class='menu_divide' >│</span>
-      <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
-      <span class='menu_divide' >│</span>
-      <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
-    <span class='menu_divide' >│</span>
-    </c:if>
+		<c:if test="${sessionScope.id != null }">
+		  <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
+		  <span class='menu_divide'>│</span>
+		  <c:if test="${sessionScope.memberno == recipeVO.memberno}">
+		    <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
+		    <span class='menu_divide'>│</span>
+		    <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>
+		    <span class='menu_divide'>│</span>
+		  </c:if>
+		</c:if>
+
 
     <A href="./list_by_itemno.do?itemno=${recipeVO.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
@@ -341,26 +339,24 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
       <c:choose>
         <c:when test="${sessionScope.id != null }">
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='/cart/list_by_memberno.do'">장바구니</button>
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../cart/list_by_memberno.do'">장바구니</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
           onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
           <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='/pay/pay_list.do'">주문내역</button>
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='../pay/pay_list.do'">주문내역</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:when>
         <c:otherwise>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='member/create.do'">회원가입</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../member/create.do'">회원가입</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:otherwise>
       </c:choose>
     </div>
 </div>
 
-
- 
 <!-- 댓글 조회 -->
 <jsp:include page="../reply/reply_read.jsp"  flush='true'/>
   

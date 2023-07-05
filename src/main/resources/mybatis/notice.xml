@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
     SELECT noticeno, adminno, title, content, cnt, passwd, word, rdate,
-              file1, file1saved
+              file1, file1saved, size1, thumb1
     FROM notice
     WHERE noticeno = #{noticeno}
   </select>

@@ -162,7 +162,7 @@ public class NoticeCont {
       noticeVO.setContent(content);  
       
       long size1 = noticeVO.getSize1();
-      noticeVO.setSize1_label(Tool.unit(size1));      
+      noticeVO.setSize1(size1);      
       
       String mname = this.adminProc.read(noticeVO.getAdminno()).getMname();
       mav.addObject("mname", mname);
