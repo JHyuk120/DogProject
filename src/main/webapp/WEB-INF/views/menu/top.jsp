@@ -11,7 +11,7 @@
         <nav class="navbar navbar-expand-md fixed-top navbar-custom">
             <style>
                 .navbar-custom {
-                  height: 80px; /* 높이 설정 */
+                  height: 70px; /* 높이 설정 */
                   width: 100%; /* 넓이 설정 */
                   background-color: #DAF5E0;
                 }
@@ -23,7 +23,7 @@
             </button>    
     
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <a class="navbar-brand" href="/index.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 185px;  height: 70px; '></a>
+                <a class="navbar-brand" href="/index.do"><img src="/menu/images/deng.png" class="icon"  style=' width: 180px;  height: 60px; '></a>
 
                 <ul class="navbar-nav mr-auto">
 
@@ -167,7 +167,7 @@
     
 
         <button class="navbar-toggler collapsed " type="button" data-toggle="collapse" data-target="#dropdown6" aria-expanded="false"> <span class="navbar-toggler-icon"></span> </button>
-        <div class="navbar-collapse collapse d-flex align-items-center" id="dropdown6" style="margin-top:70px" >
+        <div class="navbar-collapse collapse d-flex align-items-center" id="dropdown6" style="margin-top:60px;" >
 
             <ul class="navbar-nav float-center mr-auto ">
                 <c:forEach var="itemVO" items="${list_y}">
@@ -178,11 +178,11 @@
                         <c:choose>
 
                             <c:when test="${itemno != 6}">
-                                <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 17px;">                           
+                                <a class="nav-link" href="/recipe/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size: 18px;">                           
                                     <img src="/menu/images/menu2.png" class="icon0"  style='margin-left:9px'>&nbsp;${item}</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size:17px; margin-top: 9px;">🥗${item}🥗</a>
+                                <a class="nav-link" href="/goods/list_by_itemno_grid.do?itemno=${itemno}&now_page=1" style="font-size:18px; margin-top: 7px;">🥗${item}🥗</a>
                             </c:otherwise>
                         </c:choose>
                     </li>
