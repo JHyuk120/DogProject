@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="recipeno" value="${recipeVO.recipeno }" />
 <c:set var="itemno" value="${recipeVO.itemno }" />
 <c:set var="ingredient" value="${recipeVO.ingredient }" />
@@ -18,6 +19,7 @@
 <c:set var="recom" value="${recipeVO.recom }" />
 <c:set var="time" value="${recipeVO.time }" />
 <c:set var="difficulty" value="${recipeVO.difficulty }" />
+
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -31,7 +33,9 @@
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
+
 <!--댓글 등록시 로그인 여부 확인 -->
 function checkLoginStatus() {
     var isMemberLoggedIn = ${sessionScope.id != null};
@@ -46,6 +50,7 @@ function checkLoginStatus() {
     }
     return true; // 폼 제출 진행
 }
+
 // 레시피에서 구매 Ajax
 function cart_ajax_post(goodsno) {
     //var f = $('#frm_order');
@@ -57,6 +62,7 @@ function cart_ajax_post(goodsno) {
     // alert('-> cart_ajax_post: ' + params);
     // return;
     // 쇼핑카트 등록시 사용할 상품 번호.
+
     $.ajax(
       {
         url: '/cart/create.do',
@@ -81,15 +87,20 @@ function cart_ajax_post(goodsno) {
         }
       }
     );  //  $.ajax END
+
   }    
+
 </script>
+
 </head>
+
 <style>
   .content_body {
     width: 100%;
     max-width: 1200px;
     text-align: center;
   }
+
   .fieldset_basic {
     width: 100%;
     height: 100%;
@@ -97,6 +108,7 @@ function cart_ajax_post(goodsno) {
     padding: 0.5%;
     text-align: center;
   }
+
     /* 스크롤 막대의 색상 설정 */
     ::-webkit-scrollbar {
         width: 8px; /* 스크롤 막대의 너비 */
@@ -122,6 +134,7 @@ function cart_ajax_post(goodsno) {
     ::-webkit-scrollbar-thumb:hover {
         background-color: #DAF5E0;
     }
+
 </style>
 </head>  
  
@@ -130,28 +143,28 @@ function cart_ajax_post(goodsno) {
  
 <br>
 <A href="./list_by_itemno.do?itemno=${itemno }" class='title_link' style='background-color:#FEFCF0; margin-left: 15%; font-size: 25px;'><img src="/menu/images/menu2.png" class="icon0"> ${itemVO.item } 레시피</A></DIV>
+
 <DIV class='content_body'  style='background-color:#FEFCF0;'>
   <ASIDE class="aside_right">
 
     <c:if test="${sessionScope.id != null }">
-      <%--
-      http://localhost:9091/recipe/create.do?itemno=1
-      http://localhost:9091/recipe/create.do?itemno=2
-      http://localhost:9091/recipe/create.do?itemno=3
-      --%>
       <A href="./create.do?itemno=${itemVO.itemno }">등록</A>
-      <span class='menu_divide' >│</span>
-      <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
-      <span class='menu_divide' >│</span>
-      <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>  
-    <span class='menu_divide' >│</span>
+      <span class='menu_divide'>│</span>
+      <c:if test="${sessionScope.memberno == recipeVO.memberno}">
+        <A href="./update.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&word=${param.word}">수정</A>
+        <span class='menu_divide'>│</span>
+        <A href="./delete.do?recipeno=${recipeno}&now_page=${param.now_page == null ? 1 : param.now_page }&itemno=${param.itemno}">삭제</A>
+        <span class='menu_divide'>│</span>
+      </c:if>
     </c:if>
+
 
     <A href="./list_by_itemno.do?itemno=${recipeVO.itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
     <A href="./list_by_itemno_grid.do?itemno=${itemno }&now_page=${param.now_page == null?1:param.now_page}&word=${param.word }">갤러리형</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
+
    
   </ASIDE> <br>
   
@@ -161,10 +174,13 @@ function cart_ajax_post(goodsno) {
                       <div style="font-size: 0.8em; margin-left: 78%;">${mname } / ${rdate }</div> <br>
                       
                       <!-- 좋아요 -->
+
+
 <div style="display: flex; justify-content: flex-end; align-items: center; margin-right: 50px;">
   <form name="frm" action="/recom/create.do" method="POST">
     <input type="hidden" name="recipeno" value="${recipeno}" />
     <input type="hidden" name="check" value="${check}" />
+
     <c:choose>
      <c:when test="${sessionScope.adminno != null}">
         <button type="submit" id="recom" class="btn btn-outline-danger btn-sm" style="font-size: 0.8em;"title="저장">
@@ -184,6 +200,7 @@ function cart_ajax_post(goodsno) {
       </c:otherwise>
     </c:choose>
   </form>
+
  <button onclick="sharePage()" class="btn btn-outline-secondary btn-sm" style="font-size: 0.8em; margin-left: 10px;"title="링크복사">
   <img src="/recipe/images/gong.png" class="icon" style="width:25px; margin-bottom:3px;"></button>
   <script>
@@ -200,6 +217,8 @@ function cart_ajax_post(goodsno) {
   </script>
 </div>
 <br>
+
+
     <ul>
       <li class="li_none">
         <DIV style="width:100%;">
@@ -214,13 +233,17 @@ function cart_ajax_post(goodsno) {
                 style="width: 25%; height: 250px; float: left; margin-top: 1%; margin-right:5%; margin-left: 6%; margin-bottom: 5px;"> 
             </c:otherwise>
             </c:choose>
+
 <div style="float: left; margin-left: 10%; margin-bottom: 2%; width: 53%;  height: 50px; background-color: #FBFCF5; text-align: left;">
   <span style="font-size: 1.2em; margin-right: 2%; margin-left: 11%; color: #78776C;">🤍소요시간🤍</span>
   <span style="font-size: 1.2em; margin-right: 9%; color: #78776C;">${time}</span>
   <span style="font-size: 1.2em; margin-right: 2%; color: #78776C;">🤍난이도🤍</span>
   <span style="font-size: 1.2em; color: #78776C;">${difficulty}</span>
 </div>
+
+
 </div><br>
+
             
 <div style="float: left; margin-left: 10%; margin-bottom: 13%; width: 53%; background-color: #FBFCF5;">
   🤍재료박스🤍<br><br>
@@ -249,13 +272,17 @@ function cart_ajax_post(goodsno) {
   </form>
   🤍추가재료🤍<br>${ingredient}<br><br>
 </div>
+
+
   <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;" >🤍레시피 요약🤍</span>
   <br>
 <div style="float: left; margin-left: 8%; margin-bottom: 7%; width: 90%; height: 60px; overflow: auto; 
 background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px solid #FFDAD5;">
     <span style="font-size: 0.9em; display: block; text-align: center; margin-top: 1%;">${article}</span>
 </div>
+
 <br>
+
      <!--<c:if test="${youtube.trim().length() > 0 }">
           <li class="li_none" style="clear: both; padding-top: 15px; padding-bottom: 15px;">
                   <DIV style='width:640px; height: 380px; margin: 0px auto;'>
@@ -265,6 +292,7 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
       </c:if> -->
    <span style="font-size:1.2em; margin-right: 2%; margin-left: 3%;  margin-bottom: 2%;" >🤍조리순서🤍</span>       
 <DIV style="width:100%; margin-top: 1%;">
+
     <c:forEach var="cook_multiVO" items="${list2}">
       <c:set var="cookfile" value="${cook_multiVO.cookfile }" />
       <c:set var="cookfilesaved" value="${cook_multiVO.cookfilesaved }" />
@@ -290,10 +318,12 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
       </div>    
   </c:forEach>
 </DIV>
+
      <li class="li_none" style="clear: both;">
           🤍검색어🤍<br> ${word }
         </DIV>
       </li>
+
    <!-- 플로팅 메뉴 -->
 <style>
     .float {
@@ -303,34 +333,33 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
         z-index: 999;
     }
 </style>
+
 <div class="float">
     <div class="btn-group-vertical">
       <c:choose>
         <c:when test="${sessionScope.id != null }">
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='/cart/list_by_memberno.do'">장바구니</button>
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../cart/list_by_memberno.do'">장바구니</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
           onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
           <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='/pay/pay_list.do'">주문내역</button>
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='../pay/pay_list.do'">주문내역</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:when>
         <c:otherwise>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='member/create.do'">회원가입</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../member/create.do'">회원가입</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:otherwise>
       </c:choose>
     </div>
 </div>
 
-
-
 <!-- 댓글 조회 -->
 <jsp:include page="../reply/reply_read.jsp"  flush='true'/>
-
+  
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  
