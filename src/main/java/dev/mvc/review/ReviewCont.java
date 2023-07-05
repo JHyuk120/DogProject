@@ -1,6 +1,7 @@
 package dev.mvc.review;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.detail.DetailProcInter;
 import dev.mvc.goods.Goods;
 import dev.mvc.goods.GoodsProcInter;
 import dev.mvc.goods.GoodsVO;
@@ -45,7 +47,9 @@ public class ReviewCont {
     @Autowired
     @Qualifier("dev.mvc.item.ItemProc")
     private ItemProcInter itemProc;
-    
+    @Autowired
+    @Qualifier("dev.mvc.detail.DetailProc")
+    private DetailProcInter DetailProc;
     public ReviewCont() {
         System.out.println("-> ReviewCont created");
     }
@@ -64,7 +68,15 @@ public class ReviewCont {
          if(memberProc.isMember(session)) {
              int memberN = (int) session.getAttribute("memberno"); // session에서 memberno 정보 가져오기
              List<PayVO> payList = payProc.pay_list(memberN); // 구매 내역 조회
+             
+             for (PayVO pay : payList) {
+                 int payno = pay.getPayno();
+                 System.out.println("payno: " + payno);
+                 
+             }
+            
 
+            // ArrayList<DetailVO> = this.DetailProc.detail_list(map);
              if (!payList.isEmpty()) {
             // if (cnt == 1) {
                  // 업데이트된 별점 평균 조회
