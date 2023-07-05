@@ -17,8 +17,6 @@ public class GoodsVO {
   private int itemno;
   /** 품목명*/
   private String gname;
-  /** 품목 내용*/
-  private String content;
   /** 품목 갯수 */
   private int cnt;
   

@@ -269,7 +269,6 @@
     <tbody>
       <c:forEach var="goodsVO" items="${list}">
         <c:set var="gname" value="${goodsVO.gname }" />
-        <c:set var="content" value="${goodsVO.content }" />
         <c:set var="price" value="${goodsVO.price }" />   
         <c:set var="dc" value="${goodsVO.dc }" /> 
         <c:set var="point" value="${goodsVO.point }" />
@@ -284,7 +283,7 @@
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                  <img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;">
+                  <img src="/dogproject/goods/storage/${thumb1 }" style="width: 150px; height: 150px;">
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                   <IMG src="/goods/images/ee.png" style="width: 100%; height: 120px; ">

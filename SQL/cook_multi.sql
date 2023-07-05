@@ -86,5 +86,4 @@ WHERE cookfileno=1;
 
 
 SELECT * FROM cook_multi;
-SELECT * FROM goods;
 

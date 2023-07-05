@@ -24,50 +24,43 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+  .gallery_item {
+    width: 22%;
+    height: 300px;
+    margin: 1.5%;
+    padding: 0.5%;
+    text-align: center;
+  }
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'><A href="./list_by_itemno_search_paging.do?itemno=${itemno }" class='title_link'>${itemVO.item }</A> > ${title } 삭제</DIV>
+  <DIV class='content_body'>
+  <DIV>
+<img src="/member/images/delete1.png" class="icon1" style='margin-left:13%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${itemVO.item } > ${title } 삭제</span>
+</DIV> 
 
-<DIV class='content_body'>
-  <ASIDE class="aside_right">
-    <A href="./create.do?itemno=${itemno }">등록</A>
-    <span class='menu_divide' >│</span>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno_search_paging.do?itemno=${itemno }">기본 목록형</A>    
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_itemno_grid.do?itemno=${itemno }">갤러리형</A>
-    <span class='menu_divide' >│</span>
-    <A href="./update_text.do?recipeno=${recipeno}">수정</A>
-    <span class='menu_divide' >│</span>
-    <A href="./update_file.do?recipeno=${recipeno}">파일 수정</A>  
-  </ASIDE> 
-  
-  <%-- 검색 폼 --%>
-  <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_itemno.do'>
-      <input type='hidden' name='itemno' value='${itemno }'>  <%-- 게시판의 구분 --%>
-      
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' style='width: 20%;'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' 
-                     onclick="location.href='./list_by_itemno.do?itemno=${itemno}&word='">검색 취소</button>  
-      </c:if>    
-    </form>
-  </DIV>
-  
-  <DIV class='menu_line'></DIV>
 
   <fieldset class="fieldset_basic">
     <ul>
@@ -76,7 +69,7 @@
 
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <img src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
+              <img src="/dogproject/recipe/storage/${thumb1 }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 -->
               상품 관련 이미지가 없습니다.
@@ -95,11 +88,11 @@
               <input type='hidden' name='itemno' value='${itemno}'>
               <input type='hidden' name='now_page' value='${param.now_page}'>
               <br><br>
-              <div style='text-align: center; margin: 10px auto;'>
+              <div style='text-align: left; margin: 10px auto;'>
                 <span style="color: #FF0000; font-weight: bold;">삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>
                 <br><br>
-                <button type = "submit" class="btn btn-primary">삭제 진행</button>
-                <button type = "button" onclick = "history.back()" class="btn btn-primary">취소</button>
+                <button type = "submit" class="btn btn-dark">삭제 진행</button>
+                <button type = "button" onclick = "history.back()" class="btn btn-outline-dark">취소</button>
               </div>   
           </FORM>
         </DIV>

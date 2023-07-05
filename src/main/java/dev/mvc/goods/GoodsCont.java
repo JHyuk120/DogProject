@@ -235,13 +235,13 @@ public class GoodsCont {
     GoodsVO goodsVO = this.goodsProc.read(goodsno);
     
     String gname = goodsVO.getGname();
-    String content = goodsVO.getContent();
+
     
     gname = Tool.convertChar(gname);  // 특수 문자 처리
-    content = Tool.convertChar(content); 
+
     
     goodsVO.setGname(gname);
-    goodsVO.setContent(content);
+
     
     
     
@@ -441,7 +441,7 @@ public class GoodsCont {
    GoodsVO goodsVO = this.goodsProc.read(goodsno);
    mav.addObject("goodsVO", goodsVO);
    
-   ItemVO itemVO = this.itemProc.read(goodsVO.getItemno());
+   ItemVO itemVO = this.itemProc.read(goodsno);
    mav.addObject("itemVO", itemVO);
    
    mav.setViewName("/goods/update_text"); // /WEB-INF/views/goods/update_text.jsp
@@ -468,14 +468,13 @@ public class GoodsCont {
      System.out.println("가격: "+saleprice);
      goodsVO.setSaleprice(saleprice);
      goodsVO.setPoint(point);
-     
-     this.goodsProc.update_text(goodsVO);
-     
-     
+
      mav.addObject("goodsno", goodsVO.getGoodsno());
      mav.addObject("itemno", goodsVO.getItemno());
      mav.addObject("saleprice", goodsVO.getSaleprice());
      mav.addObject("point", goodsVO.getPoint());
+     
+     this.goodsProc.update_text(goodsVO);
      
      mav.setViewName("redirect:/goods/read.do");
      } else {

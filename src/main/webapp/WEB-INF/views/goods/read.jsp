@@ -17,7 +17,6 @@
 <c:set var="file1" value="${goodsVO.file1 }" />
 <c:set var="file1saved" value="${goodsVO.file1saved }" />
 <c:set var="thumb1" value="${goodsVO.thumb1 }" />
-<c:set var="content" value="${goodsVO.content }" />
 <c:set var="word" value="${goodsVO.word }" />
 <c:set var="size1_label" value="${goodsVO.size1_label }" />
 <c:set var="rdate" value="${goodsVO.rdate.substring(0, 16) }" />
@@ -231,6 +230,31 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
     padding: 0.5%;
     text-align: center;
   }
+     /* 스크롤 막대의 색상 설정 */
+    ::-webkit-scrollbar {
+        width: 8px; /* 스크롤 막대의 너비 */
+    }
+    
+    /* 스크롤 막대의 바탕색 */
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+    
+    /* 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb {
+        background-color: #FFDAD5;
+    }
+    
+    /* 스크롤 막대의 색상 및 모서리 둥글게 */
+::-webkit-scrollbar-thumb {
+    background-color: #FFDAD5;
+    border-radius: 4px;
+}
+    
+    /* 마우스 호버 시 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #DAF5E0;
+    }
  
 
 </style>
@@ -297,7 +321,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
      
         <div class="form_input">
           <input type='password' class="form-control" name='passwd' id='passwd'
-                    value='${ck_passwd }' required="required" style='width: 100%;' placeholder="패스워드">
+                    value='${ck_passwd }' required="required" style= "width: 100%; font-family: '맑은 고딕';" placeholder="패스워드">
           <Label style="margin-right:84%">
             <input type='checkbox' name='passwd_save' value='Y' ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
           </Label>                    
@@ -328,7 +352,7 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
           <DIV style="width: 100%;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <IMG src="/dogproject/storage/${file1saved }" style="width: 40%; height:380px; float:left; margin-top: 5%; margin-right: 20px; margin-bottom: 5px;'">
+                <IMG src="/dogproject/goods/storage/${thumb1 }" style="width: 40%; height:380px; float:left; margin-top: 5%; margin-right: 20px; margin-bottom: 5px;'">
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <IMG src="/goods/images/ee.png" style="width: 40%; height:380px; float: left; margin-top: 5%; margin-right:5%;">
@@ -714,23 +738,24 @@ var isLoggedIn = ${sessionScope.id != null}; // 로그인 상태 확인
       <c:choose>
         <c:when test="${sessionScope.id != null }">
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='/cart/list_by_memberno.do'">장바구니</button>
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../cart/list_by_memberno.do'">장바구니</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
           onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
           <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='/pay/pay_list.do'">주문내역</button>
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='../pay/pay_list.do'">주문내역</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:when>
         <c:otherwise>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='member/create.do'">회원가입</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../member/create.do'">회원가입</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:otherwise>
       </c:choose>
     </div>
 </div>
+
 
     </body>
        <jsp:include page="../menu/bottom.jsp" flush='false' />

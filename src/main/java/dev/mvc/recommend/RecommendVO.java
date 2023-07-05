@@ -8,6 +8,7 @@ import lombok.ToString;
 public class RecommendVO {
     
     public int recommendno;
+    public int recipeno;
     public int memberno;
     public int itemno;
     public int seq;

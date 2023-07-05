@@ -50,7 +50,7 @@
  
   <DIV class='content_body'>
   <DIV>
-<img src="/menu/images/qna1.png" class="icon1" style='margin-left:42%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>관리자 답변</span>
+<img src="/menu/images/notice.png" class="icon1" style='margin-left:35%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>관리자 답변 글 수정</span>
 </DIV> <br>
 
   <%--수정 폼 --%>

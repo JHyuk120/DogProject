@@ -7,8 +7,8 @@ CREATE TABLE pay(
         tname         VARCHAR(30)      NOT NULL, -- 성명, 한글 10자 저장 가능
         ttel             VARCHAR(14)      NOT NULL, -- 전화번호
         tzipcode     VARCHAR(5)        NOT NULL, -- 우편번호, 12345
-        taddress1    VARCHAR(80)     NOT NULL, -- 주소 1
-        taddress2    VARCHAR(50)     NOT NULL, -- 주소 2
+        taddress1    VARCHAR(100)     NOT NULL, -- 주소 1
+        taddress2    VARCHAR(100)     NOT NULL, -- 주소 2
         ptype                           NUMBER(1)    DEFAULT 0     NOT NULL,
         amount                            NUMBER(10)     DEFAULT 0     NOT NULL,
         rdate                              DATE     NOT NULL, 

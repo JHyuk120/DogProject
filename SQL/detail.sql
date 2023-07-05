@@ -13,7 +13,7 @@ CREATE TABLE detail(
         stateno                               NUMBER(1)         DEFAULT 0         NOT NULL,
         rdate                                 DATE         NOT NULL,
   FOREIGN KEY (payno) REFERENCES pay (payno),
-  FOREIGN KEY (memberno) REFERENCES MEMBER (memberno),
+  FOREIGN KEY (memberno) REFERENCES MEMBER (memberno) ON DELETE CASCADE,
   FOREIGN KEY (goodsno) REFERENCES GOODS (goodsno)
 );
 

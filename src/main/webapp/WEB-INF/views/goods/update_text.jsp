@@ -1,10 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <c:set var="itemno" value="${itemVO.itemno }" />
-
+ <c:set var="itemno" value="${goodsVO.itemno }" />
 <c:set var="goodsno" value="${goodsVO.goodsno }" />
 <c:set var="gname" value="${goodsVO.gname }" />
-<c:set var="content" value="${goodsVO.content }" />
 <c:set var="word" value="${goodsVO.word }" />
 <c:set var="price" value="${goodsVO.price }" />
 <c:set var="dc" value="${goodsVO.dc }" />
@@ -50,6 +48,7 @@
         dayNamesMin: ["일","월","화","수","목","금","토"]
     });
   } );
+
 </script>
 
 <style>
@@ -111,8 +110,9 @@
   
   <DIV class='menu_line'></DIV>
   
-  <FORM name='frm' method='POST' action='./update.do' enctype="multipart/form-data">
-    <input type="hidden" name="itemno" value="${param.itemno }">
+  <FORM name='frm' method='POST' action='./update_text.do' enctype="multipart/form-data">
+    <input type="hidden" name="itemno" value="${itemno }">
+    <input type="hidden" name="goodsno" value="${goodsno }">
     
     <div>
        <label>재료 이름</label>
@@ -144,7 +144,7 @@
         </div>
         <div class="col-sm-4">
           <label for="cnt">유통기한</label>
-          <input type="date" class="form-control" id="exdate" name="exdate" id="datepicker"  value="${exdate} " style='width:80%' maxlength='16'>
+          <input type="date" class="form-control" id="exdate" name="exdate" id="datepicker"  value="${exdate}" style='width:80%' maxlength='16'>
         </div>
         <div class="col-sm-4">
           <label for="cnt">보관방법</label>
@@ -160,22 +160,11 @@
         </div>
     </div>
     <br>
-    
-    <div>
-       <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>${content }</textarea><br>
-    </div>
-    
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='해시태그' required="required" 
+       <input type='text' name='word' value='${word }' required="required" 
                  class="form-control" value="${word} " style='width: 100%;' maxlength='100' ><br>
     </div>   
-    <div>
-       <label>이미지</label>
-       <input type='file' class="form-control" name='file1MF' id='file1MF' 
-                 value='${file1MF }' placeholder="파일 선택" value="gname"><br>
-    </div>  
      
     <div >
       <button type="submit" class="btn btn-dark" style="margin-left: 89%;">저장</button>

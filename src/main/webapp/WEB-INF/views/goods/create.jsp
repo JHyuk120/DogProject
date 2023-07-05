@@ -36,6 +36,10 @@
         dayNamesMin: ["일","월","화","수","목","금","토"]
     });
   } );
+
+  function clearFileInput(file1MF) {
+	  file1MF.value = "";
+	  }
 </script>
 <style>
   body {
@@ -142,12 +146,6 @@
         </div>
     </div>
     <br>
-    
-    <div>
-       <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'></textarea><br>
-    </div>
-    
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='해시태그' required="required" 
@@ -157,6 +155,8 @@
        <label>이미지</label>
        <input type='file' class="form-control" name='file1MF' id='file1MF' 
                  value='' placeholder="파일 선택"><br>
+       <button type="button" onclick="clearFileInput(document.getElementById('file1MF'));" 
+                                  class="btn btn-sm btn-outline-dark" style= "margin-left: 80%;">파일 초기화</button>
     </div>  
      
     <div >

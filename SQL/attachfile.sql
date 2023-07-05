@@ -8,7 +8,7 @@ CREATE TABLE attachfile(
         thumb                           VARCHAR2(100)         NULL ,
         fsize                              NUMBER(10)                DEFAULT 0         NOT NULL,
         rdate                             DATE                              NOT NULL,
-  FOREIGN KEY (qnano) REFERENCES qna (qnano)
+  FOREIGN KEY (qnano) REFERENCES qna (qnano) ON DELETE CASCADE
 );
 
 COMMENT ON TABLE attachfile is '첨부파일';

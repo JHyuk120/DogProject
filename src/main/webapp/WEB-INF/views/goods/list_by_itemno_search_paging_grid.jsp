@@ -37,6 +37,32 @@
     padding: 0.5%;
     text-align: center;
   }
+      /* 스크롤 막대의 색상 설정 */
+    ::-webkit-scrollbar {
+        width: 8px; /* 스크롤 막대의 너비 */
+    }
+    
+    /* 스크롤 막대의 바탕색 */
+    ::-webkit-scrollbar-track {
+        background-color: white;
+    }
+    
+    /* 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb {
+        background-color: #FFDAD5;
+    }
+    
+    /* 스크롤 막대의 색상 및 모서리 둥글게 */
+::-webkit-scrollbar-thumb {
+    background-color: #FFDAD5;
+    border-radius: 4px;
+}
+    
+    /* 마우스 호버 시 스크롤 막대의 색상 */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #DAF5E0;
+    }
+  
 </style>
 </head> 
 
@@ -110,7 +136,6 @@
           <c:set var="dc" value="${goodsVO.dc }" />
           <c:set var="saleprice" value="${goodsVO.saleprice}" />  
           <c:set var="point" value="${goodsVO.point}" />  
-          <c:set var="content" value="${goodsVO.content }" />
           <c:set var="itemno" value="${goodsVO.itemno }" />
           <c:set var="goodsno" value="${goodsVO.goodsno }" />
           <c:set var="thumb1" value="${goodsVO.thumb1 }" />
@@ -128,7 +153,7 @@
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
               <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
               <div >
-              <img src="/dogproject/storage/${thumb1 }" style="width: 100%; height: 250px; margin-bottom:10px; ">
+              <img src="/dogproject/goods/storage/${thumb1 }" style="width: 100%; height: 250px; margin-bottom:10px; ">
               </div>
             </c:when>
             <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
@@ -205,25 +230,24 @@
         z-index: 999;
     }
 </style>
-
 <div class="float">
     <div class="btn-group-vertical">
       <c:choose>
         <c:when test="${sessionScope.id != null }">
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='/cart/list_by_memberno.do'">장바구니</button>
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../cart/list_by_memberno.do'">장바구니</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
           onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
           <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='/pay/pay_list.do'">주문내역</button>
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='../pay/pay_list.do'">주문내역</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:when>
         <c:otherwise>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='member/create.do'">회원가입</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../member/create.do'">회원가입</button>
           <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
-          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='qna/list_by_search.do'">고객상담</button>
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
         </c:otherwise>
       </c:choose>
     </div>

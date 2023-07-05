@@ -23,13 +23,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     
+<style>
+  body {
+    background-color: #FEFCE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content_body {
+    width: 100%;
+    max-width: 1200px;
+    
+    background-color:#FEFCF0;
+  }
+
+
+    .btn-custom {
+      background-color: #B6EADA; /* 원하는 색상 코드로 변경 */
+      color: white; /* 버튼 텍스트 색상 설정 (선택적) */
+    }  
+    </style>
+    
 </head> 
- 
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'> 파일 수정</DIV>
-
+  <DIV class='content_body'>
+  <DIV>
+<img src="/menu/images/notice.png" class="icon1" style='margin-left:35%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>관리자 답변 파일 수정</span>
+</DIV> <br>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -46,7 +69,7 @@
         <DIV style='text-align: center; width: 50%; float: left;'>
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <IMG src="/dogproject/storage/${file1saved }" style='width: 90%;'> 
+              <IMG src="/dogproject/notice/storage/${thumb1 }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없음 -->
                <IMG src="/dogproject/images/none1.png" style="width: 90%;"> 
@@ -67,9 +90,9 @@
             <input type='file' name='file1MF' id='file1MF' value='' placeholder="파일 선택"><br>
             <br>
             <div style='margin-top: 20px; clear: both;'>  
-              <button type="submit" class="btn btn-primary">파일 변경 처리</button>
-              <button type="submit" class="btn btn-primary">파일 삭제</button>
-              <button type="button" onclick="history.back();" class="btn btn-primary">취소</button>
+              <button type="submit" class="btn btn-dark">파일 변경 처리</button>
+              <button type="submit" class="btn btn-danger">파일 삭제</button>
+              <button type="button" onclick="history.back();" class="btn btn-outline-dark">취소</button>
             </div>  
           </FORM>
         </DIV>

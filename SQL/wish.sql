@@ -1,11 +1,14 @@
 DROP TABLE wish;
 
+SELECT * FROM wish;
+DELETE FROM member WHERE memberno=39;
+
 CREATE TABLE wish(
     wishno                         NUMBER(10)      NOT NULL    PRIMARY KEY,
     memberno                       NUMBER(10)    NOT NULL ,
     goodsno                          NUMBER(10)    NOT NULL ,
     rdate                              DATE     NOT NULL, 
-  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO),
+  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO) ON DELETE CASCADE,
   FOREIGN KEY (GOODSNO) REFERENCES GOODS (GOODSNO)
 );
 

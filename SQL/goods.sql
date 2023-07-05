@@ -131,4 +131,4 @@ WHERE itemno=2;
   WHERE itemno=2;
   
 
-SELECT * FROM goods;
+SELECT * FROM goods;g
