@@ -304,19 +304,19 @@ background-color: #FBFCF5; text-align: left; border-radius: 10px; border: 1px so
           <c:choose>
             <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
               <%-- /static/recipe/storage/ --%>
-              <img src="/dogproject/recipe/storage/${thumb}" style="width: 100%; height: 160px;  border-radius: 10px;">
+              <img src="/dogproject/recipe/storage/${thumb}" style="width: 228px; height: 160px;  border-radius: 10px;">
             </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
                 <img src="/goods/images/ee.png" style="width: 100%; height:  160px; border-radius: 10px;">
               </c:otherwise>
             </c:choose>
         </div>
-        <div>
-        <span style="width: 40%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
+
+        <span style="width: 45%; height: 100px; border: 1px solid #FFDAD5; margin-top: 3%; margin-right: 5%; 
                      margin-bottom: 7%; overflow: auto; border-radius: 10px; background-color: #FBFCF5;">
             ${exp}
             </span>
-        </div>
+
       </div>    
   </c:forEach>
 </DIV>
