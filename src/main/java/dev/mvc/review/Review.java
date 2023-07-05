@@ -25,7 +25,7 @@ public class Review {
             
         } else { // 리눅스, AWS, 서비스용 배치 폴더
             // System.out.println("Linux");
-            path = "/home/ubuntu/deploy/resort_v2sbm3c/contents/storage/";
+            path = "/home/ubuntu/deploy/dogproject/review/storage/";
         }
         
         return path;
