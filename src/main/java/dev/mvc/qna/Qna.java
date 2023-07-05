@@ -22,7 +22,7 @@ public class Qna {
             
         } else {
             // System.out.println("Linux");
-          path = "/home/ubuntu/deploy/dogproject/recipe/storage/";
+          path = "/home/ubuntu/deploy/dogproject/qna/storage/";
         }
         
         return path;

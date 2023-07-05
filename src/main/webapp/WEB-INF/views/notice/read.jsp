@@ -9,7 +9,7 @@
 <c:set var="thumb1" value="${noticeVO.thumb1 }" />
 <c:set var="content" value="${noticeVO.content }" />
 <c:set var="word" value="${noticeVO.word }" />
-<c:set var="size1_label" value="${noticeVO.size1_label }" />
+<c:set var="size1" value="${noticeVO.size1}" />
 <c:set var="rdate" value="${noticeVO.rdate.substring(0,16) }" />
 
  
@@ -88,17 +88,17 @@
       <li class="li_none">
       <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
       <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
-      
+      <div>
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/notice/storage/ --%>
-                <img src="/dogproject/storage/${file1saved }" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
+                <img src="/dogproject/notice/storage/${thumb1 }" style='width: 80%; float:center; margin-top:5%;'> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <img src="/dogproject/images/none1.png" style='width: 50%; float:left; margin-top:0.5%; margin-right:1%'> 
+                -none image-
               </c:otherwise>
             </c:choose><br>
-         
+        </div> 
         <div style="float: center;">${content }</div>
       </li>
   
@@ -111,7 +111,7 @@
       <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">
-            첨부 파일: <A href='/download?dir=/dogproject/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
+            첨부 파일: <A href='/download?dir=/dogproject/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1}byte)  
           </c:if>
          
         </DIV>
@@ -120,6 +120,39 @@
   </fieldset>
 
 </DIV>
+     <!-- 플로팅 메뉴 -->
+<style>
+    .float {
+        position: fixed;
+        bottom: 30px;
+        right: 20px;
+        z-index: 999;
+    }
+</style>
+
+<div class="float">
+    <div class="btn-group-vertical">
+      <c:choose>
+        <c:when test="${sessionScope.id != null }">
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../cart/list_by_memberno.do'">장바구니</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';" onclick="location.href='../recom/memberList.do?memberno=${memberno}'">저장한 레시피</button>
+          <button type="button"class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"  onclick="location.href='../pay/pay_list.do'">주문내역</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
+        </c:when>
+        <c:otherwise>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../member/create.do'">회원가입</button>
+          <button type="button" class="btn btn-sm btn-custom" style="border: 2px solid #FFDAD5; color: #78776C;" onmouseover="this.style.backgroundColor='#FFDAD5';" 
+          onmouseout="this.style.backgroundColor='transparent';"onclick="location.href='../qna/list_by_search.do'">고객상담</button>
+        </c:otherwise>
+      </c:choose>
+    </div>
+</div>
+
  
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
