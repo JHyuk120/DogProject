@@ -1,12 +1,15 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css?family=Gamja+Flower:400');
+  
+
  /* ver 2.1 */
   /* 모든 태그에 적용 */
   *{
-     font-family: 'Jeju Gothic', sans-serif;
-     font-size: 16px; 
+     font-family: 'Gamja Flower', cursive;
+     font-size: 18px; 
      margin: 0px;  /*  right bottom left */
      padding: 0px;
      color: #555555;
+     font-weight: bold;
   }  
   
   .container_main {
