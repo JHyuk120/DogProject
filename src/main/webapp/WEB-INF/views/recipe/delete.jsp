@@ -58,7 +58,7 @@
  
   <DIV class='content_body'>
   <DIV>
-<img src="/member/images/delete1.png" class="icon1" style='margin-left:34%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${itemVO.item } > ${title } 삭제</span>
+<img src="/member/images/delete1.png" class="icon1" style='margin-left:13%; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>${itemVO.item } > ${title } 삭제</span>
 </DIV> 
 
 

@@ -113,9 +113,10 @@ public class HomeCont {
      MemberVO memberVO = this.memberProc.read(memberno);
      int itemno = this.recommendProc.recommend_read(memberno);
      ArrayList<RecommendVO> rlist = this.recommendProc.recommend(itemno);
-     
      mav.addObject("rlist", rlist);
+     System.out.println("--->>> 추천레시피: " + rlist);
      
+
      mav.addObject("memberVO", memberVO);
    }
    

@@ -72,7 +72,7 @@
             <div class="container">
                 <div class="row">
                   <c:forEach var="recommendVO" items="${rlist}" begin="0" end="4" varStatus="status">
-                        <a href="http://localhost:9093/recipe/read.do?recipeno=${recipeVO.recipeno }&word=&now_page=1">
+                        <a href="/recipe/read.do?recipeno=${recipeVO.recipeno }&word=&now_page=1">
                             <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <div class="image-container_rc">
                                     <c:choose>

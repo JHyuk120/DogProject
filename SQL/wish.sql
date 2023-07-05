@@ -1,5 +1,8 @@
 DROP TABLE wish;
 
+SELECT * FROM wish;
+DELETE FROM member WHERE memberno=39;
+
 CREATE TABLE wish(
     wishno                         NUMBER(10)      NOT NULL    PRIMARY KEY,
     memberno                       NUMBER(10)    NOT NULL ,

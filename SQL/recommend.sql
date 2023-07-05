@@ -19,7 +19,7 @@ COMMENT ON COLUMN RECOMMEND.itemno is '카테고리번호';
 COMMENT ON COLUMN RECOMMEND.seq is '추천 우선순위';
 COMMENT ON COLUMN RECOMMEND.RDATE is '추천 날짜';
 
-DROP SEQUENCE recoomend_seq;
+DROP SEQUENCE recomend_seq;
 
 CREATE SEQUENCE recommend_seq
   START WITH 1         -- 시작 번호
