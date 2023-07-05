@@ -80,7 +80,7 @@
                                 <div class="image-container_rc">
                                     <c:choose>
                                         <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                            <img src="dogproject/recipe/storage/${thumb1 }" class="carousel-image">
+                                            <img src="/dogproject/recipe/storage/${thumb1 }" class="carousel-image">
                                         </c:when>
                                         <c:otherwise>
                                             <img src="/images/ee.png" class="carousel-image">
@@ -113,7 +113,7 @@
                             <div class="image-container_rc">
                                 <c:choose>
                                     <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                        <img src="dogproject/recipe/storage/${thumb1 }" class="carousel-image">
+                                        <img src="/dogproject/recipe/storage/${thumb1 }" class="carousel-image">
                                     </c:when>
                                     <c:otherwise>
                                         <img src="/images/ee.png" class="carousel-image">
@@ -170,7 +170,7 @@
                 
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                    <img src="dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                    <img src="/dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
                   </c:when>
                   <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                     <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
@@ -203,7 +203,7 @@
                style='width: 18%; height: 216px; float: left; margin: 0.1%; padding: 0.1%;  text-align: center; '>
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                    <img src="dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
+                    <img src="/dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
                   </c:when>
                   <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                     <IMG src="/images/ee.png" style="width: 100%; height: 140px;">
