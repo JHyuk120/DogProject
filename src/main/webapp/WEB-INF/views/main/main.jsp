@@ -166,7 +166,7 @@
               <c:set var="title" value="${recipeVO.title }" />
               <c:set var="thumb1" value="${recipeVO.thumb1 }" />                
               <div  onclick="location.href='/recipe/read.do?recipeno=${recipeVO.recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover' 
-               style='width: 15%; height: 216px; float: left; margin: 0.3%; padding: 0.5%;  text-align: center; '>
+               style='width: 18%; height: 216px; float: left; margin: 0.1%; padding: 0.1%;  text-align: center; '>
                 
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
@@ -200,7 +200,7 @@
               <c:set var="title" value="${recipeVO.title }" />
               <c:set var="thumb1" value="${recipeVO.thumb1 }" />                
               <div  onclick="location.href='/recipe/read.do?recipeno=${recipeVO.recipeno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover' 
-               style='width: 15%; height: 216px; float: left; margin: 0.3%; padding: 0.5%;  text-align: center; '>
+               style='width: 18%; height: 216px; float: left; margin: 0.1%; padding: 0.1%;  text-align: center; '>
                 <c:choose> 
                   <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
                     <img src="dogproject/recipe/storage/${thumb1 }" style="width: 100%; height: 140px;">
