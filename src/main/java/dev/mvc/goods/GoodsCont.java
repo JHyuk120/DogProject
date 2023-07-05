@@ -664,7 +664,7 @@ public class GoodsCont {
 
    mav.addObject("itemno", goodsVO.getItemno());
    mav.addObject("now_page", now_page);
-   mav.setViewName("redirect:/goods/list_by_itemno.do"); 
+   mav.setViewName("redirect:/goods/list_by_itemno_grid.do"); 
    
    return mav;
  }   
