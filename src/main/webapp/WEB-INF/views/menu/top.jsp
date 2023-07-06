@@ -142,7 +142,7 @@
                                     <a class="dropdown-item" href='/item/list_all.do'>
                                         <img src="/menu/images/list.png" class="icon"  style='margin-left:5px'>&nbsp;카테고리 전체 목록</a>       
                                     <a class="dropdown-item" href='/member/list.do'>
-                                        <img src="/menu/images/team.png" class="icon"  style='margin-left:5px'>&nbsp; 회원 목록</a>  
+                                        <img src="/menu/images/team.png" class="icon"  style='margin-left:5px'>&nbsp; 회0.원 목록</a>  
                                     <a class="dropdown-item" href='/detail/order_list.do'>
                                         <img src="/menu/images/commu.png" class="icon"  style='margin-left:5px'>&nbsp; 고객 주문 사항</a>
                                     <a class="dropdown-item" href='/recom/adminList.do'>
