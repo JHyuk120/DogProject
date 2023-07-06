@@ -164,7 +164,7 @@
   
   <!-- 회원이 찜한 재료 목록 --> 
  <select id="memberList" resultType="dev.mvc.goods.GoodsVO" parameterType="int">
-SELECT g.gname, g.goodsno,w.memberno,g.price,g.rdate,g.saleprice,g.dc,g.point
+SELECT g.gname, g.goodsno,w.memberno,g.price,g.rdate,g.saleprice,g.dc,g.point, g.thumb1
 FROM goods g inner join wish w on g.goodsno = w.goodsno 
 WHERE w.memberno =#{memberno }
 ORDER BY w.rdate DESC

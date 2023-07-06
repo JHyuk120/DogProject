@@ -17,7 +17,7 @@ public class Qna {
         String path = "";
         if (File.separator.equals("\\")) {
        // path = "C:/kd/deploy/dog_v1sbm3c/recipe/storage/";
-            path="C:\\kd\\deploy\\dogproject\\attachfile\\storage\\";
+            path="C:\\kd\\deploy\\dogproject\\qna\\storage\\";
             // System.out.println("Windows 10: " + path);
             
         } else {

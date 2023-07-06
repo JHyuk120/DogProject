@@ -139,6 +139,7 @@ public class WishCont {
       int mycnt = this.wishProc.mycnt(memberno);
       //System.out.println("mycnt:"+mycnt);
       mav.addObject("mycnt", mycnt);
+      System.out.println("---->: " + list_m);
       mav.addObject("list_m", list_m);
       
 
