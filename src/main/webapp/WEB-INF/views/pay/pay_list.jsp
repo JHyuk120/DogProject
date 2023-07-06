@@ -103,7 +103,7 @@ $(function(){
         </c:choose>
       </TD>
       <TD class='td_basic'><fmt:formatNumber value="${amount }" pattern="#,###" /></TD>
-      <TD class='td_basic'>${rdate.substring(1,16) }</TD>
+      <TD class='td_basic'>${rdate.substring(0,16) }</TD>
       <TD class='td_basic'>
         <A href="/detail/detail_list.do?payno=${payno}" title="주문 내역 상세 조회"><img src="/pay/images/receipt(1).png" class=icon2></A>
       </TD>
