@@ -276,7 +276,6 @@
     <tbody>
       <c:forEach var="goodsVO" items="${list_m}">
         <c:set var="gname" value="${goodsVO.gname }" />
-        <c:set var="content" value="${goodsVO.content }" />
         <c:set var="price" value="${goodsVO.price }" />   
         <c:set var="dc" value="${goodsVO.dc }" /> 
         <c:set var="point" value="${goodsVO.point }" />
@@ -293,7 +292,7 @@
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                   <a href="/goods/read.do?goodsno=${goodsno}"><img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;"></a>
+                   <a href="/goods/read.do?goodsno=${goodsno}"><img src="/dogproject/goods/storage/${thumb1 }" style="width: 150px; height: 150px;"></a>
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                   <IMG src="/goods/images/ee.png" style="width: 100%; height: 120px; ">
@@ -301,7 +300,7 @@
               </c:choose>
             </a>
           </td>  
-          <td style='vertical-align: middle;'>
+          <td style='vertical-align: middle;   text-align: left;'>
             <a href="../goods/read.do?goodsno=${goodsno }&now_page=${param.now_page == null? 1: param.now_page}&word=${param.word}">
               <div style='font-weight: bold; margin-bottom:10px;'>${gname }</div>
 
@@ -331,14 +330,7 @@
   
           </td>
           
-         <%--  <td style='vertical-align: middle; text-align: center;'>
-            <A href="/contents/map.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="지도"><IMG src="/contents/images/map.png" class="icon"></A>
-            <A href="/contents/youtube.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="Youtube"><IMG src="/contents/images/youtube.png" class="icon"></A>
-            <A href="/contents/update_text.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="글 수정"><IMG src="/contents/images/update.png" class="icon"></A>
-            <A href="/contents/update_file.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="파일 수정"><IMG src="/contents/images/update_file.png" class="icon"></A>
-            <A href="/contents/delete.do?cateno=${cateno }&contentsno=${contentsno}&word=${param.word }" title="삭제"><IMG src="/contents/images/delete.png" class="icon"></A>
-          </td>
-          --%>
+         
           
           <c:choose>
             <c:when test="${sessionScope.admin_id != null }">

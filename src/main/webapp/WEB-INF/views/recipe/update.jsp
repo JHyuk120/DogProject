@@ -252,8 +252,8 @@ $(function() {
                  class="form-control" style='width: 20%;'>
     </div>   
     <div class="content_body_bottom">
-      <button type="submit" class="btn btn-dark" style="width:5%; height:45px;">등록</button>
-      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark" style="width:5%; height:45px;">목록</button>
+      <button type="submit" class="btn btn-dark" style="width:7%; height:45px;">등록</button>
+      <button type="button" onclick="location.href='./list_by_itemno.do?itemno=${param.itemno}'" class="btn btn-outline-dark" style="width:7%; height:45px;">목록</button>
     </div>
   
   </FORM>
