@@ -292,7 +292,7 @@
               <c:choose>
                 <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                   <%-- registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
-                   <a href="/goods/read.do?goodsno=${goodsno}"><img src="/dogproject/storage/${thumb1 }" style="width: 150px; height: 150px;"></a>
+                   <a href="/goods/read.do?goodsno=${goodsno}"><img src="/dogproject/goods/storage/${thumb1 }" style="width: 150px; height: 150px;"></a>
                 </c:when>
                 <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/contents/images/none1.png -->
                   <IMG src="/goods/images/ee.png" style="width: 100%; height: 120px; ">

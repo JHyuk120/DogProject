@@ -108,31 +108,35 @@
         <div class="carousel-item">
             <div class="container">
                 <div class="row">
-                    <c:forEach var="recommendVO" items="${rlist}" begin="4" end="8" varStatus="status">
-                        <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                            <div class="image-container_rc">
-                                <c:choose>
-                                    <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                                        <img src="/dogproject/recipe/storage/${thumb1 }" class="carousel-image">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="/images/ee.png" class="carousel-image">
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                            <div style="margin: 20px;">
-                                <strong style="display: block; width: 150px; height: 60px; overflow: hidden; text-overflow: ellipsis;">
+                    <c:forEach var="recommendVO" items="${rlist}" begin="4" end="7" varStatus="status">
+                      <c:set var="recipeno" value="${recommendVO.recipeno }" />
+                      <c:set var="thumb1" value="${recommendVO.thumb1 }" />
+                      <a href="/recipe/read.do?recipeno=${recipeno }&word=&now_page=1">
+                            <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                <div class="image-container_rc">
                                     <c:choose>
-                                        <c:when test="${recommendVO.title.length() > 20}">
-                                            ${recommendVO.title.substring(0, 20)}...
+                                        <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+                                            <img src="/dogproject/recipe/storage/${thumb1 }" class="carousel-image">
                                         </c:when>
                                         <c:otherwise>
-                                            ${recommendVO.title}
+                                            <img src="/images/ee.png" class="carousel-image">
                                         </c:otherwise>
                                     </c:choose>
-                                </strong>
+                                </div>
+                                <div style="margin: 20px;">
+                                    <strong style="display: block; width: 150px; height: 60px; overflow: hidden; text-overflow: ellipsis;">
+                                        <c:choose>
+                                            <c:when test="${recommendVO.title.length() > 20}">
+                                                ${recommendVO.title.substring(0, 20)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${recommendVO.title}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </strong>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </c:forEach>
                 </div>
             </div>
