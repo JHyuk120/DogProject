@@ -72,7 +72,7 @@
         <div class="carousel-item active">
             <div class="container">
                 <div class="row">
-                  <c:forEach var="recommendVO" items="${rlist}" begin="0" end="4" varStatus="status">
+                  <c:forEach var="recommendVO" items="${rlist}" begin="0" end="3" varStatus="status">
                       <c:set var="recipeno" value="${recommendVO.recipeno }" />
                       <c:set var="thumb1" value="${recommendVO.thumb1 }" />
                       <a href="/recipe/read.do?recipeno=${recipeno }&word=&now_page=1">
@@ -108,7 +108,7 @@
         <div class="carousel-item">
             <div class="container">
                 <div class="row">
-                    <c:forEach var="recommendVO" items="${rlist}" begin="5" end="9" varStatus="status">
+                    <c:forEach var="recommendVO" items="${rlist}" begin="4" end="8" varStatus="status">
                         <div class="col" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                             <div class="image-container_rc">
                                 <c:choose>

@@ -226,7 +226,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  ORDER BY rdate DESC
     
               )
-    WHERE  5 >= r
+    WHERE   r>= 5
   </select>
   
   
