@@ -178,6 +178,7 @@
   <DIV>
     <div style='display: flex; align-items: flex-start;'>
         <img src="/goods/images/wish.png" class="icon0"  style='margin-left:5px; width: 2%; margin-bottom: 7px; margin-right: 1%;'>찜한 재료 목록
+        <img src="/goods/images/arrow.png" class="icon"  style='margin-left:5px; width: 2%; margin-bottom: 5px;'>총 ${mycnt}건
     </div>
 
 </DIV>

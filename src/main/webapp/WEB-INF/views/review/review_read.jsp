@@ -265,7 +265,7 @@ $(document).ready(function(){
                   <c:choose>
                     <c:when test="${thumb2.endsWith('jpg') || thumb2.endsWith('png') || thumb2.endsWith('gif')}">
                       <%-- /static/contents/storage/ --%>
-                      <img src="/dogproject/review/storage/${thumb1 }" style= "width: 50%; margin: 1px;"> 
+                      <img src="/dogproject/review/storage/${thumb2 }" style= "width: 50%; margin: 1px;"> 
                     </c:when>
               
                     <c:otherwise> <!-- 기본 이미지 출력 -->
